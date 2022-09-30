@@ -1,0 +1,32 @@
+BROKER SCHEMA co.com.caracol.integration.commos
+
+DECLARE UDP_SERVICE EXTERNAL CHARACTER '';
+
+CREATE COMPUTE MODULE HandlerModules_RouteFcdWS
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Crear referencias
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Obtener portType y operation del llamado
+		DECLARE refContext REFERENCE TO InputLocalEnvironment.SOAP.Envelope.InRequest.*.SOAP.Context;  
+		DECLARE portType CHARACTER refContext.portType;
+		DECLARE operation CHARACTER refContext.operation;
+		
+		--ReplyIdentifier para respuesta
+		SET refMQRFH2.usr.responseWS.replyIdentifier = InputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier;
+		
+		--Obtener nombre de cola para envío de mensaje
+		SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = co.com.caracol.integration.commos.getDestinationByServiceAndOperation(UDP_SERVICE, operation);
+		
+		--Copiar mensaje completo
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

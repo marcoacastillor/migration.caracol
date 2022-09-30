@@ -1,0 +1,15 @@
+BROKER SCHEMA co.com.caracol.serguridad.autenticar
+
+
+CREATE COMPUTE MODULE Autentica_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

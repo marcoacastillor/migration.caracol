@@ -1,0 +1,37 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Crear referencias
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Obtener portType y operation del llamado
+		DECLARE refContext REFERENCE TO InputLocalEnvironment.SOAP.Envelope.InRequest.*.SOAP.Context;  
+		DECLARE operation CHARACTER refContext.operation;
+		
+		--ReplyIdentifier para respuesta
+		SET refMQRFH2.usr.responseWS.replyIdentifier = InputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation 		= operation;
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_RESP;
+		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		
+		--Declarar variables
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		
+		SET refOut.UsuarioAutenticarResult = codeError || ' : ' || nameError || ' : ' || descError;
+		
+		RETURN TRUE;
+	END;

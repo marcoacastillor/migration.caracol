@@ -1,0 +1,20 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:UsuariosDePerfil;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:UsuariosDePerfil;
+		
+		SET refOut.ns:funcionalidadId 	= FIELDVALUE(refInp.*:perfilid);
+		
+		RETURN TRUE;
+	END;

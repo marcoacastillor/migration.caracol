@@ -1,0 +1,13 @@
+CREATE COMPUTE MODULE Seguridad_ValidarToken_Prp
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;	
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		SET OutputRoot=InputRoot;
+		
+			
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

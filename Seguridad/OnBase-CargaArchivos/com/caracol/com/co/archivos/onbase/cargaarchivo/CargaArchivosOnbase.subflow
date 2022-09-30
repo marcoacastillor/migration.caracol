@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmFileOutput.msgnode="ComIbmFileOutput.msgnode" xmlns:ComIbmFlowOrder.msgnode="ComIbmFlowOrder.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:Indicadores_EnviarInformacionEntrada.subflow="Indicadores/EnviarInformacionEntrada.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mbmonitor="http://www.ibm.com/wbi/2008/eflow_mbmonitor"
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracol/com/co/archivos/onbase/cargaarchivo/CargaArchivosOnbase.subflow" nsPrefix="com_caracol_com_co_archivos_onbase_cargaarchivo_CargaArchivosOnbase.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="CargaArchivosOnbase" bundleName="com/caracol/com/co/archivos/onbase/cargaarchivo/CargaArchivosOnbase" pluginId="OnBase-CargaArchivos"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/OnBase-CargaArchivos/icons/full/obj16/CargaArchivosOnbase.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/OnBase-CargaArchivos/icons/full/obj30/CargaArchivosOnbase.gif"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="49,47">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="com/caracol/com/co/archivos/onbase/cargaarchivo/CargaArchivosOnbase" pluginId="OnBase-CargaArchivos"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="894,187">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="com/caracol/com/co/archivos/onbase/cargaarchivo/CargaArchivosOnbase" pluginId="OnBase-CargaArchivos"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="332,15" computeExpression="esql://routine/com.caracol.com.co.archivos.onbase.cargaarchivo#CaragaArchivosOnbase_Errores.Main">
+        <translation xmi:type="utility:ConstantString" string="Errores"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="448,-9" queueName="CARACOL.ESB.NOTIFICAERROR">
+        <translation xmi:type="utility:ConstantString" string="Error"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="211,154" computeExpression="esql://routine/com.caracol.com.co.archivos.onbase.cargaarchivo#CaragaArchivosOnbase_Data.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Data"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="Data.terminal.in" eventIdentity="onbase-cargararchivos.Data.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA"/>
+            <eventName literal="onbase-cargararchivos.Data.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Out terminal" eventSourceName="Data.terminal.out" eventIdentity="onbase-cargararchivos.Data.OutTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA"/>
+            <eventName literal="onbase-cargararchivos.Data.OutTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmFlowOrder.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="401,142">
+        <translation xmi:type="utility:ConstantString" string="Flow Order"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="570,45" computeExpression="esql://routine/com.caracol.com.co.archivos.onbase.cargaarchivo#CaragaArchivosOnbase_CreaPDF.Main" computeMode="destinationAndMessage" validateMaster="inherit">
+        <translation xmi:type="utility:ConstantString" string="CreaPDF"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="567,172" computeExpression="esql://routine/com.caracol.com.co.archivos.onbase.cargaarchivo#CaragaArchivosOnbase_CreaCSV.Main" computeMode="destinationAndMessage" validateMaster="inherit">
+        <translation xmi:type="utility:ConstantString" string="CreaCSV"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="712,49" validateMaster="none">
+        <translation xmi:type="utility:ConstantString" string="File Output"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="File Output.terminal.in" eventIdentity="onbase-cargararchivos.File Output.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="onbase-cargararchivos.File Output.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="707,275">
+        <translation xmi:type="utility:ConstantString" string="File Output1"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="File Output1.terminal.in" eventIdentity="File Output1.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="File Output1.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_5" location="129,240" ip="172.17.3.5" cliente="srviib1" servicio="OnBase-CargaArchivos">
+        <translation xmi:type="utility:ConstantString" string="EnviarInformacionEntrada"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_3" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.first" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.second" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_5" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,17 @@
+CREATE COMPUTE MODULE RestoreContext_getContext
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		SET OutputRoot = InputRoot;
+		SET OutputRoot.MQMD 		= InputLocalEnvironment.ReturnedMessage.MQMD;
+		SET OutputRoot.MQMD.MsgId 	= CAST(InputRoot.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);
+		
+		SET OutputRoot.MQMD.MsgType= InputRoot.MQRFH2.usr.esbHeader.serviceData.Type;
+		
+		
+		-- Limpiar Header MQRFH2
+		SET OutputRoot.MQRFH2 = NULL;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

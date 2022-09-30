@@ -1,0 +1,32 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Crear referencias
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Obtener portType y operation del llamado
+		DECLARE refContext REFERENCE TO InputLocalEnvironment.SOAP.Envelope.InRequest.*.SOAP.Context;  
+		DECLARE portType CHARACTER refContext.portType;
+		DECLARE operation CHARACTER refContext.operation;
+		
+		--ReplyIdentifier para respuesta
+		SET refMQRFH2.usr.responseWS.replyIdentifier = InputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation 		= operation;
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
+		SET refMQRFH2.usr.transaction.emailNotification = true;
+		
+		--Obtener nombre de cola para envío de mensaje
+		SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = co.com.caracol.integration.commos.getDestinationByServiceAndOperation(UDP_SERVICE, operation);
+		
+		--Copiar mensaje completo
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		
+		RETURN TRUE;
+	END;

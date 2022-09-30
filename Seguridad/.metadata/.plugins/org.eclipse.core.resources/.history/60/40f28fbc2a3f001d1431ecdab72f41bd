@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ConsultaOrdenesInternas" targetNamespace="http://www.caracoltv.com.co/TI/seguridad/funcionalidadeshijas/" xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:srv="http://www.caracoltv.com.co/TI/seguridad/funcionalidadeshijas/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdFuncionalidadesHijasHttp" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+   
+	  
+<wsdl:types>
+   <xsd:schema targetNamespace="http://www.caracoltv.com.co/TI/seguridad/funcionalidadeshijas/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="seguridad_funcionalidadeshijas.xsd"/>
+</xsd:schema>
+	<xsd:schema>
+<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" schemaLocation="ebms-header-3_0-200704.xsd"/>
+</xsd:schema>	
+</wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgFuncionalidadesHijasRequest">
+    	<wsdl:part element="srv:FuncionalidadesHijasRequest" name="FuncionalidadesHijasRequest"/>
+  	</wsdl:message>
+  	
+  	<!-- Response message -->
+  	<wsdl:message name="msgFuncionalidadesHijasResponse">
+    	<wsdl:part element="srv:FuncionalidadesHijasResponse" name="FuncionalidadesHijasResponse"/>
+  	</wsdl:message>
+	
+	<!-- Fault message -->
+	<wsdl:message name="msgFuncionalidadesHijasFault">
+  		<wsdl:part element="eb:Messaging" name="detail"/>
+  	</wsdl:message>
+  	  
+	
+<!-- Port type -->
+  	<wsdl:portType name="ptFuncionalidadesHijas12">
+    	<wsdl:operation name="operacionFuncionalidadesHijas">
+      		<wsdl:input message="srv:msgFuncionalidadesHijasRequest" name="FuncionalidadesHijas_Input"/>
+      		<wsdl:output message="srv:msgFuncionalidadesHijasResponse" name="FuncionalidadesHijas_Output"/>
+	        <wsdl:fault message="srv:msgFuncionalidadesHijasFault" name="fault"/>		
+	    </wsdl:operation>
+  	</wsdl:portType>
+	
+    <!-- Service -->
+    <wsdl:binding name="bdFuncionalidadesHijasHttp" type="srv:ptFuncionalidadesHijas12">
+    	<S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="operacionFuncionalidadesHijas">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/TI/seguridad/funcionalidadeshijas/"/>
+	      	<wsdl:input name="FuncionalidadesHijas_Input">
+	        	<S12:body parts="FuncionalidadesHijasRequest" use="literal"/>
+	      	</wsdl:input>
+	      	<wsdl:output name="FuncionalidadesHijas_Output">
+	        	<S12:body parts="FuncionalidadesHijasResponse" use="literal"/>
+	      	</wsdl:output>
+	      	<wsdl:fault name="fault">
+	      		<S12:fault name="fault" use="literal"/>
+	      	</wsdl:fault>		
+    	</wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="FuncionalidadesHijas">    	    	
+    	<wsdl:port binding="srv:bdFuncionalidadesHijasHttp" name="FuncionalidadesHijas">
+      		<S12:address location="http://localhost:7800/services/s12/dominio/funcionalidadeshijas"/>
+    	</wsdl:port>
+  	</wsdl:service>  	  
+</wsdl:definitions>

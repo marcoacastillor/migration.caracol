@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ServicioModuloUsuarios" targetNamespace="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="BasicHttpBinding_IServicioModuloUsuarios" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" schemaLocation="RemoteFiles/xsd_xsd0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IServicioModuloUsuarios_UsuarioAutenticar_InputMessage">
+    <wsdl:part element="tns:UsuarioAutenticar" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_UsuarioAutenticar_OutputMessage">
+    <wsdl:part element="tns:UsuarioAutenticarResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_UsuarioCargar_InputMessage">
+    <wsdl:part element="tns:UsuarioCargar" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_UsuarioCargar_OutputMessage">
+    <wsdl:part element="tns:UsuarioCargarResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_UsuariosDePerfil_InputMessage">
+    <wsdl:part element="tns:UsuariosDePerfil" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_UsuariosDePerfil_OutputMessage">
+    <wsdl:part element="tns:UsuariosDePerfilResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_PermisosDeFuncionalidadXUsuario_InputMessage">
+    <wsdl:part element="tns:PermisosDeFuncionalidadXUsuario" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_PermisosDeFuncionalidadXUsuario_OutputMessage">
+    <wsdl:part element="tns:PermisosDeFuncionalidadXUsuarioResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_FuncionalidadesHijas_InputMessage">
+    <wsdl:part element="tns:FuncionalidadesHijas" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_FuncionalidadesHijas_OutputMessage">
+    <wsdl:part element="tns:FuncionalidadesHijasResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_PerfilesDeSistemaXUsuario_InputMessage">
+    <wsdl:part element="tns:PerfilesDeSistemaXUsuario" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_PerfilesDeSistemaXUsuario_OutputMessage">
+    <wsdl:part element="tns:PerfilesDeSistemaXUsuarioResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_PerfilesDeSistema_InputMessage">
+    <wsdl:part element="tns:PerfilesDeSistema" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_PerfilesDeSistema_OutputMessage">
+    <wsdl:part element="tns:PerfilesDeSistemaResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_FuncionalidadesVisiblesDeSistemaXUsuario_InputMessage">
+    <wsdl:part element="tns:FuncionalidadesVisiblesDeSistemaXUsuario" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_FuncionalidadesVisiblesDeSistemaXUsuario_OutputMessage">
+    <wsdl:part element="tns:FuncionalidadesVisiblesDeSistemaXUsuarioResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_ConsultarFuncionalidad_InputMessage">
+    <wsdl:part element="tns:ConsultarFuncionalidad" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_ConsultarFuncionalidad_OutputMessage">
+    <wsdl:part element="tns:ConsultarFuncionalidadResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_FuncionalidadesMigas_InputMessage">
+    <wsdl:part element="tns:FuncionalidadesMigas" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_FuncionalidadesMigas_OutputMessage">
+    <wsdl:part element="tns:FuncionalidadesMigasResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_FuncionalidadesAyuda_InputMessage">
+    <wsdl:part element="tns:FuncionalidadesAyuda" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_FuncionalidadesAyuda_OutputMessage">
+    <wsdl:part element="tns:FuncionalidadesAyudaResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_UsariosXListaPerfiles_InputMessage">
+    <wsdl:part element="tns:UsariosXListaPerfiles" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IServicioModuloUsuarios_UsariosXListaPerfiles_OutputMessage">
+    <wsdl:part element="tns:UsariosXListaPerfilesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="IServicioModuloUsuarios">
+    <wsdl:operation name="UsuarioAutenticar">
+      <wsdl:input message="tns:IServicioModuloUsuarios_UsuarioAutenticar_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/UsuarioAutenticar"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_UsuarioAutenticar_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/UsuarioAutenticarResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UsuarioCargar">
+      <wsdl:input message="tns:IServicioModuloUsuarios_UsuarioCargar_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/UsuarioCargar"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_UsuarioCargar_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/UsuarioCargarResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UsuariosDePerfil">
+      <wsdl:input message="tns:IServicioModuloUsuarios_UsuariosDePerfil_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/UsuariosDePerfil"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_UsuariosDePerfil_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/UsuariosDePerfilResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="PermisosDeFuncionalidadXUsuario">
+      <wsdl:input message="tns:IServicioModuloUsuarios_PermisosDeFuncionalidadXUsuario_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/PermisosDeFuncionalidadXUsuario"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_PermisosDeFuncionalidadXUsuario_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/PermisosDeFuncionalidadXUsuarioResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="FuncionalidadesHijas">
+      <wsdl:input message="tns:IServicioModuloUsuarios_FuncionalidadesHijas_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesHijas"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_FuncionalidadesHijas_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesHijasResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="PerfilesDeSistemaXUsuario">
+      <wsdl:input message="tns:IServicioModuloUsuarios_PerfilesDeSistemaXUsuario_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/PerfilesDeSistemaXUsuario"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_PerfilesDeSistemaXUsuario_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/PerfilesDeSistemaXUsuarioResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="PerfilesDeSistema">
+      <wsdl:input message="tns:IServicioModuloUsuarios_PerfilesDeSistema_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/PerfilesDeSistema"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_PerfilesDeSistema_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/PerfilesDeSistemaResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="FuncionalidadesVisiblesDeSistemaXUsuario">
+      <wsdl:input message="tns:IServicioModuloUsuarios_FuncionalidadesVisiblesDeSistemaXUsuario_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesVisiblesDeSistemaXUsuario"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_FuncionalidadesVisiblesDeSistemaXUsuario_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesVisiblesDeSistemaXUsuarioResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarFuncionalidad">
+      <wsdl:input message="tns:IServicioModuloUsuarios_ConsultarFuncionalidad_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/ConsultarFuncionalidad"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_ConsultarFuncionalidad_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/ConsultarFuncionalidadResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="FuncionalidadesMigas">
+      <wsdl:input message="tns:IServicioModuloUsuarios_FuncionalidadesMigas_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesMigas"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_FuncionalidadesMigas_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesMigasResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="FuncionalidadesAyuda">
+      <wsdl:input message="tns:IServicioModuloUsuarios_FuncionalidadesAyuda_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesAyuda"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_FuncionalidadesAyuda_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesAyudaResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="UsariosXListaPerfiles">
+      <wsdl:input message="tns:IServicioModuloUsuarios_UsariosXListaPerfiles_InputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/UsariosXListaPerfiles"/>
+      <wsdl:output message="tns:IServicioModuloUsuarios_UsariosXListaPerfiles_OutputMessage" wsaw:Action="http://tempuri.org/IServicioModuloUsuarios/UsariosXListaPerfilesResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IServicioModuloUsuarios" type="tns:IServicioModuloUsuarios">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="UsuarioAutenticar">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/UsuarioAutenticar" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UsuarioCargar">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/UsuarioCargar" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UsuariosDePerfil">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/UsuariosDePerfil" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PermisosDeFuncionalidadXUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/PermisosDeFuncionalidadXUsuario" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FuncionalidadesHijas">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesHijas" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerfilesDeSistemaXUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/PerfilesDeSistemaXUsuario" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PerfilesDeSistema">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/PerfilesDeSistema" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FuncionalidadesVisiblesDeSistemaXUsuario">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesVisiblesDeSistemaXUsuario" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarFuncionalidad">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/ConsultarFuncionalidad" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FuncionalidadesMigas">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesMigas" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FuncionalidadesAyuda">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/FuncionalidadesAyuda" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UsariosXListaPerfiles">
+      <soap:operation soapAction="http://tempuri.org/IServicioModuloUsuarios/UsariosXListaPerfiles" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioModuloUsuarios">
+    <wsdl:port binding="tns:BasicHttpBinding_IServicioModuloUsuarios" name="BasicHttpBinding_IServicioModuloUsuarios">
+      <soap:address location="http://srvpint02/ServiciosModuloUsuarios/ServicioModuloUsuarios.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,38 @@
+BROKER SCHEMA co.com.caracol.services.usuarioxperfil
+
+DECLARE ns1 NAMESPACE '';
+
+CREATE COMPUTE MODULE UsuariosXPerfil_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		IF EXISTS(refInp.*:FuncionalidadesHijasResult[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:FuncionalidadesHijasResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:FuncionalidadesHijasResponse;
+			
+			SET refOut.ns1:Funcionalidad.ns1:Acceso     = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Acceso);
+			SET refOut.ns1:Funcionalidad.ns1:Contenido  = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Contenido);
+			SET refOut.ns1:Funcionalidad.ns1:Id         = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Id);
+			SET refOut.ns1:Funcionalidad.ns1:Imagen     = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Imagen);
+			SET refOut.ns1:Funcionalidad.ns1:Nombre     = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Nombre);			
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;
+	

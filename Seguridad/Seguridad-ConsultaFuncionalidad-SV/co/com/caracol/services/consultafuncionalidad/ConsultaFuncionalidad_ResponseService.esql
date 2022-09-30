@@ -1,0 +1,47 @@
+BROKER SCHEMA co.com.caracol.services.consultafuncionalidad
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/seguridad/usuarios/consultafuncionalidad/';
+
+CREATE COMPUTE MODULE ConsultaFuncionalidad_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		IF EXISTS(refInp.*:ConsultarFuncionalidadResult[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultaFuncionalidadResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaFuncionalidadResponse;
+			
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadContenido         = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Contenido);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadDescripcion       = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Descripcion);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadEstado        	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Estado);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadFechaPublicacion  = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:FechaPublicacion);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadFechaValidez      = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:FechaValidez);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadId            	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Id);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadImagen        	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Imagen);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadMapa          	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Mapa);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadNombre        	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Nombre);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadPosicion          = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Posicion);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadSubtitulo         = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Subtitulo);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadTipoCategoriaId   = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:TipoCategoriaId);
+			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadToolTip       	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:ToolTip);
+						
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;
+	

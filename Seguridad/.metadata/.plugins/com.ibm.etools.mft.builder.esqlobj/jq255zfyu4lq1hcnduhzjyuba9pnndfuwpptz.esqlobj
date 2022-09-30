@@ -1,0 +1,80 @@
+CREATE COMPUTE MODULE SV_Seguridad_PerfilesXSistema01_Compute
+	
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*
+		* Se declaran los namespaces que manejan los mensajes SOAP del Bus de Servicios.
+		*
+		*/	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/perfilesxsistema/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE tem NAMESPACE 'http://tempuri.org/';	
+		DECLARE car NAMESPACE 'http://schemas.datacontract.org/2004/07/ServiciosModuloUsuarios.Entidades';
+		DECLARE NODO_INICIAL CONSTANT INT 1; 				
+		/*
+		* Se copian las propiedades del mensaje.
+		*
+		*/		
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+    	/*
+		* Se declara la referencia al Header del mensaje de Entrada.
+		*
+		*/
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		/*
+		* Se crea el mensaje definido para PerfilesXSistemaResponse.
+		*
+		*/
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.tem:PerfilesDeSistemaResponse.tem:PerfilesDeSistemaResult;		
+		DECLARE rOutBody REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:PerfilesXSistemaResponse;
+		DECLARE rOutBodyTemp REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:PerfilesXSistemaResponse;
+		
+		DECLARE intListaPerfilesPrimerNivel INTEGER CARDINALITY(rBodyI.car:Hijas[]);
+		DECLARE intListaPerfilesSiguienteNivel INTEGER;	
+						
+		IF (intListaPerfilesPrimerNivel >= 1) THEN		
+			--sistema principal de donde inicia el arbol de perfiles
+			SET rOutBody.Id=rBodyI.car:Id;
+			SET rOutBody.Nombre=rBodyI.car:Nombre;				
+			SET intListaPerfilesSiguienteNivel = CARDINALITY(rBodyI.car:Hijas[NODO_INICIAL].car:Perfil[]);	
+			CALL LeerPerfiles(rBodyI,rOutBodyTemp.Hijas[NODO_INICIAL]); 
+		END IF;	
+		--Vuelve a recrear el nodo de Salida
+		SET OutputRoot.XMLNSC=null;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:PerfilesXSistemaResponse=rOutBodyTemp.Hijas;	
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	
+		RETURN TRUE;
+	END;
+	/*
+	* Se crea un procedimiento que recibe variable de entrada y salida.
+	*
+	*/				
+	CREATE PROCEDURE LeerPerfiles(IN rBodyITemp REFERENCE,INOUT rOutBody REFERENCE) BEGIN	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/perfilesxsistema/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE tem NAMESPACE 'http://tempuri.org/';	
+		DECLARE car NAMESPACE 'http://schemas.datacontract.org/2004/07/ServiciosModuloUsuarios.Entidades';		
+		DECLARE rOutBodyTemp REFERENCE TO rOutBody;
+		DECLARE NODO_INICIAL CONSTANT INT 1; 		
+		DECLARE intIndice integer;
+		
+								
+		DECLARE intNumeroPerfilesHijos INTEGER CARDINALITY(rBodyITemp.car:Hijas[]);	
+		
+		IF (intNumeroPerfilesHijos >= 1) THEN
+			SET intIndice=1;
+			FOR rBodyPerfiles AS rBodyITemp.car:Hijas[1].car:Perfil[] DO
+				SET rOutBody.Hijas[NODO_INICIAL].Perfil[intIndice].Id=rBodyPerfiles.car:Id;
+				SET rOutBody.Hijas[NODO_INICIAL].Perfil[intIndice].Nombre=rBodyPerfiles.car:Nombre;				
+				IF (CARDINALITY(rBodyPerfiles.car:Hijas[NODO_INICIAL].car:Perfil[]) >= 1) THEN
+					DECLARE rOutBodyTemp REFERENCE TO rOutBody;
+					CALL LeerPerfiles(rBodyPerfiles,rOutBodyTemp.Hijas[NODO_INICIAL].Perfil[intIndice].Hijas[NODO_INICIAL]); 
+				END IF;
+				SET intIndice=intIndice+1;						
+			END FOR;							
+		END IF;  
+	END;
+END MODULE;

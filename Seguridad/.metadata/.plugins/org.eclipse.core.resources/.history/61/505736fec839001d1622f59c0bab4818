@@ -1,0 +1,76 @@
+BROKER SCHEMA co.com.caracol.services.commons
+
+
+DECLARE UDP_SERVICE EXTERNAL CHARACTER '';
+DECLARE FACADE_RESP CONSTANT CHARACTER 'FCD_RESP';
+
+DECLARE ns2 NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/autentica/';
+
+CREATE COMPUTE MODULE CreateErrorMessageFcdRq
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Crear referencias
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Obtener portType y operation del llamado
+		DECLARE refContext REFERENCE TO InputLocalEnvironment.SOAP.Envelope.InRequest.*.SOAP.Context;  
+		DECLARE operation CHARACTER refContext.operation;
+		
+		--ReplyIdentifier para respuesta
+		SET refMQRFH2.usr.responseWS.replyIdentifier = InputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.service 	= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation = operation;
+		SET refMQRFH2.usr.transaction.traceId 	= FACADE_RESP;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		
+		--Declarar variables
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		
+		SET refOut.UsuarioAutenticarResult = codeError || ' : ' || nameError || ' : ' || descError;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE CreateErrorMessageFcdRs
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Copiar replyIdentifer
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(refMQRFH2.usr.responseWS.replyIdentifier AS BLOB);
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		
+		--Declarar variables
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		
+		SET refOut.UsuarioAutenticarResult = codeError || ' : ' || nameError || ' : ' || descError;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,61 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';	
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/usuariosxsistema/';				
+		DECLARE tem NAMESPACE 'http://tempuri.org/';	
+		DECLARE car NAMESPACE 'http://schemas.datacontract.org/2004/07/ServiciosModuloUsuarios.Entidades';		
+		DECLARE element_Index INTEGER;	
+		DECLARE j integer;			
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.tem:UsariosXSistemaResponse.tem:UsariosXSistemaResult;		
+		DECLARE intListaUsuarios INTEGER CARDINALITY(rBodyI.car:Usuario[]);		
+		IF (intListaUsuarios >= 1) THEN
+			SET j = 1;
+			FOR rBodyUsuario AS InputRoot.SOAP.Body.tem:UsariosXSistemaResponse.tem:UsariosXSistemaResult.car:Usuario[] DO
+				--usuario
+				--lista de usuarios
+				
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Estado=rBodyUsuario.car:Estado;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].FechaCreacion=rBodyUsuario.car:FechaCreacion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].TipoAutenticacion=rBodyUsuario.car:TipoAutenticacion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].UsuarioId=rBodyUsuario.car:UsuarioId;
+				--persona
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.Direccion=rBodyUsuario.car:Persona.car:Direccion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.EmailEmpresa=rBodyUsuario.car:Persona.car:EmailEmpresa;		
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.Extension=rBodyUsuario.car:Persona.car:Extension;		
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.FechaActualizacion=rBodyUsuario.car:Persona.car:FechaActualizacion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.FechaCreacion=rBodyUsuario.car:Persona.car:FechaCreacion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.Foto=rBodyUsuario.car:Persona.car:Foto;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.Id=rBodyUsuario.car:Persona.car:Id;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.Identificacion=rBodyUsuario.car:Persona.car:Identificacion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.PrimerApellido=rBodyUsuario.car:Persona.car:PrimerApellido;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.SegundoApellido=rBodyUsuario.car:Persona.car:SegundoApellido;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.PrimerNombre=rBodyUsuario.car:Persona.car:PrimerNombre;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.SegundoNombre=rBodyUsuario.car:Persona.car:SegundoNombre;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.TelefonoCasa=rBodyUsuario.car:Persona.car:TelefonoCasa;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.TelefonoCelular=rBodyUsuario.car:Persona.car:TelefonoCelular;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.TelefonoEmpresa=rBodyUsuario.car:Persona.car:TelefonoEmpresa;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.TipoIdentificacion=rBodyUsuario.car:Persona.car:TipoIdentificacion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.UsuarioActualizacionId=rBodyUsuario.car:Persona.car:UsuarioActualizacionId;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.UsuarioCreacionId=rBodyUsuario.car:Persona.car:UsuarioCreacionId;
+				
+				--area	
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.Area.Descripcion=rBodyUsuario.car:Persona.car:Area.car:Descripcion;				
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.Area.Id=rBodyUsuario.car:Persona.car:Area.car:Id;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.Area.Nombre=rBodyUsuario.car:Persona.car:Area.car:Nombre;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario[j].Persona.Area.PadreId=rBodyUsuario.car:Persona.car:Area.car:PadreId;								
+						
+				SET j = j+1;
+				IF (j>1000) THEN
+					RETURN TRUE;
+				END IF;
+			END FOR;			
+		ELSE
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:UsuariosXSistemaResponse.Usuario='';				
+		END IF;	
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	
+		RETURN TRUE;
+	END;

@@ -1,0 +1,8 @@
+CREATE FUNCTION getDestinationByServiceAndOperation(IN service CHARACTER, IN operation CHARACTER)RETURNS CHARACTER
+BEGIN
+	
+	CASE service
+		WHEN '' THEN
+			RETURN '';
+	END CASE;
+END;

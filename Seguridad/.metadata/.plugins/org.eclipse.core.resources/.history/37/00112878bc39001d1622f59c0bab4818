@@ -1,0 +1,29 @@
+BROKER SCHEMA co.com.caracol.services.facade
+
+DECLARE ns2 NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/autentica/';
+
+CREATE COMPUTE MODULE AutenticaUsuario_RQ_CreateErrorMessage
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar referencia de mensaje de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		
+		
+		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		
+		--Declarar variables
+		--DECLARE codeError INTEGER 0;
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		
+		SET refOut.UsuarioAutenticarResult = codeError || ' : ' || nameError || ' : ' || descError;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

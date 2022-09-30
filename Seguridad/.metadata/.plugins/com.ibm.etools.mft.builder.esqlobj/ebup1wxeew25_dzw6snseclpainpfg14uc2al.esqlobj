@@ -1,0 +1,9 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		IF (Root.MQMD.ReplyToQ IS NULL) OR (Root.MQMD.ReplyToQ = '') THEN
+			RETURN FALSE;
+		ELSE
+			RETURN TRUE;
+		END IF;		
+	END;
+

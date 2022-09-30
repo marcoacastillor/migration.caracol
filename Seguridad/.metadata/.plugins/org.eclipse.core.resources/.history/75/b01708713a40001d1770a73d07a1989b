@@ -1,0 +1,9 @@
+BROKER SCHEMA co.com.caracol.services.perfilesxsistemayusuario
+
+
+CREATE COMPUTE MODULE PerfilesXSistemaYUsuario_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+	END;
+END MODULE;

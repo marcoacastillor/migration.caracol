@@ -1,0 +1,9 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body;						
+		SET OutputRoot.Properties = InputRoot.Properties;	
+	    SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaEliminacion= 'E:\IBM\Proyectos\CertificadoLaboral\CSV\';
+		RETURN TRUE;
+	END;	
+	

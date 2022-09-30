@@ -1,0 +1,6 @@
+CREATE COMPUTE MODULE ConsultaFuncionalidad_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+	END;
+END MODULE;

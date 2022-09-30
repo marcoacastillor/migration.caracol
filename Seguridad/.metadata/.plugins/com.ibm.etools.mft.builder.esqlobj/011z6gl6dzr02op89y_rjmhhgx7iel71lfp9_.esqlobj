@@ -1,0 +1,27 @@
+CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificWS
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Auditoria
+		SET refMQRFH2.usr.transaction.traceId 	= SPECIFIC_RESP;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,UUIDASCHAR,codeError|| ' : ' ||nameError||' : '||descError);
+		
+		RETURN TRUE;
+	END;
+END MODULE;

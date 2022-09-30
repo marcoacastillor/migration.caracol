@@ -1,0 +1,10 @@
+BROKER SCHEMA co.com.caracol.services.cargausuario
+
+
+CREATE COMPUTE MODULE CargarUsuario_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		RETURN TRUE;
+	END;
+END MODULE;

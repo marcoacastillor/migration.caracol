@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/cysce/core/context/StoreContext.subflow" nsPrefix="com_cysce_core_context_StoreContext.subflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" useDefaults="true" udpSupport="true">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.queueName" name="queueName" defaultValueLiteral="CSIF.ESB.XXXXX.STORE">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="StoreContext" bundleName="com/cysce/core/context/StoreContext" pluginId="csif-commons-util"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/csif-commons-util/icons/full/obj16/StoreContext.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/csif-commons-util/icons/full/obj30/StoreContext.gif"/>
+    <shortDescription xmi:type="utility:ConstantString" string="CSIF Store Context"/>
+    <version xmi:type="utility:ConstantString" string="1.0"/>
+    <composition>
+      <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="54,56">
+        <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="com/cysce/core/context/StoreContext" pluginId="csif-commons-util"/>
+      </nodes>
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="350,61">
+        <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="com/cysce/core/context/StoreContext" pluginId="csif-commons-util"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="138,56" computeExpression="esql://routine/com.cysce.core.context#StoreContext_setContext.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="setContext"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="239,57" transactionMode="no" newMsgId="true">
+        <translation xmi:type="utility:ConstantString" string="Save to Store"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="OutTerminal.Output" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" propertyEditor="com.ibm.etools.mft.ibmnodes.editors.mq.MQQueueNameEditor" configurable="true" describedAttribute="Property.queueName">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.queueName" bundleName="ComIbmMQOutput" pluginId="com.ibm.etools.mft.ibmnodes.definitions"/>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <attributeLinks promotedAttribute="Property.queueName" overriddenNodes="FCMComposite_1_2">
+      <overriddenAttribute href="ComIbmMQOutput.msgnode#Property.queueName"/>
+    </attributeLinks>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

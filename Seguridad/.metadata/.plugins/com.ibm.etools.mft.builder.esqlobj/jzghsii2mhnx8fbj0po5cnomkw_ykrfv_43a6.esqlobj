@@ -1,0 +1,14 @@
+CREATE COMPUTE MODULE AutenticaUsuario_RQ_CreateErrorMessage
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		
+		DECLARE codeError INTEGER 0;
+		DECLARE nameError, descError CHARACTER '';
+		
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,)
+		
+		RETURN TRUE;
+	END;
+END MODULE;

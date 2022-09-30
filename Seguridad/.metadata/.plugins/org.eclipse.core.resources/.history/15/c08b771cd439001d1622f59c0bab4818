@@ -1,0 +1,9 @@
+BROKER SCHEMA co.com.caracol.serguridad.autenticar
+
+
+CREATE COMPUTE MODULE Autentica_CreateErrorMsgFault
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+	END;
+END MODULE;

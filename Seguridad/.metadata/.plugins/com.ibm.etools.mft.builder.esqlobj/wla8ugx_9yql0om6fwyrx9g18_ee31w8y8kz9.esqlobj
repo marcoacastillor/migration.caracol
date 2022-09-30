@@ -1,0 +1,66 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		/*
+		* Se declaran los namespaces que manejan los mensajes SOAP del Bus de Servicios.
+		*
+		*/	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';		
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/cargarusuario/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE tem NAMESPACE 'http://tempuri.org/';	
+		DECLARE car NAMESPACE 'http://schemas.datacontract.org/2004/07/ServiciosModuloUsuarios.Entidades';		
+		DECLARE element_Index INTEGER;	
+		DECLARE j integer;		
+		/*
+		* Se copian las propiedades del mensaje.
+		*
+		*/		
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+    	/*
+		* Se declara la referencia al Header del mensaje de Entrada.
+		*
+		*/
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		/*
+		* Se crea el mensaje definido para UsuarioAutenticarResponse.
+		*
+		*/
+
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.tem:UsuarioCargarResponse.tem:UsuarioCargarResult;
+		--usuario
+	    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Estado=rBodyI.car:Estado;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.FechaCreacion=rBodyI.car:FechaCreacion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.TipoAutenticacion=rBodyI.car:TipoAutenticacion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.UsuarioId=rBodyI.car:UsuarioId;
+		--persona
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Direccion=rBodyI.car:Persona.car:Direccion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.EmailEmpresa=rBodyI.car:Persona.car:EmailEmpresa;		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Extension=rBodyI.car:Persona.car:Extension;		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.FechaActualizacion=rBodyI.car:Persona.car:FechaActualizacion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.FechaCreacion=rBodyI.car:Persona.car:FechaCreacion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Foto=rBodyI.car:Persona.car:Foto;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Id=rBodyI.car:Persona.car:Id;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Identificacion=rBodyI.car:Persona.car:Identificacion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.PrimerApellido=rBodyI.car:Persona.car:PrimerApellido;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.SegundoApellido=rBodyI.car:Persona.car:SegundoApellido;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.PrimerNombre=rBodyI.car:Persona.car:PrimerNombre;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.SegundoNombre=rBodyI.car:Persona.car:SegundoNombre;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.TelefonoCasa=rBodyI.car:Persona.car:TelefonoCasa;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.TelefonoCelular=rBodyI.car:Persona.car:TelefonoCelular;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.TelefonoEmpresa=rBodyI.car:Persona.car:TelefonoEmpresa;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.TipoIdentificacion=rBodyI.car:Persona.car:TipoIdentificacion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.UsuarioActualizacionId=rBodyI.car:Persona.car:UsuarioActualizacionId;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.UsuarioCreacionId=rBodyI.car:Persona.car:UsuarioCreacionId;
+		--area
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Area.Descripcion=rBodyI.car:Persona.car:Area.car:Descripcion;				
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Area.Id=rBodyI.car:Persona.car:Area.car:Id;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Area.Nombre=rBodyI.car:Persona.car:Area.car:Nombre;
+		IF  rBodyI.car:Persona.car:Area.car:PadreId IS NULL THEN
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Area.PadreId=0;
+		ELSE
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CargarUsuarioResponse.Usuario.Persona.Area.PadreId=rBodyI.car:Persona.car:Area.car:PadreId;			
+		END IF;		
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	
+		RETURN TRUE;
+	END;

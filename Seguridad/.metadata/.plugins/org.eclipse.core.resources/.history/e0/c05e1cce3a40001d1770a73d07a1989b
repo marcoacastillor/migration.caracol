@@ -1,0 +1,27 @@
+BROKER SCHEMA co.com.caracol.services.perfilesxsistemayusuario
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE PerfilesXSistemaYUsuario_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:PerfilesDeSistemaXUsuario;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:PerfilesDeSistemaXUsuario;
+		
+		SET refOut.ns:sistemaId 	= FIELDVALUE(refInp.*:sistemaid);
+		SET refOut.ns:sistemaId 	= FIELDVALUE(refInp.*:usuarioid);
+		
+		RETURN TRUE;
+	END;
+END MODULE;

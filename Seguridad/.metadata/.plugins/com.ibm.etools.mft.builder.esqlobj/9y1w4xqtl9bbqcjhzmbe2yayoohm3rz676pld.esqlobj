@@ -1,0 +1,49 @@
+CREATE COMPUTE MODULE SeguridadAutentica_ToBackend
+ 
+ CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		
+		/*
+		 * Se declaran los namespaces que manejan los mensajes SOAP del Bus de Servicios.
+		 *
+		 */	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE nsc NAMESPACE 'http://cliente.com/intf/dominio/Calculadora/v1.0/';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE tem NAMESPACE 'http://tempuri.org/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/autentica/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		
+		/*
+		 * Se declara la referencia al Header del mensaje de Entrada.
+		 *
+		 */
+		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:SeguridadAutenticaRequest;
+		
+		
+		/*
+		 * Se copian las propiedades del mensaje.
+		 *
+		 */
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		
+		/*
+		 * Se crea el mensaje definido para SeguridadAutenticaRequest.
+		 *
+		 */
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://tempuri.org/';
+		SET OutputRoot.SOAP.Body.tem:UsuarioAutenticar.tem:usuarioId= rBodyI.usuarioId;
+	    SET OutputRoot.SOAP.Body.tem:UsuarioAutenticar.tem:contrasena= rBodyI.contrasena;
+	   
+	 	SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+	    
+
+		RETURN TRUE;
+	END;
+
+END MODULE;

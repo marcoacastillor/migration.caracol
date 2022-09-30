@@ -1,0 +1,63 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		IF EXISTS(refInp.*:UsuariosDePerfilResult[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:usuariosxperfilResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:usuariosxperfilResponse;
+			
+			FOR refUser AS refInp.*:UsuariosDePerfilResult.*:Usuario[] DO
+				--usuario
+				SET refOut.ns1:Usuario[i].Estado=refUser.*:Estado;
+				SET refOut.ns1:Usuario[i].FechaCreacion=refUser.*:FechaCreacion;
+				SET refOut.ns1:Usuario[i].TipoAutenticacion=refUser.*:TipoAutenticacion;
+				SET refOut.ns1:Usuario[i].UsuarioId=refUser.*:UsuarioId;
+				--persona
+				SET refOut.ns1:Usuario[i].Persona.Direccion=refUser.*:Persona.car:Direccion;
+				SET refOut.ns1:Usuario[i].Persona.EmailEmpresa=refUser.*:Persona.car:EmailEmpresa;		
+				SET refOut.ns1:Usuario[i].Persona.Extension=refUser.*:Persona.car:Extension;		
+				SET refOut.ns1:Usuario[i].Persona.FechaActualizacion=refUser.*:Persona.car:FechaActualizacion;
+				SET refOut.ns1:Usuario[i].Persona.FechaCreacion=refUser.*:Persona.car:FechaCreacion;
+				SET refOut.ns1:Usuario[i].Persona.Foto=refUser.*:Persona.car:Foto;
+				SET refOut.ns1:Usuario[i].Persona.Id=refUser.*:Persona.car:Id;
+				SET refOut.ns1:Usuario[i].Persona.Identificacion=refUser.*:Persona.car:Identificacion;
+				SET refOut.ns1:Usuario[i].Persona.PrimerApellido=refUser.*:Persona.car:PrimerApellido;
+				SET refOut.ns1:Usuario[i].Persona.SegundoApellido=refUser.*:Persona.car:SegundoApellido;
+				SET refOut.ns1:Usuario[i].Persona.PrimerNombre=refUser.*:Persona.car:PrimerNombre;
+				SET refOut.ns1:Usuario[i].Persona.SegundoNombre=refUser.*:Persona.car:SegundoNombre;
+				SET refOut.ns1:Usuario[i].Persona.TelefonoCasa=refUser.*:Persona.car:TelefonoCasa;
+				SET refOut.ns1:Usuario[i].Persona.TelefonoCelular=refUser.*:Persona.car:TelefonoCelular;
+				SET refOut.ns1:Usuario[i].Persona.TelefonoEmpresa=refUser.*:Persona.car:TelefonoEmpresa;
+				SET refOut.ns1:Usuario[i].Persona.TipoIdentificacion=refUser.*:Persona.car:TipoIdentificacion;
+				SET refOut.ns1:Usuario[i].Persona.UsuarioActualizacionId=refUser.*:Persona.car:UsuarioActualizacionId;
+				SET refOut.ns1:Usuario[i].Persona.UsuarioCreacionId=refUser.*:Persona.car:UsuarioCreacionId;
+				
+				--area	
+				SET refOut.ns1:Usuario[i].Persona.Area.Descripcion=refUser.*:Persona.car:Area.car:Descripcion;				
+				SET refOut.ns1:Usuario[i].Persona.Area.Id=refUser.*:Persona.car:Area.car:Id;
+				SET refOut.ns1:Usuario[i].Persona.Area.Nombre=refUser.*:Persona.car:Area.car:Nombre;
+				SET refOut.ns1:Usuario[i].Persona.Area.PadreId=refUser.*:Persona.car:Area.car:PadreId;								
+						
+				SET i = i+1;
+				IF (i>1000) THEN
+					RETURN TRUE;
+				END IF;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;

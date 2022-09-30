@@ -1,0 +1,22 @@
+CREATE COMPUTE MODULE HandlerModules_ResponseFcdWS
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Crear referencias
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+				
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_RESP;
+		
+		--Copiar replyIdentifer
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(refMQRFH2.usr.responseWS.replyIdentifier AS BLOB);
+		
+		--Copiar mensaje completo
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;

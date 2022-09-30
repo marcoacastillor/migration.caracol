@@ -1,0 +1,25 @@
+BROKER SCHEMA co.com.caracol.serguridad.autenticar
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE Autentica_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:UsuarioAutenticar;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:UsuarioAutenticar;
+		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

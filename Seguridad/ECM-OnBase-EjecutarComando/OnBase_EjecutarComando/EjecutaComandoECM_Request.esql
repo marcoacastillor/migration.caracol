@@ -1,0 +1,22 @@
+BROKER SCHEMA OnBase_EjecutarComando
+
+
+CREATE COMPUTE MODULE EjecutaComandoECM_Request
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srvOnbase NAMESPACE 'http://tempuri.org/';
+		DECLARE srvESB NAMESPACE 'http://www.caracoltv.com.co/gestiondocumental/consultadocumentoxtipodocumental/';
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';	
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srvOnbase:Execute TYPE Name;								
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srvOnbase:Execute.srvOnbase:xmlCommand=InputRoot.SOAP.Body.Comando;								
+		RETURN TRUE;		
+	END;
+END MODULE;

@@ -1,0 +1,25 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Declarar referencia de mensaje de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Declaración variables
+		DECLARE wrapper CHARACTER FIELDNAME(refInp);
+		DECLARE wrapperNmSpace CHARACTER FIELDNAMESPACE(refInp);
+		
+		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		
+		--Declarar variables
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		
+		SET refOut.UsuarioAutenticarResult = codeError || ' : ' || nameError || ' : ' || descError;
+		
+		RETURN TRUE;
+	END;

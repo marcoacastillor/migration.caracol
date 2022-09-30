@@ -1,0 +1,31 @@
+CREATE COMPUTE MODULE Autentica_CreateErrorMsgFault
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Auditoria
+		SET refMQRFH2.usr.transaction.traceId 	= FACADE_RESP;
+		
+		--Copiar replyIdentifer
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(refMQRFH2.usr.responseWS.replyIdentifier AS BLOB);
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		
+		--Declarar variables
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		
+		SET refOut.UsuarioAutenticarResult = codeError || ' : ' || nameError || ' : ' || descError;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

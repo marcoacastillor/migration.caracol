@@ -1,0 +1,9 @@
+BROKER SCHEMA co.com.caracol.services.perfilesxsistema
+
+
+CREATE COMPUTE MODULE PerfilesPorSistema_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+	END;
+END MODULE;

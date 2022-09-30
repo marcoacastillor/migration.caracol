@@ -1,0 +1,19 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
+		
+		--Declarar variables
+		DECLARE codeError INTEGER 0;
+		DECLARE nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		IF EXISTS(InputExceptionList.[<]) THEN
+			CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		ELSE
+			
+		END IF;
+		
+		
+		RETURN TRUE;
+	END;

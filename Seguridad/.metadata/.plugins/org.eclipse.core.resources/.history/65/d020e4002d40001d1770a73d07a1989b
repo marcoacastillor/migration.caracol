@@ -1,0 +1,26 @@
+BROKER SCHEMA co.com.caracol.services.funcionalidadhija
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE ConsultaFuncionalidadHijas_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:FuncionalidadesHijas;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:FuncionalidadesHijas;
+		
+		SET refOut.ns:funcionalidadId 	= FIELDVALUE(refInp.*:FuncionalidadId);		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

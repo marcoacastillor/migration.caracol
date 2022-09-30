@@ -1,0 +1,23 @@
+CREATE COMPUTE MODULE Autentica_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:UsuarioAutenticarResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:UsuarioAutenticarResponse;
+		
+		SET refOut.ns:usuarioId 	= refInp.usuarioId;
+		SET refOut.ns:contrasena	= refInp.contrasena;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

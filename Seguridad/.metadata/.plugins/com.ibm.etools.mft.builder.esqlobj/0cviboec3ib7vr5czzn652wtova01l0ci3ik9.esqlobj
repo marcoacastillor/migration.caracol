@@ -1,0 +1,36 @@
+CREATE COMPUTE MODULE PerfilesPorSistema_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		IF EXISTS(refInp.*:PerfilesDeSistemaResult[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:PerfilesXSistemaResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:PerfilesXSistemaResponse;
+			
+			SET refOut.ns1:Perfil.ns1:Id     	= FIELDVALUE(refInp.*:PerfilesDeSistemaResult.*:Id);
+			SET refOut.ns1:Perfil.ns1:Nombre    = FIELDVALUE(refInp.*:PerfilesDeSistemaResult.*:Nombre);
+			
+			FOR refChild AS refInp.*:PerfilesDeSistemaResult.*:Hijas.*:Perfil[] DO
+				
+			END FOR;
+			
+			
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;
