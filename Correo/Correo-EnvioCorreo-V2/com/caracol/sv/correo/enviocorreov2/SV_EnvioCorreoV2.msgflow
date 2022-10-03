@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmEmailOutput.msgnode="ComIbmEmailOutput.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmTryCatch.msgnode="ComIbmTryCatch.msgnode" xmlns:Indicadores_EnviarInformacionEntrada.subflow="Indicadores/EnviarInformacionEntrada.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mbmonitor="http://www.ibm.com/wbi/2008/eflow_mbmonitor" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracol/sv/correo/enviocorreov2/SV_EnvioCorreoV2.msgflow" nsPrefix="com_caracol_sv_correo_enviocorreov2_SV_EnvioCorreoV2.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="SV_EnvioCorreoV2" bundleName="com/caracol/sv/correo/enviocorreov2/SV_EnvioCorreoV2" pluginId="Correo-EnvioCorreo-V2"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-EnvioCorreo-V2/icons/full/obj16/SV_EnvioCorreoV2.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-EnvioCorreo-V2/icons/full/obj30/SV_EnvioCorreoV2.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="-8,56" queueName="SV.CORREO.ENVIOCORREOV2.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="SV.CORREO.ENVIOCORREOV2.01"/>
+        <nsMappingTable nsPrefix="tns" namespace="http://www.w3.org/2003/05/soap-envelope"/>
+        <monitorEvents eventSourceDescription="Transaction start" eventSourceName="SV.CORREO.ENVIOCORREOV2.01.transaction.Start" eventIdentity="Correo_EnvioCorreoV2.TransactionStart">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="Correo_EnvioCorreoV2.TransactionStart"/>
+            <eventFilter dataLocation="true()" isXPath="true">
+              <nsPrefixMap prefix="tns" nsURI="http://www.w3.org/2003/05/soap-envelope"/>
+            </eventFilter>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Failure terminal" eventSourceName="SV.CORREO.ENVIOCORREOV2.01.terminal.failure" eventIdentity="Correo_EnvioCorreoV2.FailureTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="Correo_EnvioCorreoV2.FailureTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true">
+              <nsPrefixMap prefix="tns" nsURI="http://www.w3.org/2003/05/soap-envelope"/>
+            </eventFilter>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Catch terminal" eventSourceName="SV.CORREO.ENVIOCORREOV2.01.terminal.catch" eventIdentity="Correo_EnvioCorreoV2.CatchTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA"/>
+            <eventName literal="Correo_EnvioCorreoV2.CatchTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true">
+              <nsPrefixMap prefix="tns" nsURI="http://www.w3.org/2003/05/soap-envelope"/>
+            </eventFilter>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="337,182" computeExpression="esql://routine/com.caracol.sv.correo.enviocorreov2#SV_EnvioCorreoV2_Compute.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="EnvioCorreo"/>
+      </nodes>
+      <nodes xmi:type="ComIbmEmailOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="470,183" smtpServer="172.17.255.20" bodyContentType="text/html" attachmentContentType="application/octet-stream" attachmentContentEncoding="base64">
+        <translation xmi:type="utility:ConstantString" string="EnviaCorreoRelay"/>
+        <monitorEvents eventSourceDescription="Failure terminal" eventSourceName="EnviaCorreoRelay.terminal.failure" eventIdentity="Correo_EnvioCorreoV2.FailureTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="Correo_EnvioCorreoV2.FailureTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="EnviaCorreoRelay.terminal.in" eventIdentity="Correo_EnvioCorreoV2.EnviaCorreoRelay.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA"/>
+            <eventName literal="Correo_EnvioCorreoV2.EnviaCorreoRelay.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmEmailOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="404,47" smtpServer="172.17.255.20" toAddresses="usrassist@caracoltv.com.co" ccAddresses="usrassist@caracoltv.com.co" fromAddress="adminiib@caracoltv.com.co" subject="Error EnvioCorreoV2" bodyContentType="text/html" attachmentContentType="application/octet-stream" attachmentContentEncoding="base64">
+        <translation xmi:type="utility:ConstantString" string="EnviaCorreoErrorRelay"/>
+      </nodes>
+      <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_2" location="123,223" ip="172.7.4.164" cliente="srviibpr" servicio="EnvioCorreoV2">
+        <translation xmi:type="utility:ConstantString" string="Indicador"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="427,122" queueName="SV.CORREO.ENVIOCORREOV2ERROR.01" transactionMode="no">
+        <translation xmi:type="utility:ConstantString" string="MQEscribeError"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="MQEscribeError.terminal.in" eventIdentity="Correo_EnvioCorreoV2.MQEscribeError.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="Correo_EnvioCorreoV2.MQEscribeError.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="311,121" computeExpression="esql://routine/com.caracol.sv.correo.enviocorreov2#SV_EnvioCorreoV2_ReenvioCorreo.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ReenvioCorreo"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTryCatch.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="163,123">
+        <translation xmi:type="utility:ConstantString" string="Try Catch"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="664,89" destination="file" filePath="E:\LOGS_BUS\Email_error.log" pattern="Fecha de regsitro:&#xD;&#xA;${CURRENT_TIMESTAMP}&#xD;&#xA;-----------------------------------------&#xD;&#xA;${ExceptionList}">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="679,175" destination="file" filePath="E:\LOGS_BUS\Email_success.log" pattern="Fecha de regsitro:&#xD;&#xA;${CURRENT_TIMESTAMP}&#xD;&#xA;-----------------------------------------&#xD;&#xA;${Body}">
+        <translation xmi:type="utility:ConstantString" string="Trace1"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.try" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

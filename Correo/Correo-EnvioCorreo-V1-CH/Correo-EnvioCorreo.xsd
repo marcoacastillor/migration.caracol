@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+targetNamespace="http://www.caracoltv.com.co/TI/correo/enviocorreo/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:srv="http://www.caracoltv.com.co/TI/correo/enviocorreo/">
+
+  <!--wrapper element of the request message-->
+  <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="EnvioCorreoRequest">
+<!--		type="srv:EnvioCorreoRequestType">		-->
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="De" type="xsd:string"/>
+			      <xsd:element name="Para" type="xsd:string"/>
+			      <xsd:element name="Copia" type="xsd:string" minOccurs="0"/>
+			      <xsd:element name="CopiaOculta" type="xsd:string" minOccurs="0"/>
+			      <xsd:element name="Asunto" type="xsd:string"/>      
+			      <xsd:element name="Formato" type="xsd:string" minOccurs="0"/>
+			      <xsd:element name="Cuerpo" type="xsd:string" minOccurs="0"/>
+			      <xsd:element name="Prioridad" type="xsd:string" minOccurs="0"/>
+			      <xsd:element name="NombreAdjunto" type="xsd:string" minOccurs="0"/>
+			      <xsd:element name="Adjuntos" type="xsd:base64Binary" minOccurs="0"/> 
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>  
+  
+  <!--Type referenced by the wrapper element of the request message
+  <xsd:complexType name="EnvioCorreoRequestType">
+    <xsd:sequence>
+     <xsd:element name="De" type="xsd:string"/>
+      <xsd:element name="Para" type="xsd:string"/>
+      <xsd:element name="Copia" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="CopiaOculta" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Asunto" type="xsd:string"/>      
+      <xsd:element name="Formato" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Cuerpo" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Prioridad" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="NombreAdjunto" type="xsd:string" minOccurs="0"/>
+      <xsd:element name="Adjuntos" type="xsd:base64Binary" minOccurs="0"/>     
+    </xsd:sequence>
+  </xsd:complexType>
+ -->
+  
+</xsd:schema>

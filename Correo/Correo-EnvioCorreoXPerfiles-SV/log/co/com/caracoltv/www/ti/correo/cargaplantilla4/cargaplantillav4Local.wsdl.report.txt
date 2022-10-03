@@ -1,0 +1,7 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\cargaplantillav4Local.wsdl
+
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/correo/cargaplantilla4/}bdCargaPlantillaSOAP12Http2.
+Parsing wsdl binding input CargaPlantillav4.
+Parsing wsdl binding output CargaPlantillav4.

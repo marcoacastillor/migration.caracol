@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.caracoltv.com.co/notificar/modulousuarios/notificarperfiles/" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:srv="http://www.caracoltv.com.co/notificar/modulousuarios/notificarperfiles/" 
+xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+
+  <!--wrapper element of the request message-->
+  
+   <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" 
+   ibmSchExtn:docRoot="true" name="EnvioCorreoXPerfilesRequest">
+
+		<xsd:complexType >
+			<xsd:sequence>
+				  <xsd:element minOccurs="1" name="De" type="xsd:string"/>			      
+			      <xsd:element minOccurs="0" name="Copia" type="xsd:string"/>
+			      <xsd:element minOccurs="0" name="CopiaOculta" type="xsd:string"/>
+			      <xsd:element minOccurs="0" name="Asunto" type="xsd:string"/>
+			      <xsd:element minOccurs="0" name="Titulo" type="xsd:string"/>
+			      <xsd:element name="Mensaje1" type="xsd:string"/>
+			      <xsd:element name="Mensaje2" type="xsd:string"/>
+			      <xsd:element minOccurs="0" name="TextoLink" type="xsd:string"/>
+			      <xsd:element minOccurs="0" name="Link" type="xsd:string"/>
+			      <xsd:element minOccurs="0" name="Prioridad" type="xsd:string"/>
+			      <xsd:element minOccurs="0" name="Plantilla" type="xsd:string"/>
+			      <xsd:element  name="APerfiles" type="srv:Perfiles" />
+ 				  <xsd:element  minOccurs="0" name="AFiles" type="srv:Files" nillable="true" />			      		     
+			</xsd:sequence>
+		</xsd:complexType>		
+	 </xsd:element>
+	   	<xsd:complexType name="Perfiles" >
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="1" name="Perfil" type="srv:Perfil"/>
+      	</xsd:sequence>
+    </xsd:complexType>    	
+    <xsd:complexType name="Perfil">
+	<xsd:sequence>
+			<xsd:element minOccurs="1" name="PerfilId" type="xsd:int"/>            
+      	</xsd:sequence>
+    </xsd:complexType>     
+    <xsd:element name="Perfil" type="srv:Perfil" />
+	<xsd:complexType name="Files" >
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="File" type="srv:File"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Files" type="srv:Files" />
+	<xsd:complexType name="File">
+	<xsd:sequence>
+			<xsd:element minOccurs="0" name="Nombre" nillable="true" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="Data" type="xsd:base64Binary"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="File" type="srv:File" />                
+</xsd:schema>

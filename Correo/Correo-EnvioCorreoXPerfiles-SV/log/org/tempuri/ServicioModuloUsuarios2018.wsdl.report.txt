@@ -1,0 +1,70 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\ServicioModuloUsuarios2018.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'http://srvpint2/ServiciosModuloUsuarios/ServicioModuloUsuarios.svc?xsd=xsd1' has not been resolved because the import is unused, Line: 1, Column: 1186
+XSD: There is no xmlns declaration for namespace 'http://schemas.microsoft.com/2003/10/Serialization/', Line: 1, Column: 1186
+XSD: The location 'http://srvpint2/ServiciosModuloUsuarios/ServicioModuloUsuarios.svc?xsd=xsd2' has not been resolved because the import is unused, Line: 1, Column: 1356
+XSD: There is no xmlns declaration for namespace 'http://schemas.datacontract.org/2004/07/ServiciosModuloUsuarios.Entidades', Line: 1, Column: 1356
+XSD: The location 'http://srvpint2/ServiciosModuloUsuarios/ServicioModuloUsuarios.svc?xsd=xsd3' has not been resolved because the import is unused, Line: 1, Column: 1548
+XSD: There is no xmlns declaration for namespace 'http://schemas.microsoft.com/2003/10/Serialization/Arrays', Line: 1, Column: 1548
+
+
+The WSDL import will proceed with bindings BasicHttpBinding_IServicioModuloUsuarios.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/ServicioModuloUsuarios2018.wsdl.
+Parsing wsdl binding {http://tempuri.org/}BasicHttpBinding_IServicioModuloUsuarios.
+Parsing wsdl binding input UsuarioAutenticar.
+Parsing wsdl binding output UsuarioAutenticar.
+Parsing wsdl binding input UsuarioCargar.
+Parsing wsdl binding output UsuarioCargar.
+Parsing wsdl binding input UsuariosDePerfil.
+Parsing wsdl binding output UsuariosDePerfil.
+Parsing wsdl binding input PermisosDeFuncionalidadXUsuario.
+Parsing wsdl binding output PermisosDeFuncionalidadXUsuario.
+Parsing wsdl binding input FuncionalidadesHijas.
+Parsing wsdl binding output FuncionalidadesHijas.
+Parsing wsdl binding input PerfilesDeSistemaXUsuario.
+Parsing wsdl binding output PerfilesDeSistemaXUsuario.
+Parsing wsdl binding input PerfilesDeSistema.
+Parsing wsdl binding output PerfilesDeSistema.
+Parsing wsdl binding input FuncionalidadesVisiblesDeSistemaXUsuario.
+Parsing wsdl binding output FuncionalidadesVisiblesDeSistemaXUsuario.
+Parsing wsdl binding input ConsultarFuncionalidad.
+Parsing wsdl binding output ConsultarFuncionalidad.
+Parsing wsdl binding input FuncionalidadesMigas.
+Parsing wsdl binding output FuncionalidadesMigas.
+Parsing wsdl binding input FuncionalidadesAyuda.
+Parsing wsdl binding output FuncionalidadesAyuda.
+Parsing wsdl binding input UsariosXListaPerfiles.
+Parsing wsdl binding output UsariosXListaPerfiles.
+Processing doc style for operation UsuarioAutenticar.
+Processing doc style for operation UsuarioCargar.
+Processing doc style for operation UsuariosDePerfil.
+Processing doc style for operation PermisosDeFuncionalidadXUsuario.
+Processing doc style for operation FuncionalidadesHijas.
+Processing doc style for operation PerfilesDeSistemaXUsuario.
+Processing doc style for operation PerfilesDeSistema.
+Processing doc style for operation FuncionalidadesVisiblesDeSistemaXUsuario.
+Processing doc style for operation ConsultarFuncionalidad.
+Processing doc style for operation FuncionalidadesMigas.
+Processing doc style for operation FuncionalidadesAyuda.
+Processing doc style for operation UsariosXListaPerfiles.
+Populating WSDL schema ServicioModuloUsuarios2018.xsd.
+Removing unnecessary import statement with namespace http://schemas.microsoft.com/2003/10/Serialization/ from schema ServicioModuloUsuarios2018_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://schemas.datacontract.org/2004/07/ServiciosModuloUsuarios.Entidades from schema ServicioModuloUsuarios2018_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://schemas.microsoft.com/2003/10/Serialization/Arrays from schema ServicioModuloUsuarios2018_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Creating file ServicioModuloUsuarios2018.xsd in the workspace.
+Creating file /Usuarios-SV-EnvioCorreoXPerfiles/xsd_xsd0.xsd in the workspace.
+Creating file /Usuarios-SV-EnvioCorreoXPerfiles/xsd_xsd2.xsd in the workspace.
+Creating file /Usuarios-SV-EnvioCorreoXPerfiles/xsd_xsd3.xsd in the workspace.
+Copying source WSDL ServicioModuloUsuarios2018.wsdl to ServicioModuloUsuarios2018.wsdl.
+
+Elapsed time processing this message definition file: 0.5 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,48 @@
+BROKER SCHEMA com.caracol.intf.ch.dominio.correo
+
+
+CREATE COMPUTE MODULE MapEnvioCorreo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/correo/enviocorreo/';
+		
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header.s12:Body;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;
+		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:EnvioCorreoRequest TYPE Name;
+		
+	  
+	  
+	    DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:EnvioCorreoRequest;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:EnvioCorreoRequest;
+		
+		
+		SET rBodyO.De = rBodyI.De;
+		SET rBodyO.Para = rBodyI.Para;
+		SET rBodyO.Copia=rBodyI.Copia;
+	  	SET rBodyO.CopiaOculta=rBodyI.CopiaOculta;
+	  	SET rBodyO.Cuerpo=rBodyI.Cuerpo;
+	  	SET rBodyO.Formato=rBodyI.Formato;
+	  	SET rBodyO.Adjuntos=rBodyI.Adjuntos;
+	  	SET rBodyO.NombreAdjunto=rBodyI.NombreAdjunto;
+	  	SET rBodyO.Asunto=rBodyI.Asunto;
+	  	SET rBodyO.Titulo=rBodyI.Titulo;
+	  	SET rBodyO.Mensaje1=rBodyI.Mensaje1;
+	  	SET rBodyO.Mensaje2=rBodyI.Mensaje2;
+	  	
+RETURN TRUE;
+		
+	END;
+
+END MODULE;

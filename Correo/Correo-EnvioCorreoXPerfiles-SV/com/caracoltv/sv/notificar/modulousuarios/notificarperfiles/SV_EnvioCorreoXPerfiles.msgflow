@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmSOAPRequest.msgnode="ComIbmSOAPRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mbmonitor="http://www.ibm.com/wbi/2008/eflow_mbmonitor" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracoltv/sv/notificar/modulousuarios/notificarperfiles/SV_EnvioCorreoXPerfiles.msgflow" nsPrefix="com_caracoltv_sv_notificar_modulousuarios_notificarperfiles_SV_EnvioCorreoXPerfiles.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="SV_EnvioCorreoXPerfiles" bundleName="com/caracoltv/sv/notificar/modulousuarios/notificarperfiles/SV_EnvioCorreoXPerfiles" pluginId="Correo-EnvioCorreoXPerfiles-SV"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-EnvioCorreoXPerfiles-SV/icons/full/obj16/SV_EnvioCorreoXPerfiles.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-EnvioCorreoXPerfiles-SV/icons/full/obj30/SV_EnvioCorreoXPerfiles.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="215,180" computeExpression="esql://routine/com.caracoltv.sv.notificar.modulousuarios.notificarperfiles#SV_EnvioCorreoXPerfiles_RequestProveedor.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="RequestProveedor"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="546,181" computeExpression="esql://routine/com.caracoltv.sv.notificar.modulousuarios.notificarperfiles#SV_EnvioCorreoXPerfiles_ResponseProveedor.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ResponseProveedor"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="101,186" queueName="SV.USUARIOS.ENVIOCORREOXPERFILES.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="MQ Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="703,182" wsdlFileName="Correo-CargaPlantillaV4.wsdl" selectedPortType="ptCargaPlantillav4" selectedBinding="bdCargaPlantillaSOAP12Http2" selectedOperation="CargaPlantillav4" selectedPort="ptCargaPlantilla12" targetNamespace="http://www.caracoltv.com.co/TI/correo/cargaplantilla4/" useHTTPTransport="true" webServiceURL="http://srviibpr:7800/services/s12/correo/cargaplantillav4" requestTimeout="30" sslProtocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="PlantillaV4"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="PlantillaV4.terminal.in" eventIdentity="Seguridad_ConsultaUsuariosXPerfil.SOAP Request1.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="Seguridad_ConsultaUsuariosXPerfil.SOAP Request1.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="393,179" wsdlFileName="ServicioModuloUsuariosPr.wsdl" selectedPortType="IServicioModuloUsuarios" selectedBinding="BasicHttpBinding_IServicioModuloUsuarios" selectedOperation="UsariosXListaPerfiles" selectedPort="BasicHttpBinding_IServicioModuloUsuarios" targetNamespace="http://tempuri.org/" useHTTPTransport="true" webServiceURL="http://betapi01/ServiciosModuloUsuarios/ServicioModuloUsuarios.svc" requestTimeout="30"
+          sslProtocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="SOAP Request"/>
+        <longDescription xmi:type="utility:ConstantString" string="http://betapi01/ServiciosModuloUsuarios/ServicioModuloUsuarios.svc&#xD;&#xA;&#xD;&#xA;------------------&#xD;&#xA;http://172.17.3.4/ServiciosModuloUsuarios/ServicioModuloUsuarios.svc"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="812,184" computeExpression="esql://routine/com.caracoltv.sv.notificar.modulousuarios.notificarperfiles#SV_EnvioCorreoXPerfiles_GetResponse.Main">
+        <translation xmi:type="utility:ConstantString" string="GetResponse"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

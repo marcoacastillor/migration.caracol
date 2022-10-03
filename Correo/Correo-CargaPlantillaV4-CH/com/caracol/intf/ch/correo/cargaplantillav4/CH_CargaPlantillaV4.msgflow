@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmEmailOutput.msgnode="ComIbmEmailOutput.msgnode" xmlns:ComIbmLabel.msgnode="ComIbmLabel.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmRouteToLabel.msgnode="ComIbmRouteToLabel.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmValidate.msgnode="ComIbmValidate.msgnode" xmlns:Indicadores_EnviarInformacionEntrada.subflow="Indicadores/EnviarInformacionEntrada.subflow"
+    xmlns:com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow="com/caracol/error/notificacion/correo/CaracolErrorNotificacion.subflow" xmlns:com_cysce_core_util_exception_soap12_ExceptionHandlerSoap12.subflow="com/cysce/core/util/exception/soap12/ExceptionHandlerSoap12.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mbmonitor="http://www.ibm.com/wbi/2008/eflow_mbmonitor" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility"
+    nsURI="com/caracol/intf/ch/correo/cargaplantillav4/CH_CargaPlantillaV4.msgflow" nsPrefix="com_caracol_intf_ch_correo_cargaplantillav4_CH_CargaPlantillaV4.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="CH_CargaPlantillaV4" bundleName="com/caracol/intf/ch/correo/cargaplantillav4/CH_CargaPlantillaV4" pluginId="Correo-CargaPlantillaV4-CH"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-CargaPlantillaV4-CH/icons/full/obj16/CH_CargaPlantillaV4.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-CargaPlantillaV4-CH/icons/full/obj30/CH_CargaPlantillaV4.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmValidate.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="277,171">
+        <translation xmi:type="utility:ConstantString" string="Validate"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRouteToLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="440,175">
+        <translation xmi:type="utility:ConstantString" string="Route To Label"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="118,278" labelName="CargaPlantillav4">
+        <translation xmi:type="utility:ConstantString" string="CargaPlantillav4"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="316,278" computeExpression="esql://routine/com.caracol.intf.ch.correo.cargaplantillav4#CH_CargaPlantillaV4_Request.Main">
+        <translation xmi:type="utility:ConstantString" string="Request"/>
+      </nodes>
+      <nodes xmi:type="com_cysce_core_util_exception_soap12_ExceptionHandlerSoap12.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="282,96">
+        <translation xmi:type="utility:ConstantString" string="ExceptionHandlerSoap12"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="564,279" queueName="SV.CORREO.CARGAPLANTILLAAPPV4.01">
+        <translation xmi:type="utility:ConstantString" string="SV.CORREO.CARGAPLANTILLAAPPV4.01"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="SV.CORREO.CARGAPLANTILLAAPPV4.01.terminal.in" eventIdentity="Correo_CargaPlantillaV4.Output.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="Correo_CargaPlantillaV4.Output.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow:FCMComposite_1" xmi:id="FCMComposite_1_6" location="515,96" Copia="usrassist@caracoltv.com.co" Asunto="Error EN servicio Carga Plantilla V4" Titulo="Notificacion de Error IIB10 Carga Plantilla V4">
+        <translation xmi:type="utility:ConstantString" string="CaracolErrorNotificacion"/>
+      </nodes>
+      <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_10" location="235,228" servicio="Correo-CargaPlantillaV4">
+        <translation xmi:type="utility:ConstantString" string="LOG"/>
+      </nodes>
+      <nodes xmi:type="ComIbmEmailOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="427,329" smtpServer="172.17.4.9" toAddresses="usrassist@caracoltv.com.co" ccAddresses="jahozumb@caracoltv.com.co" fromAddress="usrassist@caracoltv.com.co" replyToAddress="usrassist@caracoltv.com.co" subject="Error al intentar cargar los archivos adjuntos en Carga Plantilla V4.0" messageText="El tamaño de los archivos adjuntos pasa el limite de los 22 MB..." bodyContentType="text/html">
+        <translation xmi:type="utility:ConstantString" string="Email Output"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="Email Output.terminal.in" eventIdentity="Correo_CargaPlantillaV4.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="Correo_CargaPlantillaV4.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="106,121" wsdlFileName="Correo-CargaPlantillaV4.wsdl" selectedPortType="ptCargaPlantillav4" selectedBinding="bdCargaPlantillaSOAP12Http2" selectedPort="ptCargaPlantilla12" targetNamespace="http://www.caracoltv.com.co/TI/correo/cargaplantilla4/" useHTTPTransport="true" urlSelector="/services/s12/correo/cargaplantillav4" maxClientWaitTime="20" allowQueryWSDL="true">
+        <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
+        <nsMappingTable nsPrefix="tns" namespace="http://schemas.xmlsoap.org/soap/envelope/"/>
+        <monitorEvents eventSourceDescription="Transaction start" eventSourceName="SOAP Input.transaction.Start" eventIdentity="Correo_CargaPlantillaV4.SOAP Input.TransactionStart">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <applicationData dataLocation="$Root/XMLNSC/tns:Envelope" isXPath="true" complexData="true">
+              <nsPrefixMap prefix="tns" nsURI="http://schemas.xmlsoap.org/soap/envelope/"/>
+            </applicationData>
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="Correo_CargaPlantillaV4.SOAP Input.TransactionStart"/>
+            <eventFilter dataLocation="true()" isXPath="true">
+              <nsPrefixMap prefix="tns" nsURI="http://schemas.xmlsoap.org/soap/envelope/"/>
+            </eventFilter>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.match" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.Input"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

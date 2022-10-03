@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	name="Correo-EnvioCorreo" 
+	targetNamespace="http://www.caracoltv.com.co/TI/correo/enviocorreo/" 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:srv="http://www.caracoltv.com.co/TI/correo/enviocorreo/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/"
+	xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/">
+
+     <wsdl:documentation>
+	    <wsdl:appinfo source="WMQI_APPINFO">
+	      <MRWSDLAppInfo imported="true">
+	        <binding hasEncoding="false" imported="true" name="bdEnvioCorreoSOAP11Http" originalBindingStyle="document"/>
+	        <binding hasEncoding="false" imported="true" name="bdEnvioCorreoSOAP12Http" originalBindingStyle="document"/>
+	        <generatedXSD location="Correo-EnvioCorreo.xsd"/>
+	      </MRWSDLAppInfo>
+	    </wsdl:appinfo>
+	  </wsdl:documentation>
+	  
+	  
+<wsdl:types>
+		<xsd:schema targetNamespace="http://www.caracoltv.com.co/TI/correo/enviocorreo/"
+			xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+			<xsd:include schemaLocation="Correo-EnvioCorreo.xsd" />
+		</xsd:schema>
+ <!--       
+		<xsd:schema>
+			<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" schemaLocation="ebms-header-3_0-200704.xsd"/>
+		</xsd:schema>
+-->		
+    </wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgEnvioCorreoRequest">
+    	<wsdl:part element="srv:EnvioCorreoRequest" name="EnvioCorreoRequest"/>
+<!--    	<wsdl:part element="eb:Messaging" name="Messaging"/>	-->
+
+	</wsdl:message>
+  	
+
+<!-- Port type -->
+  	<wsdl:portType name="ptEnvioCorreo">
+    	<wsdl:operation name="EnvioCorreo">
+      		<wsdl:input message="srv:msgEnvioCorreoRequest" name="EnvioCorreo_Input"/>
+	    </wsdl:operation>
+  	</wsdl:portType>
+
+	
+<!-- Binding (SOAP 1.1/HTTP binding) -->
+	<wsdl:binding name="bdEnvioCorreoSOAP11Http" type="srv:ptEnvioCorreo">
+    	<S11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="EnvioCorreo">
+	      	<S11:operation soapAction="http://www.caracoltv.com.co/TI/correo/enviocorreo/"/>
+	      	<wsdl:input name="EnvioCorreo_Input">
+	        	<S11:body parts="EnvioCorreoRequest" use="literal"/>
+	      	</wsdl:input>
+	         	</wsdl:operation>
+	</wsdl:binding>
+    	
+<!-- Binding (SOAP 1.2/HTTP binding) -->
+	<wsdl:binding name="bdEnvioCorreoSOAP12Http" type="srv:ptEnvioCorreo">
+    	<S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="EnvioCorreo">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/TI/correo/enviocorreo/"/>
+	      	<wsdl:input name="EnvioCorreo_Input">
+	        	<S12:body parts="EnvioCorreoRequest" use="literal"/>
+	      	</wsdl:input>
+	      	
+    	</wsdl:operation>
+	</wsdl:binding>
+    <!-- Service -->
+  	<wsdl:service name="enviocorreo">
+    	
+    	<wsdl:port binding="srv:bdEnvioCorreoSOAP11Http" name="ptEnvioCorreo11">
+      		<S11:address location="http://localhost:7800/services/s11/dominio/enviocorreo"/>
+    	</wsdl:port>
+    	<wsdl:port binding="srv:bdEnvioCorreoSOAP12Http" name="ptEnvioCorreo12">
+      		<S12:address location="http://localhost:7800/services/s12/dominio/enviocorreo"/>
+    	</wsdl:port>
+  	</wsdl:service>  	
+
+</wsdl:definitions>

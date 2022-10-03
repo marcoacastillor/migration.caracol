@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+name="Usuarios-EnvioCorreoXPerfiles" 
+targetNamespace="http://www.caracoltv.com.co/notificar/modulousuarios/notificarperfiles/" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+xmlns:srv="http://www.caracoltv.com.co/notificar/modulousuarios/notificarperfiles/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdNotificarPerfilesSOAP12Http2" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+<wsdl:types>
+		<xsd:schema targetNamespace="http://www.caracoltv.com.co/notificar/modulousuarios/notificarperfiles/" 
+		xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="CorreoNotificarPerfiles.xsd"/>
+    </xsd:schema>
+        
+
+    </wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgNotificarPerfilesRequest">
+    	<wsdl:part element="srv:EnvioCorreoXPerfilesRequest" name="NotificarPerfilesRequest"/>
+<!--    	<wsdl:part element="eb:Messaging" name="Messaging"/>	-->
+  	</wsdl:message>
+  	
+
+<!-- Port type -->
+  	<wsdl:portType name="ptNotificarPerfiles">
+    	<wsdl:operation name="NotificarPerfiles">
+      		<wsdl:input message="srv:msgNotificarPerfilesRequest" name="NotificarPerfiles_Input"/>
+	    </wsdl:operation>
+  	</wsdl:portType>
+    	
+<!-- Binding (SOAP 1.2/HTTP binding) -->
+	<wsdl:binding name="bdNotificarPerfilesSOAP12Http2" type="srv:ptNotificarPerfiles">
+    	<S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="NotificarPerfiles">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/TI/correo/NotificarPerfiles4/"/>
+	      	<wsdl:input name="NotificarPerfiles_Input">
+	        	<S12:body parts="NotificarPerfilesRequest" use="literal"/>
+	      	</wsdl:input>
+	      	
+    	</wsdl:operation>
+	</wsdl:binding>
+    <!-- Service -->
+  	<wsdl:service name="NotificarPerfiles">
+    	
+    	
+    	<wsdl:port binding="srv:bdNotificarPerfilesSOAP12Http2" name="ptNotificarPerfiles12">
+      		<S12:address location="http://localhost:7800/services/s12/usuarios/notificarperfiles"/>
+    	</wsdl:port>
+  	</wsdl:service>  	
+
+</wsdl:definitions>
