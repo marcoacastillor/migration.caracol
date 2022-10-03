@@ -1,0 +1,36 @@
+CREATE COMPUTE MODULE CH_EnvioCorreoXPerfiles_Request
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/notificar/modulousuarios/notificarperfiles/';
+		
+		DECLARE intLongAdjuntos INTEGER 0;		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';					
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;		
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:EnvioCorreoXPerfilesRequest TYPE Name;
+	    DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:EnvioCorreoXPerfilesRequest;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:EnvioCorreoXPerfilesRequest;
+		--asignación datos	    	    
+		SET rBodyO.De = rBodyI.De;
+		SET rBodyO.APerfiles = rBodyI.APerfiles;
+		SET rBodyO.Copia=rBodyI.Copia;
+	  	SET rBodyO.CopiaOculta=rBodyI.CopiaOculta;
+	  	SET rBodyO.Asunto=rBodyI.Asunto;	  	
+	  	SET rBodyO.Titulo=rBodyI.Titulo;
+	  	SET rBodyO.Mensaje1=rBodyI.Mensaje1;
+	  	SET rBodyO.Mensaje2=rBodyI.Mensaje2;
+	  	SET rBodyO.TextoLink=rBodyI.TextoLink;	  	
+	  	SET rBodyO.Link=rBodyI.Link;
+	  	SET rBodyO.Prioridad=rBodyI.Prioridad;
+	  	SET rBodyO.Plantilla=rBodyI.Plantilla;
+	  	SET rBodyO.AFiles=rBodyI.AFiles;			
+		RETURN TRUE;
+	END;
+END MODULE;
