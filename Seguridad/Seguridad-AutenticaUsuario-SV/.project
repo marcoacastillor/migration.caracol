@@ -3,7 +3,6 @@
 	<name>Seguridad-AutenticaUsuario-SV</name>
 	<comment></comment>
 	<projects>
-		<project>csif-commons-util</project>
 		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
