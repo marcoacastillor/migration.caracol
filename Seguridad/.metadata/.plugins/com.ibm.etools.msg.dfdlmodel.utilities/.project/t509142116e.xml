@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><MessageBroker name="Esquemas-Canonicos">
+  <XSDCollection href="platform:/resource/Esquemas-Canonicos/Usuario.xsd" prefix="srv" targetNamespace="http://www.caracoltv.com.co/ti/seguridad/canonico/usuario/">
+    <element href="platform:/resource/Esquemas-Canonicos/Usuario.xsd#//Usuario;XSDElementDeclaration" name="Usuario" type="mlib://Esquemas-Canonicos#/-/complexType{http://www.caracoltv.com.co/ti/seguridad/canonico/usuario/}Usuario"/>
+    <element href="platform:/resource/Esquemas-Canonicos/Usuario.xsd#//Persona;XSDElementDeclaration=1" name="Persona" type="mlib://Esquemas-Canonicos#/-/complexType{http://www.caracoltv.com.co/ti/seguridad/canonico/usuario/}Persona"/>
+    <element href="platform:/resource/Esquemas-Canonicos/Usuario.xsd#//Area;XSDElementDeclaration=2" name="Area" type="mlib://Esquemas-Canonicos#/-/complexType{http://www.caracoltv.com.co/ti/seguridad/canonico/usuario/}Area"/>
+    <complexType baseType="mlib://Esquemas-Canonicos#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/Esquemas-Canonicos/Usuario.xsd#//Usuario;XSDComplexTypeDefinition" name="Usuario"/>
+    <complexType baseType="mlib://Esquemas-Canonicos#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/Esquemas-Canonicos/Usuario.xsd#//Persona;XSDComplexTypeDefinition=1" name="Persona"/>
+    <complexType baseType="mlib://Esquemas-Canonicos#/-/complexType{http://www.w3.org/2001/XMLSchema}anyType" href="platform:/resource/Esquemas-Canonicos/Usuario.xsd#//Area;XSDComplexTypeDefinition=2" name="Area"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/Esquemas-Canonicos/Proveedor.xsd" prefix="srv" targetNamespace="http://www.caracoltv.com.co/ti/mdm/canonico/proveedor/">
+    <element href="platform:/resource/Esquemas-Canonicos/Proveedor.xsd#//Proveedor;XSDElementDeclaration" name="Proveedor"/>
+    <element href="platform:/resource/Esquemas-Canonicos/Proveedor.xsd#//Resultado;XSDElementDeclaration=1" name="Resultado"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/Esquemas-Canonicos/Cliente.xsd" prefix="srv" targetNamespace="http://www.caracoltv.com.co/ti/mdm/canonico/cliente/">
+    <element href="platform:/resource/Esquemas-Canonicos/Cliente.xsd#//Cliente;XSDElementDeclaration" name="Cliente"/>
+    <element href="platform:/resource/Esquemas-Canonicos/Cliente.xsd#//Resultado;XSDElementDeclaration=1" name="Resultado"/>
+  </XSDCollection>
+</MessageBroker>

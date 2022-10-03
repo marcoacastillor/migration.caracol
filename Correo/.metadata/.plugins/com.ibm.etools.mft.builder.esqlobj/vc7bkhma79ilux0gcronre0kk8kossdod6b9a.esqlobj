@@ -1,0 +1,40 @@
+CREATE COMPUTE MODULE cargaPlantilla_NotificaCorreo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();		
+		DECLARE soap NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE csif NAMESPACE 'http://www.cysce.com/csif-msg/ns/v1.0/csif-ms/';
+		DECLARE car NAMESPACE 'http://www.caracoltv.com.co/TI/correo/enviocorreo/';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		
+		DECLARE refIn REFERENCE TO InputRoot.XMLNSC.soap:Envelope.soap:Body.soap:Fault.soap:Detail.eb:Messaging.eb:ErrorList;
+		DECLARE refInMsgIg REFERENCE TO InputRoot.XMLNSC.soap:Envelope.soap:Body.soap:Fault.soap:Detail.eb:Messaging.eb:MessageInfo;
+		
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.car:EnvioCorreoRequest.De = De;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.car:EnvioCorreoRequest.Para = Para;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.car:EnvioCorreoRequest.Copia = Copia;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.car:EnvioCorreoRequest.CopiaOculta = CopiaOculta;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.car:EnvioCorreoRequest.Asunto = Asunto;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.car:EnvioCorreoRequest.Formato = Formato;		
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.car:EnvioCorreoRequest.Cuerpo = 'Error generado en: '||FIELDVALUE(refIn.eb:Error.(XMLNSC.Attribute)origin)||
+		refIn.eb:Error.eb:Description||' Detalle: '||refIn.eb:Error.eb:ErrorDetail||' Revise el registro del IIB con ID Transaccion Local: '||refInMsgIg.eb:MessageId;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.car:EnvioCorreoRequest.Prioridad = Prioridad;
+		
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
