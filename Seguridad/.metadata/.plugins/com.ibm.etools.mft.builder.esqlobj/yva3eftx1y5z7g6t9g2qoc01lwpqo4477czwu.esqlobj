@@ -1,4 +1,0 @@
-CREATE PROCEDURE throw(IN exceptionText CHAR)      -- Throws an exception
-   BEGIN
-      THROW USER EXCEPTION Message 3012 VALUES( exceptionText );
-END;

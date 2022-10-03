@@ -1,2 +1,0 @@
-CREATE COMPUTE MODULE AutenticaUsuario_RQ_CreateErrorMessage
-	CREATE FUNCTION Main() RETURNS BOOLEAN

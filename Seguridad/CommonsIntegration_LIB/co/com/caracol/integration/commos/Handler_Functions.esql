@@ -2,7 +2,6 @@ BROKER SCHEMA co.com.caracol.integration.commos
 
 CREATE FUNCTION getDestinationByServiceAndOperation(IN service CHARACTER, IN operation CHARACTER)RETURNS CHARACTER
 BEGIN
-	
 	CASE service
 		WHEN 'AUTENTICA' THEN
 			CASE operation
@@ -24,19 +23,19 @@ BEGIN
 			
 		WHEN 'FUNCIONALIDADES_HIJAS' THEN
 			CASE operation
-			WHEN 'operacionfuncionalidadeshijas' THEN
+			WHEN 'operacionFuncionalidadesHijas' THEN
 				RETURN 'SV.SEGURIDAD.FUNCIONALIDADESHIJAS.01';
 			END CASE;
 			
 		WHEN 'PERFILESXSISTEMA' THEN
 			CASE operation
-			WHEN 'operacionperfilesxsistema' THEN
+			WHEN 'operacionPerfilesXSistema' THEN
 				RETURN 'SV.SEGURIDAD.PERFILESPORSISTEMA.01';
 			END CASE;
 		
 		WHEN 'PERFILESXSISTEMAYUSUARIO' THEN
 			CASE operation
-			WHEN 'operacionperfilesxsistemayusuario' THEN
+			WHEN 'operacionPerfilesXSistemaYUsuario' THEN
 				RETURN 'SV.SEGURIDAD.PERFILESXSISTEMAYUSUARIO.01';
 			END CASE;
 			
@@ -48,10 +47,8 @@ BEGIN
 			
 		WHEN 'USUARIOSXSISTEMA' THEN
 			CASE operation
-			WHEN 'operacionusuariosxsistema' THEN
+			WHEN 'operacionUsuariosXSistema' THEN
 				RETURN 'SV.SEGURIDAD.USUARIOSXSISTEMA.01';
 			END CASE;
-		
-			
 	END CASE;
 END;

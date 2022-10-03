@@ -1,9 +1,0 @@
-BROKER SCHEMA co.com.caracol.services.consultafuncionalidad
-
-
-CREATE COMPUTE MODULE ConsultaFuncionalidad_ResponseService
-	CREATE FUNCTION Main() RETURNS BOOLEAN
-	BEGIN
-		
-	END;
-END MODULE;

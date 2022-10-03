@@ -1,9 +1,0 @@
-/*EATE FUNCTION Main() RETURNS BOOLE*/
-	BEGIN
-		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
-		
-		
-		
-		RETURN TRUE;
-	END;

@@ -1,8 +1,0 @@
-CREATE FUNCTION getDestinationByServiceAndOperation(IN service CHARACTER, IN operation CHARACTER)RETURNS CHARACTER
-BEGIN
-	
-	CASE service
-		WHEN 'AUTENTICA' THEN
-			RETURN '';
-	END CASE;
-END;

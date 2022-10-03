@@ -1,9 +1,0 @@
-CREATE COMPUTE MODULE AutenticaUsuario_RQ_CreateErrorMessage
-	CREATE FUNCTION Main() RETURNS BOOLEAN
-	BEGIN
-		CREATE FIELD OutputRoot.XMLNSC.ns2:SeguridadAutenticaResponse;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:Fault;
-		
-		RETURN TRUE;
-	END;
-END MODULE;
