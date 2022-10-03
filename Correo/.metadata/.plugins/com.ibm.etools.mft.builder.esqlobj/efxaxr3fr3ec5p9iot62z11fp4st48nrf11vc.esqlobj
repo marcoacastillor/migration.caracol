@@ -1,0 +1,73 @@
+CREATE COMPUTE MODULE SV_EnvioCorreoV2_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+	  	DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+	  	  
+	  	DECLARE srv2 NAMESPACE 'http://www.caracoltv.com.co/TI/correo/enviocorreo2/';
+	  	DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+	  	DECLARE Cuerpo char; 
+	  	 	  
+	  	DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv2:EnvioCorreoRequest;
+		SET Environment.Variables.CorreoV2Request[]=LIST{InputRoot.XMLNSC};				
+	  	-- Añadir información de destinatario a EmailOutputHeader
+	  	SET rBodyI.Para=REPLACE(rBodyI.Para,' ','');
+	  	SET rBodyI.Para=REPLACE(rBodyI.Para,';;',';');	    
+	  	SET OutputRoot.EmailOutputHeader.To = rBodyI.Para;
+	  	SET rBodyI.Copia=REPLACE(rBodyI.Copia,' ','');
+	  	SET rBodyI.Copia=REPLACE(rBodyI.Copia,';;',';');
+	  	SET OutputRoot.EmailOutputHeader.Cc = rBodyI.Copia;
+	  	SET rBodyI.CopiaOculta=REPLACE(rBodyI.CopiaOculta,' ','');
+	  	SET rBodyI.CopiaOculta=REPLACE(rBodyI.CopiaOculta,';;',';');
+	  	
+	  	SET OutputRoot.EmailOutputHeader.Bcc = rBodyI.CopiaOculta;	  
+	  	SET OutputRoot.EmailOutputHeader.From = rBodyI.De;
+	    --añadir prioridad  	 	      
+		IF ( rBodyI.Prioridad IS NULL) THEN
+			SET OutputRoot.EmailOutputHeader."X-Priority" = '0';
+		ELSEIF ( rBodyI.Prioridad = '1') THEN 
+			SET OutputRoot.EmailOutputHeader."X-Priority" = '1';
+		ELSEIF ( rBodyI.Prioridad = '-1') THEN	
+			SET OutputRoot.EmailOutputHeader."X-Priority" = '4';				 		
+		ELSE 			
+			SET OutputRoot.EmailOutputHeader."X-Priority" = '0';
+		END IF; 	  
+	    -- Añadir asunto a EmailOutputHeader
+	    SET OutputRoot.EmailOutputHeader.Subject = rBodyI.Asunto;
+			
+ 
+
+		DECLARE localEnvBLOB CHAR InputRoot.XMLNSC.s12:Envelope.s12:Body.srv2:EnvioCorreoRequest.(XMLNSC.CDataField)Cuerpo;
+		IF (localEnvBLOB IS NOT NULL) OR (localEnvBLOB <> '') THEN
+			CREATE LASTCHILD OF OutputLocalEnvironment.LOCALENVBLOB_TO_XML DOMAIN('XMLNSC') PARSE (localEnvBLOB ENCODING InputRoot.Properties.Encoding CCSID InputRoot.Properties.CodedCharSetId
+		    FORMAT 'XMLNSC_OPAQUE' TYPE 'soap12:Body');         
+		    SET OutputRoot.BLOB.BLOB = CAST(localEnvBLOB AS BLOB CCSID 1208);
+		ELSE
+		  	SET OutputRoot.XMLNSC.html.body.p[1] = COALESCE(rBodyI.Cuerpo,' ');  	
+	    END IF; 
+		DECLARE longitud INTEGER  CARDINALITY (rBodyI.AAdjuntos.Adjunto.*[]);
+		IF (longitud =0 OR rBodyI.AAdjuntos  = NULL OR rBodyI.AAdjuntos ='' OR rBodyI.AAdjuntos.Adjunto ='' OR rBodyI.AAdjuntos.Adjunto=NULL) THEN			
+	  		SET OutputLocalEnvironment.Destination.Email.Attachment = null;
+	    END IF;
+	    
+	     
+	    IF (longitud>0)  THEN	    
+		    DECLARE element_Index INTEGER 1;	  		  		
+	  		FOR rBodyAdjuntos AS rBodyI.AAdjuntos.Adjunto[] DO			
+				DECLARE decodec BLOB BASE64DECODE(rBodyAdjuntos.Data);
+	  			SET OutputLocalEnvironment.Destination.Email.Attachment[element_Index].Content = decodec;
+			    SET OutputLocalEnvironment.Destination.Email.Attachment[element_Index].ContentName=rBodyAdjuntos.Nombre;
+			    SET element_Index = element_Index +1;
+	  		END FOR;
+	  		
+	    ELSE
+	    	SET OutputLocalEnvironment.Destination.Email.Attachment = null;	    	
+	    END IF;   
+	    /*SET OutputLocalEnvironment.Destination.Email.Attachment = null;
+	    SET OutputRoot.Destination.Email.Attachment = null;
+	    */
+	    
+  		RETURN TRUE;
+  		
+	END;
+END MODULE;
