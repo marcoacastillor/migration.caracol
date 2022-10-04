@@ -1,0 +1,73 @@
+/****************************************************************************
+ *																			*
+ * File Name: StoreContext.esql												*
+ *																			*
+ * Purpose:   Almacena mensajes de contexto con información para retorno	*
+ * 				de respuesta de los servicios.								*
+ *																			* 	
+ * Authors:   Germán Torres M.												*
+ *                 															*
+ * Date      01 January 2012												*
+ * Version:  1.0															*
+ *																			*
+ * @copyright  CYSCE S.A 2012.  All rights reserved.                  		*
+ * No part of this source may be reproduced, store in a retrival      		*
+ * system, or transmitted, in any form by any means, electronic,      		*
+ * mechanical, photo copying, recording or otherwise, without the     		*
+ * prior written permission of CYSCE S.A                              		*
+ *                                                                    		*
+ ****************************************************************************/
+BROKER SCHEMA com.cysce.core.context
+--  $MQSI Name=Store Context MQSI$
+--  $MQSI Version=1.0 MQSI$
+--  $MQSI Author=CYSCE S.A MQSI$
+
+
+/**
+ * @author <a href="mailto:gtorres@cysce.com">German Torres M.</a>
+ */
+CREATE COMPUTE MODULE StoreContext_setContext
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		-- Copy the incoming original MQMD
+		SET OutputRoot.MQMD = InputRoot.MQMD;
+		
+		-- Copy MsgId to CorrelId as the Backend reply application would do
+		-- This enables the MQGet node in the Reply flow to retrieve the
+		-- corresponding store message by CorrelId even if the requestor did
+		-- not send the message as a MQSeries request message
+		SET OutputRoot.MQMD.CorrelId = InputLocalEnvironment.WrittenDestination.MQ.DestinationData.msgId;
+		
+		-- Se verifica que Header MQRFH2 exista 
+		DECLARE mqrfh2Check INT CARDINALITY(InputRoot.MQRFH2[]);
+		IF mqrfh2Check < 1 THEN
+			CREATE LASTCHILD OF OutputRoot DOMAIN 'MQRFH2';
+		ELSE
+			SET OutputRoot.MQRFH2 = InputRoot.MQRFH2;
+		END IF;
+		
+		IF EXISTS(InputLocalEnvironment.Destination.SOAP[]) THEN
+			-- Si la petición es WS
+			SET OutputRoot.MQRFH2.usr.esbHeader.serviceData.parentTransactionId = InputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier;
+			SET OutputRoot.MQRFH2.usr.esbHeader.serviceData.Type ='SOAP';
+		ELSEIF EXISTS(InputLocalEnvironment.Destination.HTTP[]) THEN
+			-- Si la petición es WS
+			SET OutputRoot.MQRFH2.usr.esbHeader.serviceData.parentTransactionId = InputLocalEnvironment.Destination.HTTP.Reply.ReplyIdentifier;	
+			SET OutputRoot.MQRFH2.usr.esbHeader.serviceData.Type='HTTP';
+		ELSE
+			-- Si la petición es MQ
+			SET OutputRoot.MQRFH2.usr.esbHeader.serviceData.parentTransactionId = InputRoot.MQMD.MsgId;
+			SET OutputRoot.MQRFH2.usr.esbHeader.serviceData.Type='MQ';
+		END IF;
+		
+		-- ReplyToQ donde se debe retornar el mensaje de petición
+		SET OutputRoot.MQRFH2.usr.esbHeader.replyTo.address = InputRoot.MQMD.ReplyToQ;
+		
+		-- Guardar datos de contexto del mensaje del servicio
+		-- Datos de usuario que se requieran guardar para uso posterior
+		SET OutputRoot.MQRFH2.usr.Context = Environment.Variables.Context;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="SeguridadAutentica" targetNamespace="http://www.caracoltv.com.co/TI/seguridad/autentica/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:srv="http://www.caracoltv.com.co/TI/seguridad/autentica/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdSeguridadAutenticaSOAP12Http" originalBindingStyle="document"/>
+        <generatedXSD location="AutenticaUsuario.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.caracoltv.com.co/TI/seguridad/autentica/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:include schemaLocation="AutenticaUsuario.xsd"/>
+    </xsd:schema>
+    <xsd:schema>
+      <xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" schemaLocation="ebms-header-3_0-200704.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <!--Request message-->
+  <wsdl:message name="msgSeguridadAutenticaRequest">
+    <wsdl:part element="srv:SeguridadAutenticaRequest" name="SeguridadAutenticaRequest"/>
+  </wsdl:message>
+  <!--Response message-->
+  <wsdl:message name="msgSeguridadAutenticaResponse">
+    <wsdl:part element="srv:SeguridadAutenticaResponse" name="SeguridadAutenticaResponse"/>
+  </wsdl:message>
+  <!--Fault message-->
+  <wsdl:message name="msgSeguridadAutenticaFault">
+    <!--<wsdl:part element="mex:messageException" name="messageException"/>-->
+    <wsdl:part element="eb:Messaging" name="detail"/>
+  </wsdl:message>
+  <!--Port type-->
+  <wsdl:portType name="ptSeguridadAutentica">
+    <wsdl:operation name="Consulta">
+      <wsdl:input message="srv:msgSeguridadAutenticaRequest" name="SeguridadAutentica_Input"/>
+      <wsdl:output message="srv:msgSeguridadAutenticaResponse" name="SeguridadAutentica_Output"/>
+      <wsdl:fault message="srv:msgSeguridadAutenticaFault" name="fault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <!--Binding (SOAP 1.2/HTTP binding)-->
+  <wsdl:binding name="bdSeguridadAutenticaSOAP12Http" type="srv:ptSeguridadAutentica">
+    <S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Consulta">
+      <S12:operation soapAction="http://www.caracoltv.com.co/TI/seguridad/autentica/"/>
+      <wsdl:input name="SeguridadAutentica_Input">
+        <S12:body parts="SeguridadAutenticaRequest" use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="SeguridadAutentica_Output">
+        <S12:body parts="SeguridadAutenticaResponse" use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="fault">
+        <S12:fault name="fault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <!--Service-->
+  <wsdl:service name="SeguridadAutentica">
+    <wsdl:port binding="srv:bdSeguridadAutenticaSOAP12Http" name="ptSeguridadAutentica12">
+      <S12:address location="http://localhost:7800/services/s12/dominio/SeguridadAutentica"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

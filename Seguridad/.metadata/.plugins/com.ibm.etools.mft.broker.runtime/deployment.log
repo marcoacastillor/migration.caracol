@@ -1,0 +1,20 @@
+Seguridad-AutenticaUsuario-SV>>ACENODE1>>PRUEBAS>>WARNING>>1664814713416
+BIP1239E<<La aplicación 'Seguridad-AutenticaUsuario-SV' hace referencia a la biblioteca compartida 'csif-commons-util', que no se ha desplegado en el servidor de integración. <<1664814713416
+BIP1096E<<El origen 'Seguridad-AutenticaUsuario-SVproject.generated.bar' se ha desplegado, pero ha habido uno o más errores que podrían suponer que los recursos desplegados no puedan ejecutar. <<1664814713416
+CommonsIntegration_LIB>>ACENODE1>>PRUEBAS>>WARNING>>1664814720217
+BIP1239E<<La aplicación 'Seguridad-AutenticaUsuario-SV' hace referencia a la biblioteca compartida 'csif-commons-util', que no se ha desplegado en el servidor de integración. <<1664814720217
+BIP9332I<<SharedLibrary 'CommonsIntegration_LIB' se ha changed correctamente. <<1664814720217
+BIP9332I<<Application 'Seguridad-CargarUsuario-CH' se ha reloaded correctamente. <<1664814720217
+BIP1096E<<El origen 'CommonsIntegration_LIBproject.generated.bar' se ha desplegado, pero ha habido uno o más errores que podrían suponer que los recursos desplegados no puedan ejecutar. <<1664814720217
+CommonsIntegration_LIB>>ACENODE1>>PRUEBAS>>SUCCESS>>1664814751052
+BIP9332I<<SharedLibrary 'CommonsIntegration_LIB' se ha created correctamente. <<1664814751052
+BIP9326I<<El origen 'CommonsIntegration_LIBproject.generated.bar' se ha desplegado correctamente. <<1664814751052
+Seguridad-AutenticaUsuario-SV>>ACENODE1>>PRUEBAS>>WARNING>>1664814757250
+BIP1239E<<La aplicación 'Seguridad-AutenticaUsuario-SV' hace referencia a la biblioteca compartida 'csif-commons-util', que no se ha desplegado en el servidor de integración. <<1664814757250
+BIP1096E<<El origen 'Seguridad-AutenticaUsuario-SVproject.generated.bar' se ha desplegado, pero ha habido uno o más errores que podrían suponer que los recursos desplegados no puedan ejecutar. <<1664814757250
+Seguridad-AutenticaUsuario-SV>>ACENODE1>>PRUEBAS>>SUCCESS>>1664814782387
+BIP9332I<<Application 'Seguridad-AutenticaUsuario-SV' se ha changed correctamente. <<1664814782387
+BIP9326I<<El origen 'Seguridad-AutenticaUsuario-SVproject.generated.bar' se ha desplegado correctamente. <<1664814782387
+Seguridad-AutenticaUsuario-CH>>ACENODE1>>PRUEBAS>>SUCCESS>>1664814784646
+BIP9332I<<Application 'Seguridad-AutenticaUsuario-CH' se ha created correctamente. <<1664814784646
+BIP9326I<<El origen 'Seguridad-AutenticaUsuario-CHproject.generated.bar' se ha desplegado correctamente. <<1664814784646

@@ -1,0 +1,60 @@
+BROKER SCHEMA co.com.caracol.integration.commos
+
+CREATE FUNCTION getDestinationByServiceAndOperation(IN service CHARACTER, IN operation CHARACTER)RETURNS CHARACTER
+BEGIN
+	CASE service
+		WHEN 'AUTENTICA' THEN
+			CASE operation
+			WHEN 'Consulta' THEN
+				RETURN 'SV.SEGURIDAD.AUTENTICA.01';
+			END CASE;
+		
+		WHEN 'CARGA_USUARIO' THEN
+			CASE operation
+			WHEN 'operacioncargarusuario' THEN
+				RETURN 'SV.SEGURIDAD.CARGARUSUARIO.01';
+			END CASE;
+			
+		WHEN 'CONSULTA_FUNCIONALIDAD' THEN
+			CASE operation
+			WHEN 'operacionconsultafuncionalidad' THEN
+				RETURN 'SV.SEGURIDAD.CONSULTARFUNCIONALIDAD.01';
+			END CASE;
+			
+		WHEN 'FUNCIONALIDADES_HIJAS' THEN
+			CASE operation
+			WHEN 'operacionFuncionalidadesHijas' THEN
+				RETURN 'SV.SEGURIDAD.FUNCIONALIDADESHIJAS.01';
+			END CASE;
+			
+		WHEN 'PERFILESXSISTEMA' THEN
+			CASE operation
+			WHEN 'operacionPerfilesXSistema' THEN
+				RETURN 'SV.SEGURIDAD.PERFILESPORSISTEMA.01';
+			END CASE;
+		
+		WHEN 'PERFILESXSISTEMAYUSUARIO' THEN
+			CASE operation
+			WHEN 'operacionPerfilesXSistemaYUsuario' THEN
+				RETURN 'SV.SEGURIDAD.PERFILESXSISTEMAYUSUARIO.01';
+			END CASE;
+			
+		WHEN 'USUARIOSXPERFIL' THEN
+			CASE operation
+			WHEN 'operacionusuariosxperfil' THEN
+				RETURN 'SV.SEGURIDAD.USUARIOSDEPERFIL.01';
+			END CASE;
+			
+		WHEN 'USUARIOSXSISTEMA' THEN
+			CASE operation
+			WHEN 'operacionUsuariosXSistema' THEN
+				RETURN 'SV.SEGURIDAD.USUARIOSXSISTEMA.01';
+			END CASE;
+			
+		WHEN 'CARGA_PLANTILLA_V2' THEN
+			CASE operation
+			WHEN 'CargaPlantillav2' THEN
+				RETURN 'SV.CORREO.CARGARPLANTILLAV2.01';
+			END CASE;
+	END CASE;
+END;
