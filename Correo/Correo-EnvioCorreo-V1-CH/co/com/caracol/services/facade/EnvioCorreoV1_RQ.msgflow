@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:gen_CargaPlantillaV1_REQ.subflow="gen/CargaPlantillaV1_REQ.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility"
-    nsURI="co/com/caracol/services/facade/CargaPlantillaV1_REQ.msgflow" nsPrefix="co_com_caracol_services_facade_CargaPlantillaV1_REQ.msgflow">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:gen_EnvioCorreoV1_RQ.subflow="gen/EnvioCorreoV1_RQ.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility"
+    nsURI="co/com/caracol/services/facade/EnvioCorreoV1_RQ.msgflow" nsPrefix="co_com_caracol_services_facade_EnvioCorreoV1_RQ.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
-    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_SERVICE" name="UDP_SERVICE" lowerBound="1" defaultValueLiteral="CARGA_PLANTILLA_V1">
-      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eStructuralFeatures>
-    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TRACING" name="UDP_TRACING" lowerBound="1" defaultValueLiteral="true">
-      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    </eStructuralFeatures>
-    <translation xmi:type="utility:TranslatableString" key="CargaPlantillaV1_REQ" bundleName="co/com/caracol/services/facade/CargaPlantillaV1_REQ" pluginId="Correo-CargaPlantillaV1-CH"/>
-    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-CargaPlantillaV1-CH/icons/full/obj16/CargaPlantillaV1_REQ.gif"/>
-    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-CargaPlantillaV1-CH/icons/full/obj30/CargaPlantillaV1_REQ.gif"/>
+    <translation xmi:type="utility:TranslatableString" key="EnvioCorreoV1_RQ" bundleName="co/com/caracol/services/facade/EnvioCorreoV1_RQ" pluginId="Correo-EnvioCorreo-V1-CH"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-EnvioCorreo-V1-CH/icons/full/obj16/EnvioCorreoV1_RQ.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-EnvioCorreo-V1-CH/icons/full/obj30/EnvioCorreoV1_RQ.gif"/>
     <composition>
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="775,270" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
@@ -31,11 +25,11 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="331,266" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMessage"/>
       </nodes>
-      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="80,169" wsdlFileName="Correo-CargaPlantilla.wsdl" selectedPortType="ptCargaPlantilla" selectedBinding="bdCargaPlantillaSOAP11Http" selectedPort="ptCargaPlantilla11" targetNamespace="http://www.caracoltv.com.co/TI/correo/cargaplantilla/" useHTTPTransport="true" urlSelector="/services/s11/dominio/cargarplantilla">
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="64,167" wsdlFileName="Correo-EnvioCorreo.wsdl" selectedPortType="ptEnvioCorreo" selectedBinding="bdEnvioCorreoSOAP12Http" selectedPort="ptEnvioCorreo12" targetNamespace="http://www.caracoltv.com.co/TI/correo/enviocorreo/" useHTTPTransport="true" urlSelector="/services/s12/dominio/enviocorreo">
         <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
       </nodes>
-      <nodes xmi:type="gen_CargaPlantillaV1_REQ.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="309,165">
-        <translation xmi:type="utility:ConstantString" string="Correo-CargaPlantilla"/>
+      <nodes xmi:type="gen_EnvioCorreoV1_RQ.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="329,164">
+        <translation xmi:type="utility:ConstantString" string="Correo-EnvioCorreo"/>
         <shortDescription xmi:type="utility:ConstantString" string="Extracts message body from the SOAP message"/>
         <longDescription xmi:type="utility:ConstantString" string="This subflow extracts the body out of the SOAP message, has one output node per operation. This was generated by a WSDL file drag and drop operation."/>
       </nodes>
@@ -44,17 +38,10 @@
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.CargaPlantillaRequest" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.EnvioCorreoRequest" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
     </composition>
-    <propertyOrganizer>
-      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_SERVICE">
-        <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_SERVICE" bundleName="co/com/caracol/services/facade/CargaPlantillaV1_REQ" pluginId="Correo-CargaPlantillaV1-CH"/>
-        <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TRACING">
-          <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TRACING" bundleName="co/com/caracol/services/facade/CargaPlantillaV1_REQ" pluginId="Correo-CargaPlantillaV1-CH"/>
-        </propertyDescriptor>
-      </propertyDescriptor>
-    </propertyOrganizer>
+    <propertyOrganizer/>
     <stickyBoard/>
   </eClassifiers>
 </ecore:EPackage>
