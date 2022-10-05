@@ -1,0 +1,33 @@
+BROKER SCHEMA co.com.caracol.services.cargaplanillav2
+
+
+CREATE COMPUTE MODULE CargaPlantillaV2_StoreResponseInfo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD 	= InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia mensaje de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Declarar variables
+		DECLARE i, intLongAdjuntos INTEGER 1;
+		
+  		FOR refAttach AS refInp.*:AAdjuntos.*:Adjunto[] DO			
+  			SET intLongAdjuntos =intLongAdjuntos+ LENGTH(CAST(refAttach.Data AS Character));			    
+		    SET i = i + 1;
+  		END FOR;
+		IF intLongAdjuntos > 45971520 THEN
+   			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::TAMAÑO SUPERA 22 MG');
+		END IF;
+		
+		--Copiar todo el mensaje
+		SET OutputRoot = InputRoot;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

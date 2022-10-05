@@ -1,0 +1,16 @@
+BROKER SCHEMA co.com.caracol.services.cargaplantillav1
+
+
+CREATE COMPUTE MODULE CargaPlantillaV1_StoreResponseInfo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD 	= InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Copiar todo el mensaje
+		SET OutputRoot = InputRoot;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

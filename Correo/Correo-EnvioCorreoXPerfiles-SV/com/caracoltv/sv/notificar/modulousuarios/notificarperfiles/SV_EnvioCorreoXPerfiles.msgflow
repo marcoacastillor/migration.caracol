@@ -12,7 +12,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="546,181" computeExpression="esql://routine/com.caracoltv.sv.notificar.modulousuarios.notificarperfiles#SV_EnvioCorreoXPerfiles_ResponseProveedor.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseProveedor"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="101,186" queueName="SV.USUARIOS.ENVIOCORREOXPERFILES.01" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="101,181" queueName="SV.USUARIOS.ENVIOCORREOXPERFILES.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="MQ Input"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="703,182" wsdlFileName="Correo-CargaPlantillaV4.wsdl" selectedPortType="ptCargaPlantillav4" selectedBinding="bdCargaPlantillaSOAP12Http2" selectedOperation="CargaPlantillav4" selectedPort="ptCargaPlantilla12" targetNamespace="http://www.caracoltv.com.co/TI/correo/cargaplantilla4/" useHTTPTransport="true" webServiceURL="http://srviibpr:7800/services/s12/correo/cargaplantillav4" requestTimeout="30" sslProtocol="TLS">

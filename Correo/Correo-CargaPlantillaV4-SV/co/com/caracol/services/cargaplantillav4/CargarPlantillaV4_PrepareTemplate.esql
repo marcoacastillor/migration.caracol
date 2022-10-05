@@ -1,0 +1,73 @@
+BROKER SCHEMA co.com.caracol.services.cargaplantillav4
+
+DECLARE srv2 NAMESPACE 'http://www.caracoltv.com.co/TI/correo/enviocorreo/';
+
+CREATE COMPUTE MODULE CargarPlantillaV4_PrepareTemplate
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Setear codecharsetId
+		SET OutputRoot.Properties.CodedCharSetId = '1208';
+		
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.srv2:EnvioCorreoRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.srv2:EnvioCorreoRequest;
+		
+		--Se declara variable de tipo caracter para transformar la plantilla de BLOB a CHAR.
+        DECLARE wholeMsgChar CHAR 
+        CAST(Environment.BLOB.BLOB AS CHAR CCSID InputRoot.Properties.CodedCharSetId);    
+        
+        --Se asignan los valores de Titulo, Mensajes y Link para reemplazarlos en la trama CHAR del XML de la plantilla.
+		DECLARE Titulo CHARACTER FIELDVALUE(refInp.*:Titulo);
+        DECLARE Mensaje1 CHARACTER FIELDVALUE(refInp.*:Mensaje1);
+        DECLARE Mensaje2 CHARACTER FIELDVALUE(refInp.*:Mensaje2);
+        
+        DECLARE TextoLink CHARACTER FIELDVALUE(refInp.*:TextoLink);
+		IF (TextoLink IS NULL or TextoLink='') THEN
+			SET TextoLink='';				
+		END IF;                       
+		
+        DECLARE Enlace CHARACTER FIELDVALUE(refInp.*:Link);
+		IF (Enlace IS NULL or Enlace='') THEN
+			SET Enlace='';				
+		END IF; 
+		
+		DECLARE Prioridad CHARACTER FIELDVALUE(refInp.*:Prioridad);
+		IF (Prioridad IS NULL) THEN
+			SET Enlace='0';				
+		END IF; 
+		
+		--Generar cuerpo del mensaje
+		SET wholeMsgChar = REPLACE(wholeMsgChar,'{Titulo}',Titulo);
+        SET wholeMsgChar = REPLACE(wholeMsgChar,'{Mensaje1}',Mensaje1);
+        SET wholeMsgChar = REPLACE(wholeMsgChar,'{Mensaje2}',Mensaje2);   
+        SET wholeMsgChar = REPLACE(wholeMsgChar,'{TextoLink}',TextoLink);
+        SET wholeMsgChar = REPLACE(wholeMsgChar,'{Link}',Enlace);
+                
+		--Se asignan los valores de envio de correo para los destinatarios y demas atributos.
+		SET refOut.De 							= refInp.De;
+		SET refOut.Para 						= refInp.Para;
+		SET refOut.Copia						= refInp.Copia;
+	  	SET refOut.CopiaOculta					= refInp.CopiaOculta;
+	  	SET refOut.Asunto						= refInp.Asunto;
+	  	SET refOut.(XMLNSC.CDataField)Cuerpo 	= wholeMsgChar ;
+	  	
+	  	--Aduntos
+	  	DECLARE intCountArchivos INTEGER CARDINALITY(refInp.AAdjuntos.Adjunto.*[]);
+		IF (intCountArchivos > 0) THEN				
+			SET refOut.AAdjuntos = refInp.AAdjuntos;	
+		END IF;
+	  	
+		RETURN TRUE;
+	END;
+END MODULE;
+	

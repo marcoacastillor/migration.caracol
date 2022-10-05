@@ -9,11 +9,14 @@ CREATE COMPUTE MODULE SV_EnvioCorreoV2_Compute
 	  	  
 	  	DECLARE srv2 NAMESPACE 'http://www.caracoltv.com.co/TI/correo/enviocorreo2/';
 	  	DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
-	  	DECLARE Cuerpo char; 
+	  	DECLARE Cuerpo CHARACTER; 
 	  	 	  
 	  	DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv2:EnvioCorreoRequest;
+		
+		
 		SET Environment.Variables.CorreoV2Request[]=LIST{InputRoot.XMLNSC};				
 	  	-- Añadir información de destinatario a EmailOutputHeader
+	  	
 	  	SET rBodyI.Para=REPLACE(rBodyI.Para,' ','');
 	  	SET rBodyI.Para=REPLACE(rBodyI.Para,';;',';');	    
 	  	SET OutputRoot.EmailOutputHeader.To = rBodyI.Para;

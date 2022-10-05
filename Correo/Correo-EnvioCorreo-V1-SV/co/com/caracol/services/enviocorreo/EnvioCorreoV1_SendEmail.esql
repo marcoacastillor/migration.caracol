@@ -1,0 +1,68 @@
+BROKER SCHEMA co.com.caracol.services.enviocorreo
+
+
+CREATE COMPUTE MODULE EnvioCorreoV1_SendEmail
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD		= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2	= InputRoot.MQRFH2;
+		
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD 	= InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Añadir información de destinatario a EmailOutputHeader
+		SET OutputRoot.EmailOutputHeader.To 	= refInp.Para;
+		SET OutputRoot.EmailOutputHeader.Cc 	= refInp.Copia;
+		SET OutputRoot.EmailOutputHeader.Bcc 	= refInp.CopiaOculta;
+		
+		-- Añadir información de remitente a EmailOutputHeader
+	 	DECLARE ValorFloat FLOAT;
+		DECLARE ValorString CHARACTER;
+		DECLARE ValorEntero INT;
+		  
+		SET ValorFloat= RAND()* 100;
+		SET ValorEntero = CAST(ValorFloat AS INT);
+		SET ValorString = CAST(ValorEntero AS CHARACTER);
+		  
+		IF  refInp.De = 'proxycom@caracoltv.com.co' THEN	  	
+			SET OutputRoot.EmailOutputHeader.From = 'proxycom' || ValorString || '@caracoltv.com.co';	     
+		ELSEIF  refInp.De = 'biometricos@caracoltv.com.co' THEN
+		  	SET OutputRoot.EmailOutputHeader.From = 'biometricos' || ValorString || '@caracoltv.com.co';
+		ELSE
+		  	SET OutputRoot.EmailOutputHeader.From = refInp.De;
+		END IF;
+		
+		-- Añadir asunto a EmailOutputHeader
+		SET OutputRoot.EmailOutputHeader.Subject = refInp.Asunto;
+		  
+	    IF (refInp.Adjuntos IS NOT NULL) OR (refInp.Adjuntos <> '') THEN
+		    DECLARE decoded BLOB BASE64DECODE(refInp.Adjuntos);
+	    	SET OutputLocalEnvironment.Destination.Email.Attachment[1].Content 		= decoded;
+	    	SET OutputLocalEnvironment.Destination.Email.Attachment[1].ContentName	= refInp.NombreAdjunto;	
+	    END IF; 
+	    
+	    -- Crear un nuevo cuerpo del mensaje, que se enviará como el texto principal del mensaje de correo electrónico.
+		IF (refInp.Adjuntos = NULL OR refInp.Adjuntos = '' OR refInp.NombreAdjunto = NULL OR refInp.NombreAdjunto = '') THEN	 		 		  		  
+			SET OutputLocalEnvironment.Destination.Email.Attachment = null;
+		END IF; 
+		
+		DECLARE localEnvBLOB CHAR refInp.(XMLNSC.CDataField)Cuerpo;
+		IF (localEnvBLOB IS NOT NULL) OR (localEnvBLOB <> '') THEN
+		    CREATE LASTCHILD OF OutputLocalEnvironment.LOCALENVBLOB_TO_XML DOMAIN('XMLNSC') PARSE (localEnvBLOB ENCODING InputRoot.Properties.Encoding CCSID InputRoot.Properties.CodedCharSetId
+	        FORMAT 'XMLNSC_OPAQUE' TYPE 'soap12:Body');         
+	    	SET OutputRoot.BLOB.BLOB = CAST(localEnvBLOB AS BLOB CCSID 1208);
+		ELSE
+		  	SET OutputRoot.XMLNSC.html.body.p[1] = COALESCE(refInp.Cuerpo,' ');  	
+		END IF; 
+		
+		RETURN TRUE;
+	END;
+END MODULE;
