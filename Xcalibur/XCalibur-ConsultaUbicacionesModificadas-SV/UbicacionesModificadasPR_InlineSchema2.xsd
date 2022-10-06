@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/Ubicaciones/ConsultaUbicaciones" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/CG/Ubicaciones/ConsultaUbicaciones" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/CG/Ubicaciones" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <complexType name="ConsultaUbicaciones_UbicacionRow">
+    <sequence>
+      <element name="cia" nillable="true" type="int"/>
+      <element name="codigo_ubicacion" nillable="true" type="int"/>
+      <element name="nombre" nillable="true" type="string"/>
+      <element name="centro_beneficio" nillable="true" type="string"/>
+      <element name="centro_costo" nillable="true" type="string"/>
+      <element name="orden_interna" nillable="true" type="string"/>
+      <element name="activo" nillable="true" type="string"/>
+      <element name="fecha_actualizacion" nillable="true" type="string"/>
+      <element name="fecha_vencimiento" nillable="true" type="string"/>
+      <element name="clase" nillable="true" type="string"/>
+      <element name="cuenta_desde" nillable="true" type="string"/>
+      <element name="cuenta_hasta" nillable="true" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="ConsultaUbicaciones_UbicacionParam">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="UbicacionRow" type="S2:ConsultaUbicaciones_UbicacionRow"/>
+    </sequence>
+  </complexType>
+  <element ibmSchExtn:docRoot="true" name="ConsultaUbicaciones">
+    <complexType>
+      <sequence>
+        <element name="ipCia" nillable="true" type="int"/>
+        <element name="ipUbicacion" nillable="true" type="int"/>
+        <element name="ipFechaActualizacion" nillable="true" type="date"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element ibmSchExtn:docRoot="true" name="ConsultaUbicacionesResponse">
+    <complexType>
+      <sequence>
+        <element name="result" nillable="true" type="string"/>
+        <element name="Ubicacion" nillable="true" type="S2:ConsultaUbicaciones_UbicacionParam"/>
+        <element name="opError" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

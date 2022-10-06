@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<dsRecibosVac xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ttVacaciones>
+    <Ficha>66852</Ficha>
+    <Correo>hcgutier@caracoltv.com.co</Correo>
+    <Asunto>Pago de Vacaciones</Asunto>
+    <Titulo>Recibo Liquidación Vacaciones</Titulo>
+    <Mensaje1>Adjunto el recibo detallando los díasas disfrutados y pagados como vacaciones con el respectivo periodo.  &lt;br/&gt; &lt;br/&gt; Cordialmente, &lt;br/&gt; &lt;br/&gt; Jefatura de Salarios</Mensaje1>
+    <Mensaje2/>
+    <Cedula>80171532</Cedula>
+    <Nombre>GUTIERREZ FONTANILLA HERNAN CALEB</Nombre>
+    <Cargo>INGENIERO DE APLICACIONES I</Cargo>
+    <NombreUbicacion>GERENCIA DE TECNOLOGIA INFORMATICA</NombreUbicacion>
+    <FechaIngreso>2011-06-02</FechaIngreso>
+    <SalarioBasicoMes>123,456,789</SalarioBasicoMes>
+    <SalarioBasicoDia>555,555</SalarioBasicoDia>
+    <SalarioPromerdio>444,444</SalarioPromerdio>
+    <InicioVacaciones>2019-01-18</InicioVacaciones>
+    <FinVacaciones>2019-01-25</FinVacaciones>
+    <FechaReintegro>2019-01-26</FechaReintegro>
+    <DiasVacaciones>6</DiasVacaciones>
+    <DiasDisfrute>8</DiasDisfrute>
+    <Observaciones>6 DIAS DE VACACIONES A PARTIR DEL 18/01/19</Observaciones>
+    <NotaDiasPendientes>Nota: Del periódo comprendido entre el 01/06/2017 al 01/06/2018, tiene pendientes 3 días.</NotaDiasPendientes>
+    <ttPeriodos>
+      <ttPeriodo>
+        <Ficha>66852</Ficha>
+        <FechaPeriodoDesde>2017-06-01</FechaPeriodoDesde>
+        <FechaPeriodoHasta>2018-06-01</FechaPeriodoHasta>
+        <DiasPeriodo>6</DiasPeriodo>
+      </ttPeriodo>
+    </ttPeriodos>
+  </ttVacaciones>
+</dsRecibosVac>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+   targetNamespace="http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:srv="http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/">
+<!-- wrapper element of the request message -->
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultarSolicitudVacacionesRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="false" minOccurs="1"  name="FechaInicio" type="xsd:dateTime"/>				
+				<xsd:element nillable="false" minOccurs="1"  name="FechaFin" type="xsd:dateTime"/>
+				<xsd:element name="Ubicaciones"  minOccurs="1" type="srv:Ubicaciones"/>				
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<xsd:complexType name="Ubicaciones" >
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="1" name="Ubicacion" type="srv:Ubicacion"/>
+      	</xsd:sequence>
+    </xsd:complexType>	
+     <xsd:element name="Ubicacion" type="srv:Ubicacion" />    
+	<!-- Type referenced by the wrapper element of the response message -->
+	<xsd:complexType name="Ubicacion">
+	<xsd:sequence>
+			<xsd:element nillable="false" minOccurs="1" name="UbicacionId" type="xsd:int"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultarSolicitudVacacionesResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Solicitudes"  minOccurs="0" type="srv:Solicitudes"/>        				
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>
+	    <xsd:element name="Solicitudes" type="srv:Solicitudes" />   
+	    	
+	<xsd:complexType name="Solicitudes" >
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="Solicitud" type="srv:Solicitud"/>
+      	</xsd:sequence>
+    </xsd:complexType>	
+	<!-- Type referenced by the wrapper element of the response message -->
+	<xsd:complexType name="Solicitud">
+		<xsd:sequence>
+			<xsd:element nillable="true" minOccurs="0" name="SolicitudId" type="xsd:int"/>
+			<xsd:element nillable="false" minOccurs="1" name="FechaSolicitud" type="xsd:dateTime"/>
+			<xsd:element nillable="true" minOccurs="0" name="Estado" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="0" name="Nombre" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="0" name="NumeroIdentificacion" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="0" name="TipoContrato" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="0" name="Cargo" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="0" name="FechaAusencia" type="xsd:dateTime"/>
+			<xsd:element nillable="false" minOccurs="1" name="Duracion" type="xsd:int"/>
+			<xsd:element nillable="true" minOccurs="0" name="FechaAprobacion" type="xsd:dateTime"/>
+			<xsd:element nillable="true" minOccurs="0" name="FechaFin" type="xsd:dateTime"/>
+			<xsd:element nillable="true" minOccurs="0" name="FechaReintegro" type="xsd:dateTime"/>
+			<xsd:element nillable="true" minOccurs="0" name="Comentarios" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="0" name="Aprobador" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="0" name="AprobadorComentarios" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="0" name="Ubicacion" type="xsd:string"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Solicitud" type="srv:Solicitud" />	
+  </xsd:schema>

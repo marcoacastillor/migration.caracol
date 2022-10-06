@@ -1,0 +1,37 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\WSProveedor_ConsultarVacaciones.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'http://srvpintpruebas/ServicioConsultaVacaciones/ConsultarVacaciones.svc?xsd=xsd1' has not been resolved because the import is unused, Line: 1, Column: 1189
+XSD: There is no xmlns declaration for namespace 'http://schemas.microsoft.com/2003/10/Serialization/', Line: 1, Column: 1189
+XSD: The location 'http://srvpintpruebas/ServicioConsultaVacaciones/ConsultarVacaciones.svc?xsd=xsd2' has not been resolved because the import is unused, Line: 1, Column: 1365
+XSD: There is no xmlns declaration for namespace 'http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones', Line: 1, Column: 1365
+XSD: The location 'http://srvpintpruebas/ServicioConsultaVacaciones/ConsultarVacaciones.svc?xsd=xsd3' has not been resolved because the import is unused, Line: 1, Column: 1556
+XSD: There is no xmlns declaration for namespace 'http://schemas.microsoft.com/2003/10/Serialization/Arrays', Line: 1, Column: 1556
+
+
+The WSDL import will proceed with bindings BasicHttpBinding_IConsultarVacaciones.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/WSProveedor_ConsultarVacaciones.wsdl.
+Parsing wsdl binding {http://tempuri.org/}BasicHttpBinding_IConsultarVacaciones.
+Parsing wsdl binding input Consultar.
+Parsing wsdl binding output Consultar.
+Processing doc style for operation Consultar.
+Populating WSDL schema WSProveedor_ConsultarVacaciones.xsd.
+Removing unnecessary import statement with namespace http://schemas.microsoft.com/2003/10/Serialization/ from schema WSProveedor_ConsultarVacaciones_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones from schema WSProveedor_ConsultarVacaciones_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://schemas.microsoft.com/2003/10/Serialization/Arrays from schema WSProveedor_ConsultarVacaciones_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Creating file WSProveedor_ConsultarVacaciones.xsd in the workspace.
+Creating file /Ausencias-ConsultarSolicitudVacaciones-SV/xsd_xsd0.xsd in the workspace.
+Creating file /Ausencias-ConsultarSolicitudVacaciones-SV/xsd_xsd2.xsd in the workspace.
+Creating file /Ausencias-ConsultarSolicitudVacaciones-SV/xsd_xsd3.xsd in the workspace.
+Copying source WSDL WSProveedor_ConsultarVacaciones.wsdl to WSProveedor_ConsultarVacaciones.wsdl.
+
+Elapsed time processing this message definition file: 0.637 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

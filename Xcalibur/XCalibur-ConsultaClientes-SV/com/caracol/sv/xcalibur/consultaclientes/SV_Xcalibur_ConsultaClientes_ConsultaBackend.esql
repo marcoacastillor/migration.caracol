@@ -1,0 +1,38 @@
+/*
+Creado por: Omar Acosta
+Fecha: 09/08/2016
+Descripción: Realiza la comversión entre la entrada SOAP a XMLNSC 
+*/
+
+BROKER SCHEMA com.caracol.sv.xcalibur.consultaclientes
+
+
+CREATE COMPUTE MODULE SV_Xcalibur_ConsultaClientes_ConsultaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		--DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE tem NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/Clientes/ConsultaClientes';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultaclientes/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaClientesRequest;		
+		
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://www.caracoltv.com.co/Xcalibur/CG/Clientes/ConsultaClientes';
+	    -- Consulta Clientes XSD del servicio de Xcalibur
+		SET OutputRoot.SOAP.Body.tem:ConsultaClientes.tem:ipCia= rBodyI.Compania;
+	    SET OutputRoot.SOAP.Body.tem:ConsultaClientes.tem:ipAuxiliar= rBodyI.NumeroAuxiliar;
+		SET OutputRoot.SOAP.Body.tem:ConsultaClientes.tem:ipNit= rBodyI.Nit;
+	    SET OutputRoot.SOAP.Body.tem:ConsultaClientes.tem:ipCodSap= rBodyI.CodigoSAP;
+		SET OutputRoot.SOAP.Body.tem:ConsultaClientes.tem:ipNombre= rBodyI.Nombre;
+	    SET OutputRoot.SOAP.Body.tem:ConsultaClientes.tem:ipCuentaAsociada= rBodyI.CuentaAsociada;
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;		
+		RETURN TRUE;
+	END;
+
+END MODULE;

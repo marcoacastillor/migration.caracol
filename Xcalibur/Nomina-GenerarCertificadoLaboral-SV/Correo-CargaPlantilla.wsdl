@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	name="Correo-AdjuntarPlantilla" 
+	targetNamespace="http://www.caracoltv.com.co/TI/correo/cargaplantilla/" 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+	xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+	xmlns:srv="http://www.caracoltv.com.co/TI/correo/cargaplantilla/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/"
+	xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/">
+
+     <wsdl:documentation>
+	    <wsdl:appinfo source="WMQI_APPINFO">
+	      <MRWSDLAppInfo imported="true">
+	        <binding hasEncoding="false" imported="true" name="bdCargaPlantillaSOAP11Http" originalBindingStyle="document"/>
+	        <binding hasEncoding="false" imported="true" name="bdCargaPlantillaSOAP12Http" originalBindingStyle="document"/>
+	        <generatedXSD location="Correo-AdjuntarPlantilla.xsd"/>
+	      </MRWSDLAppInfo>
+	    </wsdl:appinfo>
+	  </wsdl:documentation>
+	  
+	  
+<wsdl:types>
+		<xsd:schema targetNamespace="http://www.caracoltv.com.co/TI/correo/cargaplantilla/"
+			xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+			<xsd:include schemaLocation="Correo-AdjuntarPlantilla.xsd" />
+		</xsd:schema>
+        
+<!--		<xsd:schema>
+			<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" schemaLocation="ebms-header-3_0-200704.xsd"/>
+		</xsd:schema>
+-->		
+    </wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgCargaPlantillaRequest">
+    	<wsdl:part element="srv:CargaPlantillaRequest" name="CargaPlantillaRequest"/>
+<!--    	<wsdl:part element="eb:Messaging" name="Messaging"/>	-->
+  	</wsdl:message>
+  	
+
+<!-- Port type -->
+  	<wsdl:portType name="ptCargaPlantilla">
+    	<wsdl:operation name="CargaPlantilla">
+      		<wsdl:input message="srv:msgCargaPlantillaRequest" name="CargaPlantilla_Input"/>
+	    </wsdl:operation>
+  	</wsdl:portType>
+
+	
+<!-- Binding (SOAP 1.1/HTTP binding) -->
+	<wsdl:binding name="bdCargaPlantillaSOAP11Http" type="srv:ptCargaPlantilla">
+    	<S11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="CargaPlantilla">
+	      	<S11:operation soapAction="http://www.caracoltv.com.co/TI/correo/cargaplantilla/"/>
+	      	<wsdl:input name="CargaPlantilla_Input">
+	        	<S11:body parts="CargaPlantillaRequest" use="literal"/>
+	      	</wsdl:input>
+	         	</wsdl:operation>
+	</wsdl:binding>
+    	
+<!-- Binding (SOAP 1.2/HTTP binding) -->
+	<wsdl:binding name="bdCargaPlantillaSOAP12Http" type="srv:ptCargaPlantilla">
+    	<S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="CargaPlantilla">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/TI/correo/cargaplantilla/"/>
+	      	<wsdl:input name="CargaPlantilla_Input">
+	        	<S12:body parts="CargaPlantillaRequest" use="literal"/>
+	      	</wsdl:input>
+	      	
+    	</wsdl:operation>
+	</wsdl:binding>
+    <!-- Service -->
+  	<wsdl:service name="CargaPlantilla">
+    	
+    	<wsdl:port binding="srv:bdCargaPlantillaSOAP11Http" name="ptCargaPlantilla11">
+      		<S11:address location="http://srviibpr:7800/services/s11/dominio/cargarplantilla"/>
+    	</wsdl:port>
+    	<wsdl:port binding="srv:bdCargaPlantillaSOAP12Http" name="ptCargaPlantilla12">
+      		<S12:address location="http://srviibpr:7800/services/s12/dominio/cargaplantilla"/>
+    	</wsdl:port>
+  	</wsdl:service>  	
+
+</wsdl:definitions>

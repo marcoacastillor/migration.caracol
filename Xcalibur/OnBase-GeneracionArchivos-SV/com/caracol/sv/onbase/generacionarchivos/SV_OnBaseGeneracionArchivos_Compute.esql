@@ -1,0 +1,60 @@
+BROKER SCHEMA com.caracol.sv.onbase.generacionarchivos
+
+
+CREATE COMPUTE MODULE SV_OnBaseGeneracionArchivos_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN		
+		DECLARE diaE INT;SET diaE=7;
+		DECLARE horaE INT;SET horaE=18;	 
+		DECLARE timeE TIME; SET timeE='18:00:00'; 
+					
+		DECLARE dias INT;
+		DECLARE hoy INT;
+		DECLARE faltante INT; 
+		SET hoy=EXTRACT(DAYOFWEEK FROM CURRENT_DATE);
+		
+		
+		
+		IF hoy<(diaE+1) THEN
+			
+			SET dias=(diaE-hoy);		
+			
+			IF (hoy<diaE) THEN
+				Set OutputLocalEnvironment.TimeoutRequest.Action ='SET';
+				Set OutputLocalEnvironment.TimeoutRequest.Identifier ='timer_onbase';
+				Set OutputLocalEnvironment.TimeoutRequest.StartDate = CURRENT_DATE +  CAST(dias AS INTERVAL DAY) ;
+				Set OutputLocalEnvironment.TimeoutRequest.StartTime =timeE;				
+				Set OutputLocalEnvironment.TimeoutRequest.Interval = 604800;
+				Set OutputLocalEnvironment.TimeoutRequest.Count=1;
+				Set OutputLocalEnvironment.TimeoutRequest.IgnoreMissed=FALSE;
+				
+				
+			ELSEIF (hoy=diaE) THEN
+				
+				
+				Set OutputLocalEnvironment.TimeoutRequest.Action ='SET';
+				Set OutputLocalEnvironment.TimeoutRequest.Identifier ='timer_onbase';
+				Set OutputLocalEnvironment.TimeoutRequest.StartDate = CURRENT_DATE +  CAST(dias AS INTERVAL DAY) ;
+				Set OutputLocalEnvironment.TimeoutRequest.StartTime =CURRENT_TIME;
+				Set OutputLocalEnvironment.TimeoutRequest.Interval = 604800;
+				Set OutputLocalEnvironment.TimeoutRequest.Count=1;
+				Set OutputLocalEnvironment.TimeoutRequest.IgnoreMissed=FALSE;
+			END IF; 
+			
+			PROPAGATE TO TERMINAL 'out' DELETE NONE;
+			RETURN FALSE;		    
+		ELSE
+			PROPAGATE TO TERMINAL 'out2' DELETE NONE;
+			RETURN FALSE;		    
+			
+		END IF;
+		RETURN TRUE;
+	END;
+
+	 
+END MODULE;
+
+
+
+
+

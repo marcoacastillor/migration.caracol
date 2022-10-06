@@ -1,0 +1,75 @@
+BROKER SCHEMA com.caracoltv.sv.notificar.modulousuarios.notificarperfiles
+DECLARE ns NAMESPACE 'http://schemas.datacontract.org/2004/07/ServiciosModuloUsuarios.Entidades';
+
+
+CREATE COMPUTE MODULE SV_EnvioCorreoXPerfiles_ResponseProveedor
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*Definicion de Namespace utilizados para construir el SOAP Request*/	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srvcargaplantilla NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla4/';		
+		DECLARE srvusuariosperfiles NAMESPACE 'http://www.caracoltv.com.co/notificar/modulousuarios/notificarperfiles/';
+		DECLARE tem NAMESPACE 'http://tempuri.org/';					
+		
+		DECLARE Para CHAR;
+		DECLARE Indice INT;				
+
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body;				
+		DECLARE intListaUsuarios INTEGER CARDINALITY(rBodyI.tem:UsariosXListaPerfilesResponse.tem:UsariosXListaPerfilesResult.ns:Usuario[]);
+		SET Para ='';
+		SET Indice = 1;
+		IF (intListaUsuarios >= 1) THEN
+			FOR rBodyUsuarios AS InputRoot.SOAP.Body.tem:UsariosXListaPerfilesResponse.tem:UsariosXListaPerfilesResult.ns:Usuario[] DO
+				IF (rBodyUsuarios.ns:Persona.ns:EmailEmpresa <> '') THEN
+					IF (Para <> '') THEN
+					   SET Para = Para|| ';' ||  rBodyUsuarios.ns:Persona.ns:EmailEmpresa ;
+					ELSE
+						SET Para =  rBodyUsuarios.ns:Persona.ns:EmailEmpresa;	   	
+					END IF;		
+				END IF;				
+				SET Indice = Indice+ 1;				
+			END FOR;					
+		END IF;		
+							
+		/*Copia de variales de entrada a varialbes de salida*/
+		SET OutputRoot.Properties = InputRoot.Properties;			
+		/*Se construye el SOAP Request con la informacion necesaria*/				
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:s12='http://www.w3.org/2003/05/soap-envelope';
+		SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.De=  Environment.Variables.de[1];
+		SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Para=Para;	
+		SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Copia= Environment.Variables.copia[1];	
+		SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.CopiaOculta= Environment.Variables.copiaOculta[1];
+		IF Environment.Variables.asunto IS NULL THEN 
+			SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Asunto= 'Sin Asunto';  	 
+		ELSE
+			SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Asunto= Environment.Variables.asunto[1]; 				
+		END IF;
+	    SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Titulo= Environment.Variables.titulo[1];
+	    SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Mensaje1= Environment.Variables.mensaje1[1];
+	    SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Mensaje2= Environment.Variables.mensaje2[1];	    
+	    SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.TextoLink= Environment.Variables.textoLink[1];
+		SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Link= Environment.Variables.link[1];	    
+	    SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Prioridad= Environment.Variables.prioridad[1];
+	    SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.Plantilla= Environment.Variables.plantilla[1];	    	   
+	    SET Indice=1;	    
+	    DECLARE intListaArchivos INTEGER CARDINALITY(Environment.Variables.AFiles.File.*[]);
+		FOR rFiles AS Environment.Variables.AFiles.File[] DO			
+			SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.AAdjuntos.Adjunto[Indice].Nombre =rFiles.Nombre;	
+			SET OutputRoot.SOAP.Body.srvcargaplantilla:CargaPlantillaRequest.AAdjuntos.Adjunto[Indice].Data=rFiles.Data;	   				
+			SET Indice = Indice+ 1;				
+		END FOR;
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	
+		--Valida la existencia de destinatarios
+	    IF (Para <>'' ) THEN
+			PROPAGATE TO TERMINAL 'out' DELETE NONE;
+			RETURN FALSE;
+	    ELSE
+	    	RETURN FALSE;
+	    END IF;
+	END;
+END MODULE;

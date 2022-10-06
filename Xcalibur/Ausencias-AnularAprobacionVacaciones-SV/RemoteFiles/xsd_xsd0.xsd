@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:tns="http://tempuri.org/">
+  <xsd:import namespace="http://schemas.datacontract.org/2004/07/ServicioAnularSolicitudesAprobadas" schemaLocation="xsd_xsd2.xsd"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="AnularSolicitud">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="Request" nillable="true" type="q1:Request" xmlns:q1="http://schemas.datacontract.org/2004/07/ServicioAnularSolicitudesAprobadas"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="AnularSolicitudResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="AnularSolicitudResult" nillable="true" type="q2:Response" xmlns:q2="http://schemas.datacontract.org/2004/07/ServicioAnularSolicitudesAprobadas"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

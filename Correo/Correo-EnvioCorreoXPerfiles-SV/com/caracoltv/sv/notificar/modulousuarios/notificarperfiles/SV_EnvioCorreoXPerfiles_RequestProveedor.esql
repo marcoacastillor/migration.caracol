@@ -1,0 +1,64 @@
+BROKER SCHEMA com.caracoltv.sv.notificar.modulousuarios.notificarperfiles
+
+
+
+CREATE COMPUTE MODULE SV_EnvioCorreoXPerfiles_RequestProveedor
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN 
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';		
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/notificar/modulousuarios/notificarperfiles/';				
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';							
+		DECLARE tem NAMESPACE 'http://tempuri.org/';
+		DECLARE ns1 NAMESPACE 'http://schemas.datacontract.org/2004/07/ServiciosModuloUsuarios.Entidades';
+		DECLARE ns NAMESPACE 'http://schemas.microsoft.com/2003/10/Serialization/Arrays';		
+		
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body;
+		
+		SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://tempuri.org/';
+		
+ 		DECLARE LongitudPerfiles INTEGER  CARDINALITY (rBodyI.srv:EnvioCorreoXPerfilesRequest.APerfiles.Perfil.*[]);
+ 		DECLARE element_Index_perfil INTEGER 1;	 		
+		IF (LongitudPerfiles > 0) THEN
+	  		FOR rBodyPerfil AS rBodyI.srv:EnvioCorreoXPerfilesRequest.APerfiles.Perfil[] DO
+	  			SET OutputRoot.SOAP.Body.tem:UsariosXListaPerfiles.tem:lstPerfiles.ns1:Perfil[element_Index_perfil].ns1:Id=rBodyPerfil.PerfilId;						
+			    SET element_Index_perfil = element_Index_perfil +1;
+	  		END FOR;	    			    		
+		END IF;				    
+	    
+	    SET Environment.Variables.de[] =LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.De}; 
+	    IF rBodyI.srv:EnvioCorreoXPerfilesRequest.Copia IS NOT NULL THEN			
+			SET Environment.Variables.copia[] = LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.Copia};
+		ELSE
+			SET Environment.Variables.copia[] = LIST{''};										
+		END IF; 
+		
+		IF rBodyI.srv:EnvioCorreoXPerfilesRequest.CopiaOculta IS NOT NULL THEN			
+			SET Environment.Variables.copiaOculta[] = LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.CopiaOculta};
+		ELSE
+			SET Environment.Variables.copiaOculta[] = LIST{''};	  			
+		END IF;
+					
+		IF rBodyI.srv:EnvioCorreoXPerfilesRequest.Asunto IS NULL THEN
+			SET Environment.Variables.asunto[] = LIST{'Sin Asunto'};  	 
+		ELSE
+			SET Environment.Variables.asunto[] = LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.Asunto}; 				
+		END IF; 
+	    
+		SET Environment.Variables.titulo[] =LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.Titulo};
+		SET Environment.Variables.mensaje1[] =LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.Mensaje1};
+		SET Environment.Variables.mensaje2[] =LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.Mensaje2};
+		SET Environment.Variables.textoLink[] =LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.TextoLink};
+		SET Environment.Variables.link[] =LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.Link};
+		SET Environment.Variables.prioridad[] =LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.Prioridad};
+		SET Environment.Variables.plantilla[] =LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.Plantilla};				
+		SET Environment.Variables.AFiles[] =  LIST{rBodyI.srv:EnvioCorreoXPerfilesRequest.AFiles};
+		
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	
+		RETURN TRUE;
+	END;
+END MODULE;

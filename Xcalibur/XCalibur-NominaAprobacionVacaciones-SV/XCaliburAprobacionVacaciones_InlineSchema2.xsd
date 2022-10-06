@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.caracoltv.com.co/Xcalibur/NM/AprobacionVacaciones/AprobacionVacaciones" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/NM/AprobacionVacaciones/AprobacionVacaciones" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/NM/AprobacionVacaciones" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <element ibmSchExtn:docRoot="true" name="AprobacionVacaciones">
+    <complexType>
+      <sequence>
+        <element name="cia" nillable="true" type="int"/>
+        <element name="ficha" nillable="true" type="int"/>
+        <element name="fecini" nillable="true" type="date"/>
+        <element name="diasvac" nillable="true" type="int"/>
+        <element name="procedencia" nillable="true" type="string"/>
+        <element name="idaproba" nillable="true" type="string"/>
+        <element name="aprobador" nillable="true" type="string"/>
+        <element name="fecapro" nillable="true" type="date"/>
+        <element name="comsol" nillable="true" type="string"/>
+        <element name="comapro" nillable="true" type="string"/>
+        <element name="idausencia" nillable="true" type="int"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element ibmSchExtn:docRoot="true" name="AprobacionVacacionesResponse">
+    <complexType>
+      <sequence>
+        <element name="result" nillable="true" type="string"/>
+        <element name="grabado" nillable="true" type="boolean"/>
+        <element name="descerror" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

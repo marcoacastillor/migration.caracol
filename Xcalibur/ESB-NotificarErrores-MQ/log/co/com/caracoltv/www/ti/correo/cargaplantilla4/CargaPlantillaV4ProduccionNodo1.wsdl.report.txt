@@ -1,0 +1,22 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\CargaPlantillaV4ProduccionNodo1.wsdl
+
+The WSDL import will proceed with bindings bdCargaPlantillaSOAP12Http2.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/CargaPlantillaV4ProduccionNodo1.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/correo/cargaplantilla4/}bdCargaPlantillaSOAP12Http2.
+Parsing wsdl binding input CargaPlantillav4.
+Parsing wsdl binding output CargaPlantillav4.
+Processing doc style for operation CargaPlantillav4.
+Populating WSDL schema CargaPlantillaV4ProduccionNodo1.xsd.
+Creating file CargaPlantillaV4ProduccionNodo1.xsd in the workspace.
+Creating file /ESB-NotificarErrores/xsd_xsd0.xsd in the workspace.
+Copying source WSDL CargaPlantillaV4ProduccionNodo1.wsdl to CargaPlantillaV4ProduccionNodo1.wsdl.
+
+Elapsed time processing this message definition file: 0.335 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

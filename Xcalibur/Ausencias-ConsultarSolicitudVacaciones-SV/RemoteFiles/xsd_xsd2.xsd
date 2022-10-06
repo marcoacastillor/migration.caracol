@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones" xmlns:tns="http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones">
+  <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" schemaLocation="xsd_xsd3.xsd"/>
+  <xsd:complexType name="Request">
+    <xsd:sequence>
+      <xsd:element name="FechaInicio" type="xsd:dateTime"/>
+      <xsd:element name="FechaFin" type="xsd:dateTime"/>
+      <xsd:element name="Ubicaciones" nillable="true" type="q1:ArrayOfstring" xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Request" nillable="true" type="tns:Request"/>
+  <xsd:complexType name="ArrayOfSolicitud">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="Solicitud" nillable="true" type="tns:Solicitud"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ArrayOfSolicitud" nillable="true" type="tns:ArrayOfSolicitud"/>
+  <xsd:complexType name="Solicitud">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="solicitudId" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="solicitudFechaSolicitud" nillable="true" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="solicitudEstado" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="solicitudNombre" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="solicitudIdentificacion" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="solicitudTipoContrato" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="solicitudCargo" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="solicitudFechaAusencia" nillable="true" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="solicitudDuracion" nillable="true" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="solicitudFechaAprobacion" nillable="true" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="solicitudFechaFin" nillable="true" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="solicitudFechaReintegro" nillable="true" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="solicitudComentarios" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="solicitudAprobador" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="solicitudAprobadorComentarios" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="solicitudUbicacion" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Solicitud" nillable="true" type="tns:Solicitud"/>
+</xsd:schema>

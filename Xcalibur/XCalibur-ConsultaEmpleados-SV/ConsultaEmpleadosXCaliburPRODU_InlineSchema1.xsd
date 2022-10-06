@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="urn:soap-fault:details" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/NM/Empleados/ConsultaEmpleados" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/NM/Empleados" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <element ibmSchExtn:docRoot="true" name="FaultDetail">
+    <complexType>
+      <sequence>
+        <element name="errorMessage" type="string"/>
+        <element name="requestID" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

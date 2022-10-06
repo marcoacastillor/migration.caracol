@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.caracoltv.com.co/Xcalibur/NM/Empleados" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/NM/Empleados/ConsultaEmpleados" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/NM/Empleados">
+  <xsd:import namespace="http://www.caracoltv.com.co/Xcalibur/NM/Empleados/ConsultaEmpleados" schemaLocation="ConsultaEmpleadosXCaliburPRODU_InlineSchema2.xsd"/>
+  <xsd:import namespace="urn:soap-fault:details" schemaLocation="ConsultaEmpleadosXCaliburPRODU_InlineSchema1.xsd"/>
+
+<!-- BEGIN Global group petaining to all wsdl:message definitions -->
+<!-- END Global group -->
+
+
+<!-- BEGIN Message Definitions for the wsdl:operations  -->
+<!-- END Message Definitions -->
+
+
+</xsd:schema>

@@ -1,0 +1,22 @@
+BROKER SCHEMA com.caracoltv.com.co.nomina.onbase.cargararchivos
+
+
+CREATE COMPUTE MODULE SV_CargaArchivos01_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';				   
+	   	DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body;			   		
+		SET OutputRoot.Properties = InputRoot.Properties;		     			    
+		DECLARE strRutaCSV CHAR;		
+		DECLARE strRutaPDF CHAR;		
+		DECLARE strHoraEjecucion CHAR;
+		SET strRutaPDF=Environment.Variables.RutaPdf[1];			    
+	    SET strRutaCSV=Environment.Variables.RutaCSV[1];
+	    SET strHoraEjecucion=Environment.Variables.HoraEjecucion[1];
+    	SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaPdf=strRutaPDF;    		   
+    	SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaCSV=strRutaCSV;
+    	SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.HoraEjecucion=strHoraEjecucion;	  	        		   	     
+		RETURN TRUE;
+		
+	END;
+END MODULE;

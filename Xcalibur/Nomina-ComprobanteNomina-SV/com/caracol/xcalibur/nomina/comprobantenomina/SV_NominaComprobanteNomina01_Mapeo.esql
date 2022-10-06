@@ -1,0 +1,109 @@
+BROKER SCHEMA com.caracol.xcalibur.nomina.comprobantenomina
+
+
+CREATE COMPUTE MODULE SV_NominaComprobanteNomina01_Mapeo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE j integer;		
+		SET OutputRoot.Properties.CodedCharSetId=850;
+		SET OutputRoot.Properties.Encoding=546;			
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Cia = InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Cia;
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.NombreArchivo = CAST(InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.NomArchivo AS CHAR CCSID 1208);					
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Ficha = InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Ficha;
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Correo =InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Correo;
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Asunto = TILDES(CAST(InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Asunto  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Titulo = TILDES(CAST(InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Titulo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Mensaje1 = TILDES(CAST(InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Mensaje1  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Mensaje2 =TILDES(CAST(InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Mensaje2  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Nombre =TILDES(CAST(InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Nombre  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;				
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Periodo = TILDES(CAST(InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Periodo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Ubicacion = InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Ubicacion;					
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.NotaVacaciones = TILDES(CAST(InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.NotaVac  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Observaciones = TILDES(CAST(InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.Observaciones  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.TotalPagos = InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.TotPagos;
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.TotalDecuentos = InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.TotDecuentos;
+		SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.TotalRecibido = InputRoot.XMLNSC.dsRecibos.ttReciboCabecera.TotRecibido;
+		
+		DECLARE refInp REFERENCE TO InputRoot.XMLNSC;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		
+		DECLARE intDetalles INTEGER CARDINALITY(refInp.ttReciboDetalle[]);		
+		IF (intDetalles >= 1) THEN			
+			SET j = 1;
+			FOR rBodyDetalle AS refInp.ttReciboDetalle[] DO
+				SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Ficha	=	rBodyDetalle.*:Ficha;
+				SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].NombreConcepto	=	rBodyDetalle.*:NombreCpto;
+				SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Cantidad	=	rBodyDetalle.*:Cantidad;
+				SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Pago	=	rBodyDetalle.*:Pago;									
+				SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Descuento	=	rBodyDetalle.*:Descuento;
+				SET OutputRoot.XMLNSC.dsRecibos.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Saldo	=	rBodyDetalle.*:Saldo;				
+				SET j =j+1;								
+			END FOR;		
+		END IF;
+		RETURN TRUE;
+	END;
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+	CREATE FUNCTION TILDES(IN CadenaIn CHAR, InCCSID integer) returns CHARACTER
+      BEGIN
+    		DECLARE CadenaOut, DeleteChar2,DeleteChar3, DeleteChar4, DeleteChar5, DeleteChar6, DeleteChar7, DeleteChar8, DeleteChar9, DeleteChar10, DeleteChar11, DeleteChar12, DeleteChar13,DeleteChar14,DeleteChar15,DeleteChar16,DeleteChar17,DeleteChar18,DeleteChar19,DeleteChar20,DeleteChar21,DeleteChar22,DeleteChar23,DeleteChar24,DeleteChar25,DeleteChar26,DeleteChar27,DeleteChar28 CHAR;            
+	        SET DeleteChar2=CAST(X'C3B1' AS CHAR CCSID InCCSID);--ñ
+	        SET DeleteChar3=CAST(X'C391' AS CHAR CCSID InCCSID);--Ñ
+	        SET DeleteChar4=CAST(X'C3A1' AS CHAR CCSID InCCSID);--á
+	        SET DeleteChar5=CAST(X'C381' AS CHAR CCSID InCCSID);--Á
+	        SET DeleteChar6=CAST(X'C3A9' AS CHAR CCSID InCCSID);--é
+	        SET DeleteChar7=CAST(X'C389' AS CHAR CCSID InCCSID);--É
+	        SET DeleteChar8=CAST(X'C3AD' AS CHAR CCSID InCCSID);--í
+	        SET DeleteChar9=CAST(X'C38D' AS CHAR CCSID InCCSID);--Í
+	        SET DeleteChar10=CAST(X'C3B3' AS CHAR CCSID InCCSID);--ó
+	        SET DeleteChar11=CAST(X'C393' AS CHAR CCSID InCCSID);--Ó
+	        SET DeleteChar12=CAST(X'C3BA' AS CHAR CCSID InCCSID);--ú
+	        SET DeleteChar13=CAST(X'C39A' AS CHAR CCSID InCCSID);--Ú
+	        SET DeleteChar14=CAST(X'E28098' AS CHAR CCSID InCCSID);--‘
+	        SET DeleteChar15=CAST(X'E28099' AS CHAR CCSID InCCSID);--’
+            SET DeleteChar16=CAST(X'C1' AS CHAR CCSID InCCSID);--Á
+            SET DeleteChar17=CAST(X'C9' AS CHAR CCSID InCCSID);--É
+            SET DeleteChar18=CAST(X'CD' AS CHAR CCSID InCCSID);--Í
+            SET DeleteChar19=CAST(X'D3' AS CHAR CCSID InCCSID);--Ó
+            SET DeleteChar20=CAST(X'DA' AS CHAR CCSID InCCSID);--Ú
+            SET DeleteChar21=CAST(X'E1' AS CHAR CCSID InCCSID);--á           
+            SET DeleteChar22=CAST(X'E9' AS CHAR CCSID InCCSID);--é
+            SET DeleteChar23=CAST(X'ED' AS CHAR CCSID InCCSID);--í
+            SET DeleteChar24=CAST(X'F3' AS CHAR CCSID InCCSID);--ó
+            SET DeleteChar25=CAST(X'FA' AS CHAR CCSID InCCSID);--ú
+            SET DeleteChar26=CAST(X'D1' AS CHAR CCSID InCCSID);--Ñ
+            SET DeleteChar27=CAST(X'F1' AS CHAR CCSID InCCSID);--ñ        
+                
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaIn AS CHAR),DeleteChar2,'n') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar3,'N') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar4,'á') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar5,'Á') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar6,'é') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar7,'É') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar8,'í') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar9,'Í') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar10,'ó') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar11,'Ó') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar12,'ú') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar13,'Ú') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar14,'‘') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar15,'’') AS CHAR);                                 
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar16,'Á') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar17,'É') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar18,'Í') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar19,'Ó') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar20,'Ú') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar21,'á') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar22,'é') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar23,'í') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar24,'ó') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar25,'ú') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar26,'Ñ') AS CHAR);
+            SET CadenaOut =CAST(REPLACE(CAST(CadenaOut AS CHAR),DeleteChar27,'ñ') AS CHAR);            
+            RETURN CadenaOut;     
+        END;
+END MODULE;

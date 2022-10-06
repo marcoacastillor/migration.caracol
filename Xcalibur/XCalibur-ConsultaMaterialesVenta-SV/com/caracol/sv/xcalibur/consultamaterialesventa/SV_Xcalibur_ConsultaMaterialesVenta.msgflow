@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQReply.msgnode="ComIbmMQReply.msgnode" xmlns:ComIbmSOAPRequest.msgnode="ComIbmSOAPRequest.msgnode" xmlns:com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow="com/caracol/error/notificacion/correo/CaracolErrorNotificacion.subflow" xmlns:com_cysce_core_util_exception_services_ExceptionHandler.subflow="com/cysce/core/util/exception/services/ExceptionHandler.subflow"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mbmonitor="http://www.ibm.com/wbi/2008/eflow_mbmonitor" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracol/sv/xcalibur/consultamaterialesventa/SV_Xcalibur_ConsultaMaterialesVenta.msgflow" nsPrefix="com_caracol_sv_xcalibur_consultamaterialesventa_SV_Xcalibur_ConsultaMaterialesVenta.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="SV_Xcalibur_ConsultaMaterialesVenta" bundleName="com/caracol/sv/xcalibur/consultamaterialesventa/SV_Xcalibur_ConsultaMaterialesVenta" pluginId="XCalibur-ConsultaMaterialesVenta-SV"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/XCalibur-ConsultaMaterialesVenta-SV/icons/full/obj16/SV_Xcalibur_ConsultaMaterialesVenta.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/XCalibur-ConsultaMaterialesVenta-SV/icons/full/obj30/SV_Xcalibur_ConsultaMaterialesVenta.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="126,140" queueName="SV.XCALIBUR.CONSULTAMATERIALESVENTA.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="MQ Input"/>
+        <monitorEvents eventSourceDescription="Transaction start" eventSourceName="MQ Input.transaction.Start" eventIdentity="XCalibur-ConsultarMaterialesVenta.MQ Input.TransactionStart">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="XCalibur-ConsultarMaterialesVenta.MQ Input.TransactionStart"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Failure terminal" eventSourceName="MQ Input.terminal.failure" eventIdentity="XCalibur-ConsultarMaterialesVenta.MQ Input.FailureTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="XCalibur-ConsultarMaterialesVenta.MQ Input.FailureTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Catch terminal" eventSourceName="MQ Input.terminal.catch" eventIdentity="XCalibur-ConsultarMaterialesVenta.MQ Input.CatchTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="XCalibur-ConsultarMaterialesVenta.MQ Input.CatchTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="com_cysce_core_util_exception_services_ExceptionHandler.subflow:FCMComposite_1" xmi:id="FCMComposite_1_2" location="233,48">
+        <translation xmi:type="utility:ConstantString" string="ExceptionHandler"/>
+      </nodes>
+      <nodes xmi:type="com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow:FCMComposite_1" xmi:id="FCMComposite_1_3" location="417,48" Copia="usrassist@caracoltv.com.co" Asunto="Error en Servicio IIB -Consulta Materiales Venta" Titulo="Notificacion de Error IIB10 - Consulta Materiales Venta">
+        <translation xmi:type="utility:ConstantString" string="CaracolErrorNotificacion"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="263,140" computeExpression="esql://routine/com.caracol.sv.xcalibur.consultamaterialesventa#SV_Xcalibur_ConsultaMaterialesVenta_ConsultaBackend.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ConsultaBackend"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="593,141" computeExpression="esql://routine/com.caracol.sv.xcalibur.consultamaterialesventa#SV_Xcalibur_ConsultaMaterialesVenta_RsptaBackend.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="RsptaBackend"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="724,141">
+        <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="422,148" wsdlFileName="MaterialesVentaXcalibur.wsdl" selectedPortType="ConsultaMaterialesObj" selectedBinding="ConsultaMaterialesObj" selectedOperation="ConsultaMateriales" selectedPort="ConsultaMaterialesObj" targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/Materiales" useHTTPTransport="true" webServiceURL="http://172.17.4.32:8080/wsa/wsa1" sslProtocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="SOAP Request"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="SOAP Request.terminal.in" eventIdentity="XCalibur_ConsultarMaterialesVenta.SOAP Request.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="XCalibur_ConsultarMaterialesVenta.SOAP Request.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

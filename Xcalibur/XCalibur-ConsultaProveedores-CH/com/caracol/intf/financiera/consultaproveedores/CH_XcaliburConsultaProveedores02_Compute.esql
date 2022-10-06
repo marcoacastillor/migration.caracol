@@ -1,0 +1,27 @@
+/*
+Creado por: Omar Acosta
+Fecha: 16/08/2016
+Descripción: Realiza la comversión entre la entrada XMLNSC de una cola a  SOAP en SOAP Reply
+*/
+
+BROKER SCHEMA com.caracol.intf.financiera.consultaproveedores
+
+
+CREATE COMPUTE MODULE CH_XcaliburConsultaProveedores02_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultaproveedores/';		
+
+		
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);
+		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Header = InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body = InputRoot.XMLNSC.s12:Envelope.s12:Body;
+		
+		
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQReply.msgnode="ComIbmMQReply.msgnode" xmlns:ComIbmThrow.msgnode="ComIbmThrow.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:gen_CargaPlantillaV4_NotificarXPerfiles.subflow="gen/CargaPlantillaV4_NotificarXPerfiles.subflow" xmlns:gen_NotificarXPerfiles.subflow="gen/NotificarXPerfiles.subflow"
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="co/com/caracol/servicios/notificarperfiles/NotificarXPerfiles.msgflow" nsPrefix="co_com_caracol_servicios_notificarperfiles_NotificarXPerfiles.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="NotificarXPerfiles" bundleName="co/com/caracol/servicios/notificarperfiles/NotificarXPerfiles" pluginId="Correo-EnvioCorreoXPerfiles-SV"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-EnvioCorreoXPerfiles-SV/icons/full/obj16/NotificarXPerfiles.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-EnvioCorreoXPerfiles-SV/icons/full/obj30/NotificarXPerfiles.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="443,201" computeExpression="esql://routine/co.com.caracol.servicios.notificarperfiles#NotificarXPerfiles_RequestBack.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="RequestBack"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="665,277">
+        <translation xmi:type="utility:ConstantString" string="MQ Reply1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="1546,205">
+        <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="230,201" queueName="SV.SEGURIDAD.PERFILESPORSISTEMA.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.PERFILESPORSISTEMA.01"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="872,201" computeExpression="esql://routine/co.com.caracol.servicios.notificarperfiles#NotificarXPerfiles_ResponseService.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ResponseService"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="445,276" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
+      </nodes>
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="821,112" messageCatalog="700" messageText="Error comunicación con backend">
+        <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
+      </nodes>
+      <nodes xmi:type="gen_NotificarXPerfiles.subflow:FCMComposite_1" xmi:id="FCMComposite_1_3" location="651,201">
+        <translation xmi:type="utility:ConstantString" string="UsariosXListaPerfiles_ServicioModuloUsuariosPr"/>
+        <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
+        <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>
+      </nodes>
+      <nodes xmi:type="gen_CargaPlantillaV4_NotificarXPerfiles.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="1086,202">
+        <translation xmi:type="utility:ConstantString" string="CargaPlantillav4_Correo-CargaPlantillaV4"/>
+        <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
+        <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>
+      </nodes>
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="1256,130" messageCatalog="700" messageText="Error comunicación con backend">
+        <translation xmi:type="utility:ConstantString" string="ThrowEndpoint1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="1316,205" computeExpression="esql://routine/co.com.caracol.servicios.notificarperfiles#NotificarXPerfiles_ResponseService1.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ResponseService1"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.UsariosXListaPerfilesResponse" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.CargaPlantillav4Response" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

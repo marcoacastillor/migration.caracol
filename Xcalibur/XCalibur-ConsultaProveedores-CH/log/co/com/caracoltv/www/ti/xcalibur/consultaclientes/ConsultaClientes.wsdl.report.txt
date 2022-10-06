@@ -1,0 +1,33 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\ConsultaClientes.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'ebms-header-3_0-200704.xsd' has not been resolved, Line: 30, Column: 3
+WSDL: The 'Messaging' element referenced by the detail part cannot be resolved., Line: 48, Column: 5
+
+
+The WSDL import will proceed with bindings bdxcaliburconsultaclientesSOAP11Http, bdxcaliburconsultaclientesSOAP12Http.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/ConsultaClientes.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/xcalibur/consultaclientes/}bdxcaliburconsultaclientesSOAP11Http.
+Parsing wsdl binding input ConsultaClientes.
+Parsing wsdl binding output ConsultaClientes.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/xcalibur/consultaclientes/}bdxcaliburconsultaclientesSOAP12Http.
+Parsing wsdl binding input ConsultaClientes.
+Parsing wsdl binding output ConsultaClientes.
+Parsing wsdl binding fault fault.
+Processing doc style for operation ConsultaClientes.
+Populating WSDL schema ConsultaClientes.xsd.
+Removing unnecessary import statement with namespace http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/ from schema ConsultaClientes_InlineSchema2.xsd.  This statement was not resolved and is never used.
+Creating file ConsultaClientes.xsd in the workspace.
+Creating file /CH_WS_Xcalibur-ConsultaProveedores/Xcalibur_ConsultaClientes.xsd in the workspace.
+Copying source WSDL ConsultaClientes.wsdl to ConsultaClientes.wsdl.
+
+Elapsed time processing this message definition file: 0.618 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

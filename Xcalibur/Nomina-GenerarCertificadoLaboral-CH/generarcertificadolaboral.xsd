@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:srv="http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/">
+<!-- wrapper element of the request message -->	
+
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" 
+	ibmSchExtn:docRoot="true" name="GenerarCertificadoLaboralRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+			<xsd:element nillable="false" minOccurs="1" name="Cia" type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="DsNo" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="Cedula" type="xsd:string"/>
+            <xsd:element nillable="true" minOccurs="0" name="FechaNacimiento" type="xsd:date"/>            
+            <xsd:element nillable="false" minOccurs="1" name="Solicitud" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="Destino" type="xsd:string"/>
+		    <xsd:element nillable="false" minOccurs="1" name="De" type="xsd:string"/>            
+            <xsd:element nillable="false" minOccurs="1" name="Destinatarios" type="xsd:string"/>				
+            <xsd:element nillable="false" minOccurs="1" name="VisualizarSueldo" type="xsd:boolean"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" 
+	name="GenerarCertificadoLaboralResponse">
+		<xsd:complexType>
+			<xsd:sequence>				
+				<xsd:element minOccurs="0" name="ArchivoPdf" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+</xsd:schema>

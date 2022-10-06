@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/OrdenesInternas/ConsultaOrdenes" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/CG/OrdenesInternas/ConsultaOrdenes" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/CG/OrdenesInternas" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <complexType name="ConsultaOrdenes_OrdenInternaRow">
+    <sequence>
+      <element name="Ubicacion" nillable="true" type="int"/>
+      <element name="Nombre" nillable="true" type="string"/>
+      <element name="OrdenInterna" nillable="true" type="string"/>
+      <element name="Clase" nillable="true" type="string"/>
+      <element name="Rango" nillable="true" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="ConsultaOrdenes_OrdenInternaParam">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="OrdenInternaRow" type="S2:ConsultaOrdenes_OrdenInternaRow"/>
+    </sequence>
+  </complexType>
+  <element ibmSchExtn:docRoot="true" name="ConsultaOrdenes">
+    <complexType>
+      <sequence>
+        <element name="ipCia" nillable="true" type="int"/>
+        <element name="ipUbicacion" nillable="true" type="string"/>
+        <element name="ipNombre" nillable="true" type="string"/>
+        <element name="ipCodSap" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element ibmSchExtn:docRoot="true" name="ConsultaOrdenesResponse">
+    <complexType>
+      <sequence>
+        <element name="result" nillable="true" type="string"/>
+        <element name="OrdenInterna" nillable="true" type="S2:ConsultaOrdenes_OrdenInternaParam"/>
+        <element name="opError" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+name="consultacuentascontables" 
+targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultacuentascontables/" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/" 
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+xmlns:srv="http://www.caracoltv.com.co/TI/xcalibur/consultacuentascontables/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        
+        <binding hasEncoding="false" imported="true" name="bdxcaliburConsultaCuentasContablesSOAP12Http" originalBindingStyle="document"/>
+        <generatedXSD location="Xcalibur_ConsultaCuentasContables.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation> 
+  
+   
+	  
+<wsdl:types>
+   <xsd:schema targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultacuentascontables/"
+			xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+			<xsd:include schemaLocation="Xcalibur_ConsultaCuentasContables.xsd" />
+    </xsd:schema>
+	<xsd:schema>
+		<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+		schemaLocation="ebms-header-3_0-200704.xsd"/>
+	</xsd:schema>	
+</wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgConsultaCuentasContablesRequest">
+    	<wsdl:part element="srv:ConsultaCuentasContablesRequest" name="ConsultaCuentasContablesRequest"/>
+  	</wsdl:message>
+  	
+  	<!-- Response message -->
+  	<wsdl:message name="msgConsultaCuentasContablesResponse">
+    	<wsdl:part element="srv:ConsultaCuentasContablesResponse" name="ConsultaCuentasContablesResponse"/>
+
+  	</wsdl:message>
+	
+	<!-- Fault message -->
+	<wsdl:message name="msgConsultaCuentasContablesFault">
+  		<wsdl:part element="eb:Messaging" name="detail"/>
+  	</wsdl:message>
+  	  
+	
+<!-- Port type -->
+  	<wsdl:portType name="ptConsultaCuentasContables">
+    	<wsdl:operation name="OperacionConsultaCuentasContables">
+      		<wsdl:input message="srv:msgConsultaCuentasContablesRequest" name="consultacuentascontables_Input"/>
+      		<wsdl:output message="srv:msgConsultaCuentasContablesResponse" name="consultacuentascontables_Output"/>
+	        <wsdl:fault message="srv:msgConsultaCuentasContablesFault" name="fault"/>		
+	    </wsdl:operation>
+  	</wsdl:portType>
+    	
+<!-- Binding (SOAP 1.2/HTTP binding) -->
+	<wsdl:binding name="bdxcaliburConsultaCuentasContablesSOAP12Http" type="srv:ptConsultaCuentasContables">
+
+		<S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="OperacionConsultaCuentasContables">
+
+			<S12:operation soapAction="http://www.caracoltv.com.co/TI/xcalibur/consultacuentascontables/OperacionConsultaCuentasContables" />
+			<wsdl:input name="consultacuentascontables_Input">
+				<S12:body parts="ConsultaCuentasContablesRequest" use="literal" />
+			</wsdl:input>
+			<wsdl:output name="consultacuentascontables_Output">
+				<S12:body parts="ConsultaCuentasContablesResponse" use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="fault">
+				<S12:fault use="literal" name="fault" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<!-- Service -->
+  	<wsdl:service name="consultacuentascontables">    	
+    	
+    	<wsdl:port binding="srv:bdxcaliburConsultaCuentasContablesSOAP12Http" name="ptconsultacuentascontables12">
+      		<S12:address location="http://localhost:7800/services/s12/dominio/xcaliburconsultacuentascontables"/>
+    	</wsdl:port>
+  	</wsdl:service>  	  
+</wsdl:definitions>

@@ -1,0 +1,64 @@
+/*
+Creado por: Omar Acosta
+Fecha: 09/08/2016
+Descripción: Recibe la informacion de un SOAP Request y genera el mensaje para enviarlo a una cola que responde en CH2
+*/
+
+BROKER SCHEMA com.caracol.sv.xcalibur.consultaclientes
+
+
+CREATE COMPUTE MODULE SV_Xcalibur_ConsultaClientes_RsptaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN	
+		/*
+		 * Se declaran los namespaces que manejan los mensajes SOAP del Bus de Servicios.
+		 *
+		 */	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE nsv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultaclientes/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE car NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/Clientes/ConsultaClientes';		
+		DECLARE element_Index INTEGER;	
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+
+			
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.car:ConsultaClientesResponse.car:Cliente;
+		
+		DECLARE intCliente INTEGER CARDINALITY(rBodyI.*[]);
+
+		IF (intCliente >= 1) THEN
+		
+			SET element_Index =1;						
+			FOR rBodyClientes AS rBodyI.[] DO								
+				-- XSD CH 1 
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].NumeroAuxiliar = rBodyClientes.car:Auxiliar;				
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].Nombre = rBodyClientes.car:Nombre;		
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].Nit = rBodyClientes.car:Nit;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].CodigoSap = rBodyClientes.car:CodSap;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].CuentaAsociada = rBodyClientes.car:CuentaAsociada;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].Telefono = rBodyClientes.car:Telefono;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].Direccion = rBodyClientes.car:Direccion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].Correo = rBodyClientes.car:Correo;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].ProveedorRelacionado = rBodyClientes.car:ProveedorRelacionado;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].CuentaProveedor = rBodyClientes.car:CuentaProveedor;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].Region = rBodyClientes.car:Region;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse.Clientes.Cliente[element_Index].Poblacion = rBodyClientes.car:Poblacion;
+			
+				SET element_Index = element_Index +1;
+				IF (element_Index>1000) THEN
+					RETURN TRUE;
+				END IF;
+			END FOR;			
+		ELSE
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaClientesResponse = '';
+		END IF;	
+		
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;
+

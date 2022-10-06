@@ -1,0 +1,24 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\CentrosCostaXcalibur.wsdl
+
+The WSDL import will proceed with bindings ConsultaCecosObj.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/CentrosCostaXcalibur.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/Xcalibur/CG/CentrosCostos}ConsultaCecosObj.
+Parsing wsdl binding input ConsultaCecos.
+Parsing wsdl binding output ConsultaCecos.
+Parsing wsdl binding fault ConsultaCecosFault.
+Processing doc style for operation ConsultaCecos.
+Populating WSDL schema CentrosCostaXcalibur.xsd.
+Creating file CentrosCostaXcalibur.xsd in the workspace.
+Creating file /Xcalibur-ConsultaCentrosCosto/CentrosCostaXcalibur_InlineSchema1.xsd in the workspace.
+Creating file /Xcalibur-ConsultaCentrosCosto/CentrosCostaXcalibur_InlineSchema2.xsd in the workspace.
+Copying source WSDL CentrosCostaXcalibur.wsdl to CentrosCostaXcalibur.wsdl.
+
+Elapsed time processing this message definition file: 0.437 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

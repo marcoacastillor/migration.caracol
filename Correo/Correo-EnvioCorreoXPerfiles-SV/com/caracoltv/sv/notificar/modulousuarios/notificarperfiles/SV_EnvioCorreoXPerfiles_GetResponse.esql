@@ -1,0 +1,9 @@
+BROKER SCHEMA com.caracoltv.sv.notificar.modulousuarios.notificarperfiles
+
+
+CREATE COMPUTE MODULE SV_EnvioCorreoXPerfiles_GetResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		RETURN FALSE;
+	END;
+END MODULE;

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmDotNetCompute.msgnode="ComIbmDotNetCompute.msgnode" xmlns:ComIbmTimeoutControl.msgnode="ComIbmTimeoutControl.msgnode" xmlns:ComIbmTimeoutNotification.msgnode="ComIbmTimeoutNotification.msgnode" xmlns:Indicadores_EnviarInformacionEntrada.subflow="Indicadores/EnviarInformacionEntrada.subflow" xmlns:com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow="com/caracol/error/notificacion/correo/CaracolErrorNotificacion.subflow"
+    xmlns:com_cysce_core_util_exception_soap12_ExceptionHandlerSoap12.subflow="com/cysce/core/util/exception/soap12/ExceptionHandlerSoap12.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mbmonitor="http://www.ibm.com/wbi/2008/eflow_mbmonitor" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracol/sv/onbase/generacionarchivos/SV_OnBaseGeneracionArchivos.msgflow" nsPrefix="com_caracol_sv_onbase_generacionarchivos_SV_OnBaseGeneracionArchivos.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="SV_OnBaseGeneracionArchivos" bundleName="com/caracol/sv/onbase/generacionarchivos/SV_OnBaseGeneracionArchivos" pluginId="OnBase-GeneracionArchivos-SV"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/OnBase-GeneracionArchivos-SV/icons/full/obj16/SV_OnBaseGeneracionArchivos.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/OnBase-GeneracionArchivos-SV/icons/full/obj30/SV_OnBaseGeneracionArchivos.gif"/>
+    <composition>
+      <nodes xmi:type="com_cysce_core_util_exception_soap12_ExceptionHandlerSoap12.subflow:FCMComposite_1" xmi:id="FCMComposite_1_6" location="246,41">
+        <translation xmi:type="utility:ConstantString" string="ExceptionHandlerSoap12"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTimeoutNotification.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="78,177" uniqueIdentifier="timer_onbase" operationMode="controlled" timeoutInterval="86400">
+        <translation xmi:type="utility:ConstantString" string="TimerOnBase7Dias"/>
+        <monitorEvents eventSourceDescription="Transaction start" eventSourceName="TimerOnBase7Dias.transaction.Start" eventIdentity="GenerarArchivosOnBase.TimerOnBase7Dias.TransactionStart">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="GenerarArchivosOnBase.TimerOnBase7Dias.TransactionStart"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow:FCMComposite_1" xmi:id="FCMComposite_1_2" location="684,43" Copia="usrassist@caracoltv.com.co" CopiaOculta="lpmunozc@caracoltv.com.co" Asunto="Error en Servicio IIB - OnBse- GeneracionArchivos Producción">
+        <translation xmi:type="utility:ConstantString" string="CaracolErrorNotificacion"/>
+      </nodes>
+      <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="319,195" assemblyName="E:\DLLS\ArchivosOnBase\ArchivosOnBase\bin\Debug\ArchivosOnBase.dll">
+        <translation xmi:type="utility:ConstantString" string=".NETCompute"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName=".NETCompute.terminal.in" eventIdentity="GenerarArchivosOnBase.NETCompute.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="GenerarArchivosOnBase.NETCompute.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Failure terminal" eventSourceName=".NETCompute.terminal.failure" eventIdentity="GenerarArchivosOnBase.NETCompute.FailureTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="GenerarArchivosOnBase.NETCompute.FailureTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Out terminal" eventSourceName=".NETCompute.terminal.out" eventIdentity="GenerarArchivosOnBase.NETCompute.OutTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="GenerarArchivosOnBase.NETCompute.OutTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow:FCMComposite_1" xmi:id="FCMComposite_1_3" location="492,183" De="administradorbus@caracoltv.com.co" Para="sintegralti@caracoltv.com.co" Copia="usrassist@caracoltv.com.co" CopiaOculta="usrassist@caracoltv.com.co" Asunto="Se han Generaron Archivos OnBase  Exitosamente en Producción" Titulo="Se Generaron Archivos OnBase Exitosamente en Producción" TextoLink="Ruta Archivos" LinkChar="\\kappapi01\Compartida\DIP\Historia Laboral\Base\">
+        <translation xmi:type="utility:ConstantString" string="Notificacion OK"/>
+      </nodes>
+      <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="193,278" ip="172.17.4.164" cliente="SRVIIB1" servicio="OnBase-GeneracionArchivos">
+        <translation xmi:type="utility:ConstantString" string="EnviarInformacionEntrada"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTimeoutNotification.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="473,325" uniqueIdentifier="Inicio" timeoutInterval="604800">
+        <translation xmi:type="utility:ConstantString" string="Timeout Notification"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTimeoutControl.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="968,328" uniqueIdentifier="timer_onbase">
+        <translation xmi:type="utility:ConstantString" string="Timeout Control"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="781,325" computeExpression="esql://routine/com.caracol.sv.onbase.generacionarchivos#SV_OnBaseGeneracionArchivos_Compute.Main" computeMode="destinationAndMessage" throwExceptionOnDatabaseError="false">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

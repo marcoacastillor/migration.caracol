@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServicioAnularSolicitudesAprobadas" xmlns:tns="http://schemas.datacontract.org/2004/07/ServicioAnularSolicitudesAprobadas">
+  <xsd:complexType name="Request">
+    <xsd:sequence>
+      <xsd:element name="solicitudAusenciaId" type="xsd:int"/>
+      <xsd:element name="solicitudIdentificacion" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="comentariosAnulacion" nillable="true" type="xsd:string"/>
+      <xsd:element name="usuarioAnulacion" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Request" nillable="true" type="tns:Request"/>
+  <xsd:complexType name="Response">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Estado" type="xsd:boolean"/>
+      <xsd:element minOccurs="0" name="Mensaje" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Response" nillable="true" type="tns:Response"/>
+</xsd:schema>

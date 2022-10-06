@@ -1,0 +1,72 @@
+BROKER SCHEMA co.com.caracol.servicios.notificarperfiles
+
+DECLARE ns12 NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla4/';
+DECLARE tem NAMESPACE 'http://tempuri.org/';
+
+CREATE COMPUTE MODULE NotificarXPerfiles_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		DECLARE Para CHARACTER '';
+		DECLARE i INTEGER 1;
+		
+		DECLARE intListaUsuarios INTEGER CARDINALITY(refInp.tem:UsariosXListaPerfilesResult.ns:Usuario[]);
+		FOR refUsers AS refInp.tem:UsariosXListaPerfilesResult.ns:Usuario[] DO
+			IF (refUsers.ns:Persona.ns:EmailEmpresa <> '') THEN
+				IF (Para <> '') THEN
+				   SET Para = Para|| ';' ||  refUsers.ns:Persona.ns:EmailEmpresa ;
+				ELSE
+					SET Para =  refUsers.ns:Persona.ns:EmailEmpresa;	   	
+				END IF;		
+			END IF;				
+			SET i = i+ 1;				
+		END FOR;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns12:CargaPlantillaRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns12:CargaPlantillaRequest;
+		
+		/*Se construye el SOAP Request con la informacion necesaria*/				
+		
+		SET refOut.De				= Environment.Variables.de[1];
+		SET refOut.Para				= Para;	
+		SET refOut.Copia			= Environment.Variables.copia[1];	
+		SET refOut.CopiaOculta		= Environment.Variables.copiaOculta[1];
+		IF Environment.Variables.asunto IS NULL THEN 
+			SET refOut.Asunto		= 'Sin Asunto';  	 
+		ELSE
+			SET refOut.Asunto		= Environment.Variables.asunto[1]; 				
+		END IF;
+		
+		SET refOut.Titulo			= Environment.Variables.titulo[1];
+		SET refOut.Mensaje1			= Environment.Variables.mensaje1[1];
+		SET refOut.Mensaje2			= Environment.Variables.mensaje2[1];	    
+		SET refOut.TextoLink		= Environment.Variables.textoLink[1];
+		SET refOut.Link				= Environment.Variables.link[1];	    
+		SET refOut.Prioridad		= Environment.Variables.prioridad[1];
+		SET refOut.Plantilla		= Environment.Variables.plantilla[1];	    	   
+		
+		SET i = 1;
+		FOR refFiles AS Environment.Variables.AFiles.File[] DO			
+			SET refOut.AAdjuntos.Adjunto[i].Nombre = refFiles.Nombre;	
+			SET refOut.AAdjuntos.Adjunto[i].Data	= refFiles.Data;	   				
+			SET i = i + 1;				
+		END FOR;
+		
+		--Valida la existencia de destinatarios
+		IF (Para <>'' ) THEN
+			RETURN TRUE;
+		ELSE
+			RETURN FALSE;
+		END IF;
+	END;
+END MODULE;

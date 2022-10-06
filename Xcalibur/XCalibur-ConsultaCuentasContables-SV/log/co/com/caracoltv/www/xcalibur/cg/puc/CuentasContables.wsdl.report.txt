@@ -1,0 +1,24 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\CuentasContables.wsdl
+
+The WSDL import will proceed with bindings ConsultaPucObj.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/CuentasContables.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/Xcalibur/CG/PUC}ConsultaPucObj.
+Parsing wsdl binding input ConsultaPUC.
+Parsing wsdl binding output ConsultaPUC.
+Parsing wsdl binding fault ConsultaPucFault.
+Processing doc style for operation ConsultaPUC.
+Populating WSDL schema CuentasContables.xsd.
+Creating file CuentasContables.xsd in the workspace.
+Creating file /Xcalibur-ConsultaCuentasContables/CuentasContables_InlineSchema1.xsd in the workspace.
+Creating file /Xcalibur-ConsultaCuentasContables/CuentasContables_InlineSchema2.xsd in the workspace.
+Copying source WSDL CuentasContables.wsdl to CuentasContables.wsdl.
+
+Elapsed time processing this message definition file: 0.594 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+   targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultamaterialesventa/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:srv="http://www.caracoltv.com.co/TI/xcalibur/consultamaterialesventa/">
+<!-- wrapper element of the request message -->
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaMaterialesVentaRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="false" minOccurs="1" name="Compania" type="xsd:int"/>
+				<xsd:element nillable="false" minOccurs="1" name="Ubicacion" type="xsd:string"/>				
+            	<xsd:element nillable="true" minOccurs="0" name="CodigoSAP"  type="xsd:string"/>
+            	<xsd:element nillable="true" minOccurs="0" name="Descripcion" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaMaterialesVentaResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="MaterialesVenta"  minOccurs="0" type="srv:MaterialesVenta"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<xsd:complexType name="MaterialesVenta" >
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="MaterialVenta" type="srv:MaterialVenta"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MaterialesVenta" type="srv:MaterialesVenta" />    
+	<!-- Type referenced by the wrapper element of the response message -->
+	<xsd:complexType name="MaterialVenta">
+	<xsd:sequence>
+			<xsd:element nillable="false" minOccurs="1" name="CodigoUbicacion" type="xsd:int"/>
+            <xsd:element nillable="false" minOccurs="1" name="NombreMaterial" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="CodigoMaterialSAP"  type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="CentroBeneficioSAP" type="xsd:string"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="MaterialVenta" type="srv:MaterialVenta" />
+  </xsd:schema>

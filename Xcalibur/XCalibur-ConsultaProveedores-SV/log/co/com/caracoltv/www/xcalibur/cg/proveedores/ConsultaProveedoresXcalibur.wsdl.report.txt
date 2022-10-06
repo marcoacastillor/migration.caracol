@@ -1,0 +1,24 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\SOA\Nuevas Integraciones\Fase5\wsdl\ConsultaProveedoresXcalibur.wsdl
+
+The WSDL import will proceed with bindings ConsultaProveedoresObj.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/SOA/Nuevas Integraciones/Fase5/wsdl/ConsultaProveedoresXcalibur.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/Xcalibur/CG/Proveedores}ConsultaProveedoresObj.
+Parsing wsdl binding input ConsultaProveedores.
+Parsing wsdl binding output ConsultaProveedores.
+Parsing wsdl binding fault ConsultaProveedoresFault.
+Processing doc style for operation ConsultaProveedores.
+Populating WSDL schema ConsultaProveedoresXcalibur.xsd.
+Creating file ConsultaProveedoresXcalibur.xsd in the workspace.
+Creating file /Xcalibur-ConsultaProveedores/ConsultaProveedoresXcalibur_InlineSchema1.xsd in the workspace.
+Creating file /Xcalibur-ConsultaProveedores/ConsultaProveedoresXcalibur_InlineSchema2.xsd in the workspace.
+Copying source WSDL ConsultaProveedoresXcalibur.wsdl to ConsultaProveedoresXcalibur.wsdl.
+
+Elapsed time processing this message definition file: 0.505 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/Materiales/ConsultaMateriales" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/CG/Materiales/ConsultaMateriales" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/CG/Materiales" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <complexType name="ConsultaMateriales_MaterialRow">
+    <sequence>
+      <element name="Ubicacion" nillable="true" type="int"/>
+      <element name="Nombre" nillable="true" type="string"/>
+      <element name="Material" nillable="true" type="string"/>
+      <element name="CenBef" nillable="true" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="ConsultaMateriales_MaterialParam">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="MaterialRow" type="S2:ConsultaMateriales_MaterialRow"/>
+    </sequence>
+  </complexType>
+  <element ibmSchExtn:docRoot="true" name="ConsultaMateriales">
+    <complexType>
+      <sequence>
+        <element name="ipCia" nillable="true" type="int"/>
+        <element name="ipUbicacion" nillable="true" type="string"/>
+        <element name="ipNombre" nillable="true" type="string"/>
+        <element name="ipCodSap" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element ibmSchExtn:docRoot="true" name="ConsultaMaterialesResponse">
+    <complexType>
+      <sequence>
+        <element name="result" nillable="true" type="string"/>
+        <element name="Material" nillable="true" type="S2:ConsultaMateriales_MaterialParam"/>
+        <element name="opError" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

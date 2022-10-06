@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" 
+elementFormDefault="qualified" 
+targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/PUC/ConsultaPuc" 
+xmlns:S1="urn:soap-fault:details" 
+xmlns:S2="http://www.caracoltv.com.co/Xcalibur/CG/PUC/ConsultaPuc" 
+xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" 
+xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+xmlns:tns="http://www.caracoltv.com.co/Xcalibur/CG/PUC" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <complexType name="ConsultaPUC_CuentasContablesRow">
+    <sequence>
+      <element name="Cuenta" nillable="true" type="string"/>
+      <element name="Nombre" nillable="true" type="string"/>
+      <element name="Tipo" nillable="true" type="string"/>
+      <element name="IndicadorIva" nillable="true" type="string"/>
+      <element name="ClaveContab" nillable="true" type="string"/>
+      <element name="CuentaNombre" nillable="true" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="ConsultaPUC_CuentasContablesParam">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="CuentasContablesRow" type="S2:ConsultaPUC_CuentasContablesRow"/>
+    </sequence>
+  </complexType>
+  <element ibmSchExtn:docRoot="true" name="ConsultaPUC">
+    <complexType>
+      <sequence>
+        <element name="ipCia" nillable="true" type="int"/>
+        <element name="ipCuenta" nillable="true" type="string"/>
+        <element name="ipNombre" nillable="true" type="string"/>
+        <element name="ipCuentaNombre" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element ibmSchExtn:docRoot="true" name="ConsultaPUCResponse">
+    <complexType>
+      <sequence>
+        <element name="result" nillable="true" type="string"/>
+        <element name="CuentasContables" nillable="true" type="S2:ConsultaPUC_CuentasContablesParam"/>
+        <element name="opError" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

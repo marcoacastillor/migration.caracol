@@ -1,0 +1,68 @@
+BROKER SCHEMA com.caracol.sv.xcalibur.consultaempleados
+
+
+CREATE COMPUTE MODULE SV_Xcalibur_ConsultaEmpleados01_RsptaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*
+		 * Se declaran los namespaces que manejan los mensajes SOAP del Bus de Servicios.
+		 *
+		 */	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE nsv NAMESPACE 'http://www.caracoltv.com.co/financiera/xcalibur/consultaempleados/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE car NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/NM/Empleados/ConsultaEmpleados';
+		DECLARE element_Index INTEGER;	
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+
+		-- Nombre del response y objeto vector que se ejecuta desde xcalibur	
+		--DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.car:ConsultaEmpleadosResponse.car:Empleados;
+		DECLARE rBodyI REFERENCE TO InputRoot;
+		MOVE rBodyI LASTCHILD;
+		MOVE rBodyI LASTCHILD;
+		MOVE rBodyI LASTCHILD;
+		
+		DECLARE intEmpleados INTEGER CARDINALITY(rBodyI.*:Empleados.*:EmpleadosRow[]);
+
+		IF (intEmpleados > 0) THEN
+		
+			SET element_Index =1;						
+			FOR rBodyEmpleados AS rBodyI.*:Empleados.*:EmpleadosRow[] DO	
+				--asigna valores recibidos de xcalibur al response del servicio del ESB							
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Ficha = rBodyEmpleados.car:Ficha;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Nombre = rBodyEmpleados.car:Nombre;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].TipoIdentificacion = rBodyEmpleados.car:TipoIdentificacion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Identificacion = rBodyEmpleados.car:Identificacion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].FechaIngreso = rBodyEmpleados.car:FechaIngreso;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Ubicacion = rBodyEmpleados.car:Ubicacion;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].CentroCosto = rBodyEmpleados.car:CentroCosto;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].OrdenInterna = rBodyEmpleados.car:OrdenInterna;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Cargo = rBodyEmpleados.car:Cargo;										
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Nombrecargo = rBodyEmpleados.car:Nombrecargo;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].DeudorSAP = rBodyEmpleados.car:DeudorSAP;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].ProveedorSAP = rBodyEmpleados.car:ProveedorSAP;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].TipoGasto = rBodyEmpleados.car:TipoGasto;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Direccion = rBodyEmpleados.car:Direccion;			
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Telefono = rBodyEmpleados.car:Telefono;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Email = rBodyEmpleados.car:Email;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Banco = rBodyEmpleados.car:Banco;							
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].NombreBanco = rBodyEmpleados.car:NombreBanco;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].TipoCuenta = rBodyEmpleados.car:TipoCuenta;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].Cuenta = rBodyEmpleados.car:Cuenta;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].TipoContratoCodigo = rBodyEmpleados.car:TipoContratoCodigo;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse.Empleado[element_Index].TipoContratoNombre = rBodyEmpleados.car:TipoContratoNombre;
+				SET element_Index = element_Index +1;
+				IF (element_Index>1000) THEN
+					RETURN TRUE;
+				END IF;
+			END FOR;	
+		ELSE
+	 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaEmpleadosResponse= COALESCE(rBodyI.*:opError, rBodyI.*:detail.*:FaultDetail.*:errorMessage);			
+		END IF;			
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;		
+		RETURN TRUE;
+	END;
+
+END MODULE;

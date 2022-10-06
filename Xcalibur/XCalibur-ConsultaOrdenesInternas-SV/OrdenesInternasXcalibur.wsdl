@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ConsultaOrdenes" targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/OrdenesInternas" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/CG/OrdenesInternas/ConsultaOrdenes" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/CG/OrdenesInternas" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:documentation>Author=V1.0, EncodingType=DOC_LITERAL, WSA_Product=10.2B08 - N/A<appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="OrdenesInternasXcalibur_InlineSchema2.xsd"/>
+        <generatedXSD location="OrdenesInternasXcalibur_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="ConsultaOrdenesObj" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+
+
+          <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/OrdenesInternas/ConsultaOrdenes" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:include schemaLocation="OrdenesInternasXcalibur_InlineSchema2.xsd"/>
+    </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="urn:soap-fault:details" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:include schemaLocation="OrdenesInternasXcalibur_InlineSchema1.xsd"/>
+    </schema>
+    </wsdl:types>
+  <wsdl:message name="FaultDetailMessage">
+    <wsdl:part element="S1:FaultDetail" name="FaultDetail"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultaOrdenes_ConsultaOrdenesResponse">
+    <wsdl:part element="S2:ConsultaOrdenesResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultaOrdenes_ConsultaOrdenes">
+    <wsdl:part element="S2:ConsultaOrdenes" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="ConsultaOrdenesObj">
+    <wsdl:operation name="ConsultaOrdenes">
+      <wsdl:input message="tns:ConsultaOrdenes_ConsultaOrdenes"/>
+      <wsdl:output message="tns:ConsultaOrdenes_ConsultaOrdenesResponse"/>
+      <wsdl:fault message="tns:FaultDetailMessage" name="ConsultaOrdenesFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultaOrdenesObj" type="tns:ConsultaOrdenesObj">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConsultaOrdenes">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ConsultaOrdenesFault">
+        <soap:fault name="ConsultaOrdenesFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultaOrdenesService">
+    <wsdl:port binding="tns:ConsultaOrdenesObj" name="ConsultaOrdenesObj">
+<wsdl:documentation/>
+      <soap:address location="http://172.17.4.32:8080/wsa/wsa1"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

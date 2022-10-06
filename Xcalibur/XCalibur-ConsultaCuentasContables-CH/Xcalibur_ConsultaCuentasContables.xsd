@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+   targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultacuentascontables/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:srv="http://www.caracoltv.com.co/TI/xcalibur/consultacuentascontables/">
+<!-- wrapper element of the request message -->
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaCuentasContablesRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="false" minOccurs="1" name="CompaniaId" type="xsd:int"/>
+				<xsd:element nillable="true" minOccurs="0" name="Cuenta" type="xsd:string"/>
+            	<xsd:element nillable="true" minOccurs="0" name="Nombre"  type="xsd:string"/>
+            	<xsd:element nillable="true" minOccurs="0" name="CuentaNombre"  type="xsd:string"/>            				
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaCuentasContablesResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="CuentasContables"  minOccurs="0" type="srv:CuentasContables"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<xsd:complexType name="CuentasContables" >
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="CuentaContable" type="srv:CuentaContable"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CuentasContables" type="srv:CuentasContables" />    
+	<!-- Type referenced by the wrapper element of the response message -->
+	<xsd:complexType name="CuentaContable">
+	<xsd:sequence>
+			<xsd:element nillable="false" minOccurs="1" name="Cuenta" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="Nombre" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="Tipo"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="IndicadorIVA"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="ClaveContable"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="CuentaNombre"  type="xsd:string"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="CuentaContable" type="srv:CuentaContable" />
+  </xsd:schema>

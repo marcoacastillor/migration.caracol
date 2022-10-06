@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+   targetNamespace="http://www.caracoltv.com.co/financiera/xcalibur/consultaempleados/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:srv="http://www.caracoltv.com.co/financiera/xcalibur/consultaempleados/">
+<!-- wrapper element of the request message -->
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaEmpleadosRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="false" minOccurs="1" name="CompaniaId" type="xsd:int"/>
+				<xsd:element nillable="false" minOccurs="1" name="FichaId" type="xsd:string"/>				
+            	<xsd:element nillable="true" minOccurs="0" name="Identificacion"  type="xsd:string"/>
+            	<xsd:element nillable="true" minOccurs="0" name="Nombre" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaEmpleadosResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" name="Empleado"  minOccurs="0" type="srv:Empleado"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<xsd:complexType name="Empleado" >
+		<xsd:sequence>
+			<xsd:element nillable="false" minOccurs="1" name="Ficha" type="xsd:int"/>
+            <xsd:element nillable="false" minOccurs="1" name="Nombre" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="TipoIdentificacion"  type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="Identificacion"  type="xsd:decimal"/>
+            <xsd:element nillable="false" minOccurs="1" name="FechaIngreso"  type="xsd:date"/>
+			<xsd:element nillable="false" minOccurs="1" name="Ubicacion"  type="xsd:int"/>
+			<xsd:element nillable="false" minOccurs="1" name="CentroCosto"  type="xsd:string"/>			
+			<xsd:element nillable="false" minOccurs="1" name="OrdenInterna"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="Cargo"  type="xsd:int"/>
+			<xsd:element nillable="false" minOccurs="1" name="Nombrecargo"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="DeudorSAP"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="ProveedorSAP"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="TipoGasto"  type="xsd:int"/>
+			<xsd:element nillable="false" minOccurs="1" name="Direccion"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="Telefono"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="Email"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="Banco"  type="xsd:int"/>
+			<xsd:element nillable="false" minOccurs="1" name="NombreBanco"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="TipoCuenta"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="Cuenta"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="TipoContratoCodigo"  type="xsd:string"/>
+			<xsd:element nillable="false" minOccurs="1" name="TipoContratoNombre"  type="xsd:string"/>			
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Empleado" type="srv:Empleado" />    
+  </xsd:schema>

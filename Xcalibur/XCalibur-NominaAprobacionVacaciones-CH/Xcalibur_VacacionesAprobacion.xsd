@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+   targetNamespace="http://www.caracoltv.com.co/nomina/xcalibur/aprobacionvacaciones/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"	 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:srv="http://www.caracoltv.com.co/nomina/xcalibur/aprobacionvacaciones/">
+<!-- wrapper element of the request message -->
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="AprobacionVacacionesRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="false" minOccurs="1" name="Compania" type="xsd:int"/>
+				<xsd:element nillable="false"  minOccurs="1" name="Ficha" type="xsd:int"/>
+				<xsd:element nillable="false"  minOccurs="1" name="FechaInicioVacaciones" type="xsd:date"/>
+				<xsd:element nillable="false"  minOccurs="1" name="DiasTomar" type="xsd:int"/>
+				<xsd:element nillable="false"  minOccurs="1" name="ProcedenciaRegistro" type="xsd:string"/>
+				<xsd:element nillable="false"  minOccurs="1" name="Aprobador" type="xsd:string"/>
+				<xsd:element nillable="false"  minOccurs="1" name="FechaAprobacion" type="xsd:date"/>
+				<xsd:element nillable="false"  minOccurs="1" name="ComentarioSolicita" type="xsd:string"/>
+				<xsd:element nillable="false"  minOccurs="1" name="ComentarioAprobador" type="xsd:string"/>
+				<xsd:element nillable="false"  minOccurs="1" name="LoginAprobador" type="xsd:string"/>
+				<xsd:element nillable="false"  minOccurs="1" name="SolicitudAusenciaId" type="xsd:int"/>				
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="AprobacionVacacionesResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="false" minOccurs="1"  name="RespuestaSolicitud" type="xsd:boolean"/>		
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	    
+  </xsd:schema>

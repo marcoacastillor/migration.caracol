@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.caracoltv.com.co/Xcalibur/NM/Empleados/ConsultaEmpleados" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/NM/Empleados/ConsultaEmpleados" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/NM/Empleados" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <complexType name="ConsultaEmpleados_EmpleadosRow">
+    <sequence>
+      <element name="Ficha" nillable="true" type="int"/>
+      <element name="Nombre" nillable="true" type="string"/>
+      <element name="TipoIdentificacion" nillable="true" type="string"/>
+      <element name="Identificacion" nillable="true" type="decimal"/>
+      <element name="FechaIngreso" nillable="true" type="date"/>
+      <element name="Ubicacion" nillable="true" type="int"/>
+      <element name="CentroCosto" nillable="true" type="string"/>
+      <element name="OrdenInterna" nillable="true" type="string"/>
+      <element name="Cargo" nillable="true" type="int"/>
+      <element name="Nombrecargo" nillable="true" type="string"/>
+      <element name="TipoContratoCodigo" nillable="true" type="string"/>
+      <element name="TipoContratoNombre" nillable="true" type="string"/>
+      <element name="DeudorSAP" nillable="true" type="string"/>
+      <element name="ProveedorSAP" nillable="true" type="string"/>
+      <element name="TipoGasto" nillable="true" type="int"/>
+      <element name="Direccion" nillable="true" type="string"/>
+      <element name="Telefono" nillable="true" type="string"/>
+      <element name="Email" nillable="true" type="string"/>
+      <element name="Banco" nillable="true" type="int"/>
+      <element name="NombreBanco" nillable="true" type="string"/>
+      <element name="TipoCuenta" nillable="true" type="string"/>
+      <element name="Cuenta" nillable="true" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="ConsultaEmpleados_EmpleadosParam">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="EmpleadosRow" type="S2:ConsultaEmpleados_EmpleadosRow"/>
+    </sequence>
+  </complexType>
+  <element ibmSchExtn:docRoot="true" name="ConsultaEmpleados">
+    <complexType>
+      <sequence>
+        <element name="ipCia" nillable="true" type="int"/>
+        <element name="ipFicha" nillable="true" type="int"/>
+        <element name="ipIdentificacion" nillable="true" type="string"/>
+        <element name="ipNombre" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element ibmSchExtn:docRoot="true" name="ConsultaEmpleadosResponse">
+    <complexType>
+      <sequence>
+        <element name="result" nillable="true" type="string"/>
+        <element name="Empleados" nillable="true" type="S2:ConsultaEmpleados_EmpleadosParam"/>
+        <element name="opError" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

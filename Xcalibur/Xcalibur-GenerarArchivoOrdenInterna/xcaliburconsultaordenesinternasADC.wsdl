@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?><!--File XcaliburConsultaOrdenesInternas.wsdl, application XCalibur-ConsultaOrdenesInternas-CH--><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ConsultaOrdenesInternas" targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/" xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:srv="http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdxcaliburconsultaordenesinternasSOAP12Http" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+   
+  
+   
+	  
+<wsdl:types>
+   <xsd:schema targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="RemoteFiles/xsd_xsd0.xsd"/>
+</xsd:schema>
+	<xsd:schema>
+<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" schemaLocation="RemoteFiles/xsd_xsd1.xsd"/>
+</xsd:schema>	
+</wsdl:types>	  
+	  
+ 
+	<wsdl:message name="msgConsultaOrdenesInternasRequest">
+    	<wsdl:part element="srv:ConsultaOrdenesInternasRequest" name="ConsultaOrdenesInternasRequest"/>
+  	</wsdl:message>
+  	
+  	
+  	<wsdl:message name="msgConsultaOrdenesInternasResponse">
+    	<wsdl:part element="srv:ConsultaOrdenesInternasResponse" name="ConsultaOrdenesInternasResponse"/>
+
+  	</wsdl:message>
+	
+	
+	<wsdl:message name="msgConsultaOrdenesInternasFault">
+  		<wsdl:part element="eb:Messaging" name="detail"/>
+  	</wsdl:message>
+  	  
+	
+
+  	<wsdl:portType name="ptConsultaOrdenesInternas">
+    	<wsdl:operation name="ConsultaOrdenesInternas">
+      		<wsdl:input message="srv:msgConsultaOrdenesInternasRequest" name="ConsultaOrdenesInternas_Input"/>
+      		<wsdl:output message="srv:msgConsultaOrdenesInternasResponse" name="ConsultaOrdenesInternas_Output"/>
+	        <wsdl:fault message="srv:msgConsultaOrdenesInternasFault" name="fault"/>		
+	    </wsdl:operation>
+  	</wsdl:portType>
+
+
+
+	<wsdl:binding name="bdxcaliburconsultaordenesinternasSOAP12Http" type="srv:ptConsultaOrdenesInternas">
+    	<S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ConsultaOrdenesInternas">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/"/>
+	      	<wsdl:input name="ConsultaOrdenesInternas_Input">
+	        	<S12:body parts="ConsultaOrdenesInternasRequest" use="literal"/>
+	      	</wsdl:input>
+	      	<wsdl:output name="ConsultaOrdenesInternas_Output">
+	        	<S12:body parts="ConsultaOrdenesInternasResponse" use="literal"/>
+	      	</wsdl:output>
+	      	<wsdl:fault name="fault">
+	      		<S12:fault name="fault" use="literal"/>
+	      	</wsdl:fault>		
+    	</wsdl:operation>
+	</wsdl:binding>
+	
+    
+  	<wsdl:service name="consultaordenesinternas">    	    	
+    	<wsdl:port binding="srv:bdxcaliburconsultaordenesinternasSOAP12Http" name="ptConsultaOrdenesInternas12">
+      		<S12:address location="http://srviibpr:7800/services/s12/dominio/xcaliburconsultaordenesinternas"/>
+    	</wsdl:port>
+  	</wsdl:service>  	  
+</wsdl:definitions>

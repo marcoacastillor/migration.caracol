@@ -1,0 +1,24 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\XCaliburCsultaEmpleados.wsdl
+
+The WSDL import will proceed with bindings ConsultaEmpleadosObj.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/XCaliburCsultaEmpleados.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/Xcalibur/NM/Empleados}ConsultaEmpleadosObj.
+Parsing wsdl binding input ConsultaEmpleados.
+Parsing wsdl binding output ConsultaEmpleados.
+Parsing wsdl binding fault ConsultaEmpleadosFault.
+Processing doc style for operation ConsultaEmpleados.
+Populating WSDL schema XCaliburCsultaEmpleados.xsd.
+Creating file XCaliburCsultaEmpleados.xsd in the workspace.
+Creating file /Xcalibur-ConsultaEmpleados/XCaliburCsultaEmpleados_InlineSchema1.xsd in the workspace.
+Creating file /Xcalibur-ConsultaEmpleados/XCaliburCsultaEmpleados_InlineSchema2.xsd in the workspace.
+Copying source WSDL XCaliburCsultaEmpleados.wsdl to XCaliburCsultaEmpleados.wsdl.
+
+Elapsed time processing this message definition file: 0.25 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,60 @@
+BROKER SCHEMA co.com.caracol.servicios.notificarperfiles
+DECLARE ns2 NAMESPACE 'http://schemas.datacontract.org/2004/07/ServiciosModuloUsuarios.Entidades';
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE NotificarXPerfiles_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:UsariosXListaPerfiles;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:UsariosXListaPerfiles;
+		
+		DECLARE i INTEGER 1;
+		FOR refPerfil AS refInp.*:APerfiles.*:Perfil[] DO
+  			SET refOut.ns:lstPerfiles.ns2:Perfil[i].ns1:Id = refPerfil.PerfilId;						
+		    SET i = i+1;
+  		END FOR;
+  		
+  		--Crear mensaje para envío de email
+  		SET Environment.Variables.de[] =LIST{refInp.De}; 
+	    IF refInp.Copia IS NOT NULL THEN			
+			SET Environment.Variables.copia[] = LIST{refInp.Copia};
+		ELSE
+			SET Environment.Variables.copia[] = LIST{''};										
+		END IF; 
+		
+		IF refInp.CopiaOculta IS NOT NULL THEN			
+			SET Environment.Variables.copiaOculta[] = LIST{refInp.CopiaOculta};
+		ELSE
+			SET Environment.Variables.copiaOculta[] = LIST{''};	  			
+		END IF;
+					
+		IF refInp.Asunto IS NULL THEN
+			SET Environment.Variables.asunto[] = LIST{'Sin Asunto'};  	 
+		ELSE
+			SET Environment.Variables.asunto[] = LIST{refInp.Asunto}; 				
+		END IF; 
+	    
+		SET Environment.Variables.titulo[] 		= LIST{refInp.Titulo};
+		SET Environment.Variables.mensaje1[] 	= LIST{refInp.Mensaje1};
+		SET Environment.Variables.mensaje2[] 	= LIST{refInp.Mensaje2};
+		SET Environment.Variables.textoLink[] 	= LIST{refInp.TextoLink};
+		SET Environment.Variables.link[] 		= LIST{refInp.Link};
+		SET Environment.Variables.prioridad[] 	= LIST{refInp.Prioridad};
+		SET Environment.Variables.plantilla[] 	= LIST{refInp.Plantilla};				
+		SET Environment.Variables.AFiles[] 		= LIST{refInp.AFiles};
+		
+		RETURN TRUE;
+	END;
+END MODULE;

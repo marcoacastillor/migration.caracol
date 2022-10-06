@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.caracoltv.com.co/gestiondocumental/guardardocumentoxtipodocumental/" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:srv="http://www.caracoltv.com.co/gestiondocumental/guardardocumentoxtipodocumental/">
+  <!--wrapper element of the request message-->
+  
+  <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" 
+  name="GuardarDocumentoXTipoDocumentalRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				 <xsd:element name="DiskGroupName" type="xsd:string"/>
+				 <xsd:element name="DocumentTypeName" type="xsd:string"/>		
+				 <xsd:element name="FileFormat" type="xsd:string"/>
+ 				 <xsd:element name="FileExtension" type="xsd:string"/>		
+				 <xsd:element maxOccurs="1" minOccurs="0" name="FolderId" type="xsd:string"/>
+      			 <xsd:element maxOccurs="1" minOccurs="1" name="KeyWords"  type="srv:KeyWords"/> 
+      			 <xsd:element maxOccurs="1" minOccurs="1" name="Paginas"  type="srv:Paginas"/>	
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" ibmSchExtn:docRoot="true" 
+	name="GuardarDocumentoXTipoDocumentalResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="IdDocumento" type="xsd:integer"/> 
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+
+	<xsd:complexType name="Paginas" >
+		<xsd:sequence>				
+				<xsd:element maxOccurs="unbounded" minOccurs="1" name="Pagina"  type="srv:Pagina"/>				
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Paginas" type="srv:Paginas" />   
+    	<xsd:complexType name="Pagina" >
+		<xsd:sequence>				
+				<xsd:element name="Valor" type="xsd:string"/>						
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Pagina" type="srv:Pagina" />   	 
+
+    <xsd:complexType name="KeyWords">
+    <xsd:sequence>				
+				<xsd:element maxOccurs="unbounded" minOccurs="1" name="KeyWord"  type="srv:KeyWord"/>				
+      	</xsd:sequence></xsd:complexType>
+	<xsd:element name="KeyWords" type="srv:KeyWords" />   
+    	<xsd:complexType name="KeyWord" >
+		<xsd:sequence>
+				<xsd:element name="Nombre" type="xsd:string"/>	
+				<xsd:element name="Valor" type="xsd:string"/>						
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="KeyWord" type="srv:KeyWord" />      	
+</xsd:schema>

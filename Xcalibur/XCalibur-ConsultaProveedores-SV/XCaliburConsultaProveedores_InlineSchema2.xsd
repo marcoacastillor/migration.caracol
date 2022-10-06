@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/Proveedores/ConsultaProveedores" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/CG/Proveedores/ConsultaProveedores" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/CG/Proveedores" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <complexType name="ConsultaProveedores_ProveedorRow">
+    <sequence>
+      <element name="Auxiliar" nillable="true" type="int"/>
+      <element name="Nombre" nillable="true" type="string"/>
+      <element name="Nit" nillable="true" type="string"/>
+      <element name="CodSap" nillable="true" type="string"/>
+      <element name="CuentaAsociada" nillable="true" type="string"/>
+      <element name="Telefono" nillable="true" type="string"/>
+      <element name="Direccion" nillable="true" type="string"/>
+      <element name="Correo" nillable="true" type="string"/>
+    </sequence>
+  </complexType>
+  <complexType name="ConsultaProveedores_ProveedorParam">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="ProveedorRow" type="S2:ConsultaProveedores_ProveedorRow"/>
+    </sequence>
+  </complexType>
+  <element ibmSchExtn:docRoot="true" name="ConsultaProveedores">
+    <complexType>
+      <sequence>
+        <element name="ipCia" nillable="true" type="int"/>
+        <element name="ipAuxiliar" nillable="true" type="string"/>
+        <element name="ipNit" nillable="true" type="string"/>
+        <element name="ipCodSap" nillable="true" type="string"/>
+        <element name="ipNombre" nillable="true" type="string"/>
+        <element name="ipCuentaAsociada" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+  <element ibmSchExtn:docRoot="true" name="ConsultaProveedoresResponse">
+    <complexType>
+      <sequence>
+        <element name="result" nillable="true" type="string"/>
+        <element name="Proveedor" nillable="true" type="S2:ConsultaProveedores_ProveedorParam"/>
+        <element name="opError" nillable="true" type="string"/>
+      </sequence>
+    </complexType>
+  </element>
+</schema>

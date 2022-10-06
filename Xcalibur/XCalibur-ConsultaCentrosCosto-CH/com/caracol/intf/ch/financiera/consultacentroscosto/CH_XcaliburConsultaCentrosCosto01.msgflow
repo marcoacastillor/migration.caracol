@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmLabel.msgnode="ComIbmLabel.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmRouteToLabel.msgnode="ComIbmRouteToLabel.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ComIbmValidate.msgnode="ComIbmValidate.msgnode" xmlns:Indicadores_EnviarInformacionEntrada.subflow="Indicadores/EnviarInformacionEntrada.subflow"
+    xmlns:com_cysce_core_context_StoreContext.subflow="com/cysce/core/context/StoreContext.subflow" xmlns:com_cysce_core_util_exception_soap12_ExceptionHandlerSoap12.subflow="com/cysce/core/util/exception/soap12/ExceptionHandlerSoap12.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracol/intf/ch/financiera/consultacentroscosto/CH_XcaliburConsultaCentrosCosto01.msgflow" nsPrefix="com_caracol_intf_ch_financiera_consultacentroscosto_CH_XcaliburConsultaCentrosCosto01.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="CH_XcaliburConsultaCentrosCosto01" bundleName="com/caracol/intf/ch/financiera/consultacentroscosto/CH_XcaliburConsultaCentrosCosto01" pluginId="CH_WS_Xcalibur-ConsultaCentrosCosto"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/CH_WS_Xcalibur-ConsultaCentrosCosto/icons/full/obj16/CH_XcaliburConsultaCentrosCosto01.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/CH_WS_Xcalibur-ConsultaCentrosCosto/icons/full/obj30/CH_XcaliburConsultaCentrosCosto01.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="92,168" wsdlFileName="XcaliburConsultaCentrosCosto.wsdl" selectedPortType="ptConsultaCentrosCosto" selectedBinding="bdxcaliburconsultacentroscostoSOAP12Http" selectedPort="ptConsultaCentrosCosto12" targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultacentroscosto/" useHTTPTransport="true" urlSelector="/services/s12/dominio/xcaliburconsultacentroscosto" allowQueryWSDL="true">
+        <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
+      </nodes>
+      <nodes xmi:type="com_cysce_core_util_exception_soap12_ExceptionHandlerSoap12.subflow:FCMComposite_1" xmi:id="FCMComposite_1_2" location="306,29">
+        <translation xmi:type="utility:ConstantString" string="ExceptionHandlerSoap12"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="588,29">
+        <translation xmi:type="utility:ConstantString" string="SOAP Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmValidate.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="342,164">
+        <translation xmi:type="utility:ConstantString" string="Validate"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRouteToLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="578,168">
+        <translation xmi:type="utility:ConstantString" string="Route To Label"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="295,283" computeExpression="esql://routine/com.caracol.intf.ch.financiera.consultacentroscosto#CH_XcaliburConsultaCentrosCosto01_MapCentrosCosto.Main">
+        <translation xmi:type="utility:ConstantString" string="MapCentrosCosto"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="67,283" labelName="ConsultaCentrosCosto">
+        <translation xmi:type="utility:ConstantString" string="ConsultaCentrosCosto"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="438,271" queueName="SV.XCALIBUR.CONSULTACENTROSCOSTO.01" request="true" replyToQ="CH.WS.XCALIBUR.CONSULTACENTROSCOSTO.02">
+        <translation xmi:type="utility:ConstantString" string="MQ Output-CONSULTA CC"/>
+      </nodes>
+      <nodes xmi:type="com_cysce_core_context_StoreContext.subflow:FCMComposite_1" xmi:id="FCMComposite_1_10" location="630,279" queueName="CSIF.ESB.CONSULTACENTROSCOSTO.STORE">
+        <translation xmi:type="utility:ConstantString" string="StoreContext"/>
+      </nodes>
+      <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_6" location="167,203" servicio="Xcalibur-ConsultaCentrosCosto">
+        <translation xmi:type="utility:ConstantString" string="EnviarInformacionEntrada"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.match" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

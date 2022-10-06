@@ -1,0 +1,33 @@
+BROKER SCHEMA com.caracol.error.notificacion.personalizada
+
+
+CREATE COMPUTE MODULE SV_Caracol_ErrorNotificacion_GetError
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla4/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		DECLARE soap NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE csif NAMESPACE 'http://www.cysce.com/csif-msg/ns/v1.0/csif-ms/';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+					
+		DECLARE refIn REFERENCE TO InputRoot.XMLNSC.soap:Envelope.soap:Body.soap:Fault.soap:Detail.eb:Messaging.eb:ErrorList;
+		DECLARE refInMsgIg REFERENCE TO InputRoot.XMLNSC.soap:Envelope.soap:Body.soap:Fault.soap:Detail.eb:Messaging.eb:MessageInfo;
+		
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC;
+		/*Copia de variales de entrada a varialbes de salida*/		
+		SET OutputRoot.Properties = InputRoot.Properties;			
+		/*Se construye el SOAP Request con la informacion necesaria*/				
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://www.w3.org/2003/05/soap-envelope';	    
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.De='busintegracion@caracoltv.com.co';					
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Para= rBodyI.soap:Envelope.soap:Body.soap:Fault.soap:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:Destinatarios;										
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Copia='';
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Asunto='Notificación Error ESB';		
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Titulo= 'Notificación Error ESB';		
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje1= rBodyI.soap:Envelope.soap:Body.soap:Fault.soap:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:Mensaje;			
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje2=rBodyI.soap:Envelope.soap:Body.soap:Fault.soap:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:MensajeError;					
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.TextoLink='Caracol Televisión';
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Link='https://www.caracoltv.com/';		
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Prioridad='1';				
+		RETURN TRUE;
+	END;	
+END MODULE;

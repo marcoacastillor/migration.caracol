@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+name="ConsultaOrdenesInternas" 
+targetNamespace="http://www.caracoltv.com.co/nomina/ausencias/anularaprobacionvacaciones/" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/" 
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+xmlns:srv="http://www.caracoltv.com.co/nomina/ausencias/anularaprobacionvacaciones/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdAnularAprobacionVacacionesHttp" originalBindingStyle="document"/>
+        <generatedXSD location="AnularAprobacionVacaciones.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation> 
+	  
+<wsdl:types>
+   <xsd:schema targetNamespace="http://www.caracoltv.com.co/nomina/ausencias/anularaprobacionvacaciones/"
+			xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+			<xsd:include schemaLocation="AnularAprobacionVacaciones.xsd" />
+    </xsd:schema>
+	<xsd:schema>
+		<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+		schemaLocation="ebms-header-3_0-200704.xsd"/>
+	</xsd:schema>	
+</wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgAnularAprobacionVacacionesRequest">
+    	<wsdl:part element="srv:AnularAprobacionVacacionesRequest" name="AnularAprobacionVacacionesRequest"/>
+  	</wsdl:message>
+  	
+  	<!-- Response message -->
+  	<wsdl:message name="msgAnularAprobacionVacacionesResponse">
+    	<wsdl:part element="srv:AnularAprobacionVacacionesResponse" name="AnularAprobacionVacacionesResponse"/>
+  	</wsdl:message>
+	
+	<!-- Fault message -->
+	<wsdl:message name="msgAnularAprobacionVacacionesFault">
+  		<wsdl:part element="eb:Messaging" name="detail"/>
+  	</wsdl:message>
+  	  
+	
+<!-- Port type -->
+  	<wsdl:portType name="ptAnularAprobacionVacaciones12">
+    	<wsdl:operation name="AnularAprobacionVacaciones">
+      		<wsdl:input message="srv:msgAnularAprobacionVacacionesRequest" name="AnularAprobacionVacaciones_Input"/>
+      		<wsdl:output message="srv:msgAnularAprobacionVacacionesResponse" name="AnularAprobacionVacaciones_Output"/>
+	        <wsdl:fault message="srv:msgAnularAprobacionVacacionesFault" name="fault"/>		
+	    </wsdl:operation>
+  	</wsdl:portType>
+	
+    <!-- Service -->
+    <wsdl:binding name="bdAnularAprobacionVacacionesHttp" type="srv:ptAnularAprobacionVacaciones12">
+    	<S12:binding style="document"
+    		transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="AnularAprobacionVacaciones">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/nomina/ausencias/anularaprobacionvacaciones/"/>
+	      	<wsdl:input name="AnularAprobacionVacaciones_Input">
+	        	<S12:body parts="AnularAprobacionVacacionesRequest" use="literal"/>
+	      	</wsdl:input>
+	      	<wsdl:output name="AnularAprobacionVacaciones_Output">
+	        	<S12:body parts="AnularAprobacionVacacionesResponse" use="literal"/>
+	      	</wsdl:output>
+	      	<wsdl:fault name="fault">
+	      		<S12:fault name="fault" use="literal"/>
+	      	</wsdl:fault>		
+    	</wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="AnularAprobacionVacaciones">    	    	
+    	<wsdl:port binding="srv:bdAnularAprobacionVacacionesHttp" name="AnularAprobacionVacacionescrc">
+      		<S12:address location="http://localhost:7800/services/s12/ausencias/anularaprobacionvacaciones"/>
+    	</wsdl:port>
+  	</wsdl:service>  	  
+</wsdl:definitions>

@@ -1,0 +1,14 @@
+BROKER SCHEMA com.caracoltv.com.co.nomina.onbase.cargararchivos
+
+
+CREATE COMPUTE MODULE SV_CargaArchivos02_EliminarArchivo2
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body;						
+		SET OutputRoot.Properties = InputRoot.Properties;	
+	    SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaEliminacion= '\\kappapi01\Compartida\DIP\Historia Laboral\BaseCer\';
+		RETURN TRUE;
+	END;	
+	
+END MODULE;

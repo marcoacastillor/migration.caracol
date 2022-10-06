@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ConsultaCecos" targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/CentrosCostos" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:S1="urn:soap-fault:details" xmlns:S2="http://www.caracoltv.com.co/Xcalibur/CG/CentrosCostos/ConsultaCecos" xmlns:prodata="urn:schemas-progress-com:xml-prodata:0001" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.caracoltv.com.co/Xcalibur/CG/CentrosCostos" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<wsdl:documentation>Author=V1.0, EncodingType=DOC_LITERAL, WSA_Product=10.2B08 - N/A<appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="CentrosCostaXcalibur_InlineSchema1.xsd"/>
+        <generatedXSD location="CentrosCostaXcalibur_InlineSchema2.xsd"/>
+        <binding hasEncoding="false" imported="true" name="ConsultaCecosObj" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+
+
+          <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="unqualified" targetNamespace="urn:soap-fault:details" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:include schemaLocation="CentrosCostaXcalibur_InlineSchema1.xsd"/>
+    </schema>
+        <schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.caracoltv.com.co/Xcalibur/CG/CentrosCostos/ConsultaCecos" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:include schemaLocation="CentrosCostaXcalibur_InlineSchema2.xsd"/>
+    </schema>
+    </wsdl:types>
+  <wsdl:message name="ConsultaCecos_ConsultaCecosResponse">
+    <wsdl:part element="S2:ConsultaCecosResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ConsultaCecos_ConsultaCecos">
+    <wsdl:part element="S2:ConsultaCecos" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="FaultDetailMessage">
+    <wsdl:part element="S1:FaultDetail" name="FaultDetail"/>
+  </wsdl:message>
+  <wsdl:portType name="ConsultaCecosObj">
+    <wsdl:operation name="ConsultaCecos">
+      <wsdl:input message="tns:ConsultaCecos_ConsultaCecos"/>
+      <wsdl:output message="tns:ConsultaCecos_ConsultaCecosResponse"/>
+      <wsdl:fault message="tns:FaultDetailMessage" name="ConsultaCecosFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultaCecosObj" type="tns:ConsultaCecosObj">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConsultaCecos">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ConsultaCecosFault">
+        <soap:fault name="ConsultaCecosFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultaCecosService">
+    <wsdl:port binding="tns:ConsultaCecosObj" name="ConsultaCecosObj">
+<wsdl:documentation/>
+      <soap:address location="http://172.17.4.32:8080/wsa/wsa1"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

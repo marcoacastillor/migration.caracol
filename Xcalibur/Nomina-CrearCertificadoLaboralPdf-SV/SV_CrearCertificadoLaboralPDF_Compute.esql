@@ -1,0 +1,45 @@
+
+
+
+
+DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdfv2/';
+
+CREATE COMPUTE MODULE SV_CrearCertificadoLaboralPDF_Compute
+
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		CALL CopyEntireMessage();
+		
+		
+		--cambios
+		
+		SET Environment.info.DsNo=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.DsNo;
+		SET Environment.info.Nombres=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Nombres;
+		SET Environment.info.Cedula=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Cedula;
+		SET Environment.info.FechaIngreso=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.FechaIngreso;
+		SET Environment.info.Cargo=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Cargo;
+		SET Environment.info.TipoContrato=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.TipoContrato;
+		SET Environment.info.AsignacionMensual=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.AsignacionMensual;
+		SET Environment.info.CorreoElectronico=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.CorreoElectronico;		
+		SET Environment.info.Solicitud=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Solicitud;
+		SET Environment.info.Destino=InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Destino;
+		--cambios
+		
+		
+		SET Environment.info.MsgId = CAST(InputRoot.MQMD.MsgId AS CHAR);
+		SET Environment.info.CorrelId = CAST(InputRoot.MQMD.CorrelId AS CHAR);
+		SET Environment.info.ReplyToQ = InputRoot.MQMD.ReplyToQ;
+
+		
+		RETURN TRUE;
+	END;
+
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+
+END MODULE;
