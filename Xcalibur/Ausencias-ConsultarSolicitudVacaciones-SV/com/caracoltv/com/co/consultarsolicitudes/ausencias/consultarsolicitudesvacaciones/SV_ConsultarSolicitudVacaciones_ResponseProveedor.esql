@@ -1,0 +1,52 @@
+BROKER SCHEMA com.caracoltv.com.co.consultarsolicitudes.ausencias.consultarsolicitudesvacaciones
+
+
+CREATE COMPUTE MODULE SV_ConsultarSolicitudVacaciones_ResponseProveedor
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*
+		 * Se declaran los namespaces que manejan los mensajes SOAP del Bus de Servicios.
+		 *
+		 */	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE car NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones';
+		DECLARE tem NAMESPACE 'http://tempuri.org/';	
+				
+		DECLARE element_Index INTEGER;	
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+    					
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.tem:ConsultarResponse.tem:Solicitudes;						
+		DECLARE intSolicitudes INTEGER CARDINALITY(rBodyI.car:Solicitud[]);					
+		IF (intSolicitudes >= 1) THEN					
+			SET element_Index =1;									
+			FOR rBodySolicitud AS InputRoot.SOAP.Body.tem:ConsultarResponse.tem:Solicitudes.car:Solicitud[] DO																
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].SolicitudId = rBodySolicitud.car:solicitudId;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].FechaSolicitud = rBodySolicitud.car:solicitudFechaSolicitud;		 		
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].Estado = rBodySolicitud.car:solicitudEstado;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].Nombre = rBodySolicitud.car:solicitudNombre;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].NumeroIdentificacion = rBodySolicitud.car:solicitudIdentificacion;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].TipoContrato = rBodySolicitud.car:solicitudTipoContrato;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].Cargo = rBodySolicitud.car:solicitudCargo;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].FechaAusencia = rBodySolicitud.car:solicitudFechaAusencia;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].Duracion = rBodySolicitud.car:solicitudDuracion;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].FechaAprobacion = rBodySolicitud.car:solicitudFechaAprobacion;		 				 				 				 				 				 				 		
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].FechaFin = rBodySolicitud.car:solicitudFechaFin;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].FechaReintegro = rBodySolicitud.car:solicitudFechaReintegro;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].Comentarios = rBodySolicitud.car:solicitudComentarios;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].Aprobador = rBodySolicitud.car:solicitudAprobador;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].AprobadorComentarios = rBodySolicitud.car:solicitudAprobadorComentarios;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse.Solicitudes.Solicitud[element_Index].Ubicacion = rBodySolicitud.car:solicitudUbicacion;																		 		
+			    SET element_Index = element_Index +1;
+			END FOR;	
+		ELSE
+	 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesResponse='';	 				
+		END IF;			
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;		
+		RETURN TRUE;
+	END;
+END MODULE;

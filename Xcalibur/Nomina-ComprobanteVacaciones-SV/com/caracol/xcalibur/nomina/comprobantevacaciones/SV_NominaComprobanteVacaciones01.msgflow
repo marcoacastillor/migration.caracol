@@ -13,7 +13,7 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="595,131" queueName="SV.XCALIBUR.NOMINA.COMPROBANTEVACACIONES" validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="MQ-MAP"/>
       </nodes>
-      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="140,130" inputDirectory="E:\Nomina\ComprobanteVacaciones_read" filenamePattern="*.xml" messageDomainProperty="XMLNSC" messageCodedCharSetIdProperty="850" messageEncodingProperty="546" failedFileAction="delete">
+      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="140,130" inputDirectory="\\betaxcal\xcalibur\ComprobanteVacaciones" filenamePattern="*.xml" messageDomainProperty="XMLNSC" messageCodedCharSetIdProperty="850" messageEncodingProperty="546">
         <translation xmi:type="utility:ConstantString" string="File Input"/>
         <longDescription xmi:type="utility:ConstantString" string="\\betaxcal\xcalibur\ComprobanteVacaciones&#xD;&#xA;&#xD;&#xA;\\betaxcal\xcalibur\ComprobanteVacaciones\&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;"/>
         <monitorEvents eventSourceDescription="Transaction start" eventSourceName="File Input.transaction.Start" eventIdentity="Nomina-ComprobanteVacaciones.File Input.TransactionStart">

@@ -1,0 +1,55 @@
+/*
+Creado por: Omar Acosta
+Fecha: 19/08/2016
+Descripción: Recibe la informacion de un SOAP Request y genera el mensaje para enviarlo a una cola que responde en CH2
+*/
+BROKER SCHEMA com.caracol.sv.xcalibur.consultacentroscosto
+
+
+CREATE COMPUTE MODULE SV_Xcalibur_ConsultaCentrosCosto_RsptaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+	/*
+		 * Se declaran los namespaces que manejan los mensajes SOAP del Bus de Servicios.
+		 *
+		 */	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE nsv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultacentroscosto/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE car NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/CentrosCostos/ConsultaCecos';		
+		DECLARE element_Index INTEGER;	
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+
+		-- Nombre del response y objeto vector que se ejecuta desde xcalibur	
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.car:ConsultaCecosResponse.car:CentroCosto;
+		
+		DECLARE intCentroCosto INTEGER CARDINALITY(rBodyI.*[]);
+
+		IF (intCentroCosto >= 1) THEN
+		
+			SET element_Index =1;						
+			FOR rBodyCentrosCosto AS rBodyI.[] DO	
+				--asigna valores recibidos de xcalibur al response del servicio del ESB							
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].Ubicacion = rBodyCentrosCosto.car:Ubicacion;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].Nombre = rBodyCentrosCosto.car:Nombre;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].CodigoSap = rBodyCentrosCosto.car:CentroCosto;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].CodigoClaseSap = rBodyCentrosCosto.car:Clase;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].RangoCuentasClase = rBodyCentrosCosto.car:Rango;
+			
+				SET element_Index = element_Index +1;
+				IF (element_Index>1000) THEN
+					RETURN TRUE;
+				END IF;
+			END FOR;			
+		ELSE
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse = '';
+		END IF;	
+		
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;		
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

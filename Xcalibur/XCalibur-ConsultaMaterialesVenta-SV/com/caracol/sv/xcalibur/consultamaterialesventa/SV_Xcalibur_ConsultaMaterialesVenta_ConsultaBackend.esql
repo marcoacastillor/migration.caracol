@@ -1,0 +1,34 @@
+/*
+Creado por: Omar Acosta
+Fecha: 23/08/2016
+Descripción: Recibe la informacion de un SOAP Request y genera el mensaje para enviarlo a una cola que responde en CH2
+*/
+
+BROKER SCHEMA com.caracol.sv.xcalibur.consultamaterialesventa
+
+
+CREATE COMPUTE MODULE SV_Xcalibur_ConsultaMaterialesVenta_ConsultaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+	DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE tem NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/Materiales/ConsultaMateriales';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultamaterialesventa/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		--Request del servicio del esb		
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaMaterialesVentaRequest;		
+		
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://www.caracoltv.com.co/Xcalibur/CG/Materiales/ConsultaMateriales';
+		SET OutputRoot.SOAP.Body.tem:ConsultaMateriales.tem:ipCia= rBodyI.Compania;
+	    SET OutputRoot.SOAP.Body.tem:ConsultaMateriales.tem:ipUbicacion= rBodyI.Ubicacion;
+		SET OutputRoot.SOAP.Body.tem:ConsultaMateriales.tem:ipNombre= rBodyI.Descripcion;	    
+	    SET OutputRoot.SOAP.Body.tem:ConsultaMateriales.tem:ipCodSap= rBodyI.CodigoSAP;	    
+
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;			
+		RETURN TRUE;
+	END;	
+END MODULE;

@@ -1,0 +1,41 @@
+BROKER SCHEMA com.caracoltv.com.co.consultarsolicitudes.ausencias.consultarsolicitudesvacaciones
+DECLARE ns2 NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones';
+DECLARE ns NAMESPACE 'http://schemas.microsoft.com/2003/10/Serialization/Arrays';
+
+
+CREATE COMPUTE MODULE SV_ConsultarSolicitudVacaciones_RequestProveedor
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE tem NAMESPACE 'http://tempuri.org/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		DECLARE element_Index INTEGER;	
+		
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesRequest;
+				
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://tempuri.org/';
+		SET OutputRoot.SOAP.Body.tem:Consultar.tem:ConsultaRequest.ns2:FechaInicio= rBodyI.FechaInicio;
+		SET OutputRoot.SOAP.Body.tem:Consultar.tem:ConsultaRequest.ns2:FechaFin= rBodyI.FechaFin;
+		
+		DECLARE intSolicitudes INTEGER CARDINALITY(rBodyI.Ubicaciones.*[]);		
+		IF (intSolicitudes >= 1) THEN					
+			SET element_Index =1;						
+			FOR rBodySolicitudes AS rBodyI.Ubicaciones.*[] DO					
+				--asigna valores recibidos de xcalibur al response del servicio del ESB									 		
+		 		SET OutputRoot.SOAP.Body.tem:Consultar.tem:ConsultaRequest.ns2:Ubicaciones.ns:string[element_Index]=rBodySolicitudes.UbicacionId;		 				 
+				SET element_Index = element_Index +1;							
+				IF (element_Index>1000) THEN
+					RETURN TRUE;
+				END IF;
+			END FOR;	
+		END IF;												
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		RETURN TRUE;
+	END;
+END MODULE;

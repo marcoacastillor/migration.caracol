@@ -29,7 +29,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="172,209" computeExpression="esql://routine/com.caracol.xcalibur.nomina.comprobantenomina#SV_NominaComprobanteNomina02_GuardarVariables_Correo.Main" computeMode="destination">
         <translation xmi:type="utility:ConstantString" string="GuardarVariables-Correo"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="524,215" computeExpression="esql://routine/com.caracol.xcalibur.nomina.comprobantenomina#SV_NominaComprobanteNomina02_CargaPlantilla.Main">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="525,213" computeExpression="esql://routine/com.caracol.xcalibur.nomina.comprobantenomina#SV_NominaComprobanteNomina02_CargaPlantilla.Main">
         <translation xmi:type="utility:ConstantString" string="CargaPlantilla"/>
       </nodes>
       <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_7" location="947,217" ip="172.17.4.13" cliente="\\srv_aplicacione\produccion\xcalibur\RecibosNomina" servicio="Nomina-ComprobanteNomina">
@@ -53,8 +53,8 @@
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
     </composition>
     <propertyOrganizer/>
     <stickyBoard/>

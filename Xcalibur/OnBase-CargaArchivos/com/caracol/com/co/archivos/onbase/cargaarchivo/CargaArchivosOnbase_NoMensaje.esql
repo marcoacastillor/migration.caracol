@@ -1,0 +1,16 @@
+BROKER SCHEMA com.caracol.com.co.archivos.onbase.cargaarchivo
+
+
+CREATE COMPUTE MODULE CargaArchivosOnbase_NoMensaje
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';				   
+	   	DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body;			   		
+		SET OutputRoot.Properties = InputRoot.Properties;		     			    
+    	SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaPdf=Environment.Variables.RutaPdf[1];    		   
+    	SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaCSV=Environment.Variables.RutaCSV[1];
+    	SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.HoraEjecucion= Environment.Variables.HoraEjecucion[1];	        		   	     
+		RETURN TRUE;
+	END;
+
+END MODULE;

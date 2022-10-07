@@ -65,7 +65,7 @@
       <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="193,278" ip="172.17.4.164" cliente="SRVIIB1" servicio="OnBase-GeneracionArchivos">
         <translation xmi:type="utility:ConstantString" string="EnviarInformacionEntrada"/>
       </nodes>
-      <nodes xmi:type="ComIbmTimeoutNotification.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="473,325" uniqueIdentifier="Inicio" timeoutInterval="604800">
+      <nodes xmi:type="ComIbmTimeoutNotification.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="473,325" uniqueIdentifier="Inicio" timeoutInterval="86400">
         <translation xmi:type="utility:ConstantString" string="Timeout Notification"/>
       </nodes>
       <nodes xmi:type="ComIbmTimeoutControl.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="968,328" uniqueIdentifier="timer_onbase">

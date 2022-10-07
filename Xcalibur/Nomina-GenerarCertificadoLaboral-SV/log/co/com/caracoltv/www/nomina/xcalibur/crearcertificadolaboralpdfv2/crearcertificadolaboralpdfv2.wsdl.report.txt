@@ -1,0 +1,26 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\crearcertificadolaboralpdfv2.wsdl
+
+The WSDL import will proceed with bindings bdcrearcertificadolaboralpdfSOAP11Http.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/crearcertificadolaboralpdfv2.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdfv2/}bdcrearcertificadolaboralpdfSOAP11Http.
+Parsing wsdl binding input crearpdfv2.
+Parsing wsdl binding output crearpdfv2.
+Parsing wsdl binding fault fault.
+Processing doc style for operation crearpdfv2.
+Populating WSDL schema crearcertificadolaboralpdfv2.xsd.
+Removing unnecessary import statement with namespace http://www.w3.org/2003/05/soap-envelope from schema /Nomina-GenerarCertificadoLaboral-SV/xsd_xsd1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://www.w3.org/XML/1998/namespace from schema /Nomina-GenerarCertificadoLaboral-SV/xsd_xsd1.xsd.  This statement was not resolved and is never used.
+Creating file crearcertificadolaboralpdfv2.xsd in the workspace.
+Creating file /Nomina-GenerarCertificadoLaboral-SV/xsd_xsd0.xsd in the workspace.
+Creating file /Nomina-GenerarCertificadoLaboral-SV/xsd_xsd1.xsd in the workspace.
+Copying source WSDL crearcertificadolaboralpdfv2.wsdl to crearcertificadolaboralpdfv2.wsdl.
+
+Elapsed time processing this message definition file: 0.558 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,34 @@
+BROKER SCHEMA com.caracol.sv.dominio.generararchivoordeninterna
+
+
+CREATE COMPUTE MODULE CHRest_GenerarArchivoOrdenInterna_GuardaEncabezado
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN		
+			SET OutputRoot.Properties = InputRoot.Properties;			
+			CALL CopyMessage();			
+	        SET OutputRoot.JSON.Data.mensaje=InputRoot.JSON.Data.mensaje; 
+			IF CONTAINS(InputRoot.HTTPInputHeader."X-Original-HTTP-Command", 'POST') THEN
+			   SET OutputLocalEnvironment.Destination.RouterList.DestinationData[1].labelName = 'POST'; 
+			   SET OutputLocalEnvironment.Destination.HTTP.Reply.ReplyIdentifier=InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		 	END IF;		
+		 	RETURN TRUE;
+	END;		 	
+	CREATE PROCEDURE CopyMessage() 
+		BEGIN	 			 	
+		 	DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+			DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+													
+			SET OutputRoot.Properties = InputRoot.Properties;
+			CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';			
+			CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+			DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+			DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;			
+			SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;						
+			SET Environment.Variables.Properties[] =LIST{InputRoot.Properties};
+			SET Environment.Variables.MQMD[] =LIST{InputRoot.MQMD};			
+			SET Environment.Variables.ReplyIdentifier[]=LIST{InputLocalEnvironment.Destination.HTTP.RequestIdentifier};
+	END;		
+END MODULE;	
+
+			   
+			

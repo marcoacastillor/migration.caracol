@@ -5,6 +5,7 @@
 	<projects>
 		<project>csif-commons-util</project>
 		<project>Indicadores</project>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

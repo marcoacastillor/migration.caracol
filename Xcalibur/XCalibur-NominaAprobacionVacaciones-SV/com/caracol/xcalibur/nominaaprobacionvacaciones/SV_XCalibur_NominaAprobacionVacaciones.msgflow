@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQReply.msgnode="ComIbmMQReply.msgnode" xmlns:ComIbmSOAPRequest.msgnode="ComIbmSOAPRequest.msgnode" xmlns:com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow="com/caracol/error/notificacion/correo/CaracolErrorNotificacion.subflow" xmlns:com_cysce_core_util_exception_soap12_ExceptionHandlerSoap12.subflow="com/cysce/core/util/exception/soap12/ExceptionHandlerSoap12.subflow"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mbmonitor="http://www.ibm.com/wbi/2008/eflow_mbmonitor" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracol/xcalibur/nominaaprobacionvacaciones/SV_XCalibur_NominaAprobacionVacaciones.msgflow" nsPrefix="com_caracol_xcalibur_nominaaprobacionvacaciones_SV_XCalibur_NominaAprobacionVacaciones.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="SV_XCalibur_NominaAprobacionVacaciones" bundleName="com/caracol/xcalibur/nominaaprobacionvacaciones/SV_XCalibur_NominaAprobacionVacaciones" pluginId="XCalibur-NominaAprobacionVacaciones-SV"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/XCalibur-NominaAprobacionVacaciones-SV/icons/full/obj16/SV_XCalibur_NominaAprobacionVacaciones.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/XCalibur-NominaAprobacionVacaciones-SV/icons/full/obj30/SV_XCalibur_NominaAprobacionVacaciones.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="65,173" queueName="SV.XCALIBUR.NOMINAAPROVACIONVACACIONES.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="NOMINAAPROVACIONVACACIONES"/>
+      </nodes>
+      <nodes xmi:type="com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="516,5" Para="usrassist@caracoltv.com.co" Asunto="Error en Servicio IIB - Xcalibur - Nomina Aprobación Vacaciones QA" Titulo="Notificacion de Error IIB10 Xcalibur -Nomina Aprobación Vacaciones">
+        <translation xmi:type="utility:ConstantString" string="CaracolErrorNotificacion"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="774,232">
+        <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="269,168" computeExpression="esql://routine/com.caracol.xcalibur.nominaaprobacionvacaciones#SV_XCalibur_NominaAprobacionVacaciones_ConsultaBacked.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ConsultaBacked"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="626,231" computeExpression="esql://routine/com.caracol.xcalibur.nominaaprobacionvacaciones#SV_XCalibur_NominaAprobacionVacaciones_Compute.Main">
+        <translation xmi:type="utility:ConstantString" string="RstaBacked"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="439,164" wsdlFileName="XCaliburAprobacionVacaciones.wsdl" selectedPortType="AprobacionVacacionesObj" selectedBinding="AprobacionVacacionesObj" selectedOperation="AprobacionVacaciones" selectedPort="AprobacionVacacionesObj" targetNamespace="http://www.caracoltv.com.co/Xcalibur/NM/AprobacionVacaciones" useHTTPTransport="true" webServiceURL="http://172.17.4.32:8080/wsa/wsa1" requestTimeout="30" sslProtocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="SOAP Request"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="SOAP Request.terminal.in" eventIdentity="XCaliburAprobacionVacaciones.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="XCaliburAprobacionVacaciones.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Failure terminal" eventSourceName="SOAP Request.terminal.failure" eventIdentity="XCaliburAprobacionVacaciones.FailureTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="XCaliburAprobacionVacaciones.FailureTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Fault terminal" eventSourceName="SOAP Request.terminal.fault" eventIdentity="XCaliburAprobacionVacaciones.FaultTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="headers"/>
+            <eventName literal="XCaliburAprobacionVacaciones.FaultTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="626,89" computeExpression="esql://routine/com.caracol.xcalibur.nominaaprobacionvacaciones#SV_XCalibur_NominaAprobacionVacaciones_Fault.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Fault"/>
+      </nodes>
+      <nodes xmi:type="com_cysce_core_util_exception_soap12_ExceptionHandlerSoap12.subflow:FCMComposite_1" xmi:id="FCMComposite_1_11" location="345,40">
+        <translation xmi:type="utility:ConstantString" string="ExceptionHandlerSoap12"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="762,101">
+        <translation xmi:type="utility:ConstantString" string="MQ Reply1"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_15" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_19" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_20" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_21" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,11 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\ConsultaCertificadoLaboral.wsdl
+
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/xcalibur/consultacertificadolaboral/}bdxcaliburconsultacertificadolaboralSOAP12Http.
+Parsing wsdl binding input Consulta.
+Parsing wsdl binding output Consulta.
+Parsing wsdl binding fault fault.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/xcalibur/consultacertificadolaboral/}bdxcaliburconsultacertificadolaboralSOAP11Http.
+Parsing wsdl binding input Consulta.
+Parsing wsdl binding output Consulta.

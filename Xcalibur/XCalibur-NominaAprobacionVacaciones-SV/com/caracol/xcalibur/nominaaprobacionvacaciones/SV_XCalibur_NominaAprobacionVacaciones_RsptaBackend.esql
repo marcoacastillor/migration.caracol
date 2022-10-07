@@ -1,0 +1,16 @@
+BROKER SCHEMA com.caracol.xcalibur.nominaaprobacionvacaciones
+
+
+CREATE COMPUTE MODULE SV_XCalibur_NominaAprobacionVacaciones_RsptaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		
+
+					
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

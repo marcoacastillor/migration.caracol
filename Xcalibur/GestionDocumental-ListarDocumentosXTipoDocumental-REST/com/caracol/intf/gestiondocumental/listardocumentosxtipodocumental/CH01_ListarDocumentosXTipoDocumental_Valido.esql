@@ -1,0 +1,39 @@
+BROKER SCHEMA com.caracol.intf.gestiondocumental.listardocumentosxtipodocumental
+
+CREATE COMPUTE MODULE CH01_ListarDocumentosXTipoDocumental_Valido
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+
+		
+		SET OutputRoot.Properties = Environment.Variables.Properties[1];
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';			
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;			
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;			
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body TYPE Name;
+		DECLARE j integer;							 
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.TipoDocumental=Environment.Variables.TipoDocumental[1]; 
+		DECLARE intKeyWord INTEGER CARDINALITY(Environment.Variables.KeyWords.*[]);
+	    SET j=1; 
+		FOR rBodyKeyWord  AS Environment.Variables.KeyWords.*[] DO 
+				--Valores se adiciona Operador y Condicion 
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.KeyWords.KeyWord[j].Nombre=rBodyKeyWord.Nombre; 
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.KeyWords.KeyWord[j].Valor=rBodyKeyWord.Valor; 	
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.KeyWords.KeyWord[j].Operador=rBodyKeyWord.Operador;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.KeyWords.KeyWord[j].Condicion=rBodyKeyWord.Condicion;	 											    			 		
+				SET j = j+1;
+		END FOR;
+		
+		DECLARE intKeywordsFilter INTEGER CARDINALITY(Environment.Variables.KeywordsFilter.*[]);    
+	    SET j=1; 
+		FOR rBodyKeywordsFilter  AS Environment.Variables.KeywordsFilter.*[] DO 
+				--solo el nombre del filtro 
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.KeywordsFilter.KewordFilter[j].Nombre=rBodyKeywordsFilter.Nombre;       				 		
+				SET j = j+1;
+		END FOR; 		
+		RETURN TRUE;		
+	END;
+END MODULE;

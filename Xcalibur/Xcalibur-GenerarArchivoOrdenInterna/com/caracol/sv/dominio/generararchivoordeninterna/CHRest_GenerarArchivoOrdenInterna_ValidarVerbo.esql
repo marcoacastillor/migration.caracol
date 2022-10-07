@@ -1,0 +1,14 @@
+BROKER SCHEMA com.caracol.sv.dominio.generararchivoordeninterna
+
+
+CREATE COMPUTE MODULE CHRest_GenerarArchivoOrdenInterna_ValidarVerbo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = Environment.Variables.Properties[1];
+		
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier=Environment.Variables.ReplyIdentifier;	
+		SET OutputLocalEnvironment.Destination.HTTP."X-Original-HTTP-Status-Code"=401;	
+		SET OutputRoot.JSON.Data.Error = 'Verbo Invalido';		
+		RETURN TRUE;
+	END;
+END MODULE;

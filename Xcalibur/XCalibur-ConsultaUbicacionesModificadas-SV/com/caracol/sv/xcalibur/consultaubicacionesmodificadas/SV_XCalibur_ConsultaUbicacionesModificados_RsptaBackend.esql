@@ -1,0 +1,58 @@
+BROKER SCHEMA com.caracol.sv.xcalibur.consultaubicacionesmodificadas
+
+
+CREATE COMPUTE MODULE SV_XCalibur_ConsultaUbicacionesModificados_RsptaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*
+		 * Se declaran los namespaces que manejan los mensajes SOAP del Bus de Servicios.
+		 *
+		 */	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE nsv NAMESPACE 'http://www.caracoltv.com.co/financiera/xcalibur/consultaubicacionesmodificadas/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE car NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/Ubicaciones/ConsultaUbicaciones';		
+		DECLARE element_Index INTEGER;	
+		
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.car:ConsultaUbicacionesResponse.car:Ubicacion;
+		
+		DECLARE intUbicacion INTEGER CARDINALITY(rBodyI.*[]);
+		
+		IF (intUbicacion >= 1) THEN
+		
+			SET element_Index =1;						
+			FOR rBodyUbicaciones AS rBodyI.[] DO								
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionIdCompania = rBodyUbicaciones.car:cia;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionId = rBodyUbicaciones.car:codigo_ubicacion;
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionNombre = rBodyUbicaciones.car:nombre;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionCentroBeneficio = rBodyUbicaciones.car:centro_beneficio;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionCentroCosto = rBodyUbicaciones.car:centro_costo;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionOrdenInterna = rBodyUbicaciones.car:orden_interna;
+				IF rBodyUbicaciones.car:activo ='S' THEN					
+					SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionActivo = true;
+				ELSE
+					SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionActivo = false;
+				END IF;
+				
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionFechaActualizacion = rBodyUbicaciones.car:fecha_actualizacion;			
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionFechaVencimiento = rBodyUbicaciones.car:fecha_vencimiento;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionClase = rBodyUbicaciones.car:clase;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionCuentaDesde = rBodyUbicaciones.car:cuenta_desde;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaUbicacionesModificadasResponse.Ubicaciones.Ubicacion[element_Index].UbicacionCuentaHasta = rBodyUbicaciones.car:cuenta_hasta;
+												
+				SET element_Index = element_Index +1;
+				IF (element_Index>1000) THEN
+					RETURN TRUE;
+				END IF;
+			END FOR;			
+		ELSE
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaProveedoresResponse = '';
+		END IF;			
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;			
+		RETURN TRUE;
+	END;
+	END MODULE;

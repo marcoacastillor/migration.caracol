@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQReply.msgnode="ComIbmMQReply.msgnode" xmlns:ComIbmSOAPRequest.msgnode="ComIbmSOAPRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mbmonitor="http://www.ibm.com/wbi/2008/eflow_mbmonitor" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility"
+    nsURI="com/caracoltv/com/co/anular/ausencias/anularaprobacionvacaciones/SV_AnularAprobacionVacaciones01.msgflow" nsPrefix="com_caracoltv_com_co_anular_ausencias_anularaprobacionvacaciones_SV_AnularAprobacionVacaciones01.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="SV_AnularAprobacionVacaciones01" bundleName="com/caracoltv/com/co/anular/ausencias/anularaprobacionvacaciones/SV_AnularAprobacionVacaciones01" pluginId="Ausencias-AnularAprobacionVacaciones-SV"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Ausencias-AnularAprobacionVacaciones-SV/icons/full/obj16/SV_AnularAprobacionVacaciones01.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Ausencias-AnularAprobacionVacaciones-SV/icons/full/obj30/SV_AnularAprobacionVacaciones01.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="71,235" queueName="SV.AUSENCIAS.ANULARAPROBARVACACIONES.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="MQ Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="215,235" computeExpression="esql://routine/com.caracoltv.com.co.anular.ausencias.anularaprobacionvacaciones#SV_AnularAprobacionVacaciones01_Compute.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Consulta Ausencias"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="558,236" computeExpression="esql://routine/com.caracoltv.com.co.anular.ausencias.anularaprobacionvacaciones#SV_AnularAprobacionVacaciones01_Respuesta_Ausencias.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Respuesta Ausencias"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="757,237">
+        <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="404,236" wsdlFileName="SrvpintAnularSolicitudAprobada.wsdl" selectedPortType="IAnularSolicitudAprobada" selectedBinding="BasicHttpBinding_IAnularSolicitudAprobada" selectedOperation="AnularSolicitud" selectedPort="BasicHttpBinding_IAnularSolicitudAprobada" targetNamespace="http://tempuri.org/" useHTTPTransport="true" webServiceURL="http://betapi01/AnularAprobacionVacaciones/AnularSolicitudAprobada.svc"
+          requestTimeout="30" sslProtocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="SOAP Request"/>
+        <longDescription xmi:type="utility:ConstantString" string="original.&#xD;&#xA;---------------------------------------------------------------------------&#xD;&#xA;http://srvpint2/ServiciosAusencias/AnularSolicitudAprobada.svc&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;http://betapi01/AnularAprobacionVacaciones/AnularSolicitudAprobada.svc"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="SOAP Request.terminal.in" eventIdentity="Ausencias_AnularAprobacionVacaciones.SOAP Request.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="Ausencias_AnularAprobacionVacaciones.SOAP Request.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Out terminal" eventSourceName="SOAP Request.terminal.out" eventIdentity="Ausencias_AnularAprobacionVacaciones.SOAP Request.OutTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="Ausencias_AnularAprobacionVacaciones.SOAP Request.OutTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

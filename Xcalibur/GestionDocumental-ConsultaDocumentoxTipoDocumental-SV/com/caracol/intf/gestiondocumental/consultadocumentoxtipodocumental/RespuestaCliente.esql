@@ -1,0 +1,75 @@
+BROKER SCHEMA com.caracol.intf.gestiondocumental.consultadocumentoxtipodocumental
+
+/****************************************************************************
+ *																			*
+ * File Name: RespuestaCliente.esql												*
+ *																			*
+ * Purpose:   Envia mensaje con informacion de ejcución del Comando 1 al ECM	*
+ * 				de respuesta de los servicios.								*
+ *																			* 	
+ * Authors:   Omar Acosta Casas.												*
+ *                 															*
+ * Date      03 Julio 2020												*
+ * Version:  1.0															*
+ *																			*
+ * @copyright  Caracol TV 2020.  All rights reserved.                  		*
+ ****************************************************************************/
+CREATE COMPUTE MODULE SV_ConsultaDocumentoxTipoDocumental_RespuestaCliente
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope'; 
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';		
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/gestiondocumental/consultadocumentoxtipodocumental/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		DECLARE ComandoRespuesta CHAR;	
+		DECLARE element_Index INT;
+		SET OutputRoot.Properties = InputRoot.Properties;
+		--SET OutputRoot.MQMD=InputRoot.MQMD;	
+		SET OutputRoot.MQMD= Environment.Variables.MQMD[1];	 	
+					
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;  		
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.xml.Response.Result.Document;  
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse; 
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse.IdDocumento= CAST (rBodyI.id AS INTEGER);  
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse.Nombre= CAST (rBodyI.name AS CHARACTER);   
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse.UltimaRevision=rBodyI.LatestRevision; 
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse.TipoDocumental= CAST( rBodyI.DocumentType AS CHAR);
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse.FechaCreacion=CAST( SUBSTRING(rBodyI.DateStored FROM 1 FOR 10) AS DATE);   
+		DECLARE intDocumento INTEGER CARDINALITY(InputRoot.XMLNSC.xml.Response.Result.*[]);   			
+		IF (intDocumento = 1) THEN 	  
+			SET element_Index =1;							
+			FOR rBodyDocumento AS InputRoot.XMLNSC.xml.Response.Result.Document[] DO  									
+				DECLARE intPaginas INTEGER CARDINALITY(rBodyDocumento.Pages.*[]);  	
+				IF (intPaginas >= 1) THEN 		
+					SET element_Index =1;	
+					--Crear concatenación de KeywordFilterName								
+					FOR rBodyPagina AS InputRoot.XMLNSC.xml.Response.Result.Document.Pages.Page[] DO  										
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse.Paginas.Pagina[element_Index].Extension=CAST ( rBodyPagina.extension AS CHARACTER) ;   
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse.Paginas.Pagina[element_Index].Valor=CAST(rBodyPagina  AS CHARACTER );   												
+						SET element_Index = element_Index +1;				
+					END FOR;								
+				ELSE			
+					THROW USER EXCEPTION Message 3012 VALUES( 'No se encuentraron paginas en el documento' ); 					
+				END IF;	
+				 
+				DECLARE intKeyword INTEGER CARDINALITY(rBodyDocumento.Keywords.*[]);	
+				IF (intKeyword >= 1) THEN		
+					SET element_Index =1;	
+					--Crear concatenación de KeywordFilterName								
+					FOR rBodyKeyWord AS InputRoot.XMLNSC.xml.Response.Result.Document.Keywords.Keyword[] DO 												
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse.KeyWords.KeyWord[element_Index].Nombre= CAST(rBodyKeyWord.name AS CHARACTER);     
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalResponse.KeyWords.KeyWord[element_Index].Valor=CAST( rBodyKeyWord AS CHARACTER);    						 						 						 						
+						SET element_Index = element_Index +1;  				
+					END FOR; 							
+				ELSE			
+					THROW USER EXCEPTION Message 3012 VALUES( 'No se encuentra la estructura KeywordFilterName Respuesta Comando 1' );					
+				END IF;																																													
+			END FOR;									
+		ELSE			
+			THROW USER EXCEPTION Message 3012 VALUES( 'No se encuentro el documento en onbase' );  						
+		END IF;			
+ 		/*Manejo de MQReply	*/
+		SET OutputLocalEnvironment.mqmd=Environment.Variables.MQMD[1];	  
+		RETURN TRUE;	
+	END;
+END MODULE;

@@ -6,6 +6,7 @@
 		<project>Caracol-Error-Notificacion</project>
 		<project>csif-commons-exception</project>
 		<project>Indicadores</project>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

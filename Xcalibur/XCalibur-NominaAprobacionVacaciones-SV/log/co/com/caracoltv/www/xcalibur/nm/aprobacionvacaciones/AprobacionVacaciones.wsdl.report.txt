@@ -1,0 +1,24 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\AprobacionVacaciones.wsdl
+
+The WSDL import will proceed with bindings AprobacionVacacionesObj.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/AprobacionVacaciones.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/Xcalibur/NM/AprobacionVacaciones}AprobacionVacacionesObj.
+Parsing wsdl binding input AprobacionVacaciones.
+Parsing wsdl binding output AprobacionVacaciones.
+Parsing wsdl binding fault AprobacionVacacionesFault.
+Processing doc style for operation AprobacionVacaciones.
+Populating WSDL schema AprobacionVacaciones.xsd.
+Creating file AprobacionVacaciones.xsd in the workspace.
+Creating file /Xcalibur-NominaAprobacionVacaciones/AprobacionVacaciones_InlineSchema1.xsd in the workspace.
+Creating file /Xcalibur-NominaAprobacionVacaciones/AprobacionVacaciones_InlineSchema2.xsd in the workspace.
+Copying source WSDL AprobacionVacaciones.wsdl to AprobacionVacaciones.wsdl.
+
+Elapsed time processing this message definition file: 0.969 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,42 @@
+BROKER SCHEMA com.caracol.intf.gestiondocumental.listardocumentosxtipodocumental
+
+CREATE COMPUTE MODULE SV_ListarDocumentosXTipoDocumental_Response
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope'; 
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';		
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		DECLARE ComandoRespuesta CHAR;	
+		DECLARE element_Index INT;
+		DECLARE element_Index2 INT;
+		SET OutputRoot.Properties = InputRoot.Properties;
+		--SET OutputRoot.MQMD=InputRoot.MQMD;	
+		SET OutputRoot.MQMD= Environment.Variables.MQMD[1];	 						
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;  		
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.xml.Response.Result.Document;  
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body;
+			SET element_Index=1;
+			FOR rBodyDocumento AS InputRoot.XMLNSC.xml.Response.Result.Document[] DO  
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Documentos.Documento[element_Index].IdDocumento= CAST (rBodyDocumento.id AS INTEGER);  
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Documentos.Documento[element_Index].Nombre= CAST (rBodyDocumento.name AS CHARACTER);   
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Documentos.Documento[element_Index].UltimaRevision=rBodyDocumento.LatestRevision; 
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Documentos.Documento[element_Index].TipoDocumental= CAST( rBodyDocumento.DocumentType AS CHAR);
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Documentos.Documento[element_Index].FechaCreacion=CAST( SUBSTRING(rBodyDocumento.DateStored FROM 1 FOR 10) AS DATE);    				 
+				DECLARE intKeyword INTEGER CARDINALITY(rBodyDocumento.Keywords.*[]);	
+				IF (intKeyword >= 1) THEN		
+					SET element_Index2 =1;	
+					--Crear KeyWord 							
+					FOR rBodyKeyWord AS InputRoot.XMLNSC.xml.Response.Result.Document.Keywords.Keyword[] DO 												
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Documentos.Documento[element_Index].KeyWords.KeyWord[element_Index2].Nombre= CAST(rBodyKeyWord.name AS CHARACTER);     
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Documentos.Documento[element_Index].KeyWords.KeyWord[element_Index2].Valor=CAST( rBodyKeyWord AS CHARACTER);     						 						 						 						
+						SET element_Index2 = element_Index2 +1;  				
+					END FOR; 							
+				END IF;	
+				set element_Index = element_Index +1;																																												
+			END FOR;									
+ 		/*Manejo de MQReply	*/
+		SET OutputLocalEnvironment.mqmd=Environment.Variables.MQMD[1];	  
+		RETURN TRUE;	
+	END;
+END MODULE;
+		

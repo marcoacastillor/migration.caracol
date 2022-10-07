@@ -1,0 +1,24 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\ConsultaUbicacionesXCalibur.wsdl
+
+The WSDL import will proceed with bindings ConsultaUbicacionesObj.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/ConsultaUbicacionesXCalibur.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/Xcalibur/CG/Ubicaciones}ConsultaUbicacionesObj.
+Parsing wsdl binding input ConsultaUbicaciones.
+Parsing wsdl binding output ConsultaUbicaciones.
+Parsing wsdl binding fault ConsultaUbicacionesFault.
+Processing doc style for operation ConsultaUbicaciones.
+Populating WSDL schema ConsultaUbicacionesXCalibur.xsd.
+Creating file ConsultaUbicacionesXCalibur.xsd in the workspace.
+Creating file /Xcalibur-ConsultaUbicacionesModificadas/ConsultaUbicacionesXCalibur_InlineSchema1.xsd in the workspace.
+Creating file /Xcalibur-ConsultaUbicacionesModificadas/ConsultaUbicacionesXCalibur_InlineSchema2.xsd in the workspace.
+Copying source WSDL ConsultaUbicacionesXCalibur.wsdl to ConsultaUbicacionesXCalibur.wsdl.
+
+Elapsed time processing this message definition file: 0.437 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+
