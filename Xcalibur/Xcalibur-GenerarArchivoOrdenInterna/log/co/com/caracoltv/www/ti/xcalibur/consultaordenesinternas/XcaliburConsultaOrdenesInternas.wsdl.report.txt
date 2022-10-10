@@ -1,0 +1,25 @@
+
+
+Importing file: C:\Users\oeacosta\IBM\IIBT10\workspace\XCalibur-ConsultaOrdenesInternas-CH\XcaliburConsultaOrdenesInternas.wsdl
+
+The WSDL import will proceed with bindings bdxcaliburconsultaordenesinternasSOAP12Http.
+Creating wsdl schema document for file:///C:/Users/oeacosta/IBM/IIBT10/workspace/XCalibur-ConsultaOrdenesInternas-CH/XcaliburConsultaOrdenesInternas.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/}bdxcaliburconsultaordenesinternasSOAP12Http.
+Parsing wsdl binding input ConsultaOrdenesInternas.
+Parsing wsdl binding output ConsultaOrdenesInternas.
+Parsing wsdl binding fault fault.
+Processing doc style for operation ConsultaOrdenesInternas.
+Populating WSDL schema XcaliburConsultaOrdenesInternas.xsd.
+Removing unnecessary import statement with namespace http://schemas.xmlsoap.org/soap/envelope/ from schema /Xcalibur-GenerarArchivoOrdenInterna/Xcalibur-GenerarArchivoOrdenInterna/ebms-header-3_0-200704.xsd.  This statement was not resolved and is never used.
+Creating file XcaliburConsultaOrdenesInternas.xsd in the workspace.
+Creating file /Xcalibur-GenerarArchivoOrdenInterna/Xcalibur_ConsultaOrdenesInternas.xsd in the workspace.
+Creating file /Xcalibur-GenerarArchivoOrdenInterna/Xcalibur-GenerarArchivoOrdenInterna/ebms-header-3_0-200704.xsd in the workspace.
+Copying source WSDL XcaliburConsultaOrdenesInternas.wsdl to XcaliburConsultaOrdenesInternas.wsdl.
+
+Elapsed time processing this message definition file: 0.513 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

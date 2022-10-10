@@ -1,0 +1,38 @@
+BROKER SCHEMA Indicadores
+DECLARE ip EXTERNAL CHARACTER '';
+DECLARE cliente EXTERNAL CHARACTER '';
+DECLARE servicio EXTERNAL CHARACTER '';
+
+
+CREATE COMPUTE MODULE EnviarInformacionEntrada_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+
+	BEGIN
+				
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+			
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;		 	
+		SET OutputRoot.Properties = InputRoot.Properties;	
+		
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		SET OutputRoot.XMLNSC=null;		
+		DECLARE rBodyI REFERENCE TO InputRoot.HTTPInputHeader;
+		IF ip<>'' THEN
+			SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ClienteIP=ip;
+			SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ClienteNombre=cliente;
+			SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ServicioNombre=servicio;			
+		ELSE						
+			SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ClienteIP=InputRoot.HTTPInputHeader."X-Remote-Addr";
+			SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ClienteNombre=InputRoot.HTTPInputHeader."X-Server-Name";
+			SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ServicioNombre=servicio;			
+		END IF;			
+				
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

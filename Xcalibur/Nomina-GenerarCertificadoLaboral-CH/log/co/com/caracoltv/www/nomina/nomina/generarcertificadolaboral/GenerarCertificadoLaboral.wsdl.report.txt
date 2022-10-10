@@ -1,0 +1,33 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\GenerarCertificadoLaboral.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'generarcertificadolaboral.xsd' has not been resolved, Line: 23, Column: 4
+XSD: The location 'ebms-header-3_0-200704.xsd' has not been resolved, Line: 27, Column: 5
+WSDL: The 'GenerarCertificadoLaboralRequest' element referenced by the GenerarCertificadoLaboralRequest part cannot be resolved., Line: 34, Column: 6
+WSDL: The 'GenerarCertificadoLaboralResponse' element referenced by the GenerarCertificadoLaboralResponse part cannot be resolved., Line: 38, Column: 6
+WSDL: The 'Messaging' element referenced by the detail part cannot be resolved., Line: 43, Column: 5
+
+
+The WSDL import will proceed with bindings bdGenerarCertificadoLaboralSOAP11Http.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/GenerarCertificadoLaboral.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboral/}bdGenerarCertificadoLaboralSOAP11Http.
+Parsing wsdl binding input generarcertificado.
+Parsing wsdl binding output generarcertificado.
+Parsing wsdl binding fault fault.
+Processing doc style for operation generarcertificado.
+Populating WSDL schema GenerarCertificadoLaboral.xsd.
+Removing unnecessary import statement with namespace generarcertificadolaboral.xsd from schema GenerarCertificadoLaboral_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/ from schema GenerarCertificadoLaboral_InlineSchema2.xsd.  This statement was not resolved and is never used.
+Creating file GenerarCertificadoLaboral.xsd in the workspace.
+Copying source WSDL GenerarCertificadoLaboral.wsdl to GenerarCertificadoLaboral.wsdl.
+
+Elapsed time processing this message definition file: 0.309 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

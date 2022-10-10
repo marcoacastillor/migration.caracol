@@ -1,0 +1,11 @@
+BROKER SCHEMA com.caracol.sv.dominio.generararchivoordeninterna
+
+
+CREATE COMPUTE MODULE CHRest_GenerarArchivoOrdenInterna_Resp_JSON
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);
+		SET OutputRoot.JSON.Data.Respuesta = 'Archivo Ordenes Internas Generado.. ok';  
+		RETURN TRUE;
+	END;
+END MODULE;

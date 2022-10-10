@@ -1,0 +1,13 @@
+BROKER SCHEMA com.caracol.com.co.archivos.onbase.cargaarchivo
+
+
+CREATE COMPUTE MODULE CargaArchivosOnBaseEliminar_EliminarArchivoPDF
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';									
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body;				
+		SET OutputRoot.Properties = InputRoot.Properties;	
+	    SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaEliminacion= 'E:\IBM\Proyectos\CertificadoLaboral\PDF\';	    	  	     	 			 	
+		RETURN TRUE;
+	END;	
+END MODULE;

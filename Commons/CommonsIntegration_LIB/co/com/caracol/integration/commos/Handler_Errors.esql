@@ -1,6 +1,6 @@
 BROKER SCHEMA co.com.caracol.integration.commos
 
-DECLARE SPECIFIC_RESP CONSTANT CHARACTER 'SPECIFIC_RESP_ERROR';
+DECLARE SPECIFIC_RESP CONSTANT CHARACTER 'RESP_ERROR';
 
 CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificWS
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -25,7 +25,7 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificWS
 		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
 		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
 		
-		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,UUIDASCHAR,codeError|| ' : ' ||nameError||' : '||descError);
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,UUIDASCHAR,codeError,codeError|| ' : ' ||nameError||' : '||descError);
 		
 		RETURN TRUE;
 	END;

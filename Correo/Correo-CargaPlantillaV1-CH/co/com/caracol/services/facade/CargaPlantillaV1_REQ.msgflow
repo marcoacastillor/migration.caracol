@@ -9,6 +9,9 @@
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TRACING" name="UDP_TRACING" lowerBound="1" defaultValueLiteral="true">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TONOTIFICATION" name="UDP_TONOTIFICATION" lowerBound="1" defaultValueLiteral="marco@gmail.com,juan@hotmail.com">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
     <translation xmi:type="utility:TranslatableString" key="CargaPlantillaV1_REQ" bundleName="co/com/caracol/services/facade/CargaPlantillaV1_REQ" pluginId="Correo-CargaPlantillaV1-CH"/>
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-CargaPlantillaV1-CH/icons/full/obj16/CargaPlantillaV1_REQ.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Correo-CargaPlantillaV1-CH/icons/full/obj30/CargaPlantillaV1_REQ.gif"/>
@@ -52,6 +55,9 @@
         <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_SERVICE" bundleName="co/com/caracol/services/facade/CargaPlantillaV1_REQ" pluginId="Correo-CargaPlantillaV1-CH"/>
         <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TRACING">
           <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TRACING" bundleName="co/com/caracol/services/facade/CargaPlantillaV1_REQ" pluginId="Correo-CargaPlantillaV1-CH"/>
+          <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TONOTIFICATION">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TONOTIFICATION" bundleName="co/com/caracol/services/facade/CargaPlantillaV1_REQ" pluginId="Correo-CargaPlantillaV1-CH"/>
+          </propertyDescriptor>
         </propertyDescriptor>
       </propertyDescriptor>
     </propertyOrganizer>

@@ -1,0 +1,31 @@
+BROKER SCHEMA com.caracol.sv.dominio.xcalibur.consultacertificadolaboralV2
+
+
+CREATE COMPUTE MODULE SV_CopnsultaCertificadoLaboralV2_ConsultaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE tem NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/NM/CerLaboral/ConsultaCertificadoLaboralXcalibur';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultacertificadolaboralv2/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s11:Envelope.s11:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s11:Envelope.s11:Body.srv:ConsultaCertificadoLaboralRequest;		
+		
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://www.caracoltv.com.co/Xcalibur/NM/CerLaboral/ConsultaCertificadoLaboralXcalibur';
+		SET OutputRoot.SOAP.Body.tem:ConsultarDatosCertificado.tem:Cia= rBodyI.Cia;
+	    SET OutputRoot.SOAP.Body.tem:ConsultarDatosCertificado.tem:Cedula= rBodyI.Cedula;
+	   
+	   
+   	    IF CAST(rBodyI.FechaNacimiento AS CHARACTER FORMAT 'yyyyMMdd')<> '' THEN	    
+    		SET OutputRoot.SOAP.Body.tem:ConsultarDatosCertificado.tem:Fechanacimiento= rBodyI.FechaNacimiento;   	    	   	    
+	    END IF;	    	    	   
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

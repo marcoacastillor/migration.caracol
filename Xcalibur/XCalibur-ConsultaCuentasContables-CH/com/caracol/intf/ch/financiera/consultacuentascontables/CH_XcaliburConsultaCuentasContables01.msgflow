@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmLabel.msgnode="ComIbmLabel.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmRouteToLabel.msgnode="ComIbmRouteToLabel.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ComIbmValidate.msgnode="ComIbmValidate.msgnode" xmlns:Indicadores_EnviarInformacionEntrada.subflow="Indicadores/EnviarInformacionEntrada.subflow"
+    xmlns:com_cysce_core_context_StoreContext.subflow="com/cysce/core/context/StoreContext.subflow" xmlns:com_cysce_core_util_exception_soap11_ExceptionHandlerSoap11.subflow="com/cysce/core/util/exception/soap11/ExceptionHandlerSoap11.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracol/intf/ch/financiera/consultacuentascontables/CH_XcaliburConsultaCuentasContables01.msgflow" nsPrefix="com_caracol_intf_ch_financiera_consultacuentascontables_CH_XcaliburConsultaCuentasContables01.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="CH_XcaliburConsultaCuentasContables01" bundleName="com/caracol/intf/ch/financiera/consultacuentascontables/CH_XcaliburConsultaCuentasContables01" pluginId="XCalibur-ConsultaCuentasContables-CH"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/XCalibur-ConsultaCuentasContables-CH/icons/full/obj16/CH_XcaliburConsultaCuentasContables01.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/XCalibur-ConsultaCuentasContables-CH/icons/full/obj30/CH_XcaliburConsultaCuentasContables01.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="33,256" labelName="OperacionConsultaCuentasContables">
+        <translation xmi:type="utility:ConstantString" string="OperacionConsultaCuentasContables"/>
+      </nodes>
+      <nodes xmi:type="ComIbmValidate.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="397,148" validateMaster="contentAndValue">
+        <translation xmi:type="utility:ConstantString" string="Validate"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="690,19">
+        <translation xmi:type="utility:ConstantString" string="SOAP Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="355,480" computeExpression="esql://routine/com.caracol.intf.ch.financiera.consultacuentascontables#CH_XcaliburConsultaCuentasContables01_MapPUC.Main">
+        <translation xmi:type="utility:ConstantString" string="MapPUC"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRouteToLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="683,152">
+        <translation xmi:type="utility:ConstantString" string="Route To Label"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="517,259" queueName="SV.XCALIBUR.CONSULTACUENTASCONTABLES.01" newMsgId="true" request="true" replyToQ="CH.WS.XCALIBUR.CONSULTACUENTASCONTABLES.02">
+        <translation xmi:type="utility:ConstantString" string="MQOUTPUT"/>
+      </nodes>
+      <nodes xmi:type="com_cysce_core_context_StoreContext.subflow:FCMComposite_1" xmi:id="FCMComposite_1_7" location="754,279" queueName="CSIF.ESB.CONSULTACUENTASCONTABLES.STORE">
+        <translation xmi:type="utility:ConstantString" string="StoreContext"/>
+      </nodes>
+      <nodes xmi:type="com_cysce_core_util_exception_soap11_ExceptionHandlerSoap11.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="427,18">
+        <translation xmi:type="utility:ConstantString" string="ExceptionHandlerSoap"/>
+      </nodes>
+      <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="210,27" servicio="Xcalibur-ConsultaCuentasContables">
+        <translation xmi:type="utility:ConstantString" string="EnviarInformacionEntrada"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="86,153" wsdlFileName="XcaliburConsultaCuentasContables.wsdl" selectedPortType="ptConsultaCuentasContables" selectedBinding="bdxcaliburConsultaCuentasContablesSOAP12Http" selectedPort="ptconsultacuentascontables12" targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultacuentascontables/" useHTTPTransport="true" urlSelector="/services/s12/dominio/xcaliburconsultacuentascontables" allowQueryWSDL="true">
+        <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.match" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:tns="http://tempuri.org/">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="ServiceECM_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="serviceSoap" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="false" name="serviceHttpPost" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="true" name="serviceSoap12" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="false" name="serviceHttpGet" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    
+          <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="ServiceECM_InlineSchema1.xsd"/>
+    </xsd:schema>
+    </wsdl:types>
+  <wsdl:message name="ExecuteSoapIn">
+    <wsdl:part element="tns:Execute" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ExecuteSoapOut">
+    <wsdl:part element="tns:ExecuteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ExecuteHttpGetIn">
+    <wsdl:part name="xmlCommand" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="ExecuteHttpGetOut">
+    <wsdl:part element="tns:string" name="Body"/>
+  </wsdl:message>
+  <wsdl:message name="ExecuteHttpPostIn">
+    <wsdl:part name="xmlCommand" type="s:string"/>
+  </wsdl:message>
+  <wsdl:message name="ExecuteHttpPostOut">
+    <wsdl:part element="tns:string" name="Body"/>
+  </wsdl:message>
+  <wsdl:portType name="serviceSoap">
+    <wsdl:operation name="Execute">
+      <wsdl:input message="tns:ExecuteSoapIn"/>
+      <wsdl:output message="tns:ExecuteSoapOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="serviceHttpGet">
+    <wsdl:operation name="Execute">
+      <wsdl:input message="tns:ExecuteHttpGetIn"/>
+      <wsdl:output message="tns:ExecuteHttpGetOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="serviceHttpPost">
+    <wsdl:operation name="Execute">
+      <wsdl:input message="tns:ExecuteHttpPostIn"/>
+      <wsdl:output message="tns:ExecuteHttpPostOut"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="serviceSoap" type="tns:serviceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Execute">
+      <soap:operation soapAction="http://tempuri.org/Execute" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="serviceSoap12" type="tns:serviceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="Execute">
+      <soap12:operation soapAction="http://tempuri.org/Execute" style="document"/>
+      <wsdl:input>
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="serviceHttpGet" type="tns:serviceHttpGet">
+    <http:binding verb="GET"/>
+    <wsdl:operation name="Execute">
+      <http:operation location="/Execute"/>
+      <wsdl:input>
+        <http:urlEncoded/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="serviceHttpPost" type="tns:serviceHttpPost">
+    <http:binding verb="POST"/>
+    <wsdl:operation name="Execute">
+      <http:operation location="/Execute"/>
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded"/>
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="service">
+    <wsdl:port binding="tns:serviceSoap" name="serviceSoap">
+      <soap:address location="http://kappapi01/ECM%20Service/Service.asmx"/>
+    </wsdl:port>
+    <wsdl:port binding="tns:serviceSoap12" name="serviceSoap12">
+      <soap12:address location="http://kappapi01/ECM%20Service/Service.asmx"/>
+    </wsdl:port>
+    <wsdl:port binding="tns:serviceHttpGet" name="serviceHttpGet">
+      <http:address location="http://kappapi01/ECM%20Service/Service.asmx"/>
+    </wsdl:port>
+    <wsdl:port binding="tns:serviceHttpPost" name="serviceHttpPost">
+      <http:address location="http://kappapi01/ECM%20Service/Service.asmx"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

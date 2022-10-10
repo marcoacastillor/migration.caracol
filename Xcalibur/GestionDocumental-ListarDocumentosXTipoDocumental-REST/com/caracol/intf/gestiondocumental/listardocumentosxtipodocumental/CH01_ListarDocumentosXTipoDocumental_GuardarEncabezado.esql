@@ -1,0 +1,43 @@
+BROKER SCHEMA com.caracol.intf.gestiondocumental.listardocumentosxtipodocumental
+CREATE COMPUTE MODULE CH01_ListarDocumentosXTipoDocumental_GuardarEncabezado
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;			
+		CALL CopyMessage();				
+        SET OutputRoot.JSON.Data.mensaje=InputRoot.JSON.Data.mensaje; 
+		IF CONTAINS(InputRoot.HTTPInputHeader."X-Original-HTTP-Command", 'POST') THEN
+		   SET OutputLocalEnvironment.Destination.RouterList.DestinationData[1].labelName = 'POST';		   
+		   SET OutputLocalEnvironment.Destination.HTTP.Reply.ReplyIdentifier=InputLocalEnvironment.Destination.HTTP.RequestIdentifier;		   
+	 	END IF;	 	 					
+ 		RETURN TRUE;
+	END;
+	CREATE PROCEDURE CopyMessage() 
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';								
+		SET OutputRoot.Properties = InputRoot.Properties;
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';			
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;			
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;			
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body TYPE Name;
+		DECLARE rBodyIJson REFERENCE TO InputRoot.JSON.Data;
+			
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.JWT=InputRoot.HTTPInputHeader."Token";
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Servicio='2310';	 					
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Properties=InputRoot.Properties;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.MQMD =InputRoot.MQMD;		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ReplyIdentifier=InputLocalEnvironment.Destination.HTTP.RequestIdentifier;					
+		SET Environment.Variables.JWT[] =LIST{InputRoot.HTTPInputHeader."Token"};					
+		SET Environment.Variables.Servicio[] =LIST{'2310'}; 								
+		SET Environment.Variables.Properties[] =LIST{InputRoot.Properties};		
+		SET Environment.Variables.MQMD[] =LIST{InputRoot.MQMD};								
+		SET Environment.Variables.ReplyIdentifier[]=LIST{InputLocalEnvironment.Destination.HTTP.RequestIdentifier};
+									                                 
+		SET Environment.Variables.TipoDocumental[]=LIST{rBodyIJson.TipoDocumental};  		
+		SET Environment.Variables.KeyWords[]=LIST{rBodyIJson.KeyWords}; 
+		SET Environment.Variables.KeywordsFilter[]=LIST{rBodyIJson.KeywordsFilter};    		 		 				
+	END;		
+	
+END MODULE;

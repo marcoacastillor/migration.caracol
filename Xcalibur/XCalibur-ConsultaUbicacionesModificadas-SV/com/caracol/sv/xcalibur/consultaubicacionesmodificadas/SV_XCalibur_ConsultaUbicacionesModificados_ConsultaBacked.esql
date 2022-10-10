@@ -1,0 +1,26 @@
+BROKER SCHEMA com.caracol.sv.xcalibur.consultaubicacionesmodificadas
+
+
+CREATE COMPUTE MODULE SV_XCalibur_ConsultaUbicacionesModificados_ConsultaBacked
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		
+		DECLARE tem NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/Ubicaciones/ConsultaUbicaciones';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/financiera/xcalibur/consultaubicacionesmodificadas/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaUbicacionesModificadasRequest;		
+		
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://www.caracoltv.com.co/financiera/xcalibur/consultaubicacionesmodificadas/';
+		SET OutputRoot.SOAP.Body.tem:ConsultaUbicaciones.tem:ipCia= rBodyI.Compania;
+	    SET OutputRoot.SOAP.Body.tem:ConsultaUbicaciones.tem:ipUbicacion= rBodyI.Ubicacion;		
+	    SET OutputRoot.SOAP.Body.tem:ConsultaUbicaciones.tem:ipFechaActualizacion= rBodyI.FechaModificacion;
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;		
+		RETURN TRUE;
+	END;
+END MODULE;

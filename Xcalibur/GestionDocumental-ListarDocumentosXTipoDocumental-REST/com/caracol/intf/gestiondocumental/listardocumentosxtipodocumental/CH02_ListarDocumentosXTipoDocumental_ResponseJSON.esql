@@ -1,0 +1,33 @@
+BROKER SCHEMA com.caracol.intf.gestiondocumental.listardocumentosxtipodocumental
+
+CREATE COMPUTE MODULE CH02_ListarDocumentosXTipoDocumental_ResponseJSON
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';				
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);						
+		DECLARE j INTEGER;							
+		CREATE FIELD OutputRoot.JSON.Data IDENTITY (JSON.Array)Data;
+		SET j = 1;
+		DECLARE element_Index2 INT;
+		SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI1 REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.Documentos;
+		FOR rBodyDocumento AS rBodyI1.Documento[] DO   	 			
+			SET OutputRoot.JSON.Data.Documento[j].IdDocumento = CAST (rBodyDocumento.IdDocumento AS INTEGER);  
+			SET OutputRoot.JSON.Data.Documento[j].Nombre = CAST (rBodyDocumento.Nombre AS CHARACTER);
+			SET OutputRoot.JSON.Data.Documento[j].UltimaRevision =rBodyDocumento.UltimaRevision;
+			SET OutputRoot.JSON.Data.Documento[j].TipoDocumental =rBodyDocumento.TipoDocumental;
+			SET OutputRoot.JSON.Data.Documento[j].FechaCreacion =rBodyDocumento.FechaCreacion; 																							
+			SET j = j+1; 
+				SET element_Index2 =1;	
+				--Crear KeyWord 							
+				FOR rBodyKeyWord AS InputRoot.XMLNSC.s12:Envelope.s12:Body.Documentos.Documento[j].KeyWords.*[] DO   												
+					SET OutputRoot.JSON.Data.Documento[j].KeyWord[element_Index2].Nombre= CAST(rBodyKeyWord.Nombre AS CHARACTER);     
+					SET OutputRoot.JSON.Data.Documento[j].KeyWord[element_Index2].Valor=CAST( rBodyKeyWord.Valor AS CHARACTER);      						 						 						 						
+					SET element_Index2 = element_Index2 +1;  	 			
+				END FOR; 							
+		END FOR;	
+		RETURN TRUE;
+	END;
+END MODULE;

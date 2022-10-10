@@ -1,0 +1,47 @@
+BROKER SCHEMA com.caracol.xcalibur.nomina.comprobantevacaciones
+
+
+CREATE COMPUTE MODULE SV_NominaComprobanteVacaciones02_CargaPlantilla
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+            DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla4/';
+            DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';       
+            DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC;
+            DECLARE element_Index INTEGER;                 
+            SET element_Index =1;         
+            /*Copia de variales de entrada a varialbes de salida*/           
+            SET OutputRoot.Properties = InputRoot.Properties;                
+            /*Se construye el SOAP Request con la informacion necesaria*/                      
+          	SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://www.w3.org/2003/05/soap-envelope';                
+			IF  Environment.Variables.Compania[1] = 330 THEN
+            	SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.De='salarios@caracoltv.com.co';                              
+            ELSEIF  Environment.Variables.Compania[1] = 357 THEN
+            	SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.De='salarios@stockmodels.com.co';                             
+            ELSEIF  Environment.Variables.Compania[1] = 332 THEN            	        
+                SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.De='admin@radialbogota.com';
+			ELSE				                         
+				SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.De='salarios@caracoltv.com.co';				                          
+            END IF;              
+            SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Para=Environment.Variables.CorreoElectronico[1];                        
+            SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Asunto=Environment.Variables.Asunto[1]; 
+            SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Titulo=Environment.Variables.Titulo[1]; 
+            SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje1=Environment.Variables.Mensaje1[1];             
+            SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje2=Environment.Variables.Mensaje2[1];            
+            SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.TextoLink='NOTA: Este mensaje ha sido enviado por un sistema automático. Por favor no intente responder a este mensaje ya que este buzón de correo no es válido.';
+         	SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Link='';         	           
+            SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Prioridad='1';
+            IF  Environment.Variables.Compania[1] = 330 THEN
+                SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Plantilla='Caracol.html';                 
+            ELSEIF  Environment.Variables.Compania[1] = 357 THEN             
+                SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Plantilla='StockModels.html'; 
+            ELSEIF  Environment.Variables.Compania[1] = 332 THEN         
+                SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Plantilla='Radial.html';   
+            ELSE
+            	SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Plantilla='Caracol.html';	                   
+            END IF;                     
+            SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.AAdjuntos.Adjunto[element_Index].Nombre=  Environment.Variables.NombreArchivo[1];               
+            --Archivo Comprobante de Vacaciones                        
+            SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.AAdjuntos.Adjunto[element_Index].Data =rBodyI.ArchivoPdf;
+            RETURN TRUE;
+	END;
+END MODULE;

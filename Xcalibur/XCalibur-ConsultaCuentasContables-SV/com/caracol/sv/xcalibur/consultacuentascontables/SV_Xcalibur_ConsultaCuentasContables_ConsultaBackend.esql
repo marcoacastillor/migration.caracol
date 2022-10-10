@@ -1,0 +1,29 @@
+BROKER SCHEMA com.caracol.sv.xcalibur.consultacuentascontables
+
+
+CREATE COMPUTE MODULE SV_Xcalibur_ConsultaCuentasContables_ConsultaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE tem NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/PUC/ConsultaPuc';		
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultacuentascontables/';		
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		--Request del servicio del esb		
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaCuentasContablesRequest;		
+		
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://www.caracoltv.com.co/Xcalibur/CG/PUC/ConsultaPuc';
+		SET OutputRoot.SOAP.Body.tem:ConsultaPUC.tem:ipCia= rBodyI.CompaniaId;
+	    SET OutputRoot.SOAP.Body.tem:ConsultaPUC.tem:ipCuenta= rBodyI.Cuenta;
+		SET OutputRoot.SOAP.Body.tem:ConsultaPUC.tem:ipNombre= rBodyI.Nombre;	    
+		SET OutputRoot.SOAP.Body.tem:ConsultaPUC.tem:ipCuentaNombre= rBodyI.CuentaNombre;		    	   
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;			
+		RETURN TRUE;
+	END;
+
+
+END MODULE;

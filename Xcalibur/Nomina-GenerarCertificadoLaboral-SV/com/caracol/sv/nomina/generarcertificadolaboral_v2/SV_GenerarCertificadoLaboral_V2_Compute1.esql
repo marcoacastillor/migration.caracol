@@ -1,0 +1,47 @@
+BROKER SCHEMA com.caracol.sv.nomina.generarcertificadolaboral_v2
+CREATE COMPUTE MODULE SV_GenerarCertificadoLaboral_V2_Compute1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		/*Definicion de Namespace utilizados para construir el SOAP Request*/					
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdfv2/';
+		DECLARE srv1 NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultacertificadolaboralv2/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		/*Se lee la informacion de entrada que proviene de un SOAP Request*/
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body;
+		SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;		
+		/*Se construye el SOAP Request con la informacion necesaria*/
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:srv='http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdfv2/';
+		SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.DsNo= Environment.Variables.D1DsNo[1];
+		SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Nombres= rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Nombres;
+		SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Cedula= Environment.Variables.D1Cedula[1];
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.FechaIngreso= rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.FechaIngreso;
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Cargo= rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Cargo;
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.TipoContrato= rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.TipoContrato;
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Asignacion= rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Asignacion;	    
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Solicitud= Environment.Variables.D1Solicitud[1];
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Destino= Environment.Variables.D1Destino[1];
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.TipoAsignacion= rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.TipoAsignacion;	    
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Ficha= rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Ficha;
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Empresa= rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Empresa;
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.Estado= rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Estado;
+	    SET OutputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest.CertificadoLaboral.VisualizarSueldo= Environment.Variables.D1Visualizarsueldo[1];	    	 	       	    	   
+		/*Se guarda el mensaje de entrada en varialbles de entorno, para ser utilizadas en nodos posteriores*/		
+		SET Environment.Variables.D3CorreoElectronico[] =LIST{rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.CorreoElectronico};
+		SET Environment.Variables.D3Nombres[] =LIST{rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Nombres};
+		SET Environment.Variables.D3FechaIngreso[] =LIST{rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.FechaIngreso};
+		SET Environment.Variables.D3Cargo[] =LIST{rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Cargo};
+		SET Environment.Variables.D3TipoContrato[] =LIST{rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.TipoContrato};
+		SET Environment.Variables.D3AsignacionMensual[] =LIST{rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Asignacion};			
+		SET Environment.Variables.D3TipoAsignacion[] =LIST{rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.TipoAsignacion};		
+		SET Environment.Variables.D3CorreoElectronico[] =LIST{rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.CorreoElectronico};				
+		SET Environment.Variables.Ficha[] =LIST{rBodyI.srv1:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Ficha};								
+		SET OutputLocalEnvironment.mqmd= InputLocalEnvironment.MQMD;		 
+		RETURN TRUE;
+	END;
+END MODULE;

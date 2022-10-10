@@ -1,0 +1,9 @@
+BROKER SCHEMA co.com.caracol.services.trazability
+
+
+CREATE COMPUTE MODULE RegisterLog_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		RETURN FALSE;
+	END;
+END MODULE;

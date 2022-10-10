@@ -1,0 +1,40 @@
+BROKER SCHEMA com.caracol.sv.dominio.generararchivoordeninterna
+
+
+CREATE COMPUTE MODULE CHRest_GenerarArchivoOrdenInterna_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE nsv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		DECLARE Datos CHAR;	
+		DECLARE element_Index INTEGER;	
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd; 
+		SET Datos= ''; 
+		DECLARE CR CHAR CAST(CAST('X''0A''' AS BLOB) AS CHAR CCSID 1208); 
+		
+		DECLARE intOrdenInterna INTEGER CARDINALITY(InputRoot.SOAP.Body.nsv:ConsultaOrdenesInternasResponse.OrdenesInternas.*[]);
+		IF (intOrdenInterna >= 1) THEN		
+			SET element_Index =1;		
+			SET Datos ='Ubicacion,Nombre,Codigo SAP, Clase, Rango' || CR;  				
+			FOR rBodyOrdenInterna AS InputRoot.SOAP.Body.nsv:ConsultaOrdenesInternasResponse.OrdenesInternas.[] DO 	  				 							 		  		 		   
+		 		SET Datos = Datos || CAST(rBodyOrdenInterna.CodigoUbicacion AS CHAR) || ',' || REPLACE(rBodyOrdenInterna.Nombre,',','') || ',' || rBodyOrdenInterna.CodigoSap || ',' || rBodyOrdenInterna.Clase || ',' || rBodyOrdenInterna.Rango || CR;		 		       		 		      		 		
+				SET element_Index = element_Index +1;
+				IF (element_Index>1000) THEN
+					RETURN TRUE;
+				END IF; 
+			END FOR;  			
+		ELSE
+			SET Datos = '';  
+		END IF;			 
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB); 				         
+        --SET OutputLocalEnvironment.Destination.File.Directory = '\\tecnicaFS\Quantum_NAS_CaracolTV\ORDENES_INTERNAS\';                                                   
+        SET OutputLocalEnvironment.Destination.File.Name =  'OrdenesInternas' || '.csv';                                                                                          
+        SET OutputLocalEnvironment.Destination.File.Action = 'Create';                       
+        SET OutputLocalEnvironment.Destination.File.TimeStamp = CURRENT_TIMESTAMP;      	
+		SET OutputRoot.BLOB.BLOB =  CAST( Datos AS BLOB CCSID 1208);  																	      		 																		
+		RETURN TRUE;
+	END;
+END MODULE;

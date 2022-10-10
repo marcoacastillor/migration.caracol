@@ -1,0 +1,25 @@
+BROKER SCHEMA com.caracol.com.co.archivos.onbase.cargaarchivo
+
+
+CREATE COMPUTE MODULE CaragaArchivosOnbase_CreaPDF
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body;		
+		SET OutputRoot.Properties = InputRoot.Properties;			
+		DECLARE Datos CHAR;
+		DECLARE Ruta CHAR;
+		DECLARE Ficha CHAR;		
+		SET Datos = Environment.Variables.ArchivoPdf[1];					
+		SET Ruta = Environment.Variables.RutaPdf[1];
+		SET Ficha = Environment.Variables.Ficha[1];				
+        SET OutputLocalEnvironment.Destination.File.Directory = Ruta;
+        SET OutputLocalEnvironment.Destination.File.Name = Ficha || '.pdf';                                                                      
+        SET OutputLocalEnvironment.Destination.File.Action = 'Create';                         
+        SET OutputLocalEnvironment.Destination.File.TimeStamp = CURRENT_TIMESTAMP;
+		DECLARE decoded BLOB BASE64DECODE(Datos);
+		DECLARE logBlob BLOB CAST(decoded AS BLOB CCSID 1208);		
+		SET OutputRoot.BLOB.BLOB = CAST (logBlob AS BLOB);		 										
+		RETURN TRUE;
+	END;
+END MODULE;

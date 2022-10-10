@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmThrow.msgnode="ComIbmThrow.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ComIbmWSRequest.msgnode="ComIbmWSRequest.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility"
+    nsURI="co/com/caracol/services/trazability/RegisterLog.msgflow" nsPrefix="co_com_caracol_services_trazability_RegisterLog.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_USERNAME" name="UDP_USERNAME" lowerBound="1" defaultValueLiteral="username">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_PASSWORD" name="UDP_PASSWORD" lowerBound="1" defaultValueLiteral="psw">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="RegisterLog" bundleName="co/com/caracol/services/trazability/RegisterLog" pluginId="Gral-Trazability"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Gral-Trazability/icons/full/obj16/RegisterLog.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Gral-Trazability/icons/full/obj30/RegisterLog.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="847,199" computeExpression="esql://routine/co.com.caracol.services.trazability#RegisterLog_ResponseService.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ResponseService"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="364,369" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="205,199" queueName="SV.TRAZABILITY.REGISTER.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="418,199" computeExpression="esql://routine/co.com.caracol.services.trazability#RegisterLog_RequestBack.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="RequestBack"/>
+      </nodes>
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="808,111" messageCatalog="700" messageText="Error comunicación con backend">
+        <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="597,370" destination="file" filePath="/opt/ace/back_log.txt" pattern="-----------------------------------------&#xD;&#xA;Fecha de regsitro:&#xD;&#xA;${CURRENT_TIMESTAMP}&#xD;&#xA;-----------------------------------------&#xD;&#xA;${Body}">
+        <translation xmi:type="utility:ConstantString" string="Trace"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="617,199" URLSpecifier="http://localhost:9200/transactions/_doc/" httpVersion="1.1" protocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="588,292" computeExpression="esql://routine/co.com.caracol.services.trazability#RegisterLog_PreparedNotificationEmail.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="PreparedNotificationEmail"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="799,293" queueName="CH.WS.COMMONS.ENDPROCESS" request="true" replyToQ="CH.WS.COMMONS.ENDPROCESS">
+        <translation xmi:type="utility:ConstantString" string="CH.WS.COMMONS.ENDPROCESS"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.error" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_USERNAME">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_USERNAME" bundleName="co/com/caracol/services/trazability/RegisterLog" pluginId="Gral-Trazability"/>
+        <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_PASSWORD">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_PASSWORD" bundleName="co/com/caracol/services/trazability/RegisterLog" pluginId="Gral-Trazability"/>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

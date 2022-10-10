@@ -1,0 +1,66 @@
+BROKER SCHEMA com.caracol.intf.gestiondocumental.consultadocumentoxtipodocumental
+
+
+/****************************************************************************
+ *																			*
+ * File Name: Comando1_ECM.esql												*
+ *																			*
+ * Purpose:   Envia mensaje con informacion de ejcución del Comando 1 al ECM	*
+ * 				de respuesta de los servicios.								*
+ *																			* 	
+ * Authors:   Omar Acosta Casas.												*
+ *                 															*
+ * Date      02 Julio 2020												*
+ * Version:  1.0															*
+ *																			*
+ * @copyright  Caracol TV 2020.  All rights reserved.                  		*
+ ****************************************************************************/
+CREATE COMPUTE MODULE SV_ConsultaDocumentoxTipoDocumental_Comando1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/gestiondocumental/consultadocumentoxtipodocumental/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaDocumentoXTipoDocumentalRequest;				
+		DECLARE Comando CHAR;
+		DECLARE element_Index INT;		
+		--asignacion tipo documental
+		SET Comando= '<Request><Type>DocumentQuery</Type><Query><DocumentTypeName>' || rBodyI.TipoDocumental || '</DocumentTypeName><Keywords>';				
+		--KEYWORD	
+						
+		DECLARE intKeyWord INTEGER CARDINALITY(rBodyI.KeyWords.*[]);
+		IF (intKeyWord >= 1) THEN		
+			SET element_Index =1;					
+			FOR rBodyKeyWord AS rBodyI.KeyWords.KeyWord[] DO	
+				--Crear concatenación de KeyWord					
+				SET Comando= Comando || '<Keyword name="' || rBodyKeyWord.Nombre || '" condition="AND" operator="EQUAL">' || rBodyKeyWord.Valor || '</Keyword>';
+				SET element_Index = element_Index +1;			
+			END FOR;						
+		ELSE			
+			THROW USER EXCEPTION Message 3012 VALUES( 'No se encuentra la estructura KeyWord' );			
+		END IF;	
+		SET Comando= Comando || '</Keywords><KeywordsFilter>';	
+								
+		--KEYWORDFILTER
+		DECLARE intKeyWordFilter INTEGER CARDINALITY(rBodyI.KeyWordFilters.*[]);				
+		IF (intKeyWordFilter >= 1) THEN		
+			SET element_Index =1;	
+			--Crear concatenación de KeyWordFilter								
+			FOR rBodyKeyWordFilter AS rBodyI.KeyWordFilters.KeyWordFilter[] DO						
+				SET Comando= Comando || '<KeywordFilterName>' || rBodyKeyWordFilter.Nombre || '</KeywordFilterName>';											
+				SET element_Index = element_Index +1;				
+			END FOR;			
+		ELSE			
+			THROW USER EXCEPTION Message 3012 VALUES( 'No se encuentra la estructura KeyWordFilter' );					
+		END IF;	
+		SET Comando= Comando || '</KeywordsFilter><LoadKeywords>True</LoadKeywords></Query></Request>';
+		SET OutputRoot.SOAP.Body.Comando=Comando;		
+	    SET Environment.Variables.MQMD[] =LIST{InputRoot.MQMD};	  	
+		RETURN TRUE;				
+	END;
+END MODULE;

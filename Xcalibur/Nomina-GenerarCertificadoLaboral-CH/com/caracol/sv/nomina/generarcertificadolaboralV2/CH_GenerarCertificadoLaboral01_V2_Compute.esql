@@ -1,0 +1,43 @@
+BROKER SCHEMA com.caracol.sv.nomina.generarcertificadolaboralV2
+
+
+CREATE COMPUTE MODULE CH_GenerarCertificadoLaboral01_V2_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*Definicion de Namespace utilizados para construir el SOAP Request*/	
+		
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/';
+		
+		/*Copia de variales de entrada a varialbes de salida*/
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		/*Se lee la informacion de entrada que proviene de un SOAPInput*/
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;
+		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;
+		
+		/*Se lee la informacion de entrada que proviene de un SOAPInput*/
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest TYPE Name;
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:GenerarCertificadoLaboralRequest;
+	    
+	    /*Se construye el SOAP Request con la informacion necesaria*/				
+		SET rBodyO.Cia=rBodyI.Cia;		
+		SET rBodyO.DsNo=rBodyI.DsNo;
+		SET rBodyO.Cedula=rBodyI.Cedula;
+		SET rBodyO.FechaNacimiento=rBodyI.FechaNacimiento;
+		SET rBodyO.Solicitud=rBodyI.Solicitud;
+		SET rBodyO.Destino=rBodyI.Destino;
+		SET rBodyO.De=rBodyI.De;
+		SET rBodyO.Destinatarios=rBodyI.Destinatarios;
+		SET rBodyO.VisualizarSueldo=rBodyI.VisualizarSueldo;		
+		RETURN TRUE;
+	END;	
+END MODULE;

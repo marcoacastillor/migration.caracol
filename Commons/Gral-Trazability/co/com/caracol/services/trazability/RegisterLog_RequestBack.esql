@@ -1,0 +1,42 @@
+BROKER SCHEMA co.com.caracol.services.trazability
+
+DECLARE UDP_USERNAME EXTERNAL CHARACTER '';
+DECLARE UDP_PASSWORD EXTERNAL CHARACTER '';
+
+CREATE COMPUTE MODULE RegisterLog_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras para auditoría
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		-- Referencia a datos de configuración
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		-- Declarar referencias
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Enviar datos de autenticación
+		SET OutputRoot.HTTPRequestHeader."Authorization" 	= 'Basic '||BASE64ENCODE(CAST(UDP_USERNAME||':'||UDP_PASSWORD as BLOB CCSID 1208));
+		SET OutputRoot.HTTPRequestHeader."User-agent" 	= '';
+		
+		-- Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		-- Mapeo de mensaje
+		SET refOut.DateRegister		= CAST(CURRENT_TIMESTAMP AS TIMESTAMP FORMAT 'yy-dd-MM HH:mm:ss.SSS');--22-04-05 09:28:07.853
+		SET refOut.Service 			= refMQRFH2.usr.transaction.service;
+		SET refOut.Operation 		= refMQRFH2.usr.transaction.operation;
+		SET refOut.TraceID 			= refMQRFH2.usr.transaction.traceId;
+		SET refOut.Message			= co.com.caracol.integration.commos.getMessageFromBody(refInp);
+		
+		IF refMQRFH2.usr.transaction.toNotification AND refMQRFH2.usr.transaction.traceId = 'RESP_ERROR' THEN
+			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+		END IF;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

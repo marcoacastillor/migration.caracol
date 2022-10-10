@@ -1,0 +1,42 @@
+BROKER SCHEMA com.caracol.xcalibur.nominaaprobacionvacaciones
+
+
+CREATE COMPUTE MODULE SV_XCalibur_NominaAprobacionVacaciones_ConsultaBacked
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';		
+		DECLARE tem NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/NM/AprobacionVacaciones/AprobacionVacaciones';
+		
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/aprobacionvacaciones/';
+							   
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:AprobacionVacacionesRequest;	
+		
+		
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://www.caracoltv.com.co/Xcalibur/NM/AprobacionVacaciones/AprobacionVacaciones';
+
+		
+	
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:cia= rBodyI.Compania;
+	
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:ficha= rBodyI.Ficha;
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:fecini= rBodyI.FechaInicioVacaciones;
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:diasvac= rBodyI.DiasTomar;
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:procedencia= rBodyI.ProcedenciaRegistro;
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:idaproba= rBodyI.LoginAprobador;
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:aprobador= rBodyI.Aprobador;
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:fecapro= rBodyI.FechaAprobacion;
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:comsol= rBodyI.ComentarioSolicita;
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:comapro= rBodyI.ComentarioAprobador;
+		SET OutputRoot.SOAP.Body.tem:AprobacionVacaciones.tem:idausencia= rBodyI.SolicitudAusenciaId;								
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;		
+		RETURN TRUE;
+	END;
+
+
+END MODULE;

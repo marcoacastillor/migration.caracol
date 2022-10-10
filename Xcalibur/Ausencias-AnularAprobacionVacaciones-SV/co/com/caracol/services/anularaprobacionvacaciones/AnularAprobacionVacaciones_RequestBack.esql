@@ -1,0 +1,31 @@
+BROKER SCHEMA co.com.caracol.services.anularaprobacionvacaciones
+
+DECLARE temp NAMESPACE 'http://tempuri.org/';
+DECLARE ns NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioAnularSolicitudesAprobadas';
+
+CREATE COMPUTE MODULE AnularAprobacionVacaciones_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:AnularSolicitud;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:AnularSolicitud;
+		
+		SET refOut.temp:Request.ns:solicitudAusenciaId 		= FIELDVALUE(refInp.*:SolicitudAusenciaId);
+		SET refOut.temp:Request.ns:solicitudIdentificacion 	= FIELDVALUE(refInp.*:NumeroIdentificacion);
+		SET refOut.temp:Request.ns:comentariosAnulacion 	= FIELDVALUE(refInp.*:Comentarios);
+		SET refOut.temp:Request.ns:usuarioAnulacion 		= FIELDVALUE(refInp.*:Usuario);
+		
+		RETURN TRUE;
+	END;	
+END MODULE;
+

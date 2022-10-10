@@ -1,0 +1,32 @@
+BROKER SCHEMA com.caracol.sv.dominio.xcalibur.consultacertificadolaboralV2
+
+
+CREATE COMPUTE MODULE SV_CopnsultaCertificadoLaboralV2_RsptaBackend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';							   
+		DECLARE nsv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultacertificadolaboralv2/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';								   
+		DECLARE datos NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/NM/CerLaboral/ConsultaCertificadoLaboralXcalibur';		
+		DECLARE metodos NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/NM/CerLaboral/';
+		
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;    	
+    	
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s11:Envelope.s11:Header;		
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.datos:ConsultarDatosCertificadoResponse;
+		
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.Nombres=rBodyI.datos:Nombres;
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.FechaIngreso=rBodyI.datos:FechaIngreso;
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.Cargo=rBodyI.datos:Cargo;
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.TipoContrato=rBodyI.datos:TipoContrato;
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.Asignacion=rBodyI.datos:Asignacion;
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.CorreoElectronico=rBodyI.datos:CorreoElectronico;		
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.TipoAsignacion=rBodyI.datos:TipoAsignacion;		
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.Ficha =rBodyI.datos:Ficha;		
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.Empresa=rBodyI.datos:NombreCia;		
+		SET OutputRoot.XMLNSC.s11:Envelope.s11:Body.nsv:ConsultaCertificadoLaboralResponse.nsv:CertificadoLaboral.Estado=rBodyI.datos:Estado;		
+	 	SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		RETURN TRUE;
+	END;	
+END MODULE;
