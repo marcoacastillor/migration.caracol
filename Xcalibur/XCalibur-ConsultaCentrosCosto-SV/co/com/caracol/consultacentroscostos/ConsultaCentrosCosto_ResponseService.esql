@@ -19,13 +19,13 @@ CREATE COMPUTE MODULE ConsultaCentrosCosto_ResponseService
 		CREATE FIELD OutputRoot.XMLNSC;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 		
-		IF EXISTS(refInp.*:CentrosCosto[]) THEN
+		IF EXISTS(refInp.*:CentroCosto[]) THEN
 		--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:ConsultaCecosResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaCecosResponse;
+			CREATE FIELD refOut.ns1:ConsultaCentrosCostoResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaCentrosCostoResponse;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:CentrosCosto.*:CentrosCosto[]  DO
+			FOR refReqs AS refInp.*:CentroCosto.*:CentroCostoRow[]  DO
 				
 				SET refOut.ns1:CentrosCosto.ns1:CentroCosto[i].ns1:Ubicacion	        = FIELDVALUE(refReqs.*:Ubicacion);
 				SET refOut.ns1:CentrosCosto.ns1:CentroCosto[i].ns1:Nombre	        	= FIELDVALUE(refReqs.*:Nombre);

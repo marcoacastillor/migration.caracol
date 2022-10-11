@@ -22,8 +22,6 @@ CREATE COMPUTE MODULE ConsultaCentrosCosto_RequestBack
 	    SET refOut.temp:ipNombre	= FIELDVALUE(refInp.*:Descripcion);
 		SET refOut.temp:ipCodSap    = FIELDVALUE(refInp.*:CodigoSAP);
 	  	
-		 SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
-		
 		RETURN TRUE;
 	END;	
 END MODULE;
