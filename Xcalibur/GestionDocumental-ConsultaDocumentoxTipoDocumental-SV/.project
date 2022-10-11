@@ -4,7 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>OnBase-EjecutarComandoECM</project>
-		<project>ECM-OnBase-EjecutarComando</project>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

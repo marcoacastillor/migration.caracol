@@ -1,0 +1,54 @@
+BROKER SCHEMA co.com.caracol.servicio.consultarsolicitudvacaciones
+
+
+
+DECLARE ns1 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope" xmlns:con="http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/';
+
+CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
+		
+		IF EXISTS(refInp.*:Solicitudes[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultarSolicitudVacacionesResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultarSolicitudVacacionesResponse;
+		
+			
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.SolicitudId	        = FIELDVALUE(refInp.*:solicitudId);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.FechaSolicitud	    = FIELDVALUE(refInp.*:solicitudFechaSolicitud);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.Estado	            = FIELDVALUE(refInp.*:solicitudEstado);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.Nombre	            = FIELDVALUE(refInp.*:solicitudNombre);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.NumeroIdentificacion	= FIELDVALUE(refInp.*:solicitudTipoContrato);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.TipoContrato	        = FIELDVALUE(refInp.*:solicitudId);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.Cargo              	= FIELDVALUE(refInp.*:solicitudCargo);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.FechaAusencia	        = FIELDVALUE(refInp.*:solicitudFechaAusencia);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.Duracion	            = FIELDVALUE(refInp.*:solicitudDuracion);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.FechaAprobacion	    = FIELDVALUE(refInp.*:solicitudFechaAprobacion);	
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.FechaFin	            = FIELDVALUE(refInp.*:solicitudFechaFin);
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.FechaReintegro      	= FIELDVALUE(refInp.*:solicitudFechaReintegro);
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.Comentarios	        = FIELDVALUE(refInp.*:solicitudComentarios);
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.Aprobador	            = FIELDVALUE(refInp.*:solicitudAprobador);
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.AprobadorComentarios	= FIELDVALUE(refInp.*:solicitudAprobadorComentarios);
+			SET refOut.ns1:ConsultarSolicitudVacacionesResponse.Solicitud.Solicitudes.Ubicacion	            = FIELDVALUE(refInp.*:solicitudUbicacion);
+
+			
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

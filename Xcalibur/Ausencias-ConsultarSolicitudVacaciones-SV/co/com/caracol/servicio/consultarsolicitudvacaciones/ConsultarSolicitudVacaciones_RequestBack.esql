@@ -1,0 +1,45 @@
+BROKER SCHEMA co.com.caracol.servicio.consultarsolicitudvacaciones
+
+DECLARE temp NAMESPACE 'http://tempuri.org/';
+DECLARE ns4 NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones';
+DECLARE ns NAMESPACE 'http://schemas.microsoft.com/2003/10/Serialization/Arrays';
+DECLARE ns2 NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones';
+
+CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:Consultar;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:Consultar;
+		DECLARE element_Index INTEGER;
+		
+		SET refOut.temp:ConsultaRequest.ns4:FechaInicio 	= FIELDVALUE(refInp.*:FechaInicio);
+		SET refOut.temp:ConsultaRequest.ns4:FechaFin	    = FIELDVALUE(refInp.*:FechaFin);
+		
+		DECLARE intSolicitudes INTEGER CARDINALITY(refInp.Ubicaciones.*[]);		
+		IF (intSolicitudes >= 1) THEN					
+			SET element_Index =1;						
+			FOR refInpSolicitudes AS refInp.Ubicaciones.*[] DO					
+				--asigna valores recibidos de xcalibur al response del servicio del ESB									 		
+		 		SET OutputRoot.SOAP.Body.temp:Consultar.temp:ConsultaRequest.ns2:Ubicaciones.ns:string[element_Index]=refInpSolicitudes.UbicacionId;		 				 
+				SET element_Index = element_Index +1;							
+				IF (element_Index>1000) THEN
+					RETURN TRUE;
+				END IF;
+			END FOR;	
+		END IF;												
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+	
+		RETURN TRUE;
+	END;
+END MODULE;
