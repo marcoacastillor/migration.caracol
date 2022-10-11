@@ -21,24 +21,19 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_RequestBack
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC.temp:Consultar;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:Consultar;
-		DECLARE element_Index INTEGER;
+		DECLARE i INTEGER 1;
 		
 		SET refOut.temp:ConsultaRequest.ns4:FechaInicio 	= FIELDVALUE(refInp.*:FechaInicio);
 		SET refOut.temp:ConsultaRequest.ns4:FechaFin	    = FIELDVALUE(refInp.*:FechaFin);
 		
-		DECLARE intSolicitudes INTEGER CARDINALITY(refInp.Ubicaciones.*[]);		
-		IF (intSolicitudes >= 1) THEN					
-			SET element_Index =1;						
-			FOR refInpSolicitudes AS refInp.Ubicaciones.*[] DO					
-				--asigna valores recibidos de xcalibur al response del servicio del ESB									 		
-		 		SET OutputRoot.SOAP.Body.temp:Consultar.temp:ConsultaRequest.ns2:Ubicaciones.ns:string[element_Index]=refInpSolicitudes.UbicacionId;		 				 
-				SET element_Index = element_Index +1;							
-				IF (element_Index>1000) THEN
-					RETURN TRUE;
-				END IF;
-			END FOR;	
-		END IF;												
-	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		FOR refReqs AS refInp.Ubicaciones.*[] DO					
+			--asigna valores recibidos de xcalibur al response del servicio del ESB									 		
+	 		SET refOut.temp:ConsultaRequest.ns2:Ubicaciones.ns:string[i]= refReqs.UbicacionId;		 				 
+			SET i = i +1;							
+			IF (i > 1000) THEN
+				RETURN TRUE;
+			END IF;
+		END FOR;	
 	
 		RETURN TRUE;
 	END;
