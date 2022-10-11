@@ -1,7 +1,7 @@
-BROKER SCHEMA co.com.caracol.serguridad.autenticar
+BROKER SCHEMA co.com.caracol.servicio.consultarsolicitudvacaciones
 
 
-CREATE COMPUTE MODULE Autentica_CreateErrorMsgFault
+CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_CreateErrorMsgFault
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- CALL CopyMessageHeaders();

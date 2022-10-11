@@ -1,6 +1,6 @@
 BROKER SCHEMA co.com.caracol.consultacentroscostos
 
-
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultacentroscosto/';
 
 CREATE COMPUTE MODULE ConsultaCentrosCosto_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -16,34 +16,28 @@ CREATE COMPUTE MODULE ConsultaCentrosCosto_ResponseService
 		MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaCecosResponse;
-		DECLARE intCentroCosto INTEGER CARDINALITY(rBodyI.*[]);
-
-		IF (intCentroCosto >= 1) THEN
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 		
-			SET element_Index =1;						
-			FOR rBodyCentrosCosto AS rBodyI.[] DO	
-				--asigna valores recibidos de xcalibur al response del servicio del ESB				
-				SET refOut. 	= FIELDVALUE(refInp.*:UsuarioAutenticarResult);	
+		IF EXISTS(refInp.*:CentrosCosto[]) THEN
+		--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultaCecosResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaCecosResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:CentrosCosto.*:CentrosCosto[]  DO
+				
+				SET refOut.ns1:CentrosCosto.ns1:CentroCosto[i].ns1:Ubicacion	        = FIELDVALUE(refReqs.*:Ubicacion);
+				SET refOut.ns1:CentrosCosto.ns1:CentroCosto[i].ns1:Nombre	        	= FIELDVALUE(refReqs.*:Nombre);
+				SET refOut.ns1:CentrosCosto.ns1:CentroCosto[i].ns1:CodigoSap	        = FIELDVALUE(refReqs.*:UCentroCosto);
+				SET refOut.ns1:CentrosCosto.ns1:CentroCosto[i].ns1:CodigoClaseSap	    = FIELDVALUE(refReqs.*:Clase);
+				SET refOut.ns1:CentrosCosto.ns1:CentroCosto[i].ns1:RangoCuentasClase	= FIELDVALUE(refReqs.*:Rango);				
 							
-		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].Ubicacion = rBodyCentrosCosto.car:Ubicacion;
-			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].Nombre = rBodyCentrosCosto.car:Nombre;
-				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].CodigoSap = rBodyCentrosCosto.car:CentroCosto;
-				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].CodigoClaseSap = rBodyCentrosCosto.car:Clase;
-				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].RangoCuentasClase = rBodyCentrosCosto.car:Rango;
-			
-				SET element_Index = element_Index +1;
-				IF (element_Index>1000) THEN
-					RETURN TRUE;
-				END IF;
-			END FOR;			
+				SET i = i + 1;
+			END FOR;
 		ELSE
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse = '';
-		END IF;	
-		
-		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;		
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
 		RETURN TRUE;
 	END;
-
-	
 END MODULE;

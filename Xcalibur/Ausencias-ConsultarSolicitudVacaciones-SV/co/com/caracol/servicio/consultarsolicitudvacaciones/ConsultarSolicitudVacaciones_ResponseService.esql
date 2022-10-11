@@ -2,7 +2,7 @@ BROKER SCHEMA co.com.caracol.servicio.consultarsolicitudvacaciones
 
 
 
-DECLARE ns1 NAMESPACE '';
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/';
 
 CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN

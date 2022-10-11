@@ -1,8 +1,4 @@
-BROKER SCHEMA co.com.caracol.consultacentroscostos
-
-
-DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/CentrosCostos/ConsultaCecos';
-DECLARE ns NAMESPACE 'http://tempuri.org/';
+BROKER SCHEMA co.com.caracol.consultacentroscostosDECLARE temp NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/CentrosCostos/ConsultaCecos';
 
 CREATE COMPUTE MODULE ConsultaCentrosCosto_RequestBack
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -18,18 +14,16 @@ CREATE COMPUTE MODULE ConsultaCentrosCosto_RequestBack
 		MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaCecos;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaCecos;
-		
-		SET refOut.ns1:ipCia	= FIELDVALUE(refInp.*:Compania);
-		SET refOut.ns1:ipUbicacion	= FIELDVALUE(refInp.*:Ubicacion);
-	    SET refOut.ns1:ipNombre	= FIELDVALUE(refInp.*:Descripcion);
-		SET refOut.ns1:ipCodSap	= FIELDVALUE(refInp.*:CodigoSAP);
-	  
-	
+		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultaCecos;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultaCecos;
+		DECLARE i INTEGER 1;		
+		SET refOut.temp:ipCia	    = FIELDVALUE(refInp.*:Compania);
+		SET refOut.temp:ipUbicacion	= FIELDVALUE(refInp.*:Ubicacion);
+	    SET refOut.temp:ipNombre	= FIELDVALUE(refInp.*:Descripcion);
+		SET refOut.temp:ipCodSap    = FIELDVALUE(refInp.*:CodigoSAP);
+	  	
 		 SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
 		
-
 		RETURN TRUE;
 	END;	
 END MODULE;

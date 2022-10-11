@@ -32,8 +32,8 @@ CREATE COMPUTE MODULE SV_Xcalibur_ConsultaCentrosCosto_RsptaBackend
 			SET element_Index =1;						
 			FOR rBodyCentrosCosto AS rBodyI.[] DO	
 				--asigna valores recibidos de xcalibur al response del servicio del ESB				
-				SET refOut.ns1:UsuarioAutenticarResult 	= FIELDVALUE(refInp.*:UsuarioAutenticarResult);	
-							
+				
+
 		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].Ubicacion = rBodyCentrosCosto.car:Ubicacion;
 			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].Nombre = rBodyCentrosCosto.car:Nombre;
 				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse.CentrosCosto.CentroCosto[element_Index].CodigoSap = rBodyCentrosCosto.car:CentroCosto;
