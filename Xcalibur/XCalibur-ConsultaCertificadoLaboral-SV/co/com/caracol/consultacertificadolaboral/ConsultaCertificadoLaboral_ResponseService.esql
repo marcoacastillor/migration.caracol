@@ -1,0 +1,45 @@
+BROKER SCHEMA co.com.caracol.consultacertificadolaboral
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultacertificadolaboralv2/';
+
+CREATE COMPUTE MODULE ConsultaCertificadoLaboral_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		
+		IF EXISTS(refInp.*:CertificadoLaboral[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultarDatosCertificadoResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultarDatosCertificadoResponse;
+			
+			SET refOut.ns1:Nombres				= FIELDVALUE(refInp.*:Nombres);
+			SET refOut.ns1:FechaIngreso			= FIELDVALUE(refInp.*:FechaIngreso);
+			SET refOut.ns1:Cargo				= FIELDVALUE(refInp.*:Cargo);
+			SET refOut.ns1:TipoContrato			= FIELDVALUE(refInp.*:TipoContrato);
+			SET refOut.ns1:Asignacion			= FIELDVALUE(refInp.*:Asignacion);
+			SET refOut.ns1:CorreoElectronico	= FIELDVALUE(refInp.*:CorreoElectronico);
+			SET refOut.ns1:TipoAsignacion		= FIELDVALUE(refInp.*:TipoAsignacion);
+			SET refOut.ns1:Ficha				= FIELDVALUE(refInp.*:Ficha);
+			SET refOut.ns1:Empresa				= FIELDVALUE(refInp.*:NombreCia);
+			SET refOut.ns1:Estado				= FIELDVALUE(refInp.*:Estado);
+			
+			
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

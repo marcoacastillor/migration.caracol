@@ -7,28 +7,28 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Ausencias-AnularAprobacionVacaciones-SV/icons/full/obj16/AnularAprobacionVacaciones.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Ausencias-AnularAprobacionVacaciones-SV/icons/full/obj30/AnularAprobacionVacaciones.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="847,199" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="651,127" computeExpression="esql://routine/co.com.caracol.services.anularaprobacionvacaciones#AnularAprobacionVacaciones_ResponseService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="420,274" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="224,202" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="1066,200">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="870,128">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="205,199" queueName="SV.AUSENCIAS.ANULARAPROBARVACACIONES.01" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="9,127" queueName="SV.AUSENCIAS.ANULARAPROBARVACACIONES.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.AUSENCIAS.ANULARAPROBARVACACIONES.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="418,199" computeExpression="esql://routine/co.com.caracol.services.anularaprobacionvacaciones#AnularAprobacionVacaciones_RequestBack.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="222,127" computeExpression="esql://routine/co.com.caracol.services.anularaprobacionvacaciones#AnularAprobacionVacaciones_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="640,275">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="444,203">
         <translation xmi:type="utility:ConstantString" string="MQ Reply1"/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="808,111" messageCatalog="700" messageText="Error comunicación con backend">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="612,39" messageCatalog="700" messageText="Error comunicación con backend">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
-      <nodes xmi:type="gen_AnularAprobacionVacaciones.subflow:FCMComposite_1" xmi:id="FCMComposite_1_7" location="629,200">
+      <nodes xmi:type="gen_AnularAprobacionVacaciones.subflow:FCMComposite_1" xmi:id="FCMComposite_1_7" location="433,128">
         <translation xmi:type="utility:ConstantString" string="AnularSolicitud_SrvpintAnularSolicitudAprobada"/>
         <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
         <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>

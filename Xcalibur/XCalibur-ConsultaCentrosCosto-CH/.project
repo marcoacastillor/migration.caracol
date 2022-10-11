@@ -3,9 +3,6 @@
 	<name>XCalibur-ConsultaCentrosCosto-CH</name>
 	<comment></comment>
 	<projects>
-		<project>csif-commons-exception</project>
-		<project>csif-commons-util</project>
-		<project>Indicadores</project>
 		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
