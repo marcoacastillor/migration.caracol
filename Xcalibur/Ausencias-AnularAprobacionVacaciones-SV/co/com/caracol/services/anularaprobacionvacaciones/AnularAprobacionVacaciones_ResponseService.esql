@@ -1,0 +1,35 @@
+BROKER SCHEMA co.com.caracol.services.anularaprobacionvacaciones
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/nomina/ausencias/anularaprobacionvacaciones/';
+
+CREATE COMPUTE MODULE AnularAprobacionVacaciones_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		
+		IF EXISTS(refInp.*:AnularSolicitudResult[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:AnularAprobacionVacacionesResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:AnularAprobacionVacacionesResponse;
+			
+			SET refOut.ns1:Estado 	= FIELDVALUE(refInp.*:Estado);
+			SET refOut.ns1:Mensaje 	= FIELDVALUE(refInp.*:Mensaje);	
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

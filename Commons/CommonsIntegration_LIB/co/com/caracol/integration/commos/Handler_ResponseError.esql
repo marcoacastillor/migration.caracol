@@ -1,6 +1,6 @@
 BROKER SCHEMA co.com.caracol.integration.commos
 
-CREATE PROCEDURE createMessageErrorSOAP(INOUT refOut REFERENCE, IN transactionId CHARACTER, IN faultstring CHARACTER)
+CREATE PROCEDURE createMessageErrorSOAP(INOUT refOut REFERENCE, IN transactionId CHARACTER, IN code CHARACTER, IN faultstring CHARACTER)
 BEGIN
 	DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
 	DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
@@ -31,6 +31,7 @@ BEGIN
 	SET rError.(XMLNSC.Attribute)refToMessageInError 	= '';
 	SET rError.(XMLNSC.Attribute)shortDescription		= 'ERROR EN LA INVOCACION DEL SERVICIO DE BACKEND';
 	SET rError.eb:Description.(XMLNSC.Attribute)ns:lang = 'en';
+	SET rError.eb:Code 									= code;
 	SET rError.eb:Description 							= faultstring;
 		
 END;

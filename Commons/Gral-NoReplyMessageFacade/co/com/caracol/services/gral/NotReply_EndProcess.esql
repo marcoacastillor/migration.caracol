@@ -1,0 +1,9 @@
+BROKER SCHEMA co.com.caracol.services.gral
+
+
+CREATE COMPUTE MODULE NotReply_EndProcess
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		RETURN FALSE;
+	END;
+END MODULE;

@@ -1,5 +1,21 @@
 BROKER SCHEMA co.com.caracol.integration.commos
 
+
+/*
+Función que devuelve una representación BLO del mensaje entrante en refInp
+*/
+CREATE FUNCTION getMessageFromBody(IN refInp REFERENCE)RETURNS CHARACTER
+BEGIN
+    DECLARE message CHARACTER;
+    DECLARE messageTreeBlob BLOB;
+
+	SET messageTreeBlob = ASBITSTREAM(refInp, 273, 1208,'','','',FolderBitStream);
+	SET message = CAST(messageTreeBlob AS CHARACTER CCSID 1208);
+   
+    RETURN message;           
+END;
+
+
 CREATE FUNCTION getDestinationByServiceAndOperation(IN service CHARACTER, IN operation CHARACTER)RETURNS CHARACTER
 BEGIN
 	CASE service

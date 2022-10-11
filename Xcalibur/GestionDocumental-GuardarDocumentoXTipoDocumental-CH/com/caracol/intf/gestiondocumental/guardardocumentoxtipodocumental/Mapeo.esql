@@ -1,0 +1,29 @@
+BROKER SCHEMA com.caracol.intf.gestiondocumental.guardardocumentoxtipodocumental
+
+
+CREATE COMPUTE MODULE CH1_GuardarDocumentoXTipoDocumental_Mapeo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/gestiondocumental/guardardocumentoxtipodocumental/'; 
+		SET OutputRoot.Properties = InputRoot.Properties;		
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GuardarDocumentoXTipoDocumentalRequest TYPE Name; 
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Bocccdy.srv:GuardarDocumentoXTipoDocumentalRequest; 
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:GuardarDocumentoXTipoDocumentalRequest; 		
+		SET rBodyO.DiskGroupName=rBodyI.DiskGroupName;
+		SET rBodyO.DocumentTypeName=rBodyI.DocumentTypeName;
+		SET rBodyO.FileFormat=rBodyI.FileFormat;
+		SET rBodyO.FileExtension=rBodyI.FileExtension;		
+		SET rBodyO.FolderId=rBodyI.FolderId;  
+		SET rBodyO.KeyWords[<]=rBodyI.KeyWords[<];			
+		SET rBodyO.Paginas[<]=rBodyI.Paginas[<];  
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,38 @@
+BROKER SCHEMA com.caracoltv.com.co.consultarsolicitudes.ausencias.consultarsolicitudesvacaciones
+
+
+CREATE COMPUTE MODULE CH_ConsultarSolicitudVacaciones01_Request
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/';		
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesRequest TYPE Name;				
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesRequest;		
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:ConsultarSolicitudVacacionesRequest.Ubicaciones;		
+		
+		SET rBodyO.FechaInicio=InputRoot.SOAP.Body.srv:ConsultarSolicitudVacacionesRequest.FechaInicio;		
+		SET rBodyO.FechaFin=InputRoot.SOAP.Body.srv:ConsultarSolicitudVacacionesRequest.FechaFin;
+		
+		DECLARE intUbicaciones INTEGER CARDINALITY(rBodyI.Ubicacion[]);		
+		DECLARE element_Index INT;				
+		IF (intUbicaciones >= 1) THEN					
+			SET element_Index =1;						
+			FOR rBodyUbicaciones AS InputRoot.SOAP.Body.srv:ConsultarSolicitudVacacionesRequest.Ubicaciones.Ubicacion[] DO															 				 				 	
+		 		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultarSolicitudVacacionesRequest.Ubicaciones.Ubicacion[element_Index].UbicacionId=rBodyUbicaciones.UbicacionId;		 		
+				SET element_Index = element_Index +1;
+				IF (element_Index>200) THEN					
+					RETURN TRUE;
+				END IF;
+			END FOR;					
+		END IF;	
+		RETURN TRUE;
+	END;
+END MODULE;

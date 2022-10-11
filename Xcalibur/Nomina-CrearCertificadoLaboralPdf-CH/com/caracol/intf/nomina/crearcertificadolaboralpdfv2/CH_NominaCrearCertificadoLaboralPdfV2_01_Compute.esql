@@ -1,0 +1,45 @@
+BROKER SCHEMA com.caracol.intf.nomina.crearcertificadolaboralpdfv2
+DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdfv2/';
+
+CREATE COMPUTE MODULE CH_NominaCrearCertificadoLaboralPdfV2_01_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+	
+		
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';
+		
+		CREATE FIELD OutputRoot.XMLNSC.s11:Envelope.s11:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s11:Envelope.s11:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;
+		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;
+		
+		CREATE FIELD OutputRoot.XMLNSC.s11:Envelope.s11:Body.srv:CrearCertificadoLaboralPdfRequest TYPE Name;
+		
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s11:Envelope.s11:Body.srv:CrearCertificadoLaboralPdfRequest;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:CrearCertificadoLaboralPdfRequest;
+		SET rBodyO.CertificadoLaboral.DsNo=rBodyI.CertificadoLaboral.DsNo;
+		SET rBodyO.CertificadoLaboral.Nombres=rBodyI.CertificadoLaboral.Nombres;
+		SET rBodyO.CertificadoLaboral.Cedula=rBodyI.CertificadoLaboral.Cedula;
+		SET rBodyO.CertificadoLaboral.FechaIngreso=rBodyI.CertificadoLaboral.FechaIngreso;
+		SET rBodyO.CertificadoLaboral.TipoContrato=rBodyI.CertificadoLaboral.TipoContrato;
+		SET rBodyO.CertificadoLaboral.Cargo=rBodyI.CertificadoLaboral.Cargo;
+		SET rBodyO.CertificadoLaboral.Asignacion=rBodyI.CertificadoLaboral.Asignacion;
+		SET rBodyO.CertificadoLaboral.TipoAsignacion=rBodyI.CertificadoLaboral.TipoAsignacion;
+		SET rBodyO.CertificadoLaboral.CorreoElectronico=rBodyI.CertificadoLaboral.CorreoElectronico;		
+		SET rBodyO.CertificadoLaboral.Solicitud=rBodyI.CertificadoLaboral.Solicitud;
+		SET rBodyO.CertificadoLaboral.Destino=rBodyI.CertificadoLaboral.Destino;		
+		SET rBodyO.CertificadoLaboral.Ficha=rBodyI.CertificadoLaboral.Ficha;
+		SET rBodyO.CertificadoLaboral.Empresa=rBodyI.CertificadoLaboral.Empresa;
+		SET rBodyO.CertificadoLaboral.Estado=rBodyI.CertificadoLaboral.Estado;					
+		SET rBodyO.CertificadoLaboral.VisualizarSueldo=rBodyI.CertificadoLaboral.VisualizarSueldo;		
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

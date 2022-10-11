@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:appDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.app"><references><sharedLibraryReference><libraryName>csif-commons-util</libraryName></sharedLibraryReference></references></ns2:appDescriptor>
+=======
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:appDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.app"><references/></ns2:appDescriptor>
+>>>>>>> e41ec065a065cb64f09275d25f4b5b59af9c7096

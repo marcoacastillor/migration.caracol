@@ -1,0 +1,25 @@
+BROKER SCHEMA com.caracol.sv.nomina.generarcertificadolaboralV2
+
+
+CREATE COMPUTE MODULE CH_GenerarCertificadoLaboral02_V2_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';--soap 1.2
+		DECLARE NS1 NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';--soap 1.2
+		--DECLARE soap NAMESPACE 'http://www.w3.org/2003/05/soap-envelope'; --soap 1.2
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/';		
+		DECLARE rBodyIV2 REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body;		
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';		
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);
+		--SET OutputRoot.XMLNSC.s12:Envelope.s12:Body = InputRoot.XMLNSC.s12:Envelope.s12:Body.Body;
+				
+		IF  FIELDTYPE(rBodyIV2.XMLNSC.NS1:Envelope.NS1:Body.ArchivoPdf) IS NULL THEN 
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.faultcode= 'Client';
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.faultstring= 'La información enviada no genera resultados';
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.faultactor= 'Factor';
+		ELSE
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralResponse.ArchivoPdf = rBodyIV2.XMLNSC.NS1:Envelope.NS1:Body.ArchivoPdf;								
+		END IF;						
+		RETURN TRUE;	
+	END;
+END MODULE;

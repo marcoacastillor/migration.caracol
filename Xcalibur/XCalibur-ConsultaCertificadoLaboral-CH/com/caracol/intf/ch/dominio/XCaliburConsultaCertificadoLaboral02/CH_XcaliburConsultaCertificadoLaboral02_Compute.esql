@@ -1,0 +1,32 @@
+/*
+Creado por: Javier Vera
+Fecha: 21/04/2016
+Descripción: Realiza la comversión entre la entrada XMLNSC de una cola a  SOAP en SOAP Reply
+*/
+BROKER SCHEMA com.caracol.intf.ch.dominio.XCaliburConsultaCertificadoLaboral02
+
+CREATE COMPUTE MODULE CH_XcaliburConsultaCertificadoLaboral02_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE soap NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultacertificadolaboralv2/';
+		
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);
+		
+				
+		DECLARE rBodyI1 REFERENCE TO InputRoot.XMLNSC.s11:Envelope.s11:Body;
+		
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.srv:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Nombres = rBodyI1.srv:ConsultaCertificadoLaboralResponse.srv:CertificadoLaboral.Nombres;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.srv:ConsultaCertificadoLaboralResponse.CertificadoLaboral.FechaIngreso = rBodyI1.srv:ConsultaCertificadoLaboralResponse.srv:CertificadoLaboral.FechaIngreso;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.srv:ConsultaCertificadoLaboralResponse.CertificadoLaboral.Cargo = rBodyI1.srv:ConsultaCertificadoLaboralResponse.srv:CertificadoLaboral.Cargo;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.srv:ConsultaCertificadoLaboralResponse.CertificadoLaboral.TipoContrato = rBodyI1.srv:ConsultaCertificadoLaboralResponse.srv:CertificadoLaboral.TipoContrato;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.srv:ConsultaCertificadoLaboralResponse.CertificadoLaboral.AsignacionMensual = rBodyI1.srv:ConsultaCertificadoLaboralResponse.srv:CertificadoLaboral.AsignacionMensual;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.srv:ConsultaCertificadoLaboralResponse.CertificadoLaboral.CorreoElectronico = rBodyI1.srv:ConsultaCertificadoLaboralResponse.srv:CertificadoLaboral.CorreoElectronico;		
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;
