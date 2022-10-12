@@ -1,0 +1,77 @@
+BROKER SCHEMA co.com.caracol.consultadocumentoxtipodocumental
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/gestiondocumental/consultadocumentoxtipodocumental/';
+
+CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Declarar variables
+		DECLARE ComandoRespuesta CHARACTER '';	
+		DECLARE i INTEGER 1;
+		
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		
+		IF EXISTS(refInp.*:Response[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultaDocumentoXTipoDocumentalResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaDocumentoXTipoDocumentalResponse;
+			
+			SET refOut.ns1:IdDocumento			= FIELDVALUE(refInp.*:id);  
+			SET refOut.ns1:Nombre				= FIELDVALUE(refInp.*:name);   
+			SET refOut.ns1:UltimaRevision		= FIELDVALUE(refInp.*:LatestRevision); 
+			SET refOut.ns1:TipoDocumental		= FIELDVALUE(refInp.*:DocumentType);
+			SET refOut.ns1:FechaCreacion		= CAST(SUBSTRING(refInp.*:DateStored FROM 1 FOR 10) AS DATE);
+			
+			DECLARE intDocumento INTEGER CARDINALITY(refInp.Response.Result.*[]);   			
+			IF (intDocumento = 1) THEN 	  
+											
+				FOR rBodyDocumento AS refInp.Result.Document[] DO  									
+					DECLARE intPaginas INTEGER CARDINALITY(rBodyDocumento.Pages.*[]);  	
+					IF (intPaginas >= 1) THEN 		
+						SET i = 1;	
+						--Crear concatenación de KeywordFilterName								
+						FOR rBodyPagina AS refInp.Result.Document.Pages.Page[] DO  										
+							SET refOut.Paginas.Pagina[i].Extension=CAST ( rBodyPagina.extension AS CHARACTER) ;   
+							SET refOut.Paginas.Pagina[i].Valor=CAST(rBodyPagina  AS CHARACTER );   												
+							SET i = i +1;				
+						END FOR;								
+					ELSE			
+						THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::No se encuentraron paginas en el documento'); 					
+					END IF;	
+					 
+					DECLARE intKeyword INTEGER CARDINALITY(rBodyDocumento.Keywords.*[]);	
+					IF (intKeyword >= 1) THEN		
+						SET i =1;	
+						--Crear concatenación de KeywordFilterName								
+						FOR rBodyKeyWord AS refInp.Document.Keywords.Keyword[] DO 												
+							SET refOut.KeyWords.KeyWord[i].Nombre= CAST(rBodyKeyWord.name AS CHARACTER);     
+							SET refOut.KeyWords.KeyWord[i].Valor=CAST( rBodyKeyWord AS CHARACTER);    						 						 						 						
+							SET i = i +1;  				
+						END FOR; 							
+					ELSE			
+						THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::No se encuentra la estructura KeywordFilterName Respuesta Comando 1');	
+					END IF;																																													
+				END FOR;									
+			ELSE			
+				THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::No se encuentro el documento en onbase');  						
+			END IF;   
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

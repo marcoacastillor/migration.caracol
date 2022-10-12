@@ -65,7 +65,7 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsFcdWS
 		--Si existe ExceptionList
 		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
 		
-		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,UUIDASCHAR,codeError|| ' : ' ||nameError||' : '||descError);
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,UUIDASCHAR,codeError, nameError||' : '||descError);
 		
 		RETURN TRUE;
 	END;
@@ -95,7 +95,7 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsFcdRsWS
 		--Si existe ExceptionList
 		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
 		
-		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,UUIDASCHAR,codeError|| ' : ' ||nameError||' : '||descError);
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,UUIDASCHAR,codeError,nameError||' : '||descError);
 		
 		RETURN TRUE;
 	END;
