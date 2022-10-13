@@ -7,7 +7,11 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Ausencias-AnularAprobacionVacaciones-SV/icons/full/obj16/AnularAprobacionVacaciones.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Ausencias-AnularAprobacionVacaciones-SV/icons/full/obj30/AnularAprobacionVacaciones.gif"/>
     <composition>
+<<<<<<< HEAD
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="847,199" computeExpression="esql://routine/co.com.caracol.services.anularaprobacionvacaciones#AnularAprobacionVacaciones_ResponseService.Main" computeMode="destinationAndMessage">
+=======
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="651,127" computeExpression="esql://routine/co.com.caracol.services.anularaprobacionvacaciones#AnularAprobacionVacaciones_ResponseService.Main" computeMode="destinationAndMessage">
+>>>>>>> 0ad3bf2bccccc4f7c1517f78defb965983c76adc
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="224,202" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">

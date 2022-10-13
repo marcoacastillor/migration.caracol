@@ -4,7 +4,19 @@
 	<comment></comment>
 	<projects>
 		<project>OnBase-EjecutarComandoECM</project>
+<<<<<<< HEAD
 		<project>ECM-OnBase-EjecutarComando</project>
+=======
+		<project>CommonsIntegration_LIB</project>
+		<project>Archivo-ConvertFileBase64</project>
+		<project>Caracol-Error-Notificacion</project>
+		<project>csif-commons-exception</project>
+		<project>csif-commons-schema</project>
+		<project>csif-commons-util</project>
+		<project>ECM-OnBase-EjecutarComando</project>
+		<project>Indicadores</project>
+		<project>OnBase-CargaArchivos</project>
+>>>>>>> e468fe390c95c8fd6956f9c2f9dc9f1071dcb8a5
 	</projects>
 	<buildSpec>
 		<buildCommand>

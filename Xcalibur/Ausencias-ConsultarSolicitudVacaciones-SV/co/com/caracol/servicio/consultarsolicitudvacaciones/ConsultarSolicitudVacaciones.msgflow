@@ -7,7 +7,7 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Ausencias-ConsultarSolicitudVacaciones-SV/icons/full/obj16/ConsultarSolicitudVacaciones.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Ausencias-ConsultarSolicitudVacaciones-SV/icons/full/obj30/ConsultarSolicitudVacaciones.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="6,122" queueName="SV.SEGURIDAD.AUTENTICA.01" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="6,122" queueName="SV.AUSENCIAS.CONSULTARSOLICITUDVACACIONES.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.AUTENTICA.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="219,122" computeExpression="esql://routine/co.com.caracol.servicio.consultarsolicitudvacaciones#ConsultarSolicitudVacaciones_RequestBack.Main" computeMode="destinationAndMessage">
