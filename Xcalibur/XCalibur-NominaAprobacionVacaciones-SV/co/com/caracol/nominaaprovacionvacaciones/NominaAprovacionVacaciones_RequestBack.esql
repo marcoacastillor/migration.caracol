@@ -1,0 +1,41 @@
+BROKER SCHEMA co.com.caracol.nominaaprovacionvacaciones
+
+DECLARE temp NAMESPACE 'http://tempuri.org/';
+DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/NM/AprobacionVacaciones/AprobacionVacaciones';
+
+CREATE COMPUTE MODULE NominaAprovacionVacaciones_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:AprobacionVacaciones ;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:AprobacionVacaciones;
+		
+	
+		SET refOut.temp:Request.ns:cia 			= FIELDVALUE(refInp.*:Compania);
+		SET refOut.temp:Request.ns:ficha 		= FIELDVALUE(refInp.*:Ficha);
+		SET refOut.temp:Request.ns:fecini 		= FIELDVALUE(refInp.*:DiasTomar);
+		SET refOut.temp:Request.ns:diasvac 		= FIELDVALUE(refInp.*:ComentarProcedenciaRegistroios);
+		SET refOut.temp:Request.ns:procedencia 	= FIELDVALUE(refInp.*:ProcedenciaRegistro);
+		SET refOut.temp:Request.ns:idaproba 	= FIELDVALUE(refInp.*:LoginAprobador);
+		SET refOut.temp:Request.ns:aprobador 	= FIELDVALUE(refInp.*:UsAprobadoruario);
+		SET refOut.temp:Request.ns:fecapro		= FIELDVALUE(refInp.*:FechaAprobacion);
+		SET refOut.temp:Request.ns:comsol 		= FIELDVALUE(refInp.*:ComentarioSolicita);
+		SET refOut.temp:Request.ns:comapro 		= FIELDVALUE(refInp.*:ComentarComentarioAprobadorios);
+		SET refOut.temp:Request.ns:idausencia 	= FIELDVALUE(refInp.*:SolicitudAusenciaId);
+
+		
+		RETURN TRUE;
+	END;	
+END MODULE;
+
+

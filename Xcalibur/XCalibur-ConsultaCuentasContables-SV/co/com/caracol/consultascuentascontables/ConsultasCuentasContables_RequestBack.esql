@@ -1,0 +1,32 @@
+BROKER SCHEMA co.com.caracol.consultascuentascontables
+
+DECLARE temp NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/PUC/ConsultaPuc';
+
+
+CREATE COMPUTE MODULE ConsultasCuentasContables_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD 	 = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2	 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultaPUC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultaPUC;
+		
+		-- Consulta Clientes XSD del servicio de Xcalibur
+		
+		SET refOut.temp:ipCia					= FIELDVALUE(refInp.*:CompaniaId);
+		SET refOut.temp:ipCuenta				= FIELDVALUE(refInp.*:Cuenta);
+		SET refOut.temp:ipNombre				= FIELDVALUE(refInp.*:Nombre);
+		SET refOut.temp:ipCuentaNombre			= FIELDVALUE(refInp.*:CuentaNombre);	
+	
+		RETURN TRUE;
+	END;
+END MODULE;

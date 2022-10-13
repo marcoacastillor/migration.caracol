@@ -1,0 +1,30 @@
+BROKER SCHEMA co.com.caracol.consultaubicacionesmodificadas
+
+DECLARE temp NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/Ubicaciones/ConsultaUbicaciones';
+
+CREATE COMPUTE MODULE ColsultaUbicacionesModificadas_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD 	 = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2	 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultaUbicaciones;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultaUbicaciones;
+		
+		-- Consulta Clientes XSD del servicio de Xcalibur
+		
+		SET refOut.temp:ipCia					= FIELDVALUE(refInp.*:Compania);
+		SET refOut.temp:ipUbicacion				= FIELDVALUE(refInp.*:Ubicacion);
+		SET refOut.temp:ipFechaActualizacion	= FIELDVALUE(refInp.*:Compavnia);
+		
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,31 @@
+BROKER SCHEMA co.com.caracol.consultamaterialesventa
+
+DECLARE temp NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/Materiales/ConsultaMateriales';
+
+CREATE COMPUTE MODULE ConsultaMaterialesVenta_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD 	 = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2	 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultaMateriales;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultaMateriales;
+		
+		-- Consulta Clientes XSD del servicio de Xcalibur
+		
+		SET refOut.temp:ipCia		= FIELDVALUE(refInp.*:Compania);
+		SET refOut.temp:ipUbicacion	= FIELDVALUE(refInp.*:Ubicacion);
+		SET refOut.temp:ipCodSap	= FIELDVALUE(refInp.*:CodigoSAP);
+		SET refOut.temp:ipNombre	= FIELDVALUE(refInp.*:Descripcion);		
+	
+		RETURN TRUE;
+	END;
+END MODULE;
