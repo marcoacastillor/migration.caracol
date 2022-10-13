@@ -1,0 +1,63 @@
+BROKER SCHEMA co.com.caracol.consultaempleados
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/financiera/xcalibur/consultaempleados/';
+
+CREATE COMPUTE MODULE ConsultaEmpleados_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
+		
+		IF EXISTS(refInp.*:Empleado[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultaEmpleadosResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaEmpleadosResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:Empleados.*:EmpleadosRow[]  DO
+			
+			--asigna valores recibidos de xcalibur al response del servicio del ESB		
+				
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Ficha	       		 = FIELDVALUE(refReqs.*:Ficha);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Nombre	       		 = FIELDVALUE(refReqs.*:Nombre);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoIdentificacion	 = FIELDVALUE(refReqs.*:TipoIdentificacion);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Identificacion	     = FIELDVALUE(refReqs.*:Identificacion);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:FechaIngreso	     = FIELDVALUE(refReqs.*:FechaIngreso);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Ubicacion	         = FIELDVALUE(refReqs.*:Ubicacion);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:CentroCosto	     = FIELDVALUE(refReqs.*:CentroCosto);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:OrdenInterna	     = FIELDVALUE(refReqs.*:OrdenInterna);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Nombrecargo	     = FIELDVALUE(refReqs.*:Nombrecargo);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:DeudorSAP	       	 = FIELDVALUE(refReqs.*:DeudorSAP);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:ProveedorSAP	     = FIELDVALUE(refReqs.*:ProveedorSAP);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoGasto	       	 = FIELDVALUE(refReqs.*:TipoGasto);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Direccion	       	 = FIELDVALUE(refReqs.*:Direccion);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Telefono	         = FIELDVALUE(refReqs.*:Telefono);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Email	       		 = FIELDVALUE(refReqs.*:Email);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Banco	       		 = FIELDVALUE(refReqs.*:Banco);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:NombreBanco	     = FIELDVALUE(refReqs.*:NombreBanco);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoCuenta	       	 = FIELDVALUE(refReqs.*:TipoCuenta);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Cuenta	       		 = FIELDVALUE(refReqs.*:Cuenta);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoContratoCodigo	 = FIELDVALUE(refReqs.*:TipoContratoCodigo);
+			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoContratoNombre	 = FIELDVALUE(refReqs.*:TipoContratoNombre);
+			
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

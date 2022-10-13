@@ -1,0 +1,63 @@
+BROKER SCHEMA co.com.caracol.consultaubicacionesmodificadas
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/financiera/xcalibur/consultaubicacionesmodificadas/';
+DECLARE car NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/Ubicaciones/ConsultaUbicaciones';
+
+
+CREATE COMPUTE MODULE ColsultaUbicacionesModificadas_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
+		
+		IF EXISTS(refInp.*:Ubicacion[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultaUbicacionesModificadasResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaUbicacionesModificadasResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:Ubicacion.*:UbicacionRow[]  DO
+			
+			--asigna valores recibidos de xcalibur al response del servicio del ESB		
+				
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionIdCompania		 = FIELDVALUE(refReqs.*:cia);
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionId				 = FIELDVALUE(refReqs.*:codigo_ubicacion);
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionNombre			 = FIELDVALUE(refReqs.*:nombre);
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionCentroBeneficio	 = FIELDVALUE(refReqs.*:centro_beneficio);
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionCentroCosto		 = FIELDVALUE(refReqs.*:centro_costo);
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionOrdenInterna		 = FIELDVALUE(refReqs.*:orden_interna);
+		
+			IF refReqs.Ubicaciones.car:activo ='S' THEN					
+					SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionActivo = true;
+				ELSE
+					SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionActivo = false;
+				END IF;
+				
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionFechaActualizacion = FIELDVALUE(refReqs.*:fecha_actualizacion);
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionFechaVencimiento	 = FIELDVALUE(refReqs.*:fecha_vencimiento);
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionClase				 = FIELDVALUE(refReqs.*:clase);
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionCuentaDesde		 = FIELDVALUE(refReqs.*:cuenta_desde);
+			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionCuentaHasta		 = FIELDVALUE(refReqs.*:cuenta_hasta);
+			
+			
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

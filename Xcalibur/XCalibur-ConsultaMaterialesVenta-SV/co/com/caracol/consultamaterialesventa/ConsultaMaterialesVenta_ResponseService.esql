@@ -1,0 +1,47 @@
+BROKER SCHEMA co.com.caracol.consultamaterialesventa
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/financiera/xcalibur/consultaempleados/';
+
+CREATE COMPUTE MODULE ConsultaMaterialesVenta_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
+		
+		IF EXISTS(refInp.*:MaterialVenta[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultaMaterialesResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaMaterialesVentaResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:Material.*:MaterialRow[]  DO
+			
+			--asigna valores recibidos de xcalibur al response del servicio del ESB		
+				
+			SET refOut.ns1:Material.ns1:MaterialRow[i].ns1:CodigoUbicacion	     = FIELDVALUE(refReqs.*:Ubicacion);
+			SET refOut.ns1:Material.ns1:MaterialRow[i].ns1:NombreMaterial	     = FIELDVALUE(refReqs.*:Nombre);
+			SET refOut.ns1:Material.ns1:MaterialRow[i].ns1:CodigoMaterialSAP	 = FIELDVALUE(refReqs.*:Material);
+			SET refOut.ns1:Material.ns1:MaterialRow[i].ns1:CentroBeneficioSAP	 = FIELDVALUE(refReqs.*:CenBef);
+			
+			
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

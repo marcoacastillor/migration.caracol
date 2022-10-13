@@ -1,0 +1,53 @@
+BROKER SCHEMA co.com.caracol.consultaprovedores
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultaproveedores/';
+
+CREATE COMPUTE MODULE ConsultaProveedores_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
+		
+		IF EXISTS(refInp.*:Proveedor[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultaProveedoresResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaOrdenesResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:Proveedor.*:ProveedorRow[]  DO
+			
+			--asigna valores recibidos de xcalibur al response del servicio del ESB		
+				
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:NumeroAuxiliar	 = FIELDVALUE(refReqs.*:Auxiliar);
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:Nombre	         = FIELDVALUE(refReqs.*:Nombre);
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:Nit	         = FIELDVALUE(refReqs.*:Ubicacion);
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:CodigoSap	     = FIELDVALUE(refReqs.*:Ubicacion);
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:CuentaAsociada	 = FIELDVALUE(refReqs.*:Ubicacion);
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:CodigoUbicacion = FIELDVALUE(refReqs.*:Ubicacion);
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:Telefono	     = FIELDVALUE(refReqs.*:Ubicacion);
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:Direccion	     = FIELDVALUE(refReqs.*:Ubicacion);
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:Correo	    	 = FIELDVALUE(refReqs.*:Ubicacion);
+			SET refOut.ns1:Proveedor.ns1:ProveedorRow[i].ns1:CodigoUbicacio  = FIELDVALUE(refReqs.*:Ubicacion);
+			
+			
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

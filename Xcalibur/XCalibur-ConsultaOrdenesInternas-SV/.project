@@ -3,9 +3,7 @@
 	<name>XCalibur-ConsultaOrdenesInternas-SV</name>
 	<comment></comment>
 	<projects>
-		<project>csif-commons-util</project>
-		<project>csif-commons-exception</project>
-		<project>Caracol-Error-Notificacion</project>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
