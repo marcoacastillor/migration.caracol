@@ -1,0 +1,65 @@
+BROKER SCHEMA co.com.caracol.services.listardocumentosxtipodocumental
+
+
+CREATE COMPUTE MODULE ListarDocumentoXTipoDocumental_RequestCommand1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		DECLARE Comando CHARACTER '';
+		DECLARE i INTEGER 1;
+				
+		--asignacion tipo documental
+		SET Comando= '<Request><Type>DocumentQuery</Type><Query><DocumentTypeName>' || refInp.TipoDocumental || '</DocumentTypeName><Keywords>';  				 				
+		--keyword	
+		
+		DECLARE intKeyWord INTEGER CARDINALITY(refInp.KeyWords.*[]);
+		IF (intKeyWord >= 1) THEN		
+			SET i =1;					
+			FOR rBodyKeyWord AS refInp.KeyWords.KeyWord[] DO	
+				--Crear concatenación de KeyWord					
+				IF rBodyKeyWord.Condicion IS NULL OR rBodyKeyWord.Condicion ='' THEN
+					SET rBodyKeyWord.Condicion= '"' || rBodyKeyWord.Condicion || '"' ; 
+				ELSE
+					SET rBodyKeyWord.Condicion= '"' || rBodyKeyWord.Condicion || '"' ;  
+				END IF;
+				IF rBodyKeyWord.Operador IS NULL OR rBodyKeyWord.Operador ='' THEN
+					SET rBodyKeyWord.Operador= '"' || rBodyKeyWord.Operador || '"' ; 
+				ELSE
+					SET rBodyKeyWord.Operador= '"' || rBodyKeyWord.Operador || '"' ; 
+				END IF;				
+				SET Comando= Comando || '<Keyword name="' || rBodyKeyWord.Nombre || '" condition=' || rBodyKeyWord.Condicion || ' operator=' || rBodyKeyWord.Operador ||  '>' || rBodyKeyWord.Valor || '</Keyword>'; 
+				SET i = i +1;			
+			END FOR;						
+		ELSE			
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::No se encuentra la estructura KeyWord');			
+		END IF;	
+		SET Comando= Comando || '</Keywords><KeywordsFilter>';	
+		
+		--KEYWORDFILTER
+		DECLARE intKeyWordFilter INTEGER CARDINALITY(refInp.KeywordsFilter.*[]); 				
+		IF (intKeyWordFilter >= 1) THEN		
+			SET i =1;	
+			--Crear concatenación de KeyWordFilter								
+			FOR rBodyKeyWordFilter AS refInp.KeywordsFilter.KewordFilter[] DO 						
+				SET Comando= Comando || '<KeywordFilterName>' || rBodyKeyWordFilter.Nombre || '</KeywordFilterName>';		 									
+				SET i = i +1;				
+			END FOR;			
+		ELSE			
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::No se encuentra la estructura KeyWordFilter');				
+		END IF;	
+		
+		SET Comando= Comando || '</KeywordsFilter><LoadKeywords>True</LoadKeywords></Query></Request>';
+		SET OutputRoot.SOAP.Body.Comando=Comando;  					 		       
+			
+		RETURN TRUE;
+	END;
+END MODULE;

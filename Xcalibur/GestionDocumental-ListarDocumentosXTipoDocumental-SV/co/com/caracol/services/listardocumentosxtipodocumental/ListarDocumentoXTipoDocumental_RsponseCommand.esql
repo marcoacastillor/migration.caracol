@@ -1,0 +1,54 @@
+BROKER SCHEMA co.com.caracol.services.listardocumentosxtipodocumental
+
+
+CREATE COMPUTE MODULE ListarDocumentoXTipoDocumental_RsponseCommand
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Declarar variables
+		DECLARE ComandoRespuesta CHARACTER '';	
+		DECLARE i,j INTEGER 1;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		IF EXISTS(refInp.*:Response[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.Documentos;
+			DECLARE refOut REFERENCE TO refOut.Documentos;
+			
+			FOR rBodyDocumento AS refInp.Result.Document[] DO  
+				SET refOut.Documento[i].IdDocumento				= CAST (rBodyDocumento.id AS INTEGER);  
+				SET refOut.Documento[i].Nombre					= CAST (rBodyDocumento.name AS CHARACTER);   
+				SET refOut.Documento[i].UltimaRevision			= rBodyDocumento.LatestRevision; 
+				SET refOut.Documento[i].TipoDocumental			= CAST( rBodyDocumento.DocumentType AS CHAR);
+				SET refOut.Documento[i].FechaCreacion			= CAST( SUBSTRING(rBodyDocumento.DateStored FROM 1 FOR 10) AS DATE);
+				    				 
+				DECLARE intKeyword INTEGER CARDINALITY(rBodyDocumento.Keywords.*[]);	
+				IF (intKeyword >= 1) THEN		
+					SET j =1;	
+					--Crear KeyWord 							
+					FOR rBodyKeyWord AS refInp.Result.Document.Keywords.Keyword[] DO 												
+						SET refOut.Documento[i].KeyWords.KeyWord[j].Nombre= CAST(rBodyKeyWord.name AS CHARACTER);     
+						SET refOut.Documento[i].KeyWords.KeyWord[j].Valor=CAST( rBodyKeyWord AS CHARACTER);     						 						 						 						
+						SET j = j +1;  				
+					END FOR; 							
+				END IF;	
+				set i = i +1;																																												
+			END FOR;									
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

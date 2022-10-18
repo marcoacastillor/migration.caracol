@@ -9,8 +9,8 @@
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="940,176">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="63,175" queueName="SV.DOCUMENTOXTIPODOCUMENTAL.01" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="SV.DOCUMENTOXTIPODOCUMENTAL.01"/>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="63,175" queueName="SV.GUARDARDOCUMENTOONBASE.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="SV.GUARDARDOCUMENTOONBASE.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="278,250" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
@@ -18,13 +18,13 @@
       <nodes xmi:type="OnBase_EjecutarComando_EjecutaComandoECM.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="530,175">
         <translation xmi:type="utility:ConstantString" string="EjecutaComandoECM"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="276,175" computeExpression="esql://routine/OnBase_EjecutarComando#EjecutaComandoECM_Request.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="276,175" computeExpression="esql://routine/co.com.caracol.services.guardadocxtipodocumental#GuardaDocumentoXTipoDocumental_RequestCommand1.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestCommand1"/>
       </nodes>
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="498,251">
         <translation xmi:type="utility:ConstantString" string="MQ Reply1"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="732,174" computeExpression="esql://routine/OnBase_EjecutarComando#EjecutaComandoECM_Response.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="732,174" computeExpression="esql://routine/co.com.caracol.services.guardadocxtipodocumental#GuardaDocumentoXTipoDocumental_RsponseCommand.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RsponseCommand"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>

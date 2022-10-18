@@ -1,0 +1,64 @@
+BROKER SCHEMA co.com.caracol.services.comprobantenomina
+
+DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla4/';
+
+CREATE COMPUTE MODULE ComprobantesNomina_2_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar variables
+		DECLARE i INTEGER 1;
+		DECLARE StrFecha CHARACTER;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.srv:CargaPlantillaRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.srv:CargaPlantillaRequest;
+		
+		IF  Environment.Variables.Compania[1] = 330 THEN
+        	SET refOut.De='salarios@caracoltv.com.co';                              
+        ELSEIF  Environment.Variables.Compania[1] = 357 THEN
+        	SET refOut.De='salarios@caracoltv.com.co';                             
+        ELSEIF  Environment.Variables.Compania[1] = 332 THEN            	        
+            SET refOut.De='salarios@caracoltv.com.co';
+		ELSE				                         
+			SET refOut.De='salarios@caracoltv.com.co';				                          
+        END IF;              
+		
+		SET refOut.Para			= Environment.Variables.CorreoElectronico[1];                        
+        SET refOut.Asunto		= Environment.Variables.Asunto[1]; 
+        SET refOut.Titulo		= Environment.Variables.Titulo[1]; 
+        SET refOut.Mensaje1		= Environment.Variables.Mensaje1[1];             
+        SET refOut.Mensaje2		= Environment.Variables.Mensaje2[1];            
+        SET refOut.TextoLink	= 'NOTA: Este mensaje ha sido enviado por un sistema automático. Por favor no intente responder a este mensaje ya que este buzón de correo no es válido.';
+     	SET refOut.Link			= '';         	           
+        SET refOut.Prioridad	= '1';
+        
+        IF  Environment.Variables.Compania[1] = 330 THEN
+            SET refOut.Plantilla='Caracol.html';                 
+        ELSEIF  Environment.Variables.Compania[1] = 357 THEN             
+            SET refOut.Plantilla='StockModels.html'; 
+        ELSEIF  Environment.Variables.Compania[1] = 332 THEN         
+            SET refOut.Plantilla='Radial.html';   
+        ELSE
+        	SET refOut.Plantilla='Caracol.html';	                   
+        END IF;   
+        
+        
+        SET StrFecha =CAST(CURRENT_DATE AS CHARACTER FORMAT 'MMMM') || ' ' || CAST(CURRENT_DATE AS CHARACTER FORMAT 'yyyy');
+                                                                   
+        IF EXTRACT(DAY FROM CURRENT_DATE) <= 15 THEN
+        	SET refOut.AAdjuntos.Adjunto[i].Nombre= Environment.Variables.NombreArchivo[1];	
+        ELSE
+        	SET refOut.AAdjuntos.Adjunto[i].Nombre= Environment.Variables.NombreArchivo[1];              	          	            
+        END IF;                                                    
+        
+        --Archivo Comprobante de Nomina                                   
+        SET refOut.AAdjuntos.Adjunto[i].Data =refInp.ArchivoPdf;
+        
+        RETURN TRUE;
+	END;
+END MODULE;

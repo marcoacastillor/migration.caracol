@@ -9,17 +9,17 @@
       <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.Input" location="20,20">
         <translation xmi:type="utility:TranslatableString" key="InTerminal.Input" bundleName="OnBase_EjecutarComando/EjecutaComandoECM" pluginId="ECM-OnBase-EjecutarComando"/>
       </nodes>
-      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="616,19">
+      <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="677,15">
         <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="OnBase_EjecutarComando/EjecutaComandoECM" pluginId="ECM-OnBase-EjecutarComando"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="133,19" computeExpression="esql://routine/OnBase_EjecutarComando#EjecutaComandoECM_Request.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="142,21" computeExpression="esql://routine/OnBase_EjecutarComando#EjecutaComandoECM_Request.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="Request"/>
       </nodes>
-      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="264,20" wsdlFileName="ServiceECM.wsdl" selectedPortType="serviceSoap" selectedBinding="serviceSoap" selectedOperation="Execute" selectedPort="serviceSoap" targetNamespace="http://tempuri.org/" useHTTPTransport="true" webServiceURL="http://BETAONB/ECM%20Service/Service.asmx" sslProtocol="TLS">
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="276,22" wsdlFileName="ServiceECM.wsdl" selectedPortType="serviceSoap" selectedBinding="serviceSoap" selectedOperation="Execute" selectedPort="serviceSoap" targetNamespace="http://tempuri.org/" useHTTPTransport="true" webServiceURL="http://BETAONB/ECM%20Service/Service.asmx" sslProtocol="TLS">
         <translation xmi:type="utility:ConstantString" string="ECM Produccion"/>
         <longDescription xmi:type="utility:ConstantString" string="srvvtonbase&#xD;&#xA;&#xD;&#xA;kappapi01"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="471,19" computeExpression="esql://routine/OnBase_EjecutarComando#EjecutaComandoECM_Response.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="488,15" computeExpression="esql://routine/OnBase_EjecutarComando#EjecutaComandoECM_Response.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="Response"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="InTerminal.Input" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>

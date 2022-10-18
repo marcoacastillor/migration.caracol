@@ -1,0 +1,24 @@
+BROKER SCHEMA OnBase_EjecutarComando
+
+DECLARE ns2 NAMESPACE 'http://tempuri.org/';
+
+CREATE COMPUTE MODULE EjecutaComandoECM_Response
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Convert Char to BLOB
+		DECLARE messageBlob BLOB CAST(refInp.ns2:ExecuteResult AS BLOB CCSID 1200);
+		
+		--Convierte el dato BLOB a salida XMLNS  		               
+      	CREATE LASTCHILD OF OutputRoot DOMAIN ('XMLNSC') PARSE (messageBlob CCSID 1200 ENCODING 0 SET 'DR4MHOO002001' FORMAT 'XML1' TYPE 'Message');
+		RETURN TRUE;
+	END;
+END MODULE;
