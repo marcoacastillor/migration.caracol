@@ -7,28 +7,28 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-PermisosFuncionalidadXusuario-SV/icons/full/obj16/PermisosFuncionalidadXUsuario.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-PermisosFuncionalidadXusuario-SV/icons/full/obj30/PermisosFuncionalidadXUsuario.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="609,291">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="463,278">
         <translation xmi:type="utility:ConstantString" string="MQ Reply1"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="816,215" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="670,202" computeExpression="esql://routine/co.com.caracol.services.perporusuario#PermisosFuncionalidadXUsuario_ResponseService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="1035,216">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="889,203">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="389,290" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="243,277" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="777,127" messageCatalog="700" messageText="Error comunicación con backend">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="631,114" messageCatalog="700" messageText="Error comunicación con backend">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="387,215" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="241,202" computeExpression="esql://routine/co.com.caracol.services.perporusuario#PermisosFuncionalidadXUsuario_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="174,215" queueName="SV.SEGURIDAD.XXXXXXXX.01" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="28,202" queueName="SV.SEGURIDAD.XXXXXXXX.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.XXXXXXXX.01"/>
       </nodes>
-      <nodes xmi:type="gen_PermisosFuncionalidadXUsuario.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="594,217">
+      <nodes xmi:type="gen_PermisosFuncionalidadXUsuario.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="448,204">
         <translation xmi:type="utility:ConstantString" string="PermisosDeFuncionalidadXUsuario_ServicioModuloUsuarios"/>
         <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
         <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>

@@ -54,6 +54,11 @@ BEGIN
 			WHEN 'operacionPerfilesXSistemaYUsuario' THEN
 				RETURN 'SV.SEGURIDAD.PERFILESXSISTEMAYUSUARIO.01';
 			END CASE;
+		WHEN 'PERMISOS_FUNCIONALIDADXUSUARIO' THEN
+			CASE operation
+			WHEN 'operacionpermisosfuncionalidadxusuario' THEN
+				RETURN 'SV.SEGURIDAD.XXXXXXXX.01';
+		END CASE;
 			
 		WHEN 'USUARIOSXPERFIL' THEN
 			CASE operation

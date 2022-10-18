@@ -16,7 +16,7 @@
         <translation xmi:type="utility:ConstantString" string="CreateErrorMessage"/>
       </nodes>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="28,124" queueName="CH.WS.SEGURIDAD.CONSULTARFUNCIONALIDAD.02" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="CH.WS.SEGURIDAD.02"/>
+        <translation xmi:type="utility:ConstantString" string="CH.WS.SEGURIDAD.CONSULTARFUNCIONALIDAD.02"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="505,124">
         <translation xmi:type="utility:ConstantString" string="SOAP Reply"/>

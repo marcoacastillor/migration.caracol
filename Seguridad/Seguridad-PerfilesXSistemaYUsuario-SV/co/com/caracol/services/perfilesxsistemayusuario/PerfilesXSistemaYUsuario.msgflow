@@ -7,28 +7,28 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-PerfilesXSistemaYUsuario-SV/icons/full/obj16/PerfilesXSistemaYUsuario.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-PerfilesXSistemaYUsuario-SV/icons/full/obj30/PerfilesXSistemaYUsuario.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="888,113" messageCatalog="700" messageText="Error comunicación con backend">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="613,65" messageCatalog="700" messageText="Error comunicación con backend">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="285,201" queueName="SV.SEGURIDAD.PERFILESXSISTEMAYUSUARIO.01" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="10,153" queueName="SV.SEGURIDAD.PERFILESXSISTEMAYUSUARIO.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.PERFILESXSISTEMAYUSUARIO.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="498,201" computeExpression="esql://routine/co.com.caracol.services.perfilesxsistemayusuario#PerfilesXSistemaYUsuario_RequestBack.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="223,153" computeExpression="esql://routine/co.com.caracol.services.perfilesxsistemayusuario#PerfilesXSistemaYUsuario_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="500,276" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="225,228" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="720,277">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="445,229">
         <translation xmi:type="utility:ConstantString" string="MQ Reply1"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="927,201" computeExpression="esql://routine/co.com.caracol.services.perfilesxsistemayusuario#PerfilesXSistemaYUsuario_ResponseService.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="652,153" computeExpression="esql://routine/co.com.caracol.services.perfilesxsistemayusuario#PerfilesXSistemaYUsuario_ResponseService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="1146,202">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="871,154">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
-      <nodes xmi:type="gen_PerfilesXSistemaYUsuario.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="718,202">
+      <nodes xmi:type="gen_PerfilesXSistemaYUsuario.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="443,154">
         <translation xmi:type="utility:ConstantString" string="PerfilesDeSistemaXUsuario_ServicioModuloUsuariosSRVPINT2"/>
         <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
         <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>

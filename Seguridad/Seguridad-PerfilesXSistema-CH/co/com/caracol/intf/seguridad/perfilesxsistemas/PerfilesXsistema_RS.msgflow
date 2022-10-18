@@ -7,7 +7,7 @@
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-PerfilesXSistema-CH/icons/full/obj30/PerfilesXsistema_RS.gif"/>
     <composition>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="14,112" queueName="CH.WS.SEGURIDADPERFILESXSISTEMA.02" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="CH.WS.SEGURIDAD.02"/>
+        <translation xmi:type="utility:ConstantString" string="CH.WS.SEGURIDADPERFILESXSISTEMA.02"/>
       </nodes>
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="496,196" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>

@@ -25,7 +25,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="331,266" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMessage"/>
       </nodes>
-      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="92,169" wsdlFileName="SeguridadAutentica.wsdl" selectedPortType="ptSeguridadAutentica" selectedBinding="bdSeguridadAutenticaSOAP12Http" selectedPort="ptSeguridadAutentica12" targetNamespace="http://www.caracoltv.com.co/TI/seguridad/autentica/" useHTTPTransport="true" urlSelector="/services/s12/dominio/SeguridadAutentica">
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="92,169" wsdlFileName="SeguridadAutentica.wsdl" selectedPortType="ptSeguridadAutentica" selectedBinding="bdSeguridadAutenticaSOAP12Http" selectedPort="ptSeguridadAutentica12" targetNamespace="http://www.caracoltv.com.co/TI/seguridad/autentica/" useHTTPTransport="true" urlSelector="/services/s12/dominio/SeguridadAutentica" allowQueryWSDL="true">
         <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
       </nodes>
       <nodes xmi:type="gen_AutenticaUsuario_RQ.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="320,164">
