@@ -7,8 +7,8 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-GenerarCertificadoLaboral-SV/icons/full/obj16/SV_GenerarCertificadoLaboral_V2.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-GenerarCertificadoLaboral-SV/icons/full/obj30/SV_GenerarCertificadoLaboral_V2.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="-110,118" queueName="SV.NOMINA.GENERARCERTIFICADOLABORALVER2.01" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="MQ Input"/>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="-327,119" queueName="SV.NOMINA.GENERARCERTIFICADOLABORALVER2.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="SV.NOMINA.GENERARCERTIFICADOLABORALVER2.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="-6,118" computeExpression="esql://routine/com.caracol.sv.nomina.generarcertificadolaboral_v2#SV_GenerarCertificadoLaboral_V2_Compute.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="Compute D1"/>
@@ -62,7 +62,7 @@
           </eventXMLDoc>
         </monitorEvents>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="705,273" computeExpression="esql://routine/com.caracol.sv.nomina.generarcertificadolaboral_v2#SV_GenerarCertificadoLaboral_V2_CargaArchivos.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="761,120" computeExpression="esql://routine/com.caracol.sv.nomina.generarcertificadolaboral_v2#SV_GenerarCertificadoLaboral_V2_CargaArchivos.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="DataYPaths-Archivos"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="84,119" wsdlFileName="ConsultaCertificadoLaboralv2.wsdl" selectedPortType="ptConsultaCertificadoLaboral" selectedBinding="bdxcaliburconsultacertificadolaboralSOAP11Http" selectedOperation="Consulta" selectedPort="ptConsultaCertificadoLaboral11" targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultacertificadolaboralv2/" useHTTPTransport="true" webServiceURL="http://srviibpr:7800/services/s11/dominio/consultacertificadolaboralv2"
@@ -72,17 +72,17 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="131,19" computeExpression="esql://routine/com.caracol.sv.nomina.generarcertificadolaboral_v2#SV_GenerarCertificadoLaboral_V2_Compute_Error.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="Errores"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="1170,124">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="1137,124">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="375,120" wsdlFileName="crearcertificadolaboralv2.wsdl" selectedPortType="ptCrearCertificadoLaboralpdfv2" selectedBinding="bdcrearcertificadolaboralpdfSOAP11Http" selectedOperation="crearpdfv2" selectedPort="ptCrearCertificadoLaboralPdf11" targetNamespace="http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdfv2/" useHTTPTransport="true" webServiceURL="http://gama01:7801/services/s11/dominio/crearcertificadolaboralpdfv2"
           requestTimeout="30" sslProtocol="TLS" requestCompressionType="zlib-deflate">
         <translation xmi:type="utility:ConstantString" string="CreaPDF"/>
       </nodes>
-      <nodes xmi:type="com_caracol_com_co_archivos_onbase_cargaarchivo_CargaArchivosOnbase.subflow:FCMComposite_1" xmi:id="FCMComposite_1_14" location="1003,272">
+      <nodes xmi:type="com_caracol_com_co_archivos_onbase_cargaarchivo_CargaArchivosOnbase.subflow:FCMComposite_1" xmi:id="FCMComposite_1_14" location="903,121">
         <translation xmi:type="utility:ConstantString" string="CargaArchivosOnbase"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="1069,123" computeExpression="esql://routine/com.caracol.sv.nomina.generarcertificadolaboral_v2#SV_GenerarCertificadoLaboral_V2_Salida.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="1041,122" computeExpression="esql://routine/com.caracol.sv.nomina.generarcertificadolaboral_v2#SV_GenerarCertificadoLaboral_V2_Salida.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="Salida"/>
       </nodes>
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="264,20" queueName="CARACOL.ESB.NOTIFICAERROR">
