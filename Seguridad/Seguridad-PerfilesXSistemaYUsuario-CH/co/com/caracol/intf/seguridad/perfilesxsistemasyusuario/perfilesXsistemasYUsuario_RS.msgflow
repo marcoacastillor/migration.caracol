@@ -22,7 +22,7 @@
         <translation xmi:type="utility:ConstantString" string="ResponseClient"/>
       </nodes>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="19,130" queueName="CH.WS.SEGURIDADPERFILESXSISTEMASYUSUARIO.02" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="CH.WS.SEGURIDAD.02"/>
+        <translation xmi:type="utility:ConstantString" string="CH.WS.SEGURIDADPERFILESXSISTEMASYUSUARIO.02"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>

@@ -7,7 +7,7 @@
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/GestionDocumental-GuardarDocumentoXTipoDocumental-CH/icons/full/obj30/Guardar_DocumentoXTipoDocumental_RS.gif"/>
     <composition>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="106,198" queueName="CH.WS.GUARDAR_DOCUMENTOXTIPO_DOCUMENTAL.02" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="CH.WS.SEGURIDAD.02"/>
+        <translation xmi:type="utility:ConstantString" string="CH.WS.GUARDAR_DOCUMENTOXTIPO_DOCUMENTAL.02"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="341,197" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseClient"/>

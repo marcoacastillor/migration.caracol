@@ -16,7 +16,7 @@
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
       </nodes>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="10,136" queueName="CH.WS.SEGURIDAD.FUNCIONALIDADESHIJAS.02" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="CH.WS.SEGURIDAD.02"/>
+        <translation xmi:type="utility:ConstantString" string="CH.WS.SEGURIDAD.FUNCIONALIDADESHIJAS.02"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="245,135" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseClient"/>
