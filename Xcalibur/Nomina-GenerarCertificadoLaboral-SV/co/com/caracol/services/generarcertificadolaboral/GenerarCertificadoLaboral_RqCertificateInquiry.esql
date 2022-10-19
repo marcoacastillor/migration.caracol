@@ -1,0 +1,42 @@
+BROKER SCHEMA co.com.caracol.services.generarcertificadolaboral
+DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultacertificadolaboralv2/';
+
+CREATE COMPUTE MODULE GenerarCertificadoLaboral_RqCertificateInquiry
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ConsultaCertificadoLaboralRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ConsultaCertificadoLaboralRequest;
+		
+		SET refOut.Cia 				= FIELDVALUE(refInp.*:Cia);
+		SET refOut.Cedula 			= FIELDVALUE(refInp.*:Cedula);
+		
+		IF CAST(refInp.FechaNacimiento AS CHARACTER FORMAT 'yyyyMMdd')<> '' THEN
+	    	SET refOut.FechaNacimiento= refInp.FechaNacimiento;
+	    END IF;
+	    
+	    --Guardar información para generar certificado
+		SET Environment.Variables.D1CIA[] 				=LIST{refInp.Cia};
+		SET Environment.Variables.D1DsNo[] 				=LIST{refInp.DsNo};
+		SET Environment.Variables.D1Cedula[] 			=LIST{refInp.Cedula};
+		SET Environment.Variables.D1FechaNacimiento[] 	=LIST{refInp.FechaNacimiento};
+		SET Environment.Variables.D1Solicitud[] 		=LIST{refInp.Solicitud};
+		SET Environment.Variables.D1Destino[] 			=LIST{refInp.Destino};		
+		SET Environment.Variables.D1De[] 				=LIST{refInp.De};
+		SET Environment.Variables.D1Destinatarios[] 	=LIST{refInp.Destinatarios};
+		SET Environment.Variables.D1Visualizarsueldo[] 	=LIST{refInp.VisualizarSueldo};
+		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

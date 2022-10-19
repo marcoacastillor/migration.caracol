@@ -1,7 +1,7 @@
 BROKER SCHEMA com.caracol.sv.onbase.generacionarchivos
 
 
-CREATE COMPUTE MODULE SV_OnBaseGeneracionArchivos_Compute
+CREATE COMPUTE MODULE SV_OnBaseGeneracionArchivos_Generate
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN		
 		DECLARE diaE INT;SET diaE=6;
@@ -13,35 +13,7 @@ CREATE COMPUTE MODULE SV_OnBaseGeneracionArchivos_Compute
 		DECLARE faltante INT; 		
 		SET hoy=EXTRACT(DAYOFWEEK FROM CURRENT_DATE);	
 		
-		
-		
-		IF hoy = diaE THEN
-			
-			--SET dias=(diaE-hoy);	
-			
-			/*IF (hoy<diaE) THEN
-				Set OutputLocalEnvironment.TimeoutRequest.Action ='SET';
-				Set OutputLocalEnvironment.TimeoutRequest.Identifier ='timer_onbase';
-				Set OutputLocalEnvironment.TimeoutRequest.StartDate = CURRENT_DATE +  CAST(dias AS INTERVAL DAY) ;
-				Set OutputLocalEnvironment.TimeoutRequest.StartTime =timeE;				
-				Set OutputLocalEnvironment.TimeoutRequest.Interval = 604800;
-				Set OutputLocalEnvironment.TimeoutRequest.Count=1;
-				Set OutputLocalEnvironment.TimeoutRequest.IgnoreMissed=FALSE;				
-				
-			ELSEIF (hoy=diaE) THEN		
-				
-				Set OutputLocalEnvironment.TimeoutRequest.Action ='SET';
-				Set OutputLocalEnvironment.TimeoutRequest.Identifier ='timer_onbase';
-				Set OutputLocalEnvironment.TimeoutRequest.StartDate = CURRENT_DATE +  CAST(dias AS INTERVAL DAY) ;
-				Set OutputLocalEnvironment.TimeoutRequest.StartTime =CURRENT_TIME;
-				Set OutputLocalEnvironment.TimeoutRequest.Interval = 604800;
-				Set OutputLocalEnvironment.TimeoutRequest.Count=1;
-				Set OutputLocalEnvironment.TimeoutRequest.IgnoreMissed=FALSE;
-			END IF; 
-			
-			PROPAGATE TO TERMINAL 'out' DELETE NONE;
-			RETURN FALSE;*/			
-			
+		IF hoy = diaE THEN			
 			Set OutputLocalEnvironment.TimeoutRequest.Action ='SET';
 			Set OutputLocalEnvironment.TimeoutRequest.Identifier ='timer_onbase';
 			Set OutputLocalEnvironment.TimeoutRequest.StartDate = CURRENT_DATE +  CAST(dia AS INTERVAL DAY);					
@@ -51,7 +23,6 @@ CREATE COMPUTE MODULE SV_OnBaseGeneracionArchivos_Compute
 			Set OutputLocalEnvironment.TimeoutRequest.IgnoreMissed=FALSE;
 			
 		ELSEIF (hoy<>diaE) THEN
-			
 			Set OutputLocalEnvironment.TimeoutRequest.Action ='SET';
 			Set OutputLocalEnvironment.TimeoutRequest.Identifier ='timer_onbase';
 			Set OutputLocalEnvironment.TimeoutRequest.StartDate = CURRENT_DATE +  CAST(dia AS INTERVAL DAY);					
@@ -59,11 +30,6 @@ CREATE COMPUTE MODULE SV_OnBaseGeneracionArchivos_Compute
 			Set OutputLocalEnvironment.TimeoutRequest.Interval = 604800;	
 			Set OutputLocalEnvironment.TimeoutRequest.Count=1;
 			Set OutputLocalEnvironment.TimeoutRequest.IgnoreMissed=FALSE;
-					    
-		ELSE
-			PROPAGATE TO TERMINAL 'out2' DELETE NONE;
-			RETURN FALSE;		    
-			
 		END IF;
 		RETURN TRUE;
 	END;

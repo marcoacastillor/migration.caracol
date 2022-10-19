@@ -1,0 +1,39 @@
+BROKER SCHEMA co.com.caracol.services.generarcertificadolaboral
+DECLARE ns15 NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla/';
+
+
+CREATE COMPUTE MODULE GenerarCertificadoLaboral_RqCertificateNotificate
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns15:CargaPlantillaRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns15:CargaPlantillaRequest;
+		
+		SET refOut.De				= Environment.Variables.D1De[1];
+		SET refOut.Para				= Environment.Variables.D3CorreoElectronico[1];
+		SET refOut.Copia			= Environment.Variables.D1Destinatarios[1];
+	    SET refOut.CopiaOculta		= '';
+	    SET refOut.Asunto			= 'Certificado Laboral';
+	    SET refOut.Titulo			= 'Certificado Laboral';
+	    SET refOut.Mensaje1			= ' ';
+	    SET refOut.Mensaje2			= 'Buen día '|| Environment.Variables.D3Nombres[1] ||'<br>A continuación se adjunta la certificación laboral solicitada por usted a través de la Intranet. Recuerde que la modificación de algún dato de este documento corresponde a una falsedad y por lo mismo su alteración acarrea las sanciones que conforme a la ley se consideren pertinentes. <br><br>Cordialmente,<br>Dirección de Gestión Humana'; 
+	    SET refOut.TextoLink		= '</a>NOTA: Este mensaje ha sido enviado por un sistema automático.</p>Por favor no intente responder a este mensaje ya que este buzón de correo no es válido para información. Versión 2.0<a>';
+	    SET refOut.Link				= '';
+	    SET refOut.Formato			= 'html';
+	    SET refOut.Prioridad		= '1';
+	    SET refOut.NombreAdjunto	= Environment.Variables.D3Nombres[1] || '.pdf';
+	    SET refOut.Adjuntos			= refInp.ArchivoPdf;    	 	       	    	   
+		
+	    --Guardar información para generar certificado
+		SET Environment.Variables.PDF[] =LIST{refInp.ArchivoPdf};
+		SET Environment.Variables.CSV[] =LIST{refInp.ArchivoCSV};					    	    								
+				
+		RETURN TRUE;
+	END;
+END MODULE;

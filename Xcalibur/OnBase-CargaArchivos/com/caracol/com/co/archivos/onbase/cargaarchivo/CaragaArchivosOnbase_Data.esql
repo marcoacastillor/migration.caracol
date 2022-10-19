@@ -4,17 +4,18 @@ BROKER SCHEMA com.caracol.com.co.archivos.onbase.cargaarchivo
 CREATE COMPUTE MODULE CaragaArchivosOnbase_Data
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
-		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
-		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';		
-		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body;		
-		SET OutputRoot.Properties = InputRoot.Properties;					
+		--Declarar referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+							
 		/*Se construye el SOAP Request con la informacion necesaria*/	   	     		
-		SET Environment.Variables.RutaPdf[] =LIST{rBodyI.RutaPdf};
-		SET Environment.Variables.RutaCSV[] =LIST{rBodyI.RutaCSV};
-		SET Environment.Variables.HoraEjecucion[] =LIST{rBodyI.HoraEjecucion};
-		SET Environment.Variables.ArchivoPdf[] =LIST{rBodyI.ArchivoPdf};
-		SET Environment.Variables.ArchivoCSV[] =LIST{rBodyI.ArchivoCSV};		
-		SET Environment.Variables.Ficha[] =LIST{rBodyI.Ficha};		
+		SET Environment.Variables.RutaPdf[] 		= LIST{refInp.RutaPdf};
+		SET Environment.Variables.RutaCSV[] 		= LIST{refInp.RutaCSV};
+		SET Environment.Variables.HoraEjecucion[] 	= LIST{refInp.HoraEjecucion};
+		SET Environment.Variables.ArchivoPdf[] 		= LIST{refInp.ArchivoPdf};
+		SET Environment.Variables.ArchivoCSV[] 		= LIST{refInp.ArchivoCSV};		
+		SET Environment.Variables.Ficha[] 			= LIST{refInp.Ficha};		
 		RETURN TRUE;		
 	END;
 END MODULE;

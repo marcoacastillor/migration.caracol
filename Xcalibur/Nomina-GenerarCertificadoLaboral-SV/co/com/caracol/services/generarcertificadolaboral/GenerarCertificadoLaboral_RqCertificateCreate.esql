@@ -1,0 +1,46 @@
+BROKER SCHEMA co.com.caracol.services.generarcertificadolaboral
+DECLARE ns5 NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdfv2/';
+
+
+CREATE COMPUTE MODULE GenerarCertificadoLaboral_RqCertificateCreate
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns5:CrearCertificadoLaboralPdfRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns5:CrearCertificadoLaboralPdfRequest;
+		
+		SET refOut.CertificadoLaboral.DsNo				= Environment.Variables.D1DsNo[1];
+		SET refOut.CertificadoLaboral.Nombres			= refInp.CertificadoLaboral.Nombres;
+		SET refOut.CertificadoLaboral.Cedula			= Environment.Variables.D1Cedula[1];
+	    SET refOut.CertificadoLaboral.FechaIngreso		= refInp.CertificadoLaboral.FechaIngreso;
+	    SET refOut.CertificadoLaboral.Cargo				= refInp.CertificadoLaboral.Cargo;
+	    SET refOut.CertificadoLaboral.TipoContrato		= refInp.CertificadoLaboral.TipoContrato;
+	    SET refOut.CertificadoLaboral.Asignacion		= refInp.CertificadoLaboral.Asignacion;	    
+	    SET refOut.CertificadoLaboral.Solicitud			= Environment.Variables.D1Solicitud[1];
+	    SET refOut.CertificadoLaboral.Destino			= Environment.Variables.D1Destino[1];
+	    SET refOut.CertificadoLaboral.TipoAsignacion	= refInp.CertificadoLaboral.TipoAsignacion;	    
+	    SET refOut.CertificadoLaboral.Ficha				= refInp.CertificadoLaboral.Ficha;
+	    SET refOut.CertificadoLaboral.Empresa			= refInp.CertificadoLaboral.Empresa;
+	    SET refOut.CertificadoLaboral.Estado			= refInp.CertificadoLaboral.Estado;
+	    SET refOut.CertificadoLaboral.VisualizarSueldo	= Environment.Variables.D1Visualizarsueldo[1];	    	 	       	    	   
+		
+	    --Guardar información para generar certificado
+		SET Environment.Variables.D3CorreoElectronico[] = LIST{refInp.CertificadoLaboral.CorreoElectronico};
+		SET Environment.Variables.D3Nombres[] 			= LIST{refInp.CertificadoLaboral.Nombres};
+		SET Environment.Variables.D3FechaIngreso[] 		= LIST{refInp.CertificadoLaboral.FechaIngreso};
+		SET Environment.Variables.D3Cargo[] 			= LIST{refInp.CertificadoLaboral.Cargo};
+		SET Environment.Variables.D3TipoContrato[] 		= LIST{refInp.CertificadoLaboral.TipoContrato};
+		SET Environment.Variables.D3AsignacionMensual[] = LIST{refInp.CertificadoLaboral.Asignacion};			
+		SET Environment.Variables.D3TipoAsignacion[] 	= LIST{refInp.CertificadoLaboral.TipoAsignacion};		
+		SET Environment.Variables.D3CorreoElectronico[] = LIST{refInp.CertificadoLaboral.CorreoElectronico};				
+		SET Environment.Variables.Ficha[] 				= LIST{refInp.CertificadoLaboral.Ficha};								
+				
+		RETURN TRUE;
+	END;
+END MODULE;

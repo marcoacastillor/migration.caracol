@@ -3,12 +3,9 @@
 	<name>Nomina-GenerarCertificadoLaboral-SV</name>
 	<comment></comment>
 	<projects>
-		<project>Caracol-Error-Notificacion</project>
-		<project>csif-commons-exception</project>
-		<project>csif-commons-schema</project>
-		<project>csif-commons-util</project>
 		<project>Lib-OnBase-CargarArchivos</project>
 		<project>OnBase-CargaArchivos</project>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

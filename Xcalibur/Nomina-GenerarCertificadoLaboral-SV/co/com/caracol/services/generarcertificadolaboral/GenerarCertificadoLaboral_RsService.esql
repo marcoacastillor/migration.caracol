@@ -1,0 +1,25 @@
+BROKER SCHEMA co.com.caracol.services.generarcertificadolaboral
+
+
+CREATE COMPUTE MODULE GenerarCertificadoLaboral_RsService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		SET refOut.ArchivoPdf	=	Environment.Variables.PDF[1];
+		
+		RETURN TRUE;
+	END;
+END MODULE;

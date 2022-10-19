@@ -4,20 +4,15 @@ BROKER SCHEMA com.caracol.com.co.archivos.onbase.cargaarchivo
 CREATE COMPUTE MODULE CaragaArchivosOnbase_CreaCSV
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
-		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
-		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body;		
-		SET OutputRoot.Properties = InputRoot.Properties;			
+		--Declarar variables
 		DECLARE Datos CHAR;
-		DECLARE Ruta CHAR;		
-		DECLARE Ficha CHAR;
-		
-		SET Datos = Environment.Variables.ArchivoCSV[1];					
-		SET Ruta = Environment.Variables.RutaCSV[1];
-		SET Ficha = Environment.Variables.Ficha[1];							
-        SET OutputLocalEnvironment.Destination.File.Directory = Ruta;                                
-        SET OutputLocalEnvironment.Destination.File.Name =  Ficha || '.csv';                                                                                     
-        SET OutputLocalEnvironment.Destination.File.Action = 'Create';                       
-        SET OutputLocalEnvironment.Destination.File.TimeStamp = CURRENT_TIMESTAMP;
+		SET Datos = Environment.Variables.ArchivoCSV[1];								
+								
+        SET OutputLocalEnvironment.Destination.File.Directory 	= Environment.Variables.RutaCSV[1];                                
+        SET OutputLocalEnvironment.Destination.File.Name 		= Environment.Variables.Ficha[1] || '.csv';                                                                                     
+        SET OutputLocalEnvironment.Destination.File.Action 		= 'Create';                       
+        SET OutputLocalEnvironment.Destination.File.TimeStamp 	= CURRENT_TIMESTAMP;
+        
 		DECLARE decoded BLOB BASE64DECODE(Datos);
 		DECLARE logBlob BLOB CAST(decoded AS BLOB CCSID 1208);		
 		SET OutputRoot.BLOB.BLOB = CAST (logBlob AS BLOB);		 										
