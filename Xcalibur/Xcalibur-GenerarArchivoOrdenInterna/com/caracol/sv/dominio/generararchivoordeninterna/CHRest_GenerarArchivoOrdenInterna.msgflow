@@ -19,13 +19,13 @@
       <nodes xmi:type="ComIbmRouteToLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="712,150">
         <translation xmi:type="utility:ConstantString" string="Route To Label"/>
       </nodes>
-      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="80,341" labelName="POST">
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="81,322" labelName="POST">
         <translation xmi:type="utility:ConstantString" string="POST"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="214,322" computeExpression="esql://routine/com.caracol.sv.dominio.generararchivoordeninterna#CHRest_GenerarArchivoOrdenInterna_Request.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="Request"/>
       </nodes>
-      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="355,372" wsdlFileName="xcaliburconsultaordenesinternasADC.wsdl" selectedPortType="ptConsultaOrdenesInternas" selectedBinding="bdxcaliburconsultaordenesinternasSOAP12Http" selectedOperation="ConsultaOrdenesInternas" selectedPort="ptConsultaOrdenesInternas12" targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/" useHTTPTransport="true" webServiceURL="http://gama01:7801/services/s12/dominio/xcaliburconsultaordenesinternas"
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="359,321" wsdlFileName="xcaliburconsultaordenesinternasADC.wsdl" selectedPortType="ptConsultaOrdenesInternas" selectedBinding="bdxcaliburconsultaordenesinternasSOAP12Http" selectedOperation="ConsultaOrdenesInternas" selectedPort="ptConsultaOrdenesInternas12" targetNamespace="http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/" useHTTPTransport="true" webServiceURL="http://gama01:7801/services/s12/dominio/xcaliburconsultaordenesinternas"
           sslProtocol="TLS">
         <translation xmi:type="utility:ConstantString" string="SOAP Request"/>
       </nodes>
@@ -38,7 +38,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="833,324" computeExpression="esql://routine/com.caracol.sv.dominio.generararchivoordeninterna#CHRest_GenerarArchivoOrdenInterna_Resp_JSON.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="Resp_JSON"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="1029,317">
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="966,325">
         <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
       </nodes>
       <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="522,43">
@@ -53,7 +53,7 @@
       <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_17" location="1146,152">
         <translation xmi:type="utility:ConstantString" string="HTTP Reply2"/>
       </nodes>
-      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="404,638" labelName="GET">
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="398,80" labelName="GET">
         <translation xmi:type="utility:ConstantString" string="Get"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
