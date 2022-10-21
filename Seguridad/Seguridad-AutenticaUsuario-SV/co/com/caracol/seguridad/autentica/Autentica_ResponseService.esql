@@ -13,18 +13,14 @@ CREATE COMPUTE MODULE Autentica_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
+		--Validar respuesta
 		IF EXISTS(refInp.*:UsuarioAutenticarResult[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:UsuarioAutenticarResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:UsuarioAutenticarResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:UsuarioAutenticarResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:UsuarioAutenticarResponse;
 			
-			SET refOut.ns1:UsuarioAutenticarResult 	= FIELDVALUE(refInp.*:UsuarioAutenticarResult);	
+			SET refOut.UsuarioAutenticarResult 	= (refInp.*:UsuarioAutenticarResult);	
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
 		END IF;

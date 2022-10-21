@@ -3,6 +3,15 @@
     nsURI="co/com/caracol/services/facade/AutenticaUsuario_RQ.msgflow" nsPrefix="co_com_caracol_services_facade_AutenticaUsuario_RQ.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_SERVICE" name="UDP_SERVICE" lowerBound="1" defaultValueLiteral="AUTENTICA">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TRACING" name="UDP_TRACING" lowerBound="1" defaultValueLiteral="true">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TONOTIFICATION" name="UDP_TONOTIFICATION" lowerBound="1" defaultValueLiteral="mcastillo@assist.com.co">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
     <translation xmi:type="utility:TranslatableString" key="AutenticaUsuario_RQ" bundleName="co/com/caracol/services/facade/AutenticaUsuario_RQ" pluginId="Seguridad-AutenticaUsuario-CH"/>
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-AutenticaUsuario-CH/icons/full/obj16/AutenticaUsuario_RQ.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-AutenticaUsuario-CH/icons/full/obj30/AutenticaUsuario_RQ.gif"/>
@@ -41,7 +50,17 @@
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.SeguridadAutenticaRequest" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
     </composition>
-    <propertyOrganizer/>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_SERVICE">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_SERVICE" bundleName="co/com/caracol/services/facade/AutenticaUsuario_RQ" pluginId="Seguridad-AutenticaUsuario-CH"/>
+        <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TRACING">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TRACING" bundleName="co/com/caracol/services/facade/AutenticaUsuario_RQ" pluginId="Seguridad-AutenticaUsuario-CH"/>
+          <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TONOTIFICATION">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TONOTIFICATION" bundleName="co/com/caracol/services/facade/AutenticaUsuario_RQ" pluginId="Seguridad-AutenticaUsuario-CH"/>
+          </propertyDescriptor>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
     <stickyBoard/>
   </eClassifiers>
 </ecore:EPackage>
