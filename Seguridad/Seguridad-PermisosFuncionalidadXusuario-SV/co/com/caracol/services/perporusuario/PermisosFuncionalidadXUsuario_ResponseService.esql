@@ -15,7 +15,7 @@ CREATE COMPUTE MODULE PermisosFuncionalidadXUsuario_ResponseService
 		MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
-		IF EXISTS(refInp.*:Permiso[]) THEN
+		IF EXISTS(refInp.*:PermisosDeFuncionalidadXUsuarioResult[]) THEN
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.XMLNSC.ns1:PermisosDeFuncionalidadXUsuarioResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:PermisosDeFuncionalidadXUsuarioResponse;

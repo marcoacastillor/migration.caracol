@@ -25,8 +25,8 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="241,202" computeExpression="esql://routine/co.com.caracol.services.perporusuario#PermisosFuncionalidadXUsuario_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="28,202" queueName="SV.SEGURIDAD.XXXXXXXX.01" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.XXXXXXXX.01"/>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="28,202" queueName="SV.SEGURIDAD.PERMISOSFUNCIONALIDADXUSUARIO.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.PERMISOSFUNCIONALIDADXUSUARIO.01"/>
       </nodes>
       <nodes xmi:type="gen_PermisosFuncionalidadXUsuario.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="448,204">
         <translation xmi:type="utility:ConstantString" string="PermisosDeFuncionalidadXUsuario_ServicioModuloUsuarios"/>

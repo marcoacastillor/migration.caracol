@@ -19,7 +19,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="481,154" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RouteMessage"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="707,155" queueName="DYNAMIC.QUEUE" destinationMode="list" request="true" replyToQ="SV.SEGURIDAD.USUARIOSXSISTEMA.01">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="707,155" queueName="DYNAMIC.QUEUE" destinationMode="list" request="true" replyToQ="CH.WS.SEGURIDAD.USUARIOSXSISTEMA.02">
         <translation xmi:type="utility:ConstantString" string="DYNAMIC.QUEUE"/>
       </nodes>
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="925,158" queueName="SV.TRAZABILITY.REGISTER.01">

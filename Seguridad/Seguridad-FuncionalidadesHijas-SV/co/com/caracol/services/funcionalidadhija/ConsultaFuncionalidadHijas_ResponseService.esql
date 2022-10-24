@@ -19,11 +19,15 @@ CREATE COMPUTE MODULE ConsultaFuncionalidadHijas_ResponseService
 			CREATE FIELD OutputRoot.XMLNSC.ns1:FuncionalidadesHijasResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:FuncionalidadesHijasResponse;
 			
-			SET refOut.ns1:Funcionalidad.ns1:Acceso     = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Acceso);
-			SET refOut.ns1:Funcionalidad.ns1:Contenido  = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Contenido);
-			SET refOut.ns1:Funcionalidad.ns1:Id         = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Id);
-			SET refOut.ns1:Funcionalidad.ns1:Imagen     = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Imagen);
-			SET refOut.ns1:Funcionalidad.ns1:Nombre     = FIELDVALUE(refInp.*:FuncionalidadesHijasResult.*:Funcionalidad.*:Nombre);			
+			DECLARE i INTEGER 1;
+			FOR refFunction AS refInp.*:FuncionalidadesHijasResult.*:Funcionalidad[] DO
+				SET refOut.ns1:Funcionalidad[i].ns1:Acceso     = FIELDVALUE(refFunction.*:Acceso);
+				SET refOut.ns1:Funcionalidad[i].ns1:Contenido  = FIELDVALUE(refFunction.*:Contenido);
+				SET refOut.ns1:Funcionalidad[i].ns1:Id         = FIELDVALUE(refFunction.*:Id);
+				SET refOut.ns1:Funcionalidad[i].ns1:Imagen     = FIELDVALUE(refFunction.*:Imagen);
+				SET refOut.ns1:Funcionalidad[i].ns1:Nombre     = FIELDVALUE(refFunction.*:Nombre);
+				SET i = i + 1; 	
+			END FOR;
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
 		END IF;

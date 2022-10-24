@@ -20,11 +20,10 @@ CREATE COMPUTE MODULE PerfilesPorSistema_ResponseService
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:PerfilesXSistemaResponse;
 			
 			DECLARE i INTEGER 1;
-			--TODO: Validar en pruebas
 			FOR refChild AS refInp.*:PerfilesDeSistemaResult.*:Hijas.*:Perfil[] DO
-				SET refOut.ns1:Perfil[i].ns1:Id     	= FIELDVALUE(refInp.*:PerfilesDeSistemaResult.*:Id);
-				SET refOut.ns1:Perfil[i].ns1:Nombre    	= FIELDVALUE(refInp.*:PerfilesDeSistemaResult.*:Nombre);
-				SET refOut.ns1:Perfil[i]    			= FIELDVALUE(refChild);
+				SET refOut.ns1:Perfil[i].ns1:Id     	= FIELDVALUE(refChild.*:Id);
+				SET refOut.ns1:Perfil[i].ns1:Nombre    	= FIELDVALUE(refChild.*:Nombre);
+
 				SET i = i + 1;
 			END FOR;
 		ELSE
@@ -33,4 +32,3 @@ CREATE COMPUTE MODULE PerfilesPorSistema_ResponseService
 		RETURN TRUE;
 	END;
 END MODULE;
-	
