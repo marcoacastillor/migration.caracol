@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+   targetNamespace="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultaclientes/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:srv="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultaclientes/">
+<!-- wrapper element of the request message -->
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaClientesRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="true" minOccurs="0"  name="ClienteNombre" type="xsd:string"/>				
+				<xsd:element nillable="true" minOccurs="0"  name="ClienteCiudad" type="xsd:string"/>
+				<xsd:element nillable="true" minOccurs="0"  name="ClienteSiglas" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaClientesResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" minOccurs="0" name="Cliente" type="srv:Cliente"/>        	
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+
+    
+	<!-- Type referenced by the wrapper element of the response message -->
+	<xsd:complexType name="Cliente">
+	<xsd:sequence>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteCampo1" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteCampo2" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteCampo3" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteCampo4" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteCampo5" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteCiudad" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteDireccion" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteEMail" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteFax" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteFechaCreacion" type="xsd:dateTime"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteFechaDesde" type="xsd:int"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteFechaModificacion" type="xsd:dateTime"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteId" type="xsd:int"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteLegalDenominacion" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteLegalNrTributario" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteLegalRepresentante" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteLegalRepresentanteId" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteNombre" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteObservaciones" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClientePaisNombre" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteSiglas" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteSitioWeb" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteTelefono1" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteTelefono2" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteTelefono3" type="xsd:string"/>			
+			<xsd:element nillable="true" minOccurs="1" name="ClienteTelefono4" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteUsuarioCreacion" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="ClienteUsuarioModificacion" type="xsd:string"/>
+			<xsd:element nillable="true" minOccurs="1" name="DerechoId" type="xsd:int"/>
+			<xsd:element nillable="true" minOccurs="1" name="FormatoId" type="xsd:int"/>
+			<xsd:element nillable="true" minOccurs="1" name="PaisId" type="xsd:int"/>																		
+			<xsd:element nillable="true" minOccurs="1" name="SistemaId" type="xsd:int"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+	<xsd:element name="Cliente" type="srv:Cliente" />
+  </xsd:schema>

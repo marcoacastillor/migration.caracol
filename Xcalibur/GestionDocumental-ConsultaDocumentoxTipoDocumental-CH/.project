@@ -3,8 +3,6 @@
 	<name>GestionDocumental-ConsultaDocumentoxTipoDocumental-CH</name>
 	<comment></comment>
 	<projects>
-		<project>csif-commons-util</project>
-		<project>Indicadores</project>
 		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>

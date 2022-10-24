@@ -8,7 +8,7 @@
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/XCalibur-ConsultaMaterialesVenta-SV/icons/full/obj30/ConsultaMaterialesVenta.gif"/>
     <composition>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="6,122" queueName="SV.XCALIBUR.CONSULTAMATERIALESVENTA.01" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.AUTENTICA.01"/>
+        <translation xmi:type="utility:ConstantString" string="SV.XCALIBUR.CONSULTAMATERIALESVENTA.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="219,122" computeExpression="esql://routine/co.com.caracol.consultamaterialesventa#ConsultaMaterialesVenta_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>

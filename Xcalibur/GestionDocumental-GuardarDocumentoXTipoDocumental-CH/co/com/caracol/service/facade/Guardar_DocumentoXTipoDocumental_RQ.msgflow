@@ -3,7 +3,7 @@
     nsURI="co/com/caracol/service/facade/Guardar_DocumentoXTipoDocumental_RQ.msgflow" nsPrefix="co_com_caracol_service_facade_Guardar_DocumentoXTipoDocumental_RQ.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
-    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_SERVICE" name="UDP_SERVICE" lowerBound="1" defaultValueLiteral="ANULAR_APROVACION_VACACIONES">
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_SERVICE" name="UDP_SERVICE" lowerBound="1" defaultValueLiteral="GUARDAR_DOCUMENTO_XTIPO_DOCUMENTO">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TRACING" name="UDP_TRACING" lowerBound="1" defaultValueLiteral="true">

@@ -1,0 +1,52 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\ServicioVentasInternacionales.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: There is no xmlns declaration for namespace 'http://schemas.datacontract.org/2004/07/Caracol.VI.Cliente', Line: 1, Column: 1102
+XSD: There is no xmlns declaration for namespace 'http://schemas.datacontract.org/2004/07/Caracol.VI.Produccion', Line: 1, Column: 1185
+
+
+The WSDL import will proceed with bindings BasicHttpBinding_IVIService.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/ServicioVentasInternacionales.wsdl.
+Parsing wsdl binding {http://tempuri.org/}BasicHttpBinding_IVIService.
+Parsing wsdl binding input ConsultarClientesServicio.
+Parsing wsdl binding output ConsultarClientesServicio.
+Parsing wsdl binding input ConsultarContratosServicio.
+Parsing wsdl binding output ConsultarContratosServicio.
+Parsing wsdl binding input ConsultarProducionesServicio.
+Parsing wsdl binding output ConsultarProducionesServicio.
+Parsing wsdl binding input ConsultarContactosServicio.
+Parsing wsdl binding output ConsultarContactosServicio.
+Parsing wsdl binding input BuscarProducccionesXContrato.
+Parsing wsdl binding output BuscarProducccionesXContrato.
+Parsing wsdl binding input BuscarProducccionesXContratoId.
+Parsing wsdl binding output BuscarProducccionesXContratoId.
+Parsing wsdl binding input ConsultarDatosContrato.
+Parsing wsdl binding output ConsultarDatosContrato.
+Parsing wsdl binding input ConsultarTipoContrato.
+Parsing wsdl binding output ConsultarTipoContrato.
+Processing doc style for operation ConsultarClientesServicio.
+Processing doc style for operation ConsultarContratosServicio.
+Processing doc style for operation ConsultarProducionesServicio.
+Processing doc style for operation ConsultarContactosServicio.
+Processing doc style for operation BuscarProducccionesXContrato.
+Processing doc style for operation BuscarProducccionesXContratoId.
+Processing doc style for operation ConsultarDatosContrato.
+Processing doc style for operation ConsultarTipoContrato.
+Populating WSDL schema ServicioVentasInternacionales.xsd.
+Creating file ServicioVentasInternacionales.xsd in the workspace.
+Creating file ServicioVentasInternacionales_InlineSchema1.xsd in the workspace.
+Creating file /VentasInternacionales_SV_WS_ConsultaProduccionesXContratoId/ServicioVentasInternacionales_InlineSchema2.xsd in the workspace.
+Creating file /VentasInternacionales_SV_WS_ConsultaProduccionesXContratoId/ServicioVentasInternacionales_InlineSchema3.xsd in the workspace.
+Creating file /VentasInternacionales_SV_WS_ConsultaProduccionesXContratoId/ServicioVentasInternacionales_InlineSchema4.xsd in the workspace.
+Copying source WSDL ServicioVentasInternacionales.wsdl to ServicioVentasInternacionales.wsdl.
+
+Elapsed time processing this message definition file: 0.381 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -22,7 +22,7 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="833,134" queueName="CH.WS.NOMINA.CREACERTIFICADOPDFVER2.02" request="true">
         <translation xmi:type="utility:ConstantString" string="CH.WS.NOMINA.CREACERTIFICADOPDFVER2.02"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="174,127" queueName="SV.AUSENCIAS.ANULARAPROBARVACACIONES.01" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="174,127" queueName="SV.NOMINA.CREARCERTIFICADOPDFVER2.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.AUSENCIAS.ANULARAPROBARVACACIONES.01"/>
       </nodes>
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="1254,140">

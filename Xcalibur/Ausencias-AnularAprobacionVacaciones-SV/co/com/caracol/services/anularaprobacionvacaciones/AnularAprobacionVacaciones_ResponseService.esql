@@ -9,7 +9,26 @@ CREATE COMPUTE MODULE AnularAprobacionVacaciones_ResponseService
 		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
 		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
 		
-		SET OutputRoot.XMLNSC 	= InputRoot.XMLNSC;
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		IF EXISTS(refInp.*:AnularSolicitudResult[]) THEN
+						
+			CREATE FIELD refOut.ns1:AnularSolicitudResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:AnularSolicitudResponse;
+			
+			SET refOut.ns1:Estado	 = FIELDVALUE(refInp.*:Estado);
+			SET refOut.ns1:Mensaje 	 = FIELDVALUE(refInp.*:Mensaje);
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR: BACKEND');
+		END IF;
 		RETURN TRUE;
 	END;
 END MODULE;

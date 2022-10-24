@@ -1,0 +1,71 @@
+BROKER SCHEMA co.com.caracol.consultaclientes
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultaproduccionesxcontratoid/';
+
+CREATE COMPUTE MODULE ConsultaProduccionesXContratoId_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
+		
+		IF EXISTS(refInp.*:Produccion[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:consultaproduccionesxcontratoidResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:consultaproduccionesxcontratoidResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:Produccion.*:BuscarProducccionesXContratoIdResult[]  DO
+				
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:FormatoId	       		= FIELDVALUE(refReqs.*:_formatoId);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:GeneroId				= FIELDVALUE(refReqs.*:_generoId);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:Anno	        		= FIELDVALUE(refReqs.*:_produccionAnno);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:CapMinutos			= FIELDVALUE(refReqs.*:_produccionCapMinutos);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:CentroCosto	    	= FIELDVALUE(refReqs.*:_produccionCentroCosto);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:CueSheets	        	= FIELDVALUE(refReqs.*:_produccionCueSheets);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:CueSheetsDetalles		= FIELDVALUE(refReqs.*:_produccionCueSheetsDetalles);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:FechaCreacion			= FIELDVALUE(refReqs.*:_produccionFechaCreacion);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:FechaModificacion		= FIELDVALUE(refReqs.*:_produccionFechaModificacion);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:GeneroNombre	    	= FIELDVALUE(refReqs.*:_produccionGeneroNombre);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:ProduccionId	    	= FIELDVALUE(refReqs.*:_produccionId);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:ProduccionIdioma		= FIELDVALUE(refReqs.*:_produccionIdioma);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:IdiomaDoblajes		= FIELDVALUE(refReqs.*:_produccionIdiomaDoblajes);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:IdiomaSubtitulajes	= FIELDVALUE(refReqs.*:_produccionIdiomaSubtitulajes);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:Libretos	        	= FIELDVALUE(refReqs.*:_produccionLibretos);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:LibretosIdiomas	    = FIELDVALUE(refReqs.*:_produccionLibretosIdiomas);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:MasterBI	        	= FIELDVALUE(refReqs.*:_produccionMasterBI);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:MasterME	        	= FIELDVALUE(refReqs.*:_produccionMasterME);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:Nombre	        	= FIELDVALUE(refReqs.*:_produccionNombre);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:NrCapitulos	        = FIELDVALUE(refReqs.*:_produccionNrCapitulos);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:Observaciones	        = FIELDVALUE(refReqs.*:_produccionObservaciones);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:PromocionesImpresos	= FIELDVALUE(refReqs.*:_produccionPromocionesImpresos);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:PromocionesOtros	    = FIELDVALUE(refReqs.*:_produccionPromocionesOtros);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:PromocionesVideo	    = FIELDVALUE(refReqs.*:_produccionPromocionesVideo);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:Reparto	        	= FIELDVALUE(refReqs.*:_produccionReparto);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:Sinopsis	        	= FIELDVALUE(refReqs.*:_produccionSinopsis);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:UsuarioCreacion	    = FIELDVALUE(refReqs.*:_produccionUsuarioCreacion);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:UsuarioModificacion	= FIELDVALUE(refReqs.*:_produccionUsuarioModificacion);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:VencimientoDerechos	= FIELDVALUE(refReqs.*:_produccionVencimientoDerechos);
+			SET refOut.ns1:Produccion.ns1:BuscarProducccionesXContratoIdResult[i].ns1:SistemaId	         	= FIELDVALUE(refReqs.*:_sistemaId);
+		
+				
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

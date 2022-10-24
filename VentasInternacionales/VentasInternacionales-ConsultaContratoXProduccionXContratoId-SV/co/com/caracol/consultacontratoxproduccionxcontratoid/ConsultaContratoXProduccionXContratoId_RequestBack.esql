@@ -1,0 +1,28 @@
+BROKER SCHEMA co.com.caracol.consultacontratoxproduccionxcontratoid
+
+DECLARE temp NAMESPACE 'http://tempuri.org/';
+DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+
+CREATE COMPUTE MODULE ConsultaContratoXProduccionXContratoId_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:BuscarProducccionesXContratoId;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:BuscarProducccionesXContratoId;
+		
+		SET refOut.temp:contratoId			= FIELDVALUE(refInp.*:ContratoId);
+		SET refOut.temp:produccionId		= FIELDVALUE(refInp.*:ProduccionId);
+	
+		RETURN TRUE;
+	END;	
+END MODULE;
