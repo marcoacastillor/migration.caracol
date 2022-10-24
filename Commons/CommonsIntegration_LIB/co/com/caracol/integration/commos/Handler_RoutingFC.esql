@@ -65,6 +65,7 @@ CREATE COMPUTE MODULE HandlerModules_RouteFcdWS
 		SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
 		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
 		SET refMQRFH2.usr.transaction.toNotification 	= UDP_TONOTIFICATION;
+		SET refMQRFH2.usr.transaction.transactionID		= UUIDASCHAR;
 		
 		--Obtener nombre de cola para envío de mensaje
 		SET OutputLocalEnvironment.Destination.MQ.DestinationData[1].queueName = co.com.caracol.integration.commos.getDestinationByServiceAndOperation(UDP_SERVICE, operation);

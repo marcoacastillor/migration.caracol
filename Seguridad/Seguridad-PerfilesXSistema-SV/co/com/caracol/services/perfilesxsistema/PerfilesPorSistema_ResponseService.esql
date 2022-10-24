@@ -13,16 +13,11 @@ CREATE COMPUTE MODULE PerfilesPorSistema_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 		
 		IF EXISTS(refInp.*:PerfilesDeSistemaResult[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:PerfilesXSistemaResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:PerfilesXSistemaResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:PerfilesXSistemaResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:PerfilesXSistemaResponse;
 			
 			DECLARE i INTEGER 1;
 			--TODO: Validar en pruebas

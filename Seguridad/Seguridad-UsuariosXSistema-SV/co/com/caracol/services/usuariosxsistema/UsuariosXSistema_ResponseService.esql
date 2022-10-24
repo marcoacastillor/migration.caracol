@@ -13,16 +13,11 @@ CREATE COMPUTE MODULE UsuariosXSistema_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 		
 		IF EXISTS(refInp.*:UsariosXSistemaResult[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:UsuariosXSistemaResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:UsuariosXSistemaResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:UsuariosXSistemaResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:UsuariosXSistemaResponse;
 			
 			DECLARE i INTEGER 1;
 			FOR refUser AS refInp.*:UsariosXSistemaResult.*:Usuario[] DO
