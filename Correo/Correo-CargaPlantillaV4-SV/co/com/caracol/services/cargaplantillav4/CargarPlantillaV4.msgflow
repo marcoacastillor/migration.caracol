@@ -28,7 +28,7 @@
       <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="804,129" messageCatalog="700" messageText="Error cargando archivo">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
-      <nodes xmi:type="ComIbmFileRead.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="633,219" inputDirectory="opt/ace/templates/email/v4/" outputDataLocation="$Environment" messageDomainProperty="BLOB">
+      <nodes xmi:type="ComIbmFileRead.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="633,219" inputDirectory="/opt/ace/templates/email/v4/" substituteWildcardMatch="true" outputDataLocation="$Environment" messageDomainProperty="BLOB">
         <translation xmi:type="utility:ConstantString" string="CargaPlantilla"/>
       </nodes>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="215,215" queueName="SV.CORREO.CARGAPLANTILLAAPPV4.01" messageDomainProperty="XMLNSC">

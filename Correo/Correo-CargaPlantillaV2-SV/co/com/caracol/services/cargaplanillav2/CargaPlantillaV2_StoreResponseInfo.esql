@@ -12,7 +12,6 @@ CREATE COMPUTE MODULE CargaPlantillaV2_StoreResponseInfo
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 		
 		--Declarar variables
 		DECLARE i, intLongAdjuntos INTEGER 1;

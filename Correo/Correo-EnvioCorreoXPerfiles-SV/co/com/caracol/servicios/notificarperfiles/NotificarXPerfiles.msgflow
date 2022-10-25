@@ -16,8 +16,8 @@
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="1546,205">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="230,201" queueName="SV.SEGURIDAD.PERFILESPORSISTEMA.01" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.PERFILESPORSISTEMA.01"/>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="230,201" queueName="SV.USUARIOS.ENVIOCORREOXPERFILES.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="SV.USUARIOS.ENVIOCORREOXPERFILES.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="872,201" computeExpression="esql://routine/co.com.caracol.servicios.notificarperfiles#NotificarXPerfiles_ResponseService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>

@@ -16,7 +16,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="847,199" computeExpression="esql://routine/co.com.caracol.services.trazability#RegisterLog_ResponseService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="364,369" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="364,369" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSendToExternalLog.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="205,199" queueName="SV.TRAZABILITY.REGISTER.01" messageDomainProperty="XMLNSC">
@@ -28,7 +28,7 @@
       <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="808,111" messageCatalog="700" messageText="Error comunicación con backend">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
-      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="597,370" destination="file" filePath="/opt/ace/back_log.txt" pattern="-----------------------------------------&#xD;&#xA;Fecha de regsitro:&#xD;&#xA;${CURRENT_TIMESTAMP}&#xD;&#xA;-----------------------------------------&#xD;&#xA;${Body}">
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="597,370" destination="file" filePath="/opt/ace/back_log.log" pattern="-----------------------------------------&#xD;&#xA;Fecha de regsitro:&#xD;&#xA;${CURRENT_TIMESTAMP}&#xD;&#xA;-----------------------------------------&#xD;&#xA;${Body}">
         <translation xmi:type="utility:ConstantString" string="Trace"/>
       </nodes>
       <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="617,199" URLSpecifier="http://localhost:9200/transactions/_doc/" httpVersion="1.1" protocol="TLS">

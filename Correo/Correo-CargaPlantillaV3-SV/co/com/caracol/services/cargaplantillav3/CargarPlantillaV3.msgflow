@@ -22,7 +22,7 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="997,217" queueName="SV.CORREO.ENVIOCORREOV2.01">
         <translation xmi:type="utility:ConstantString" string="SV.CORREO.ENVIOCORREOV2.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmFileRead.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="578,219" inputDirectory="opt/ace/templates/email/v3/" filenamePattern="Plantilla.html" outputDataLocation="$Environment" messageDomainProperty="BLOB">
+      <nodes xmi:type="ComIbmFileRead.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="578,219" inputDirectory="/opt/ace/templates/email/v3/" filenamePattern="Plantilla.html" outputDataLocation="$Environment" messageDomainProperty="BLOB">
         <translation xmi:type="utility:ConstantString" string="CargaPlantilla"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="375,290" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">

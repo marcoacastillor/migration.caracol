@@ -144,3 +144,34 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsFcdRsWS
 		RETURN TRUE;
 	END;
 END MODULE;	
+
+
+CREATE COMPUTE MODULE HandlerModules_ErrorsSendToExternalLog
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		--Declarar referencia a mensaje de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		SET refOut.Transaction.RqID 		= refMQRFH2.usr.transaction.transactionID;
+		SET refOut.Transaction.Service 		= refMQRFH2.usr.transaction.service;
+		SET refOut.Transaction.Operation 	= refMQRFH2.usr.transaction.operation;
+		SET refOut.Transaction.Status 		= refMQRFH2.usr.transaction.status;
+		SET refOut.Transaction.TraceID 		= refMQRFH2.usr.transaction.traceId;
+		SET refOut.Transaction.Message 		= co.com.caracol.integration.commos.getMessageFromBody(refInp);
+		
+		RETURN TRUE;
+	END;
+END MODULE;
