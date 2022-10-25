@@ -13,7 +13,7 @@
       <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="694,129" messageCatalog="700" messageText="Error cargando archivo">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
-      <nodes xmi:type="ComIbmFileRead.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="523,219" inputDirectory="opt/ace/templates/email/v2/" filenamePattern="Plantilla.html" outputDataLocation="$Environment" messageDomainProperty="BLOB">
+      <nodes xmi:type="ComIbmFileRead.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="523,219" inputDirectory="/opt/ace/templates/email/v2/" filenamePattern="Plantilla.html" outputDataLocation="$Environment" messageDomainProperty="BLOB">
         <translation xmi:type="utility:ConstantString" string="CargaPlantilla"/>
       </nodes>
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="1150,220">

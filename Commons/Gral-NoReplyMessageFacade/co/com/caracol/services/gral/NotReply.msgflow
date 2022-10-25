@@ -21,7 +21,7 @@
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="161,198" queueName="CH.WS.COMMONS.NOREPLY" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="CH.WS.COMMONS.NOREPLY"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="168,414" queueName="CH.WS.COMMONS.ENDPROCESS" messageDomainProperty="BLOB">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="161,414" queueName="CH.WS.COMMONS.ENDPROCESS" messageDomainProperty="BLOB">
         <translation xmi:type="utility:ConstantString" string="CH.WS.COMMONS.ENDPROCESS"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="382,413" computeExpression="esql://routine/co.com.caracol.services.gral#NotReply_EndProcess.Main">

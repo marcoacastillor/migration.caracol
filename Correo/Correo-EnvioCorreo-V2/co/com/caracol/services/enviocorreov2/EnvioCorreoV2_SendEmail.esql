@@ -18,7 +18,6 @@ CREATE COMPUTE MODULE EnvioCorreoV2_SendEmail
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 		
 		-- Añadir información de destinatario a EmailOutputHeader
 		SET refInp.Para						= REPLACE(refInp.Para,' ','');

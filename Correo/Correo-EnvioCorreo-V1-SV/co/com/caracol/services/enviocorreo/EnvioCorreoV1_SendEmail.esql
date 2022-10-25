@@ -16,7 +16,6 @@ CREATE COMPUTE MODULE EnvioCorreoV1_SendEmail
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 		
 		-- Añadir información de destinatario a EmailOutputHeader
 		SET OutputRoot.EmailOutputHeader.To 	= refInp.Para;

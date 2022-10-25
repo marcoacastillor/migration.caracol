@@ -9,12 +9,11 @@ CREATE COMPUTE MODULE CargarPlantillaV3_PrepareTemplate
 		SET OutputRoot.Properties.CodedCharSetId = '1208';
 		
 		--Copiar cabeceras de respuesta
-		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
-		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
 		
 		--Declarar variable referencia de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
-		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
 		

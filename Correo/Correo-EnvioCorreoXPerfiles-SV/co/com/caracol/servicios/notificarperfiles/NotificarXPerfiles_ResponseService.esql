@@ -14,7 +14,6 @@ CREATE COMPUTE MODULE NotificarXPerfiles_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 		
 		DECLARE Para CHARACTER '';
 		DECLARE i INTEGER 1;
