@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/WEB.CARACOL.CASTING.WebServices.ServiceModel" xmlns:tns="http://schemas.datacontract.org/2004/07/WEB.CARACOL.CASTING.WebServices.ServiceModel">
+  <xsd:complexType name="ArrayOfActor">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="Actor" nillable="true" type="tns:Actor"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ArrayOfActor" nillable="true" type="tns:ArrayOfActor"/>
+  <xsd:complexType name="Actor">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="cedula" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="foto" nillable="true" type="xsd:base64Binary"/>
+      <xsd:element minOccurs="0" name="nombres" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="tienehojavida" type="xsd:boolean"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Actor" nillable="true" type="tns:Actor"/>
+</xsd:schema>

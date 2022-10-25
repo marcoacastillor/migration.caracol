@@ -1,0 +1,37 @@
+BROKER SCHEMA co.com.caracol.consultatalentoxcodigo
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/mercadeo/indicetalento/consultatalentoxcodigo/';
+
+CREATE COMPUTE MODULE ConsultaTalentoXcodigo_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		 IF EXISTS(refInp.*:BuscarTalentoXCodigoResult[]) THEN
+		 CREATE FIELD refOut.ns1:BuscarTalentoXCodigoResponse;
+		 DECLARE refOut REFERENCE TO refOut.ns1:BuscarTalentoXCodigoResponse;
+			
+		 SET refOut.ns1:BuscarTalentoXCodigoResponse.ns1:TalentoCodigo 		   = FIELDVALUE(refInp.*:TalentoCodigo);
+		 SET refOut.ns1:BuscarTalentoXCodigoResponse.ns1:Foto  				   = FIELDVALUE(refInp.*:Foto);
+		 SET refOut.ns1:BuscarTalentoXCodigoResponse.ns1:NombreCompleto  	   = FIELDVALUE(refInp.*:NombreCompleto);
+		 SET refOut.ns1:BuscarTalentoXCodigoResponse.ns1:RutaPdfUltimoEstudio  = FIELDVALUE(refInp.*:RutaPdfUltimoEstudio);
+		 SET refOut.ns1:BuscarTalentoXCodigoResponse.ns1:TalentoId  		   = FIELDVALUE(refInp.*:TalentoId);
+		 
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR: BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

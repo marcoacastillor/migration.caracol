@@ -1,0 +1,32 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\CastingWebServices.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: There is no xmlns declaration for namespace 'http://schemas.datacontract.org/2004/07/WEB.CARACOL.CASTING.WebServices.ServiceModel', Line: 1, Column: 1111
+
+
+The WSDL import will proceed with bindings BasicHttpBinding_ICastingWebServices.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/CastingWebServices.wsdl.
+Parsing wsdl binding {http://tempuri.org/}BasicHttpBinding_ICastingWebServices.
+Parsing wsdl binding input ConsultarActores.
+Parsing wsdl binding output ConsultarActores.
+Parsing wsdl binding input ArchivoHojaVida.
+Parsing wsdl binding output ArchivoHojaVida.
+Processing doc style for operation ConsultarActores.
+Processing doc style for operation ArchivoHojaVida.
+Populating WSDL schema CastingWebServices.xsd.
+Creating file CastingWebServices.xsd in the workspace.
+Creating file CastingWebServices_InlineSchema1.xsd in the workspace.
+Creating file /Casting-ConsultaHojaVida/CastingWebServices_InlineSchema2.xsd in the workspace.
+Creating file /Casting-ConsultaHojaVida/CastingWebServices_InlineSchema3.xsd in the workspace.
+Copying source WSDL CastingWebServices.wsdl to CastingWebServices.wsdl.
+
+Elapsed time processing this message definition file: 0.329 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

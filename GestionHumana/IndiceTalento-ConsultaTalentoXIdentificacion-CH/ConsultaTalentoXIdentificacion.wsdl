@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+name="ConsultaTalentoXIdentificacion" 
+targetNamespace="http://www.caracoltv.com.co/mercadeo/indicetalento/consultatalentoxidentificacion/" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/" 
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+xmlns:srv="http://www.caracoltv.com.co/mercadeo/indicetalento/consultatalentoxidentificacion/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdxcaliburConsultaTalentoXIdentificacionSOAP12Http" originalBindingStyle="document"/>
+        <generatedXSD location="ConsultaTalentoXIdentificacion.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation> 
+<wsdl:types>
+   <xsd:schema targetNamespace="http://www.caracoltv.com.co/mercadeo/indicetalento/consultatalentoxidentificacion/"
+			xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+			<xsd:include schemaLocation="ConsultaTalentoXIdentificacion.xsd" />
+    </xsd:schema>
+	<xsd:schema>
+		<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+		schemaLocation="ebms-header-3_0-200704.xsd"/>
+	</xsd:schema>	
+</wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgConsultaTalentoXIdentificacionRequest">
+    	<wsdl:part element="srv:ConsultaTalentoXIdentificacionRequest" name="ConsultaTalentoXIdentificacionRequest"/>
+  	</wsdl:message>
+  	
+  	<!-- Response message -->
+  	<wsdl:message name="msgConsultaTalentoXIdentificacionResponse">
+    	<wsdl:part element="srv:ConsultaTalentoXIdentificacionResponse" name="ConsultaTalentoXIdentificacionResponse"/>
+
+  	</wsdl:message>
+	
+	<!-- Fault message -->
+	<wsdl:message name="msgConsultaTalentoXIdentificacionFault">
+  		<wsdl:part element="eb:Messaging" name="detail"/>
+  	</wsdl:message>
+  	  
+	
+<!-- Port type -->
+  	<wsdl:portType name="ptConsultaTalentoXIdentificacion">
+    	<wsdl:operation name="ConsultaTalentoXIdentificacion">
+      		<wsdl:input message="srv:msgConsultaTalentoXIdentificacionRequest" name="ConsultaTalentoXIdentificacion_Input"/>
+      		<wsdl:output message="srv:msgConsultaTalentoXIdentificacionResponse" name="ConsultaTalentoXIdentificacion_Output"/>
+	        <wsdl:fault message="srv:msgConsultaTalentoXIdentificacionFault" name="fault"/>		
+	    </wsdl:operation>
+  	</wsdl:portType>
+
+
+    	
+<!-- Binding (SOAP 1.2/HTTP binding) -->
+	<wsdl:binding name="bdxcaliburConsultaTalentoXIdentificacionSOAP12Http" type="srv:ptConsultaTalentoXIdentificacion">
+    	<S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="ConsultaTalentoXIdentificacion">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/financiera/xcalibur/ConsultaTalentoXIdentificacion/"/>
+	      	<wsdl:input name="ConsultaTalentoXIdentificacion_Input">
+	        	<S12:body parts="ConsultaTalentoXIdentificacionRequest" use="literal"/>
+	      	</wsdl:input>
+	      	<wsdl:output name="ConsultaTalentoXIdentificacion_Output">
+	        	<S12:body parts="ConsultaTalentoXIdentificacionResponse" use="literal"/>
+	      	</wsdl:output>
+	      	<wsdl:fault name="fault">
+	      		<S12:fault name="fault" use="literal"/>
+	      	</wsdl:fault>		
+    	</wsdl:operation>
+	</wsdl:binding>
+	
+    <!-- Service -->
+  	<wsdl:service name="ConsultaTalentoXIdentificacion">    	
+    	
+    	<wsdl:port binding="srv:bdxcaliburConsultaTalentoXIdentificacionSOAP12Http" name="ptConsultaTalentoXIdentificacion12">
+      		<S12:address location="http://localhost:7800/services/s12/dominio/indicetalentoconsultatalentoxidentificacion"/>
+    	</wsdl:port>
+  	</wsdl:service>  	  
+</wsdl:definitions>

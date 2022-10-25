@@ -1,0 +1,29 @@
+BROKER SCHEMA co.com.caracol.consultatalentoxnombre
+
+DECLARE ns NAMESPACE 'http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento';
+DECLARE temp NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE ConsultaTalentoXNombre_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:BuscarTalentoXNombre;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:BuscarTalentoXNombre;
+		
+		SET refOut.temp:DatosTalentoRequest.ns:Nombre		= FIELDVALUE(refInp.*:Nombre);
+			
+		RETURN TRUE;
+	 END;	
+END MODULE;
+

@@ -1,0 +1,33 @@
+
+
+Importing file: E:\IBM\SOA\Nuevas Integraciones\Fase 14\Files ADD\BuscarTalentoXNombre.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'http://srvpintpruebas2:93/WsIndiceTalento/ConsultarTalentoXNombre/BuscarTalentoXNombre.svc?xsd=xsd1' has not been resolved because the import is unused, Line: 1, Column: 1201
+XSD: There is no xmlns declaration for namespace 'http://schemas.microsoft.com/2003/10/Serialization/', Line: 1, Column: 1201
+XSD: The location 'http://srvpintpruebas2:93/WsIndiceTalento/ConsultarTalentoXNombre/BuscarTalentoXNombre.svc?xsd=xsd2' has not been resolved because the import is unused, Line: 1, Column: 1395
+XSD: There is no xmlns declaration for namespace 'http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento', Line: 1, Column: 1395
+
+
+The WSDL import will proceed with bindings BasicHttpBinding_IBuscarTalentoXNombre.
+Creating wsdl schema document for file:///E:/IBM/SOA/Nuevas Integraciones/Fase 14/Files ADD/BuscarTalentoXNombre.wsdl.
+Parsing wsdl binding {http://tempuri.org/}BasicHttpBinding_IBuscarTalentoXNombre.
+Parsing wsdl binding input BuscarTalentoXNombre.
+Parsing wsdl binding output BuscarTalentoXNombre.
+Processing doc style for operation BuscarTalentoXNombre.
+Populating WSDL schema BuscarTalentoXNombre.xsd.
+Removing unnecessary import statement with namespace http://schemas.microsoft.com/2003/10/Serialization/ from schema BuscarTalentoXNombre_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento from schema BuscarTalentoXNombre_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Creating file BuscarTalentoXNombre.xsd in the workspace.
+Creating file /IndiceTalento_SV_ConsultaTalentoXNombre/xsd_xsd0.xsd in the workspace.
+Creating file /IndiceTalento_SV_ConsultaTalentoXNombre/xsd_xsd2.xsd in the workspace.
+Copying source WSDL BuscarTalentoXNombre.wsdl to BuscarTalentoXNombre.wsdl.
+
+Elapsed time processing this message definition file: 0.277 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

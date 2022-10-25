@@ -1,0 +1,23 @@
+BROKER SCHEMA com.caracol.intf.indicetalento.actualizaridentificaciontalento
+
+
+CREATE COMPUTE MODULE SV_IndiceTalento_ActualizarIdentificacionTalento_ResponseFuncionalidad
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/mercadeo/indicetalento/actualizaridentificaciontalento/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE tem NAMESPACE 'http://tempuri.org/';	
+		DECLARE car NAMESPACE 'http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento';		
+	
+		
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+				
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ActualizarIdentificacionTalentoResponse	= '';																														
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;			
+		RETURN TRUE;	
+	END;
+
+END MODULE;

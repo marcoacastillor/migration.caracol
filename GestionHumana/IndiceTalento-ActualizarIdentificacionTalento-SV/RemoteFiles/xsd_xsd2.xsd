@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento" xmlns:tns="http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento">
+  <xsd:complexType name="DatosTalentoRequest.RequestDatosTalento">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="NumeroIdentificacion" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="TalentoCodigo" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DatosTalentoRequest.RequestDatosTalento" nillable="true" type="tns:DatosTalentoRequest.RequestDatosTalento"/>
+</xsd:schema>

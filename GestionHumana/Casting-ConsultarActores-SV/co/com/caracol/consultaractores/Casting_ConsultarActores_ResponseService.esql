@@ -1,0 +1,44 @@
+BROKER SCHEMA co.com.caracol.consultaractores
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/TI/casting/consultaractores/';
+
+CREATE COMPUTE MODULE Casting_ConsultarActores_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
+		
+		IF EXISTS(refInp.*:Actor[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.ns1:ConsultarActoresResponse;
+			DECLARE refOut REFERENCE TO refOut.ns1:ConsultarActoresResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:Actor.*:ConsultarActores[]  DO
+					--Funcionalidad
+				SET refOut.ns1:Actor.ns1:ConsultarActores[i].ns1:cedula	        = FIELDVALUE(refReqs.*:cedula);
+				SET refOut.ns1:Actor.ns1:ConsultarActores[i].ns1:foto	        = FIELDVALUE(refReqs.*:foto);
+				SET refOut.ns1:Actor.ns1:ConsultarActores[i].ns1:nombres	    = FIELDVALUE(refReqs.*:nombres);
+				SET refOut.ns1:Actor.ns1:ConsultarActores[i].ns1:tienehojavida	= FIELDVALUE(refReqs.*:tienehojavida);			
+			   
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

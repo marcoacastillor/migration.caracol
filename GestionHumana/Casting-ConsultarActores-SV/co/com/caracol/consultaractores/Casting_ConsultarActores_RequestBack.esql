@@ -1,0 +1,29 @@
+BROKER SCHEMA co.com.caracol.consultaractores
+
+DECLARE temp NAMESPACE 'http://tempuri.org/';
+
+CREATE COMPUTE MODULE Casting_ConsultarActores_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultarActores;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultarActores;
+		
+		SET refOut.temp:nombres		= FIELDVALUE(refInp.*:nombres);
+		SET refOut.temp:apellidos	= FIELDVALUE(refInp.*:apellidos);
+		
+		
+		RETURN TRUE;
+	 END;	
+END MODULE;
+

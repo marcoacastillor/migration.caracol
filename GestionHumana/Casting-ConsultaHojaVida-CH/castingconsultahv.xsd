@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+   targetNamespace="http://www.caracoltv.com.co/produccion/casting/consultahojavida/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:srv="http://www.caracoltv.com.co/produccion/casting/consultahojavida/">
+<!-- wrapper element of the request message -->
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaHVRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="false" minOccurs="1" name="cedula" type="xsd:string"/>		
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaHVResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="true" minOccurs="1" name="ArchivoHojaVida" type="xsd:base64Binary"/>				
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+  </xsd:schema>

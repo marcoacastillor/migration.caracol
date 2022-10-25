@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:tns="http://tempuri.org/">
+  <xsd:import namespace="http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento" schemaLocation="xsd_xsd2.xsd"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="BuscarTalentoXNombre">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="DatosTalentoRequest" nillable="true" type="q1:DatosTalentoRequest.RequestNombre" xmlns:q1="http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="BuscarTalentoXNombreResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="BuscarTalentoXNombreResult" nillable="true" type="q2:ArrayOfDatosTalentoResponse" xmlns:q2="http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

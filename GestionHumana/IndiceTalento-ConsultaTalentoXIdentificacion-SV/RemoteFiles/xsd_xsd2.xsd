@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento" xmlns:tns="http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento">
+  <xsd:complexType name="DatosTalentoRequest.RequestIdentificacion">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="NumeroIdentificacion" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DatosTalentoRequest.RequestIdentificacion" nillable="true" type="tns:DatosTalentoRequest.RequestIdentificacion"/>
+  <xsd:complexType name="ArrayOfDatosTalentoResponse">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="DatosTalentoResponse" nillable="true" type="tns:DatosTalentoResponse"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="ArrayOfDatosTalentoResponse" nillable="true" type="tns:ArrayOfDatosTalentoResponse"/>
+  <xsd:complexType name="DatosTalentoResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="TalentoCodigo" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="Foto" nillable="true" type="xsd:base64Binary"/>
+      <xsd:element minOccurs="0" name="NombreCompleto" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="RutaPdfUltimoEstudio" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="TalentoId" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="DatosTalentoResponse" nillable="true" type="tns:DatosTalentoResponse"/>
+</xsd:schema>
