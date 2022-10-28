@@ -98,7 +98,7 @@ BEGIN
 			
 		WHEN 'ENVIO_CORREO_V1' THEN
 			CASE operation
-			WHEN 'EnvioCorreo1' THEN
+			WHEN 'EnvioCorreo' THEN
 				RETURN 'SV.CORREO.ENVIOCORREO.01';
 			END CASE;
 			
