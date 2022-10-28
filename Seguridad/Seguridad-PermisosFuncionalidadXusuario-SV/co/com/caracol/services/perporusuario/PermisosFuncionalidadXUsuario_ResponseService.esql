@@ -24,7 +24,7 @@ CREATE COMPUTE MODULE PermisosFuncionalidadXUsuario_ResponseService
 			FOR refUser AS refInp.*:PermisosDeFuncionalidadXUsuarioResult.*:Permiso[] DO
 				--usuario
 				SET refOut.ns1:Permiso[i].Id									= refUser.*:Id;
-				SET refOut.ns1:Usuario[i].Nombre								= refUser.*:Nombre;							
+				SET refOut.ns1:Permiso[i].Nombre								= refUser.*:Nombre;							
 						
 				SET i = i+1;
 				IF (i>1000) THEN
