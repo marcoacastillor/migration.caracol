@@ -1,0 +1,19 @@
+
+
+CREATE COMPUTE MODULE FinalMQ
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*IF  rOutputRoot.JSON.Data IS NULL THEN					
+			SET OutputLocalEnvironment.Destination.HTTP."X-Original-HTTP-Status-Code"=401;
+			SET OutputRoot.JSON.Data.Error = 'Credenciales O Usuario No Validos ';
+			RETURN TRUE;																					
+		END IF;*/			
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		DECLARE rHeaderI REFERENCE TO InputRoot.JSON.Data;
+		DECLARE rBodyI REFERENCE TO InputRoot.JSON.Data;
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	
+		SET OutputRoot.JSON.Data=InputRoot.JSON.Data;				
+	END;
+
+END MODULE;

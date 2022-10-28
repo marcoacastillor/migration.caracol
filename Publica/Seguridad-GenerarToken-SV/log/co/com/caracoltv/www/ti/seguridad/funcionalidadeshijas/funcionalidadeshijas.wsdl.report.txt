@@ -1,0 +1,26 @@
+
+
+Importing file: \services\s12\dominio\funcionalidadeshijas.wsdl
+
+The WSDL import will proceed with bindings bdFuncionalidadesHijasHttp.
+Creating wsdl schema document for RemoteFiles/funcionalidadeshijas.xsd.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/seguridad/funcionalidadeshijas/}bdFuncionalidadesHijasHttp.
+Parsing wsdl binding input operacionFuncionalidadesHijas.
+Parsing wsdl binding output operacionFuncionalidadesHijas.
+Parsing wsdl binding fault fault.
+Processing doc style for operation operacionFuncionalidadesHijas.
+Populating WSDL schema RemoteFiles/funcionalidadeshijas.xsd.
+Removing unnecessary import statement with namespace http://www.w3.org/2003/05/soap-envelope from schema /Seguridad-GenerarToken-SV/xsd_xsd1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://www.w3.org/XML/1998/namespace from schema /Seguridad-GenerarToken-SV/xsd_xsd1.xsd.  This statement was not resolved and is never used.
+Creating file RemoteFiles/funcionalidadeshijas.xsd in the workspace.
+Creating file /Seguridad-GenerarToken-SV/xsd_xsd0.xsd in the workspace.
+Creating file /Seguridad-GenerarToken-SV/xsd_xsd1.xsd in the workspace.
+Copying source WSDL funcionalidadeshijas?wsdl to funcionalidadeshijas.wsdl.
+
+Elapsed time processing this message definition file: 0.663 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

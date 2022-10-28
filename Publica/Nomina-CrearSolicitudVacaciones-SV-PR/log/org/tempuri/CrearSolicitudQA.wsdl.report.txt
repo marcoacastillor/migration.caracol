@@ -1,0 +1,33 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\CrearSolicitudQA.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'http://srvpinpre1:8082/CrearSolicitud.svc?xsd=xsd1' has not been resolved because the import is unused, Line: 1, Column: 1153
+XSD: There is no xmlns declaration for namespace 'http://schemas.microsoft.com/2003/10/Serialization/', Line: 1, Column: 1153
+XSD: The location 'http://srvpinpre1:8082/CrearSolicitud.svc?xsd=xsd2' has not been resolved because the import is unused, Line: 1, Column: 1298
+XSD: There is no xmlns declaration for namespace 'http://schemas.datacontract.org/2004/07/ServicioCrearSolicitud', Line: 1, Column: 1298
+
+
+The WSDL import will proceed with bindings BasicHttpBinding_ICrearSolicitud.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/CrearSolicitudQA.wsdl.
+Parsing wsdl binding {http://tempuri.org/}BasicHttpBinding_ICrearSolicitud.
+Parsing wsdl binding input GenerarSolicitud.
+Parsing wsdl binding output GenerarSolicitud.
+Processing doc style for operation GenerarSolicitud.
+Populating WSDL schema CrearSolicitudQA.xsd.
+Removing unnecessary import statement with namespace http://schemas.microsoft.com/2003/10/Serialization/ from schema CrearSolicitudQA_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://schemas.datacontract.org/2004/07/ServicioCrearSolicitud from schema CrearSolicitudQA_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Creating file CrearSolicitudQA.xsd in the workspace.
+Creating file /Nomina-CrearSolicitudVacaciones-SV-qa/xsd_xsd0.xsd in the workspace.
+Creating file /Nomina-CrearSolicitudVacaciones-SV-qa/xsd_xsd2.xsd in the workspace.
+Copying source WSDL CrearSolicitudQA.wsdl to CrearSolicitudQA.wsdl.
+
+Elapsed time processing this message definition file: 0.125 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

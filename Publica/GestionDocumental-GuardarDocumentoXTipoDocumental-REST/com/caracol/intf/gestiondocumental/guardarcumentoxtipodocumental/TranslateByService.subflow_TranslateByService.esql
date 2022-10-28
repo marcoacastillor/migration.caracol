@@ -1,0 +1,43 @@
+BROKER SCHEMA com.caracol.intf.gestiondocumental.guardarcumentoxtipodocumental
+
+
+CREATE COMPUTE MODULE TranslateByService_subflow_TranslateByService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2C 	= InputRoot.MQRFH2C;
+		
+		-- Referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Referencia a objeto de entrada
+		CREATE FIELD OutputRoot.XMLNSC.GuardarDocumentoXTipoDocumentalRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.GuardarDocumentoXTipoDocumentalRequest;
+		
+		SET refOut.DiskGroupName		= refInp.DiskGroupName;
+		SET refOut.DocumentTypeName		= refInp.DocumentTypeName;		
+		SET refOut.FileFormat			= refInp.FileFormat;		
+		SET refOut.FileExtension		= refInp.FileExtension;
+		SET refOut.FolderId				= refInp.FolderId;
+		
+		DECLARE j INTEGER 1;
+		FOR rBodyKeyWord  AS refInp.KeyWords.*[] DO 
+				--usuario
+			    SET refOut.KeyWords.KeyWord[j].Nombre	= rBodyKeyWord.Nombre; 
+			    SET refOut.KeyWords.KeyWord[j].Valor	= rBodyKeyWord.Valor; 				 		
+				SET j = j+1;
+		END FOR;
+		
+		SET j=1; 
+		FOR rBodyPagina  AS refInp.Paginas.*[] DO 
+				--usuario
+			    SET refOut.Paginas.Pagina[j].Valor=rBodyPagina.Valor;     				 		
+				SET j = j+1;
+		END FOR; 
+		
+		RETURN TRUE;
+	END;
+END MODULE;

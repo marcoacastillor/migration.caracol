@@ -1,0 +1,40 @@
+
+
+CREATE COMPUTE MODULE Compuete_ResponseAutenticaUsuario
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/autentica/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:SeguridadAutenticaResponse;			
+		DECLARE srvFuncionalidades NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/funcionalidadeshijas/';			
+		
+		
+		/*Se copian las propiedades del mensaje.*/
+		SET OutputRoot.Properties = InputRoot.Properties;
+		/*Se crea el mensaje definido para SeguridadAutenticaRequest.*/
+		IF rBodyI.UsuarioAutenticarResult=true THEN
+			--Valores que recibe . net
+			SET Environment.Variables.Usuario[] =LIST{Environment.Variables.usuario[1]};
+			SET Environment.Variables.HorasExpira[] =LIST{'2'};		
+			-- categoria 1904 Servivios- modulo de usuarios 
+			SET OutputRoot.SOAP.Body.srvFuncionalidades:FuncionalidadesHijasRequest.funcionalidadid= '1904';			
+		    SET OutputRoot.SOAP.Body.srvFuncionalidades:FuncionalidadesHijasRequest.usuarioid= Environment.Variables.usuario[1];
+						
+			PROPAGATE TO TERMINAL 'out' DELETE NONE;
+			RETURN FALSE;		    
+		ELSE
+			SET OutputLocalEnvironment.Destination.HTTP."X-Original-HTTP-Status-Code"=401;
+			SET OutputRoot.JSON.Data.Error = 'Credenciales Invalidas';
+						
+			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+			RETURN FALSE;		    
+					    	   		
+		END IF;		
+	 	SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	 		 
+	 	RETURN TRUE;	 	
+	END;
+
+END MODULE;

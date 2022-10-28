@@ -1,0 +1,28 @@
+BROKER SCHEMA co.com.caracol.services.consultadocxid
+
+
+CREATE COMPUTE MODULE ConsultarDocumentoXID_RequestCommand1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		DECLARE Comando CHARACTER '';
+		DECLARE i INTEGER 1;
+				
+		--asignacion tipo documental
+		SET Comando = '<Request><Type>DocumentData</Type><Query><DocumentHandle>';
+		SET Comando = Comando || refInp.NumeroDocumento || '</DocumentHandle><LoadKeywords>True</LoadKeywords></Query></Request>'; 				
+		--keyword	
+		
+		SET OutputRoot.SOAP.Body.Comando=Comando;
+			
+		RETURN TRUE;
+	END;
+END MODULE;

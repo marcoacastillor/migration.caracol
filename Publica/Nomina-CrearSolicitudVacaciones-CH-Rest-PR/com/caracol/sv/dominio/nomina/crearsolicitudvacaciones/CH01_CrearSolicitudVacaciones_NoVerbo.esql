@@ -1,0 +1,14 @@
+BROKER SCHEMA com.caracol.sv.dominio.nomina.crearsolicitudvacaciones
+
+
+CREATE COMPUTE MODULE CH01_CrearSolicitudVacaciones_NoVerbo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = Environment.Variables.Properties[1];
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier=Environment.Variables.ReplyIdentifier[1];	
+		SET OutputRoot.JSON.Data.Error = 'Error en la solicitud';
+		RETURN TRUE;
+	END;
+
+	
+END MODULE;

@@ -1,0 +1,42 @@
+BROKER SCHEMA co.com.caracol.services.listadocxtipodocumental
+
+
+CREATE COMPUTE MODULE TranslateByService_RQ_subflow_TranslateByService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2C 	= InputRoot.MQRFH2C;
+		
+		-- Referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Referencia a objeto de entrada
+		CREATE FIELD OutputRoot.XMLNSC.ListarDocumentoXTipoDocumentalRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ListarDocumentoXTipoDocumentalRequest;
+		
+		SET refOut.TipoDocumental		= refInp.TipoDocumental;
+		
+		DECLARE j INTEGER 1;
+		FOR rBodyKeyWord  AS refInp.KeyWords.*[] DO 
+				--usuario
+			    SET refOut.KeyWords.KeyWord[j].Nombre		= rBodyKeyWord.Nombre; 
+			    SET refOut.KeyWords.KeyWord[j].Valor		= rBodyKeyWord.Valor; 				 		
+			    SET refOut.KeyWords.KeyWord[j].Operador		= rBodyKeyWord.Operador;
+			    SET refOut.KeyWords.KeyWord[j].Condicion	= rBodyKeyWord.Condicion;
+			    
+				SET j = j+1;
+		END FOR;
+		
+		SET j=1; 
+		FOR rBodyPagina  AS refInp.KeywordsFilter.*[] DO 
+				--usuario
+			    SET refOut.KeywordsFilter.KewordFilter[j].Nombre	= rBodyPagina.Nombre;     				 		
+				SET j = j+1;
+		END FOR; 
+		
+		RETURN TRUE;
+	END;
+END MODULE;

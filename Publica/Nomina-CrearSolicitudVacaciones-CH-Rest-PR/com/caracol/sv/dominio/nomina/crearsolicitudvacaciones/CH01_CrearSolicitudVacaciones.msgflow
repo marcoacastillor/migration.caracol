@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmLabel.msgnode="ComIbmLabel.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmRouteToLabel.msgnode="ComIbmRouteToLabel.msgnode" xmlns:ComIbmValidate.msgnode="ComIbmValidate.msgnode" xmlns:ComIbmWSInput.msgnode="ComIbmWSInput.msgnode" xmlns:ComIbmWSReply.msgnode="ComIbmWSReply.msgnode" xmlns:Indicadores_EnviarInformacionEntrada.subflow="Indicadores/EnviarInformacionEntrada.subflow"
+    xmlns:Seguridad_ValidarToken_Seguridad_ValidarToken.subflow="Seguridad_ValidarToken/Seguridad_ValidarToken.subflow" xmlns:com_cysce_core_context_StoreContext.subflow="com/cysce/core/context/StoreContext.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:mbmonitor="http://www.ibm.com/wbi/2008/eflow_mbmonitor" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracol/sv/dominio/nomina/crearsolicitudvacaciones/CH01_CrearSolicitudVacaciones.msgflow" nsPrefix="com_caracol_sv_dominio_nomina_crearsolicitudvacaciones_CH01_CrearSolicitudVacaciones.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="CH01_CrearSolicitudVacaciones" bundleName="com/caracol/sv/dominio/nomina/crearsolicitudvacaciones/CH01_CrearSolicitudVacaciones" pluginId="Nomina-CrearSolicitudVacaciones-CH-Rest-PR"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-CrearSolicitudVacaciones-CH-Rest-PR/icons/full/obj16/CH01_CrearSolicitudVacaciones.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-CrearSolicitudVacaciones-CH-Rest-PR/icons/full/obj30/CH01_CrearSolicitudVacaciones.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="67,57" URLSpecifier="/Publicos/Nomina/CrearSolicitudVacaciones/CrearSolicitud" messageDomainProperty="JSON" timeoutForClient="360">
+        <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
+        <monitorEvents eventSourceDescription="Transaction start" eventSourceName="HTTP Input.transaction.Start" eventIdentity="Nomina_CrearSolicitudesVacaciones.HTTPInput.TransactionStart">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA"/>
+            <eventName literal="Nomina_CrearSolicitudesVacaciones.HTTPInput.TransactionStart"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+        <monitorEvents eventSourceDescription="Transaction end" eventSourceName="HTTP Input.transaction.End" eventIdentity="Nomina_CrearSolicitudesVacaciones.HTTPInput.TransactionEnd">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA" bitstreamContent="body"/>
+            <eventName literal="Nomina_CrearSolicitudesVacaciones.HTTPInput.TransactionEnd"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="246,55" computeExpression="esql://routine/com.caracol.sv.dominio.nomina.crearsolicitudvacaciones#CH01_CrearSolicitudVacaciones_GuardarEncabezado.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="GuardarEncabezado"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="GuardarEncabezado.terminal.in" eventIdentity="Nomina_CrearSolicitudesVacaciones.GuardarEncabezado.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="CDATA"/>
+            <eventName literal="Nomina_CrearSolicitudesVacaciones.GuardarEncabezado.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmValidate.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_16" location="496,58">
+        <translation xmi:type="utility:ConstantString" string="Validate"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_20" location="380,337" computeExpression="esql://routine/com.caracol.sv.dominio.nomina.crearsolicitudvacaciones#CH01_CrearSolicitudVacaciones_Valido.Main">
+        <translation xmi:type="utility:ConstantString" string="Valido"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="Valido.terminal.in" eventIdentity="Nomina_CrearSolicitudesVacaciones.Valido.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="Nomina_CrearSolicitudesVacaciones.Valido.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_21" location="524,304" queueName="SV.NOMINA.CREARSOLICITUDVACACIONES.01" request="true" replyToQ="CH.WS.CREARSOLICITUDVACACIONES.02">
+        <translation xmi:type="utility:ConstantString" string="MQ Output"/>
+        <monitorEvents eventSourceDescription="In terminal" eventSourceName="MQ Output.terminal.in" eventIdentity="Nomina_CrearSolicitudesVacaciones.MQ Output.InTerminal">
+          <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
+            <globalTransactionCorrelator/>
+            <parentTransactionCorrelator/>
+            <localTransactionCorrelator/>
+            <bitStreamData encoding="none" bitstreamContent="none"/>
+            <eventName literal="Nomina_CrearSolicitudesVacaciones.MQ Output.InTerminal"/>
+            <eventFilter dataLocation="true()" isXPath="true"/>
+          </eventXMLDoc>
+        </monitorEvents>
+      </nodes>
+      <nodes xmi:type="com_cysce_core_context_StoreContext.subflow:FCMComposite_1" xmi:id="FCMComposite_1_22" location="791,330" queueName="CSIF.ESB.CREARSOLICITUDVACACIONES.STORE">
+        <translation xmi:type="utility:ConstantString" string="StoreContext"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_23" location="485,185" computeExpression="esql://routine/com.caracol.sv.dominio.nomina.crearsolicitudvacaciones#CH01_CrearSolicitudVacaciones_NoValido.Main">
+        <translation xmi:type="utility:ConstantString" string="NoValido"/>
+      </nodes>
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_24" location="737,215">
+        <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="85,212" labelName="POST">
+        <translation xmi:type="utility:ConstantString" string="POST"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRouteToLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="714,59">
+        <translation xmi:type="utility:ConstantString" string="Route To Label"/>
+      </nodes>
+      <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_5" location="235,116" servicio="Nomina-GenerarCertificadoLaboralRest">
+        <translation xmi:type="utility:ConstantString" string="EnviarInformacionEntrada"/>
+      </nodes>
+      <nodes xmi:type="Seguridad_ValidarToken_Seguridad_ValidarToken.subflow:FCMComposite_1" xmi:id="FCMComposite_1_4" location="191,246">
+        <translation xmi:type="utility:ConstantString" string="Seguridad_ValidarToken"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_14" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_15" targetNode="FCMComposite_1_16" sourceNode="FCMComposite_1_15" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_19" targetNode="FCMComposite_1_21" sourceNode="FCMComposite_1_20" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_20" targetNode="FCMComposite_1_22" sourceNode="FCMComposite_1_21" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_22" targetNode="FCMComposite_1_24" sourceNode="FCMComposite_1_23" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_16" sourceTerminalName="OutTerminal.match" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_10" targetNode="FCMComposite_1_23" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.Output1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_20" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="PerfilesXSistemaYUsuario" targetNamespace="http://www.caracoltv.com.co/TI/seguridad/perfilesxsistemayusuario/" xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:srv="http://www.caracoltv.com.co/TI/seguridad/perfilesxsistemayusuario/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdPerfilesXSistemaYUsuarioHttp" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+   
+	  
+<wsdl:types>
+   <xsd:schema targetNamespace="http://www.caracoltv.com.co/TI/seguridad/perfilesxsistemayusuario/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="seguridad_perfilesxsistemayusuario.xsd"/>
+</xsd:schema>
+	<xsd:schema>
+<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" schemaLocation="ebms-header-3_0-200704.xsd"/>
+</xsd:schema>	
+</wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgPerfilesXSistemaYUsuarioRequest">
+    	<wsdl:part element="srv:PerfilesXSistemaYUsuarioRequest" name="PerfilesXSistemaYUsuarioRequest"/>
+  	</wsdl:message>
+  	
+  	<!-- Response message -->
+  	<wsdl:message name="msgPerfilesXSistemaYUsuarioResponse">
+    	<wsdl:part element="srv:PerfilesXSistemaYUsuarioResponse" name="PerfilesXSistemaYUsuarioResponse"/>
+  	</wsdl:message>
+	
+	<!-- Fault message -->
+	<wsdl:message name="msgPerfilesXSistemaYUsuarioFault">
+  		<wsdl:part element="eb:Messaging" name="detail"/>
+  	</wsdl:message>
+  	  
+	
+<!-- Port type -->
+  	<wsdl:portType name="ptPerfilesXSistemaYUsuario12">
+    	<wsdl:operation name="operacionPerfilesXSistemaYUsuario">
+      		<wsdl:input message="srv:msgPerfilesXSistemaYUsuarioRequest" name="PerfilesXSistemaYUsuario_Input"/>
+      		<wsdl:output message="srv:msgPerfilesXSistemaYUsuarioResponse" name="PerfilesXSistemaYUsuario_Output"/>
+	        <wsdl:fault message="srv:msgPerfilesXSistemaYUsuarioFault" name="fault"/>		
+	    </wsdl:operation>
+  	</wsdl:portType>
+	
+    <!-- Service -->
+    <wsdl:binding name="bdPerfilesXSistemaYUsuarioHttp" type="srv:ptPerfilesXSistemaYUsuario12">
+    	<S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="operacionPerfilesXSistemaYUsuario">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/TI/seguridad/perfilesxsistemayusuario/"/>
+	      	<wsdl:input name="PerfilesXSistemaYUsuario_Input">
+	        	<S12:body parts="PerfilesXSistemaYUsuarioRequest" use="literal"/>
+	      	</wsdl:input>
+	      	<wsdl:output name="PerfilesXSistemaYUsuario_Output">
+	        	<S12:body parts="PerfilesXSistemaYUsuarioResponse" use="literal"/>
+	      	</wsdl:output>
+	      	<wsdl:fault name="fault">
+	      		<S12:fault name="fault" use="literal"/>
+	      	</wsdl:fault>		
+    	</wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="PerfilesXSistemaYUsuario">    	    	
+    	<wsdl:port binding="srv:bdPerfilesXSistemaYUsuarioHttp" name="PerfilesXSistemaYUsuario">
+      		<S12:address location="http://srviibpr:7800/services/s12/dominio/perfilesxsistemayusuario"/>
+    	</wsdl:port>
+  	</wsdl:service>  	  
+</wsdl:definitions>

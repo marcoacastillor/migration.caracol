@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmSOAPRequest.msgnode="ComIbmSOAPRequest.msgnode" xmlns:ComIbmTryCatch.msgnode="ComIbmTryCatch.msgnode" xmlns:Seguridad_CrearToken_CrearToken.subflow="Seguridad_CrearToken/CrearToken.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow"
+    xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="SVGenerarToken.msgflow" nsPrefix="SVGenerarToken.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="SVGenerarToken" bundleName="SVGenerarToken" pluginId="Seguridad-GenerarToken-SV"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-GenerarToken-SV/icons/full/obj16/SVGenerarToken.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-GenerarToken-SV/icons/full/obj30/SVGenerarToken.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="-36,100" wsdlFileName="PerfilesXSistemaYUsuario.wsdl" selectedPortType="ptPerfilesXSistemaYUsuario12" selectedBinding="bdPerfilesXSistemaYUsuarioHttp" selectedOperation="operacionPerfilesXSistemaYUsuario" selectedPort="PerfilesXSistemaYUsuario" targetNamespace="http://www.caracoltv.com.co/TI/seguridad/perfilesxsistemayusuario/" useHTTPTransport="true" webServiceURL="http://srviibpr:7800/services/s12/dominio/perfilesxsistemayusuario"
+          requestTimeout="30" sslProtocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="PerfilesXSistemaXUsuario "/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="-145,29" computeExpression="esql://routine/#SVGenerarToken_Compute.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Guardar Entrada"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="102,100" computeExpression="esql://routine/#SVGenerarToken_Compute1.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Leer Credenciales"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="192,297" wsdlFileName="SeguridadAutentica.wsdl" selectedPortType="ptSeguridadAutentica" selectedBinding="bdSeguridadAutenticaSOAP12Http" selectedOperation="Consulta" selectedPort="ptSeguridadAutentica12" targetNamespace="http://www.caracoltv.com.co/TI/seguridad/autentica/" useHTTPTransport="true" webServiceURL="http://srviibpr:7800/services/s12/dominio/SeguridadAutentica" requestTimeout="30" sslProtocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="AutenticaUsuario"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="-255,29" queueName="SV.SEGURIDAD.GENERARTOKEN.01" messageDomainProperty="JSON">
+        <translation xmi:type="utility:ConstantString" string="GENERARTOKEN.01"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="302,252" computeExpression="esql://routine/#Compuete_ResponseAutenticaUsuario.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Validar Autenticacion"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="789,100" computeExpression="esql://routine/#FinalMQ.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Compute"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="900,101" queueName="CH.WS.SEGURIDAD.GENERARTOKEN.02">
+        <translation xmi:type="utility:ConstantString" string="MQ Output"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="573,26" computeExpression="esql://routine/#SVGenerarToken_Error.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ErrorPermisos"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTryCatch.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="-46,30">
+        <translation xmi:type="utility:ConstantString" string="Try Catch"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTryCatch.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="171,184">
+        <translation xmi:type="utility:ConstantString" string="Try Catch1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="473,329" wsdlFileName="RemoteFiles/funcionalidadeshijas.wsdl" selectedPortType="ptFuncionalidadesHijas12" selectedBinding="bdFuncionalidadesHijasHttp" selectedOperation="operacionFuncionalidadesHijas" selectedPort="FuncionalidadesHijas" targetNamespace="http://www.caracoltv.com.co/TI/seguridad/funcionalidadeshijas/" useHTTPTransport="true" webServiceURL="http://srviibpr:7800/services/s12/dominio/funcionalidadeshijas"
+          sslProtocol="TLS">
+        <translation xmi:type="utility:ConstantString" string="Funcionalidades"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTryCatch.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="381,325">
+        <translation xmi:type="utility:ConstantString" string="Try Catch2"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="565,329" computeExpression="esql://routine/#SVGenerarToken_ParametrosJWT.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="Enviar Parametros JWT"/>
+      </nodes>
+      <nodes xmi:type="Seguridad_CrearToken_CrearToken.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="696,262">
+        <translation xmi:type="utility:ConstantString" string="CrearToken"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_12" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_13" targetNode="FCMComposite_1_11" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_16" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_20" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_11" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_21" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.try" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_22" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_23" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.try" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_27" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_12" sourceTerminalName="OutTerminal.out1" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_30" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_31" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_32" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_14" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_13" sourceNode="FCMComposite_1_14" sourceTerminalName="OutTerminal.try" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_15" sourceNode="FCMComposite_1_13" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_15" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_8" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.Output" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

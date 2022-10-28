@@ -18,13 +18,12 @@ CREATE COMPUTE MODULE NotificarXPerfiles_ResponseService
 		DECLARE Para CHARACTER '';
 		DECLARE i INTEGER 1;
 		
-		DECLARE intListaUsuarios INTEGER CARDINALITY(refInp.tem:UsariosXListaPerfilesResult.ns:Usuario[]);
-		FOR refUsers AS refInp.tem:UsariosXListaPerfilesResult.ns:Usuario[] DO
-			IF (refUsers.ns:Persona.ns:EmailEmpresa <> '') THEN
+		FOR refUsers AS refInp.*:UsariosXListaPerfilesResult.*:Usuario[] DO
+			IF (refUsers.*:Persona.*:EmailEmpresa <> '') THEN
 				IF (Para <> '') THEN
-				   SET Para = Para|| ';' ||  refUsers.ns:Persona.ns:EmailEmpresa ;
+				   SET Para = Para|| ';' ||  refUsers.*:Persona.*:EmailEmpresa ;
 				ELSE
-					SET Para =  refUsers.ns:Persona.ns:EmailEmpresa;	   	
+					SET Para =  refUsers.*:Persona.*:EmailEmpresa;	   	
 				END IF;		
 			END IF;				
 			SET i = i+ 1;				

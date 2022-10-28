@@ -1,0 +1,31 @@
+BROKER SCHEMA com.caracol.sv.dominio.nomina.consultalistadistribucion
+
+
+CREATE COMPUTE MODULE SV_ConsultaListaDistribucion_Rspta_Backend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE nsv NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioConsultarAprobadores';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+		DECLARE tem NAMESPACE 'http://tempuri.org/';
+		DECLARE element_Index INTEGER;	
+		DECLARE j integer;	
+		
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.tem:ConsultarListaDistribucionResponse;		
+								
+		DECLARE intAut1 INTEGER CARDINALITY(InputRoot.SOAP.Body.tem:ConsultarListaDistribucionResponse.tem:ConsultarListaDistribucionResult.nsv:Usuario[]);
+		IF (intAut1 > 1) THEN
+			SET j=1; 
+			FOR rBodylistaProduccion AS InputRoot.SOAP.Body.tem:ConsultarListaDistribucionResponse.tem:ConsultarListaDistribucionResult.nsv:Usuario[] DO								
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Usuario[j].Correo = rBodylistaProduccion.nsv:Correo;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Usuario[j].Nombre = rBodylistaProduccion.nsv:Nombre;
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.Usuario[j].UsuarioId = rBodylistaProduccion.nsv:UsuarioId;
+				SET j = j+1;																					
+			END FOR;	
+		END IF;    		
+		RETURN TRUE;		
+	END;
+END MODULE;

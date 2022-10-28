@@ -1,0 +1,24 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\ConsultaCertificadoXCaliburQA.wsdl
+
+The WSDL import will proceed with bindings ConsultaCertificadoLaboralXcaliburObj.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/ConsultaCertificadoXCaliburQA.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/Xcalibur/NM/CerLaboral}ConsultaCertificadoLaboralXcaliburObj.
+Parsing wsdl binding input ConsultarDatosCertificado.
+Parsing wsdl binding output ConsultarDatosCertificado.
+Parsing wsdl binding fault ConsultaCertificadoLaboralXcaliburFault.
+Processing doc style for operation ConsultarDatosCertificado.
+Populating WSDL schema ConsultaCertificadoXCaliburQA.xsd.
+Creating file ConsultaCertificadoXCaliburQA.xsd in the workspace.
+Creating file /Nomina-GenerarCertificadoLaboral-SV/ConsultaCertificadoXCaliburQA_InlineSchema1.xsd in the workspace.
+Creating file /Nomina-GenerarCertificadoLaboral-SV/ConsultaCertificadoXCaliburQA_InlineSchema2.xsd in the workspace.
+Copying source WSDL ConsultaCertificadoXCaliburQA.wsdl to ConsultaCertificadoXCaliburQA.wsdl.
+
+Elapsed time processing this message definition file: 0.476 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

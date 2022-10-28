@@ -1,0 +1,87 @@
+BROKER SCHEMA com.caracol.sv.generarcertificdolaboralv3
+
+
+CREATE COMPUTE MODULE CH1_REST_GuardarEncabezado
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN		
+		SET OutputRoot.Properties = InputRoot.Properties;			
+		CALL CopyMessage();			
+        SET OutputRoot.JSON.Data.mensaje=InputRoot.JSON.Data.mensaje; 
+		IF (CONTAINS(InputRoot.HTTPInputHeader."X-Original-HTTP-Command", 'POST') OR CONTAINS(InputRoot.HTTPInputHeader."X-Original-HTTP-Command", 'GET')) THEN			
+		   SET OutputLocalEnvironment.Destination.RouterList.DestinationData[1].labelName = 'POST';		   		   		   
+		   SET OutputLocalEnvironment.Destination.HTTP.Reply.ReplyIdentifier=InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+	 	END IF;		 	
+	 	RETURN TRUE;
+	 	
+	END;
+		 	
+	CREATE PROCEDURE CopyMessage() 
+		BEGIN	 			 	
+		 	DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+			DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+			DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/';								
+			
+			SET OutputRoot.Properties = InputRoot.Properties;
+			CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';			
+			CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+			DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+			DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;			
+			SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;			
+			CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest TYPE Name;			
+			DECLARE rBodyI REFERENCE TO InputRoot.JSON.Data;			
+			--Guardar Encabezados
+			--SET Environment.Variables.JWT[] =LIST{InputRoot.HTTPInputHeader.Authorization.};
+					
+			SET Environment.Variables.JWT[] =LIST{InputRoot.HTTPInputHeader."Token"};
+			SET Environment.Variables.Servicio[] =LIST{'2047'}; 						
+			SET Environment.Variables.Properties[] =LIST{InputRoot.Properties};
+			SET Environment.Variables.MQMD[] =LIST{InputRoot.MQMD};			
+			SET Environment.Variables.ReplyIdentifier[]=LIST{InputLocalEnvironment.Destination.HTTP.RequestIdentifier};
+			--Guardar Mensaje JSON		 					
+			IF rBodyI.Cia IS NULL  OR rBodyI.Cia='' THEN										
+				 THROW USER EXCEPTION CATALOG 'MyCatalog' MESSAGE 1235 VALUES('COMPAÑIA NO VALIDA','');				 
+			ELSE
+				SET Environment.Variables.Cia[]=LIST{rBodyI.Cia};  						
+			END IF;
+			IF rBodyI.DsNo IS NULL OR rBodyI.DsNo='' THEN				
+				THROW USER EXCEPTION CATALOG 'MyCatalog' MESSAGE 1235 VALUES('DsNo NO VALIDO','');		
+			ELSE
+				SET Environment.Variables.DsNo[]=LIST{rBodyI.DsNo};    					   					
+			END IF;
+			IF rBodyI.Cedula IS NULL OR rBodyI.Cedula='' THEN				
+				THROW USER EXCEPTION CATALOG 'MyCatalog' MESSAGE 1235 VALUES('CEDULA NO VALIDA','');		
+			ELSE
+				SET Environment.Variables.Cedula[]=LIST{rBodyI.Cedula};				   					   					   					
+			END IF;								
+			
+			IF rBodyI.Solicitud IS NULL OR rBodyI.Solicitud ='' THEN		
+				THROW USER EXCEPTION CATALOG 'MyCatalog' MESSAGE 1235 VALUES('SOLICITUD NO VALIDA','');								
+			ELSE
+				SET Environment.Variables.Solicitud[]=LIST{rBodyI.Solicitud};    					   					   					   					
+			END IF;	
+			IF rBodyI.Destino IS NULL OR rBodyI.Destino ='' THEN
+				THROW USER EXCEPTION CATALOG 'MyCatalog' MESSAGE 1235 VALUES('DESTINO NO VALIDO','');									
+			ELSE
+				SET Environment.Variables.Destino[]=LIST{rBodyI.Destino};				    					   					   					   					
+			END IF;
+			IF rBodyI.De IS NULL OR rBodyI.De ='' THEN				
+				THROW USER EXCEPTION CATALOG 'MyCatalog' MESSAGE 1235 VALUES('DE NO VALIDO' ,'');		
+			ELSE
+				SET Environment.Variables.De[]=LIST{rBodyI.De};   					   					   					   					
+			END IF;
+			IF rBodyI.Destinatarios IS NULL OR rBodyI.Destinatarios ='' THEN				
+				THROW USER EXCEPTION CATALOG 'MyCatalog' MESSAGE 1235 VALUES('DESTINATARIO NO VALIDO','');
+			ELSE
+				SET Environment.Variables.Destinatarios[]=LIST{rBodyI.Destinatarios};	    					   					   					   					   				
+			END IF;			
+			IF  rBodyI.FechaNacimiento <> '' THEN							
+   				SET Environment.Variables.FechaNacimiento[]=LIST{rBodyI.FechaNacimiento};
+			END IF;
+			IF rBodyI.VisualizarSueldo IS NULL OR rBodyI.VisualizarSueldo ='' THEN		
+				THROW USER EXCEPTION CATALOG 'MyCatalog' MESSAGE 1235 VALUES('VALOR NO VALIDO PARA VISUALIZAR SUELDO EMPLEADO','');																					
+			ELSE
+				SET Environment.Variables.VisualizarSueldo[]=LIST{rBodyI.VisualizarSueldo};    									   					   					   			
+			END IF;	
+								
+		END;	
+END MODULE;	

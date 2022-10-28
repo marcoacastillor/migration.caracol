@@ -1,0 +1,25 @@
+
+
+Importing file: E:\IBM\Workspace\Seguridad-PerfilesXSistemaYUsuario-CH\PerfilesXSistemaYUsuario.wsdl
+
+The WSDL import will proceed with bindings bdPerfilesXSistemaYUsuarioHttp.
+Creating wsdl schema document for file:///E:/IBM/Workspace/Seguridad-PerfilesXSistemaYUsuario-CH/PerfilesXSistemaYUsuario.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/seguridad/perfilesxsistemayusuario/}bdPerfilesXSistemaYUsuarioHttp.
+Parsing wsdl binding input operacionPerfilesXSistemaYUsuario.
+Parsing wsdl binding output operacionPerfilesXSistemaYUsuario.
+Parsing wsdl binding fault fault.
+Processing doc style for operation operacionPerfilesXSistemaYUsuario.
+Populating WSDL schema PerfilesXSistemaYUsuario.xsd.
+Removing unnecessary import statement with namespace http://schemas.xmlsoap.org/soap/envelope/ from schema /Seguridad-GenerarToken-SV/Seguridad-GenerarToken-SV/ebms-header-3_0-200704.xsd.  This statement was not resolved and is never used.
+Creating file PerfilesXSistemaYUsuario.xsd in the workspace.
+Creating file /Seguridad-GenerarToken-SV/seguridad_perfilesxsistemayusuario.xsd in the workspace.
+Creating file /Seguridad-GenerarToken-SV/Seguridad-GenerarToken-SV/ebms-header-3_0-200704.xsd in the workspace.
+Copying source WSDL PerfilesXSistemaYUsuario.wsdl to PerfilesXSistemaYUsuario.wsdl.
+
+Elapsed time processing this message definition file: 0.321 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

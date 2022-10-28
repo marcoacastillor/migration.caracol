@@ -1,0 +1,25 @@
+BROKER SCHEMA co.com.caracol.servicesv.consultaaprobadoresvacaciones
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE ConsultaAprobadoresVacaciones_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ConsultarListaAprobadores;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ConsultarListaAprobadores;
+		
+		SET refOut.ns:tipoSolicitudId 	= 3; --FIELDVALUE(refInp.*:tipoSolicitudId);
+		
+		RETURN TRUE;
+	END;
+END MODULE;

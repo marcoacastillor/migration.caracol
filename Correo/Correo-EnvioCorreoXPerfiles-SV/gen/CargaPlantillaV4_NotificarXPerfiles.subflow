@@ -9,7 +9,8 @@
       <nodes xmi:type="eflow:FCMSource" xmi:id="InTerminal.in" location="20,20">
         <translation xmi:type="utility:TranslatableString" key="InTerminal.in" bundleName="gen/CargaPlantillaV4_NotificarXPerfiles" pluginId="Correo-EnvioCorreoXPerfiles-SV"/>
       </nodes>
-      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="170,20" wsdlFileName="Correo-CargaPlantillaV4.wsdl" selectedPortType="ptCargaPlantillav4" selectedBinding="bdCargaPlantillaSOAP12Http2" selectedOperation="CargaPlantillav4" selectedPort="ptCargaPlantilla12" targetNamespace="http://www.caracoltv.com.co/TI/correo/cargaplantilla4/" useHTTPTransport="true" webServiceURL="http://localhost:7805/services/s12/correo/cargaplantillav4" sslProtocol="TLS">
+      <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="170,20" wsdlFileName="Correo-CargaPlantillaV4.wsdl" selectedPortType="ptCargaPlantillav4" selectedBinding="bdCargaPlantillaSOAP12Http2" selectedOperation="CargaPlantillav4" selectedPort="ptCargaPlantilla12" targetNamespace="http://www.caracoltv.com.co/TI/correo/cargaplantilla4/" useHTTPTransport="true" webServiceURL="http://172.17.4.39:7805/services/s12/correo/cargaplantillav4" sslProtocol="TLS" parserXmlnscBuildTreeUsingXMLSchema="false"
+          validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="Request"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPExtract.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="320,80" envelopeDestination="$LocalEnvironment/SOAP/Envelope/OperResponse/bdCargaPlantillaSOAP12Http2/CargaPlantillav4" labelPrefix="">
@@ -29,9 +30,9 @@
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="InTerminal.in" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="OutTerminal.failure" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
-      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="OutTerminal.failure" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="OutTerminal.fault" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.fault" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="OutTerminal.CargaPlantillav4Response" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="OutTerminal.fault" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.in"/>
     </composition>
     <propertyOrganizer/>
     <stickyBoard/>

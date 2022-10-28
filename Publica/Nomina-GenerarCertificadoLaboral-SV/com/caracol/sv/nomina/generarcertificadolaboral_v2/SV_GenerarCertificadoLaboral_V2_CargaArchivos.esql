@@ -1,0 +1,29 @@
+BROKER SCHEMA com.caracol.sv.nomina.generarcertificadolaboral_v2
+
+
+CREATE COMPUTE MODULE SV_GenerarCertificadoLaboral_V2_CargaArchivos
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN		
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv1 NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdfv2/';		
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		DECLARE rBodyI1 REFERENCE TO InputRoot.SOAP.Body;							
+		/*Copia de variales de entrada a varialbes de salida*/
+		SET OutputRoot.Properties = InputRoot.Properties;	
+		SET OutputRoot.MQMD= Environment.Variables.MQMD[1];		
+		/*Se construye el SOAP Request con la informacion necesaria*/
+	    SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ArchivoPdf=Environment.Variables.PDF[1];
+	    SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaPdf='\\srvvtonbase\Compartida\DIP\Historia Laboral\ArchivosCer';	     
+	    --SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaPdf='E:\IBM\Proyectos\CertificadoLaboral\PDF\';	    	   
+	    SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.ArchivoCSV=Environment.Variables.CSV[1];	    
+	    SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaCSV='\\srvvtonbase\Compartida\DIP\Historia Laboral\BaseCer';
+		--SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.RutaCSV='E:\IBM\Proyectos\CertificadoLaboral\CSV\';									    	    
+	    SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.HoraEjecucion='14';	    	    	   
+	    SET OutputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.Ficha=Environment.Variables.Ficha[1];
+		/*Manejo de MQReply	*/
+		SET OutputLocalEnvironment.mqmd=Environment.Variables.MQMD[1];								 				 	   		   			   	   						
+		RETURN TRUE;
+	END;
+END MODULE;

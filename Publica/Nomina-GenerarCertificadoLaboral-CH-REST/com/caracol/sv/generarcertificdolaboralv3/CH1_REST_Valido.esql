@@ -1,0 +1,31 @@
+BROKER SCHEMA com.caracol.sv.generarcertificdolaboralv3
+
+
+CREATE COMPUTE MODULE CH1_REST_Valido
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/';							
+		SET OutputRoot.Properties = Environment.Variables.Properties[1];
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';			
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;			
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;			
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest TYPE Name;
+			
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest;
+		  
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest.Cia=Environment.Variables.Cia[1];		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest.DsNo=Environment.Variables.DsNo[1];
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest.Cedula=Environment.Variables.Cedula[1];
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest.FechaNacimiento=Environment.Variables.FechaNacimiento[1];
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest.Solicitud=Environment.Variables.Solicitud[1];
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest.Destino=Environment.Variables.Destino[1];		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest.De=Environment.Variables.De[1];
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest.Destinatarios=Environment.Variables.Destinatarios[1];						
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarCertificadoLaboralRequest.VisualizarSueldo=Environment.Variables.VisualizarSueldo[1];
+		SET OutputRoot.MQMD=Environment.Variables.MQMD[1];
+	END;
+END MODULE;

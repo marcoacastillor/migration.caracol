@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ConsultarAprobadores" targetNamespace="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="BasicHttpBinding_IConsultarAprobadores" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" schemaLocation="RemoteFiles/xsd_xsd0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IConsultarAprobadores_ConsultarListaAprobadores_InputMessage">
+    <wsdl:part element="tns:ConsultarListaAprobadores" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IConsultarAprobadores_ConsultarListaAprobadores_OutputMessage">
+    <wsdl:part element="tns:ConsultarListaAprobadoresResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IConsultarAprobadores_ConsultarListaDistribucion_InputMessage">
+    <wsdl:part element="tns:ConsultarListaDistribucion" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IConsultarAprobadores_ConsultarListaDistribucion_OutputMessage">
+    <wsdl:part element="tns:ConsultarListaDistribucionResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="IConsultarAprobadores">
+    <wsdl:operation name="ConsultarListaAprobadores">
+      <wsdl:input message="tns:IConsultarAprobadores_ConsultarListaAprobadores_InputMessage" wsaw:Action="http://tempuri.org/IConsultarAprobadores/ConsultarListaAprobadores"/>
+      <wsdl:output message="tns:IConsultarAprobadores_ConsultarListaAprobadores_OutputMessage" wsaw:Action="http://tempuri.org/IConsultarAprobadores/ConsultarListaAprobadoresResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarListaDistribucion">
+      <wsdl:input message="tns:IConsultarAprobadores_ConsultarListaDistribucion_InputMessage" wsaw:Action="http://tempuri.org/IConsultarAprobadores/ConsultarListaDistribucion"/>
+      <wsdl:output message="tns:IConsultarAprobadores_ConsultarListaDistribucion_OutputMessage" wsaw:Action="http://tempuri.org/IConsultarAprobadores/ConsultarListaDistribucionResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IConsultarAprobadores" type="tns:IConsultarAprobadores">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConsultarListaAprobadores">
+      <soap:operation soapAction="http://tempuri.org/IConsultarAprobadores/ConsultarListaAprobadores" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarListaDistribucion">
+      <soap:operation soapAction="http://tempuri.org/IConsultarAprobadores/ConsultarListaDistribucion" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultarAprobadores">
+    <wsdl:port binding="tns:BasicHttpBinding_IConsultarAprobadores" name="BasicHttpBinding_IConsultarAprobadores">
+      <soap:address location="http://srvpint2/ServicioListaAprobadores/ConsultarAprobadores.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

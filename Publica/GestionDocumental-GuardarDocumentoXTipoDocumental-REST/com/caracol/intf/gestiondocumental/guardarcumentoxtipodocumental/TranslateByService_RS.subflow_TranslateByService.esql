@@ -1,0 +1,28 @@
+BROKER SCHEMA com.caracol.intf.gestiondocumental.guardarcumentoxtipodocumental
+
+
+CREATE COMPUTE MODULE TranslateByService_RS_subflow_TranslateByService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		-- Referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		SET refOut.IdDocumento 	= refInp.*:IdDocumento;
+		SET refOut.Codigo 		= refInp.*:Codigo;
+		SET refOut.Descripcion 	= refInp.*:Descripcion;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
