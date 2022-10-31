@@ -9,6 +9,7 @@
 		<project>Seguridad-AdminToken</project>
 		<project>Seguridad-GenerarToken-SV_DotNET</project>
 		<project>Indicadores</project>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

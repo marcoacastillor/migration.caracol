@@ -6,6 +6,7 @@
 		<project>Indicadores</project>
 		<project>Seguridad-ValidarToken</project>
 		<project>csif-commons-util</project>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

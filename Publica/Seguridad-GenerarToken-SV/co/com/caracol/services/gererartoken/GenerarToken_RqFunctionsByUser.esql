@@ -1,0 +1,28 @@
+BROKER SCHEMA co.com.caracol.services.gererartoken
+DECLARE ns7 NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/funcionalidadeshijas/';
+
+
+CREATE COMPUTE MODULE GenerarToken_RqFunctionsByUser
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Validación de perfil
+		IF refInp.UsuarioAutenticarResult=true THEN
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.ns7:FuncionalidadesHijasRequest;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns7:FuncionalidadesHijasRequest;
+			
+			SET refOut.funcionalidadid= '1904';			
+    		SET refOut.usuarioid= Environment.Variables.usuario[1];		    		   
+			 		    		   
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::Credenciales inválidas');
+		END IF;
+				
+		RETURN TRUE;
+	END;
+END MODULE;

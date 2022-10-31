@@ -6,6 +6,7 @@
 		<project>csif-commons-exception</project>
 		<project>csif-commons-util</project>
 		<project>Seguridad-ValidarToken</project>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

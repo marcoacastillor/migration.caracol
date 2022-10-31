@@ -15,7 +15,7 @@ CREATE COMPUTE MODULE ConsultaListaDistribucion_ResponseService
 		MOVE refInp LASTCHILD;
 		
 		--Validar respuesta
-		IF EXISTS(refInp.*:ConsultarListaAprobadoresResult[]) THEN
+		IF EXISTS(refInp.*:ConsultarListaDistribucionResult[]) THEN
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultarListaDistribucionResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultarListaDistribucionResponse;

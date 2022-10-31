@@ -1,0 +1,29 @@
+BROKER SCHEMA co.com.caracol.services.generarcertificdolaboral
+
+
+CREATE COMPUTE MODULE TranslateByService_RS_subflow_TranslateByService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		-- Referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		IF  FIELDTYPE(refInp.ArchivoPdf) IS NULL THEN
+			SET OutputLocalEnvironment.Destination.HTTP."X-Original-HTTP-Status-Code"=401;	
+			SET refOut.Error = 'La información enviada no genera resultados';				 
+		ELSE
+			SET refOut.ArchivoPdf = refInp.ArchivoPdf;									
+		END IF;		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

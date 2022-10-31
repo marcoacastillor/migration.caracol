@@ -1,0 +1,32 @@
+BROKER SCHEMA co.com.caracol.services.autentica
+
+DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/autentica/';
+CREATE COMPUTE MODULE "TranslateByService_RQ.subflow_TranslateByService"
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2C 	= InputRoot.MQRFH2C;
+		
+		-- Referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Referencia a objeto de entrada
+		CREATE FIELD OutputRoot.XMLNSC.srv:SeguridadAutenticaRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.srv:SeguridadAutenticaRequest;
+		
+		--Copiar todo el mensaje
+		--TODO: Probar en debug
+		SET refOut = refInp;
+		
+		/*
+		SET refOut.usuarioId				= refInp.usuarioId;
+		SET refOut.contrasena				= refInp.contrasena;
+		*/
+		
+		RETURN TRUE;
+	END;
+
+END MODULE;

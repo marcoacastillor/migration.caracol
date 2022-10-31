@@ -1,0 +1,31 @@
+BROKER SCHEMA co.com.caracol.services.gererartoken
+DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/perfilesxsistemayusuario/';
+
+
+CREATE COMPUTE MODULE GenerarToken_RqProfileXUserAndSystem
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:PerfilesXSistemaYUsuarioRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:PerfilesXSistemaYUsuarioRequest;
+		
+		--sistema modulo de usuarios - admin token 
+		SET refOut.sistemaid	= '33';
+		SET refOut.usuarioid	= refInp.usuarioId;
+	 	
+	 	--Guardar información para generar certificado
+		SET Environment.Variables.usuario[] 	=LIST{refInp.usuarioId};
+		SET Environment.Variables.contrasena[] 	=LIST{refInp.contrasena};
+		
+		RETURN TRUE;
+	END;
+END MODULE;

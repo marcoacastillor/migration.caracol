@@ -18,7 +18,7 @@ CREATE COMPUTE MODULE ConsultaListaDistribucion_RequestBack
 		CREATE FIELD OutputRoot.XMLNSC.ns:ConsultarListaDistribucion;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ConsultarListaDistribucion;
 		
-		SET refOut.ns:tipoSolicitudId 	= FIELDVALUE(refInp.*:tipoSolicitudId);
+		SET refOut = '';
 		
 		RETURN TRUE;
 	END;

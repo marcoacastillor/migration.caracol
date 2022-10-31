@@ -3,6 +3,7 @@
 	<name>Nomina-CrearSolicitudVacaciones-SV-PR</name>
 	<comment></comment>
 	<projects>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
