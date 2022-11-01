@@ -120,7 +120,7 @@ BEGIN
 			
 		WHEN 'CONSULTAR_SOLICITUD_VACACIONES' THEN
 			CASE operation
-			WHEN 'ConsultarSolicitudVacaciones' THEN
+			WHEN 'ConsultarSolicitudes' THEN
 				RETURN 'SV.AUSENCIAS.CONSULTARSOLICITUDVACACIONES.01';
 			END CASE;
 			
@@ -138,31 +138,31 @@ BEGIN
 			
 		WHEN 'CREAR_CERTIFICADOLABORAL' THEN
 			CASE operation
-			WHEN 'crearcertificadolaboralv2' THEN
+			WHEN 'crearpdfv2' THEN
 				RETURN 'SV.NOMINA.CREARCERTIFICADOPDFVER2.01';
 			END CASE;
 			
 		WHEN 'CONSULTA_CENTROS_COSTO' THEN
 			CASE operation
-			WHEN 'XcaliburConsultaCentrosCosto' THEN
+			WHEN 'ConsultaCentrosCosto' THEN
 				RETURN 'SV.XCALIBUR.CONSULTACENTROSCOSTO.01';
 			END CASE;
 			
 		WHEN 'CONSULTA_CERTIFICADOLABORAL' THEN
 			CASE operation
-			WHEN 'ConsultaCertificadoLaboral' THEN
+			WHEN 'Consulta' THEN
 				RETURN 'SV.XCALIBUR.CONSULTACERTIFICADOLABORALVER2.01';
 			END CASE;
 			
 		WHEN 'XCALIBUR_CONSULTA_CLIENTES' THEN
 			CASE operation
-			WHEN 'XcaliburConsultaClientes' THEN
+			WHEN 'ConsultaClientes' THEN
 				RETURN 'SV.XCALIBUR.CONSULTACLIENTES.01';
 			END CASE;
 			
 		WHEN 'XCALIBUR_CONSULTA_CUENTASCONTABLES' THEN
 			CASE operation
-			WHEN 'XcaliburConsultaCuentasContables' THEN
+			WHEN 'OperacionConsultaCuentasContables' THEN
 				RETURN 'SV.XCALIBUR.CONSULTACUENTASCONTABLES.01';
 			END CASE;
 			
