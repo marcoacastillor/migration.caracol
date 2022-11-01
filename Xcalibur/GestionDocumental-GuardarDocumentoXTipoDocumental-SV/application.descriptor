@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:appDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.app"><references><sharedLibraryReference><libraryName>CommonsIntegration_LIB</libraryName></sharedLibraryReference><sharedLibraryReference><libraryName>ECM-OnBase-EjecutarComando</libraryName></sharedLibraryReference></references></ns2:appDescriptor>
+=======
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:appDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.app"><references><sharedLibraryReference><libraryName>ECM-OnBase-EjecutarComando</libraryName></sharedLibraryReference><sharedLibraryReference><libraryName>OnBase-CargaArchivos</libraryName></sharedLibraryReference></references></ns2:appDescriptor>
+>>>>>>> eab70165c19ac47fb195bd16967ad9dc8c6661fe

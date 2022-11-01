@@ -3,9 +3,6 @@
 	<name>XCalibur-ConsultaClientes-CH</name>
 	<comment></comment>
 	<projects>
-		<project>Caracol-Error-Notificacion</project>
-		<project>csif-commons-exception</project>
-		<project>Indicadores</project>
 		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>

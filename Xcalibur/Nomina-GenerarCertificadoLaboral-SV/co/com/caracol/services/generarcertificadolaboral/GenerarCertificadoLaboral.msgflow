@@ -7,58 +7,58 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-GenerarCertificadoLaboral-SV/icons/full/obj16/GenerarCertificadoLaboral.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-GenerarCertificadoLaboral-SV/icons/full/obj30/GenerarCertificadoLaboral.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="229,127" queueName="SV.NOMINA.GENERARCERTIFICADOLABORALVER2.01" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="18,145" queueName="SV.NOMINA.GENERARCERTIFICADOLABORALVER2.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.NOMINA.GENERARCERTIFICADOLABORALVER2.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="444,202" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="233,220" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="434,126" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RqCertificateInquiry.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="223,144" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RqCertificateInquiry.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RqCertificateInquiry"/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="814,42" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="603,60" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
-      <nodes xmi:type="gen_ConsultaCertificadoLaboralv2.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="644,126">
+      <nodes xmi:type="gen_ConsultaCertificadoLaboralv2.subflow:FCMComposite_1" xmi:id="FCMComposite_1_9" location="433,144">
         <translation xmi:type="utility:ConstantString" string="Consulta_ConsultaCertificadoLaboralv2"/>
         <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
         <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>
       </nodes>
-      <nodes xmi:type="gen_GenerarCertificadoLaboral.subflow:FCMComposite_1" xmi:id="FCMComposite_1_10" location="1069,134">
+      <nodes xmi:type="gen_GenerarCertificadoLaboral.subflow:FCMComposite_1" xmi:id="FCMComposite_1_10" location="858,152">
         <translation xmi:type="utility:ConstantString" string="crearpdfv2_crearcertificadolaboralv2"/>
         <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
         <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="873,133" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RqCertificateCreate.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="662,151" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RqCertificateCreate.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RqCertificateCreate"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="1293,135" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RqCertificateNotificate.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="1082,153" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RqCertificateNotificate.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RqCertificateNotificate"/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="1237,46" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="1026,64" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint1"/>
       </nodes>
-      <nodes xmi:type="gen_CargaPlantilla_GenerarCertificadoLaboral.subflow:FCMComposite_1" xmi:id="FCMComposite_1_14" location="1511,136">
+      <nodes xmi:type="gen_CargaPlantilla_GenerarCertificadoLaboral.subflow:FCMComposite_1" xmi:id="FCMComposite_1_14" location="1300,154">
         <translation xmi:type="utility:ConstantString" string="CargaPlantilla_Correo-CargaPlantilla"/>
         <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
         <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="1682,46" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_15" location="1471,64" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint2"/>
       </nodes>
-      <nodes xmi:type="com_caracol_com_co_archivos_onbase_cargaarchivo_CargaArchivosOnbase.subflow:FCMComposite_1" xmi:id="FCMComposite_1_16" location="1949,143">
+      <nodes xmi:type="com_caracol_com_co_archivos_onbase_cargaarchivo_CargaArchivosOnbase.subflow:FCMComposite_1" xmi:id="FCMComposite_1_16" location="1738,161">
         <translation xmi:type="utility:ConstantString" string="CargaArchivosOnbase"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_17" location="1738,143" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RqLoadFilesOnBase.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_17" location="1527,161" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RqLoadFilesOnBase.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RqLoadFilesOnBase"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_18" location="2160,142" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RsService.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_18" location="1949,160" computeExpression="esql://routine/co.com.caracol.services.generarcertificadolaboral#GenerarCertificadoLaboral_RsService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RsService"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_19" location="2374,143">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_19" location="2163,161">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="663,204">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="452,222">
         <translation xmi:type="utility:ConstantString" string="MQ Reply1"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>

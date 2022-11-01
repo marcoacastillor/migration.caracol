@@ -1,0 +1,23 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\CertificadoRetenciones.wsdl
+
+The WSDL import will proceed with bindings ConsultaCertificadosProveedor_OutBinding.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/CertificadoRetenciones.wsdl.
+Parsing wsdl binding {urn:caracoltv:extranet:interfaces}ConsultaCertificadosProveedor_OutBinding.
+Parsing wsdl binding input ConsultaCertificadosProveedor_Out.
+Parsing wsdl binding output ConsultaCertificadosProveedor_Out.
+Processing doc style for operation ConsultaCertificadosProveedor_Out.
+Populating WSDL schema CertificadoRetenciones.xsd.
+Creating file CertificadoRetenciones.xsd in the workspace.
+Creating file /SAP_SV_WS_ConsultaCertificadoRetenciones/CertificadoRetenciones_InlineSchema1.xsd in the workspace.
+Creating file /SAP_SV_WS_ConsultaCertificadoRetenciones/CertificadoRetenciones_InlineSchema2.xsd in the workspace.
+Copying source WSDL CertificadoRetenciones.wsdl to CertificadoRetenciones.wsdl.
+
+Elapsed time processing this message definition file: 0.251 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -13,21 +13,18 @@ CREATE COMPUTE MODULE AnularAprobacionVacaciones_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
+		--Validar respuesta
 		IF EXISTS(refInp.*:AnularSolicitudResult[]) THEN
-						
-			CREATE FIELD refOut.ns1:AnularSolicitudResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:AnularSolicitudResponse;
+		--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.ns1:AnularAprobacionVacacionesResponse;
+		    DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:AnularAprobacionVacacionesResponse;
 			
-			SET refOut.ns1:Estado	 = FIELDVALUE(refInp.*:Estado);
-			SET refOut.ns1:Mensaje 	 = FIELDVALUE(refInp.*:Mensaje);
+			SET refOut.Estado	 = FIELDVALUE(refInp.*:AnularSolicitudResult.*:Estado);
+			SET refOut.Mensaje 	 = FIELDVALUE(refInp.*:AnularSolicitudResult.*:Mensaje);
 		ELSE
-			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR: BACKEND');
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
 		END IF;
 		RETURN TRUE;
 	END;

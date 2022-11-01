@@ -25,7 +25,11 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="261,216" computeExpression="esql://routine/com.caracol.sv.dominio.ti.consulta.consultarmaquinadominio#SV_ConsultarMaquinaDominio_Request.Main">
         <translation xmi:type="utility:ConstantString" string="Request"/>
       </nodes>
+<<<<<<< HEAD
       <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="428,212" assemblyName="E:\IBM\Proyectos\LDAP-ConsultarMaquinaDominio\ConsultarMaquina\bin\Debug\ConsultarMaquinaDominio.dll">
+=======
+      <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="428,212" assemblyName="E:\DLLS\LDAP-ConsultarMaquinaDominio\ConsultarMaquina\bin\Debug\ConsultarMaquinaDominio.dll">
+>>>>>>> fa745a9bb7ea3cd209cee800a0c4910293cf12a3
         <translation xmi:type="utility:ConstantString" string="ValidarMaquina"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="583,221">

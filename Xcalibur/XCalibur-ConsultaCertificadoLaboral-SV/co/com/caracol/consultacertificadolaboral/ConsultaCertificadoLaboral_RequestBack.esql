@@ -13,7 +13,7 @@ CREATE COMPUTE MODULE ConsultaCertificadoLaboral_RequestBack
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNS.temp:ConsultarDatosCertificado;

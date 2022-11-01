@@ -18,7 +18,11 @@
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="526,122">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
+<<<<<<< HEAD
       <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="259,138" assemblyName="E:\IBM\Proyectos\BB-EventoNegocio\Registro-ConsultaEventoNegocio\bin\Debug\ConsultaEventoNegocio.dll">
+=======
+      <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="259,138" assemblyName="E:\DLLS\BB-EventoNegocio\Registro-ConsultaEventoNegocio\bin\Debug\ConsultaEventoNegocio.dll">
+>>>>>>> fa745a9bb7ea3cd209cee800a0c4910293cf12a3
         <translation xmi:type="utility:ConstantString" string=".NETCompute"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>

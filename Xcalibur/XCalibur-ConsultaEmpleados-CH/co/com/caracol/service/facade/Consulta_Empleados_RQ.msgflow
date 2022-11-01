@@ -9,6 +9,12 @@
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TRACING" name="UDP_TRACING" lowerBound="1" defaultValueLiteral="true">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TONOTIFICATION" name="UDP_TONOTIFICATION" lowerBound="1" defaultValueLiteral="mcastillo@assist.com.co">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_OPERATION" name="UDP_OPERATION" lowerBound="1" defaultValueLiteral="XcaliburConsultarEmpleados">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
     <translation xmi:type="utility:TranslatableString" key="Consulta_Empleados_RQ" bundleName="co/com/caracol/service/facade/Consulta_Empleados_RQ" pluginId="XCalibur-ConsultaEmpleados-CH"/>
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/XCalibur-ConsultaEmpleados-CH/icons/full/obj16/Consulta_Empleados_RQ.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/XCalibur-ConsultaEmpleados-CH/icons/full/obj30/Consulta_Empleados_RQ.gif"/>
@@ -19,7 +25,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="504,168" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RouteMessage"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="730,169" queueName="DYNAMIC.QUEUE" destinationMode="list" request="true" replyToQ="CH.WS.XCALIBUR_CONSULTAR_EMPLEADOS.02">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="730,169" queueName="DYNAMIC.QUEUE" destinationMode="list" request="true" replyToQ="CH.WS.XCALIBUR.CONSULTAEMPLEADOS.02">
         <translation xmi:type="utility:ConstantString" string="DYNAMIC.QUEUE"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="276,266" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdWS.Main" computeMode="destinationAndMessage">
@@ -52,6 +58,12 @@
         <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_SERVICE" bundleName="co/com/caracol/service/facade/Consulta_Empleados_RQ" pluginId="XCalibur-ConsultaEmpleados-CH"/>
         <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TRACING">
           <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TRACING" bundleName="co/com/caracol/service/facade/Consulta_Empleados_RQ" pluginId="XCalibur-ConsultaEmpleados-CH"/>
+          <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TONOTIFICATION">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TONOTIFICATION" bundleName="co/com/caracol/service/facade/Consulta_Empleados_RQ" pluginId="XCalibur-ConsultaEmpleados-CH"/>
+            <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_OPERATION">
+              <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_OPERATION" bundleName="co/com/caracol/service/facade/Consulta_Empleados_RQ" pluginId="XCalibur-ConsultaEmpleados-CH"/>
+            </propertyDescriptor>
+          </propertyDescriptor>
         </propertyDescriptor>
       </propertyDescriptor>
     </propertyOrganizer>

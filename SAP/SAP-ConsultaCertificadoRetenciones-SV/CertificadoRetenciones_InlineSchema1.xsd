@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:valorem.com.co:canonicos:fi" xmlns="urn:valorem.com.co:canonicos:fi" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:p1="urn:caracoltv:extranet:interfaces" xmlns:p2="urn:valorem.com.co:canonicos:fi" xmlns:p3="urn:valorem.com.co:canonicos:fi:td" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+  <xsd:import namespace="urn:valorem.com.co:canonicos:fi:td" schemaLocation="CertificadoRetenciones_InlineSchema2.xsd"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="RequestCertificadoProveedor" type="p3:SolicitudCertificadoProveedor"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="ResponseCertificadoProveedor" type="p3:CertificadoProveedor"/>
+</xsd:schema>

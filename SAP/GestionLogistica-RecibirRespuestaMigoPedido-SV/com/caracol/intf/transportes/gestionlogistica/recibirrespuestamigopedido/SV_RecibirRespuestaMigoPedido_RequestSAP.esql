@@ -1,0 +1,10 @@
+BROKER SCHEMA com.caracol.intf.transportes.gestionlogistica.recibirrespuestamigopedido
+
+
+CREATE COMPUTE MODULE SV_RecibirRespuestaMigoPedido_RequestSAP
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -42,7 +42,11 @@
       <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="56,210" labelName="operacionGenerarClaveAdminv2">
         <translation xmi:type="utility:ConstantString" string="operacionGenerarClaveAdminv2"/>
       </nodes>
+<<<<<<< HEAD
       <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="583,212" assemblyName="E:\IBM\Proyectos\ActaCreacionV2\ActaCreacion\bin\Debug\ActaCreacionv2.dll">
+=======
+      <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="583,212" assemblyName="E:\DLLS\ActaCreacionV2\ActaCreacion\bin\Debug\ActaCreacionv2.dll">
+>>>>>>> fa745a9bb7ea3cd209cee800a0c4910293cf12a3
         <translation xmi:type="utility:ConstantString" string=".NETCompute"/>
         <monitorEvents eventSourceDescription="In terminal" eventSourceName=".NETCompute.terminal.in" eventIdentity="LDAP_ClaveAdmin.NETCompute.InTerminal">
           <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">

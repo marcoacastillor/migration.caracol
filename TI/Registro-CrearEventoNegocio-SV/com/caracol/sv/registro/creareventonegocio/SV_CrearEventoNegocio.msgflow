@@ -12,7 +12,11 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="436,55" queueName="SV.REGISTRO.CREAREVENTONEGOCIO.REINTENTO">
         <translation xmi:type="utility:ConstantString" string="SV.REGISTRO.CREAREVENTONEGOCIO.REINTENTO"/>
       </nodes>
+<<<<<<< HEAD
       <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="338,57" assemblyName="E:\IBM\Proyectos\BB-EventoNegocio\Registro-CrearEventoNegocio\bin\Debug\CrearEventoNegocio.dll">
+=======
+      <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="338,57" assemblyName="E:\DLLS\BB-EventoNegocio\Registro-CrearEventoNegocio\bin\Debug\CrearEventoNegocio.dll">
+>>>>>>> fa745a9bb7ea3cd209cee800a0c4910293cf12a3
         <translation xmi:type="utility:ConstantString" string=".NETCompute"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>

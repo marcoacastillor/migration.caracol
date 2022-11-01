@@ -12,20 +12,16 @@ CREATE COMPUTE MODULE ListarDocumentoXTipoDocumental_RsponseCommand
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		--Declarar variables
 		DECLARE ComandoRespuesta CHARACTER '';	
 		DECLARE i,j INTEGER 1;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
 		IF EXISTS(refInp.*:Response[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.Documentos;
-			DECLARE refOut REFERENCE TO refOut.Documentos;
+			CREATE FIELD OutputRoot.XMLNSC.Documentos;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.Documentos;
 			
 			FOR rBodyDocumento AS refInp.Result.Document[] DO  
 				SET refOut.Documento[i].IdDocumento				= CAST (rBodyDocumento.id AS INTEGER);  

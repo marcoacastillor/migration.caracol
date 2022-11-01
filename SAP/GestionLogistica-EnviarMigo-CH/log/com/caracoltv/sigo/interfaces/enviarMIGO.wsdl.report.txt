@@ -1,0 +1,22 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\enviarMIGO.wsdl
+
+The WSDL import will proceed with bindings ConfirmacionEMSIGO_OutBinding.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/enviarMIGO.wsdl.
+Parsing wsdl binding {urn:caracoltv.com:sigo:interfaces}ConfirmacionEMSIGO_OutBinding.
+Parsing wsdl binding input ConfirmacionEMSIGO_Out.
+Parsing wsdl binding output ConfirmacionEMSIGO_Out.
+Processing doc style for operation ConfirmacionEMSIGO_Out.
+Populating WSDL schema enviarMIGO.xsd.
+Creating file enviarMIGO.xsd in the workspace.
+Creating file /GestionLogistica-EnviarMigo-CH/enviarMIGO_InlineSchema1.xsd in the workspace.
+Copying source WSDL enviarMIGO.wsdl to enviarMIGO.wsdl.
+
+Elapsed time processing this message definition file: 0.219 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

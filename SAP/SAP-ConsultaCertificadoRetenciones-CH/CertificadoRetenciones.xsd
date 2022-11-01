@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+targetNamespace="http://www.caracoltv.com.co/financiera/generarcertificadofinanciero/consultacertificadoretenciones/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:srv="http://www.caracoltv.com.co/financiera/generarcertificadofinanciero/consultacertificadoretenciones/">
+  <!--wrapper element of the request message-->
+  
+  <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="CertificadoRetencionesRequest">
+<!--		type="srv:CertificadoRetencionesRequestType">		-->
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Sociedad" type="xsd:string"/>				
+				<xsd:element name="FechaInicialConsulta" type="xsd:date"/>
+				<xsd:element name="FechaFinalConsulta" type="xsd:date"/>
+				<xsd:element name="IdentificadorFiscal" type="xsd:string"/>
+				<xsd:element name="TipoCertificado" type="xsd:string"/>	
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>
+	
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="CertificadoRetencionesResponse">
+<!--		type="srv:CertificadoRetencionesResponseType">		-->
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element minOccurs="0" name="Certificados"  type="srv:Certificados" nillable="true"/>				
+				<xsd:element minOccurs="0" name="Mensaje" type="xsd:string"/>				
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element> 
+	<xsd:complexType name="Certificados" >
+		<xsd:sequence>
+			<xsd:element maxOccurs="unbounded" minOccurs="0" name="Certificado" type="srv:Certificado"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="Certificados" type="srv:Certificados" />  
+    	
+  		<xsd:complexType name="Certificado" >
+			<xsd:sequence>
+				<xsd:element name="DocumentoPdf" type="xsd:string"/>			
+				<xsd:element name="DescripcionIndicador" type="xsd:string"/>
+      		</xsd:sequence>
+    	</xsd:complexType>
+    	<xsd:element name="Certificado" type="srv:Certificado" />  
+  
+</xsd:schema>

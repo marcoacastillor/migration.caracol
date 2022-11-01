@@ -1,0 +1,22 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\CreacionPedidoCostosAdicionales.wsdl
+
+The WSDL import will proceed with bindings CreacionPedidoCostosAdicionales_OutBinding.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/CreacionPedidoCostosAdicionales.wsdl.
+Parsing wsdl binding {urn:caracoltv.com:sigo:interfaces}CreacionPedidoCostosAdicionales_OutBinding.
+Parsing wsdl binding input CreacionPedidoCostosAdicionales_Out.
+Parsing wsdl binding output CreacionPedidoCostosAdicionales_Out.
+Processing doc style for operation CreacionPedidoCostosAdicionales_Out.
+Populating WSDL schema CreacionPedidoCostosAdicionales.xsd.
+Creating file CreacionPedidoCostosAdicionales.xsd in the workspace.
+Creating file /GestionLogistica-CreacionPedidoCostosAdicionales-SV/CreacionPedidoCostosAdicionales_InlineSchema1.xsd in the workspace.
+Copying source WSDL CreacionPedidoCostosAdicionales.wsdl to CreacionPedidoCostosAdicionales.wsdl.
+
+Elapsed time processing this message definition file: 0.631 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

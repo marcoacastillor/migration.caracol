@@ -1,7 +1,5 @@
 BROKER SCHEMA co.com.caracol.servicio.consultarsolicitudvacaciones
 
-
-
 DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/';
 
 CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
@@ -15,37 +13,34 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
-		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
 		
 		IF EXISTS(refInp.*:Solicitudes[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:ConsultarSolicitudVacacionesResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:ConsultarSolicitudVacacionesResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultarSolicitudVacacionesResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultarSolicitudVacacionesResponse;
 		
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:Solicitudes.*:Solicitud[]  DO
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:SolicitudId	        	= FIELDVALUE(refReqs.*:solicitudId);
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:FechaSolicitud	    	= FIELDVALUE(refReqs.*:solicitudFechaSolicitud);	
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:Estado	            	= FIELDVALUE(refReqs.*:solicitudEstado);	
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:Nombre	            	= FIELDVALUE(refReqs.*:solicitudNombre);	
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:NumeroIdentificacion	= FIELDVALUE(refReqs.*:solicitudTipoContrato);	
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:TipoContrato	        = FIELDVALUE(refReqs.*:solicitudId);	
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:Cargo              		= FIELDVALUE(refReqs.*:solicitudCargo);	
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:FechaAusencia	        = FIELDVALUE(refReqs.*:solicitudFechaAusencia);	
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:Duracion	            = FIELDVALUE(refReqs.*:solicitudDuracion);	
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:FechaAprobacion	    	= FIELDVALUE(refReqs.*:solicitudFechaAprobacion);	
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:FechaFin	            = FIELDVALUE(refReqs.*:solicitudFechaFin);
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:FechaReintegro      	= FIELDVALUE(refReqs.*:solicitudFechaReintegro);
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:Comentarios	        	= FIELDVALUE(refReqs.*:solicitudComentarios);
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:Aprobador	            = FIELDVALUE(refReqs.*:solicitudAprobador);
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:AprobadorComentarios	= FIELDVALUE(refReqs.*:solicitudAprobadorComentarios);
-				SET refOut.ns1:Solicitudes.ns1:Solicitud[i].ns1:Ubicacion	            = FIELDVALUE(refReqs.*:solicitudUbicacion);									
+				
+				SET refOut.Solicitudes.Solicitud[i].SolicitudId	        	= FIELDVALUE(refReqs.*:solicitudId);
+				SET refOut.Solicitudes.Solicitud[i].FechaSolicitud	    	= FIELDVALUE(refReqs.*:solicitudFechaSolicitud);	
+				SET refOut.Solicitudes.Solicitud[i].Estado	            	= FIELDVALUE(refReqs.*:solicitudEstado);	
+				SET refOut.Solicitudes.Solicitud[i].Nombre	            	= FIELDVALUE(refReqs.*:solicitudNombre);	
+				SET refOut.Solicitudes.Solicitud[i].NumeroIdentificacion	= FIELDVALUE(refReqs.*:solicitudIdentificacion);	
+				SET refOut.Solicitudes.Solicitud[i].TipoContrato	        = FIELDVALUE(refReqs.*:solicitudTipoContrato);	
+				SET refOut.Solicitudes.Solicitud[i].Cargo              		= FIELDVALUE(refReqs.*:solicitudCargo);	
+				SET refOut.Solicitudes.Solicitud[i].FechaAusencia	        = FIELDVALUE(refReqs.*:solicitudFechaAusencia);	
+				SET refOut.Solicitudes.Solicitud[i].Duracion	            = FIELDVALUE(refReqs.*:solicitudDuracion);	
+				SET refOut.Solicitudes.Solicitud[i].FechaAprobacion	    	= FIELDVALUE(refReqs.*:solicitudFechaAprobacion);	
+				SET refOut.Solicitudes.Solicitud[i].FechaFin	            = (refReqs.*:solicitudFechaFin);
+				SET refOut.Solicitudes.Solicitud[i].FechaReintegro      	= (refReqs.*:solicitudFechaReintegro);
+				SET refOut.Solicitudes.Solicitud[i].Comentarios	        	= FIELDVALUE(refReqs.*:solicitudComentarios);
+				SET refOut.Solicitudes.Solicitud[i].Aprobador	            = FIELDVALUE(refReqs.*:solicitudAprobador);
+				SET refOut.Solicitudes.Solicitud[i].AprobadorComentarios	= FIELDVALUE(refReqs.*:solicitudAprobadorComentarios);
+				SET refOut.Solicitudes.Solicitud[i].Ubicacion	            = FIELDVALUE(refReqs.*:solicitudUbicacion);											
 							
 				SET i = i + 1;
 			END FOR;

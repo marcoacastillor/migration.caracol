@@ -11,12 +11,12 @@ CREATE COMPUTE MODULE ConsultaCentrosCosto_RequestBack
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultaCecos;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultaCecos;
-		DECLARE i INTEGER 1;		
+				
 		SET refOut.temp:ipCia	    = FIELDVALUE(refInp.*:Compania);
 		SET refOut.temp:ipUbicacion	= FIELDVALUE(refInp.*:Ubicacion);
 	    SET refOut.temp:ipNombre	= FIELDVALUE(refInp.*:Descripcion);

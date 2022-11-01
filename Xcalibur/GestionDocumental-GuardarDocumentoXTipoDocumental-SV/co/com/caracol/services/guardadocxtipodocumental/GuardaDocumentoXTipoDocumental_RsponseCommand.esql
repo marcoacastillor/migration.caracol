@@ -13,22 +13,16 @@ CREATE COMPUTE MODULE GuardaDocumentoXTipoDocumental_RsponseCommand
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		--Declarar variables
 		DECLARE ComandoRespuesta CHARACTER '';	
 		DECLARE i INTEGER 1;
-		
-		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
-		
+				
 		IF EXISTS(refInp.*:Response[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:GuardarDocumentoXTipoDocumentalResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:GuardarDocumentoXTipoDocumentalResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:GuardarDocumentoXTipoDocumentalResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:GuardarDocumentoXTipoDocumentalResponse;
 			
 			SET refOut.ns1:IdDocumento			= FIELDVALUE(refInp.*:Result.*:DocumentHandle);  
 		ELSE

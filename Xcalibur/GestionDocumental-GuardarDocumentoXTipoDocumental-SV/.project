@@ -5,7 +5,6 @@
 	<projects>
 		<project>ECM-OnBase-EjecutarComando</project>
 		<project>CommonsIntegration_LIB</project>
-		<project>OnBase-CargaArchivos</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

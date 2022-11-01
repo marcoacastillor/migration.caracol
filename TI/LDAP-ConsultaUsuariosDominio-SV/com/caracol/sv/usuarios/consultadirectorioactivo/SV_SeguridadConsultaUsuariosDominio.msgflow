@@ -13,7 +13,11 @@
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="128,126" queueName="SV.USUARIOS.GETDIRECTORIOACTIVO.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="MQ Input"/>
       </nodes>
+<<<<<<< HEAD
       <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="295,228" assemblyName="E:\IBM\Proyectos\Seguridad-ConsultaUsuariosDominio\bin\Debug\ConsultaUsuariosDominio.dll">
+=======
+      <nodes xmi:type="ComIbmDotNetCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="295,228" assemblyName="E:\DLLS\Seguridad-ConsultaUsuariosDominio\bin\Debug\ConsultaUsuariosDominio.dll">
+>>>>>>> fa745a9bb7ea3cd209cee800a0c4910293cf12a3
         <translation xmi:type="utility:ConstantString" string=".NETCompute"/>
         <monitorEvents eventSourceDescription="In terminal" eventSourceName=".NETCompute.terminal.in" eventIdentity="SeguridadConsultaUsuariosDominio.NETCompute.InTerminal">
           <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
@@ -49,7 +53,11 @@
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="521,230">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
+<<<<<<< HEAD
       <nodes xmi:type="com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow:FCMComposite_1" xmi:id="FCMComposite_1_3" location="669,94" Copia="oeacosta@caracoltv.com.co" Asunto="Error en Servicio IIB - Consulta Directorio Activo" Titulo="Notificacion de Error IIB10 Consulta Directorio Activo">
+=======
+      <nodes xmi:type="com_caracol_error_notificacion_correo_CaracolErrorNotificacion.subflow:FCMComposite_1" xmi:id="FCMComposite_1_3" location="669,94" Copia="usrassist@caracoltv.com.co" Asunto="Error en Servicio IIB - Consulta Directorio Activo" Titulo="Notificacion de Error IIB10 Consulta Directorio Activo">
+>>>>>>> fa745a9bb7ea3cd209cee800a0c4910293cf12a3
         <translation xmi:type="utility:ConstantString" string="CaracolErrorNotificacion"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.failure" targetTerminalName="InTerminal.Input"/>

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:appDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.app"><references><sharedLibraryReference><libraryName>csif-commons-util</libraryName></sharedLibraryReference><sharedLibraryReference><libraryName>Caracol-Error-Notificacion</libraryName></sharedLibraryReference><sharedLibraryReference><libraryName>csif-commons-exception</libraryName></sharedLibraryReference><sharedLibraryReference><libraryName>Indicadores</libraryName></sharedLibraryReference></references></ns2:appDescriptor>
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><ns2:appDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.app"><references/></ns2:appDescriptor>
+>>>>>>> fa745a9bb7ea3cd209cee800a0c4910293cf12a3
