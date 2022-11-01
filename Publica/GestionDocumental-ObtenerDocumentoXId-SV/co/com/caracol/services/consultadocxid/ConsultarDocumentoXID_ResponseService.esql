@@ -1,0 +1,65 @@
+BROKER SCHEMA co.com.caracol.services.consultadocxid
+
+
+CREATE COMPUTE MODULE ConsultarDocumentoXID_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Declarar variables
+		DECLARE ComandoRespuesta CHARACTER '';	
+		DECLARE i,j,k INTEGER 1;
+		
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		
+		IF EXISTS(refInp.*:Response[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD refOut.Documentos;
+			DECLARE refOut REFERENCE TO refOut.Documentos;
+			
+			DECLARE intDocumento INTEGER CARDINALITY(refInp.Response.Result.*[]);   			
+			IF (intDocumento = 1) THEN 	  
+											
+				FOR rBodyDocumento AS refInp.Result.Document[] DO  									
+					SET refOut.Documento[i].IdDocumento		= CAST (rBodyDocumento.id AS INTEGER);  
+					SET refOut.Documento[i].Nombre			= CAST (rBodyDocumento.name AS CHARACTER);   
+					SET refOut.Documento[i].UltimaRevision	= rBodyDocumento.LatestRevision; 
+					SET refOut.Documento[i].TipoDocumental	= CAST( rBodyDocumento.DocumentType AS CHAR);
+					SET refOut.Documento[i].FechaCreacion	= CAST( SUBSTRING(rBodyDocumento.DateStored FROM 1 FOR 10) AS DATE);
+					
+					--Crear KeyWord 							
+					FOR rBodyKeyWord AS refInp.Result.Document.Keywords.Keyword[] DO 												
+						SET refOut.Documento[i].KeyWords.KeyWord[j].Nombre	= CAST(rBodyKeyWord.name AS CHARACTER);     
+						SET refOut.Documento[i].KeyWords.KeyWord[j].Valor	= CAST(rBodyKeyWord AS CHARACTER);     						 						 						 						
+						SET j = j +1;  				
+					END FOR;
+					
+					--Crear KeyWord 							
+					FOR rBodyPages AS refInp.Result.Document.Pages.Page[] DO  												
+						SET refOut.Documento[i].Pages.Page[k].Extension	= CAST(rBodyPages.extension AS CHARACTER);       
+						SET refOut.Documento[i].Pages.Page[k].Valor		= CAST( rBodyPages AS CHARACTER);          						 						 						 						
+						SET k = k +1;    				
+					END FOR; 
+					
+					SET i = i + 1;																																												
+				END FOR;									
+			ELSE			
+				THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::No se encuentro el documento en onbase');  						
+			END IF;   
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

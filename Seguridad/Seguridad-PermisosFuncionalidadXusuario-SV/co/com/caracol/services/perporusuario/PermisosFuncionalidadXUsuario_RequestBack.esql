@@ -18,7 +18,8 @@ CREATE COMPUTE MODULE PermisosFuncionalidadXUsuario_RequestBack
 		CREATE FIELD OutputRoot.XMLNSC.ns:PermisosDeFuncionalidadXUsuario;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:PermisosDeFuncionalidadXUsuario;
 		
-		SET refOut.ns:perfilId 	= FIELDVALUE(refInp.*:perfilid);
+		SET refOut.ns:funcionalidadId 	= FIELDVALUE(refInp.*:funcionalidadid);
+		SET refOut.ns:usuarioId 		= FIELDVALUE(refInp.*:usuarioid);
 		
 		RETURN TRUE;
 	END;

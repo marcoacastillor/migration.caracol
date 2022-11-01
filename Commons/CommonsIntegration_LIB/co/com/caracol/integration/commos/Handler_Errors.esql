@@ -61,15 +61,17 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsFcdREST
 		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
 		DECLARE codeError, nameError, descError CHARACTER '';
 		
 		--Si existe ExceptionList
 		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		SET descError = SUBSTRING(descError AFTER '- CUST::');
 		
-		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,UUIDASCHAR,codeError, nameError||' : '||descError);
+		--TODO: Validar respuesta error.
+		SET refOut.Error = descError;
 		
 		RETURN TRUE;
 	END;

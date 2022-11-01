@@ -1,0 +1,39 @@
+BROKER SCHEMA co.com.caracol.services.generarcertificdolaboral
+
+DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/';
+
+CREATE COMPUTE MODULE TranslateByService_RQ_subflow_TranslateByService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2C 	= InputRoot.MQRFH2C;
+		
+		-- Referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Referencia a objeto de entrada
+		CREATE FIELD OutputRoot.XMLNSC.srvGenerarCertificadoLaboralRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.srvGenerarCertificadoLaboralRequest;
+		
+		--Copiar todo el mensaje
+		--TODO: Probar en debug
+		SET refOut = refInp;
+		
+		/*
+		SET refOut.Cia				= refInp.Cia;		
+		SET refOut.DsNo				= refInp.DsNo;
+		SET refOut.Cedula		 	= refInp.Cedula;
+		SET refOut.FechaNacimiento  = refInp.FechaNacimiento;
+		SET refOut.Solicitud		= refInp.Solicitud;
+		SET refOut.Destino			= refInp.Destino;		
+		SET refOut.De				= refInp.De;
+		SET refOut.Destinatarios	= refInp.Destinatarios;						
+		SET refOut.VisualizarSueldo	= refInp.VisualizarSueldo;
+		*/
+		
+		RETURN TRUE;
+	END;
+END MODULE;

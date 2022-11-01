@@ -9,7 +9,10 @@ CREATE COMPUTE MODULE GenerarCertificadoLaboral_RqCertificateCreate
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
+<<<<<<< HEAD
 		--MOVE refInp LASTCHILD;
+=======
+>>>>>>> eab70165c19ac47fb195bd16967ad9dc8c6661fe
 		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC.ns5:CrearCertificadoLaboralPdfRequest;

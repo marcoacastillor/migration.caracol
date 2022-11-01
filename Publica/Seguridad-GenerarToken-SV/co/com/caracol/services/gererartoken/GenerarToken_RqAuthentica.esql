@@ -1,0 +1,27 @@
+BROKER SCHEMA co.com.caracol.services.gererartoken
+DECLARE ns3 NAMESPACE 'http://www.caracoltv.com.co/TI/seguridad/autentica/';
+
+
+CREATE COMPUTE MODULE GenerarToken_RqAuthentica
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns3:SeguridadAutenticaRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns3:SeguridadAutenticaRequest;
+		
+		--Validación de perfil
+		IF refInp.Perfil.Id = 344 THEN
+			SET refOut.usuarioId 	= Environment.Variables.usuario[1];			
+		    SET refOut.contrasena	= Environment.Variables.contrasena[1];		    		    		    		   
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::Permisos insuficientes');
+		END IF;
+				
+		RETURN TRUE;
+	END;
+END MODULE;

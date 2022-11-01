@@ -13,28 +13,70 @@ DECLARE FACADE_RESP CONSTANT CHARACTER 'FCD_RESP';
 CREATE COMPUTE MODULE HandlerModules_RouteFcdREST
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
-		--Crear cabeceras de mensaje
-		CREATE FIELD OutputRoot.Properties;
-		CREATE FIELD OutputRoot.MQMD;
-		CREATE FIELD OutputRoot.MQRFH2;
 		
-		--Crear referencias
-		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		IF CONTAINS(InputRoot.HTTPInputHeader."X-Original-HTTP-Command", 'POST') THEN
+			--Crear cabeceras de mensaje
+			CREATE FIELD OutputRoot.Properties;
+			CREATE FIELD OutputRoot.MQMD;
+			CREATE FIELD OutputRoot.MQRFH2;
+			
+			--Crear referencias
+			DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+			
+			-- Guardar información para responder a cliente
+			SET refMQRFH2.usr.responseREST.replyIdentifier = InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+			
+			--Guardar datos para auditoria
+			SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+			SET refMQRFH2.usr.transaction.operation 		= UDP_OPERATION;
+			SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
+			SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+			SET refMQRFH2.usr.transaction.toNotification 	= UDP_TONOTIFICATION;
+			
+			--Copiar mensaje completo
+			SET OutputRoot.JSON = InputRoot.JSON;
+			
+			RETURN TRUE;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::MÉTODO NO SOPORTADO');	
+		END IF;
 		
-		-- Guardar información para responder a cliente
-		SET refMQRFH2.usr.responseREST.replyIdentifier = InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		RETURN FALSE;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE HandlerModules_RouteFcdREST_MPUT
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
 		
-		--Guardar datos para auditoria
-		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
-		SET refMQRFH2.usr.transaction.operation 		= UDP_OPERATION;
-		SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
-		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
-		SET refMQRFH2.usr.transaction.toNotification 	= UDP_TONOTIFICATION;
+		IF CONTAINS(InputRoot.HTTPInputHeader."X-Original-HTTP-Command", 'PUT') THEN
+			--Crear cabeceras de mensaje
+			CREATE FIELD OutputRoot.Properties;
+			CREATE FIELD OutputRoot.MQMD;
+			CREATE FIELD OutputRoot.MQRFH2;
+			
+			--Crear referencias
+			DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+			
+			-- Guardar información para responder a cliente
+			SET refMQRFH2.usr.responseREST.replyIdentifier = InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+			
+			--Guardar datos para auditoria
+			SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+			SET refMQRFH2.usr.transaction.operation 		= UDP_OPERATION;
+			SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
+			SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+			SET refMQRFH2.usr.transaction.toNotification 	= UDP_TONOTIFICATION;
+			
+			--Copiar mensaje completo
+			SET OutputRoot.JSON = InputRoot.JSON;
+			
+			RETURN TRUE;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::MÉTODO NO SOPORTADO');	
+		END IF;
 		
-		--Copiar mensaje completo
-		SET OutputRoot.JSON = InputRoot.JSON;
-		
-		RETURN TRUE;
+		RETURN FALSE;
 	END;
 END MODULE;
 
@@ -117,7 +159,10 @@ CREATE COMPUTE MODULE HandlerModules_ResponseFcdWS
 		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(refMQRFH2.usr.responseWS.replyIdentifier AS BLOB);
 		
 		--Copiar mensaje completo
-		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		
+		SET OutputRoot.{FIELDNAME(refInp)}		= InputRoot.{FIELDNAME(refInp)};
 		
 		RETURN TRUE;
 	END;

@@ -1,0 +1,27 @@
+BROKER SCHEMA com.caracol.intf.ch.dominio.seguridad
+
+
+CREATE COMPUTE MODULE Seguridad02
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		IF InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.Type[1]='SOAP' THEN
+			/*
+			SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);		
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Header = InputRoot.XMLNSC.s12:Envelope.s12:Header;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body = InputRoot.XMLNSC.s12:Envelope.s12:Body;
+			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+			RETURN FALSE;
+			*/
+		END IF;
+		IF InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.Type='HTTP' THEN
+			SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);
+			SET OutputRoot.JSON.Data.Respuesta = '';
+			
+			PROPAGATE TO TERMINAL 'out' DELETE NONE;
+		RETURN FALSE;
+		END IF;
+		return true;
+	END;
+
+	
+END MODULE;

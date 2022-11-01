@@ -1,0 +1,37 @@
+BROKER SCHEMA co.com.caracol.services.crearsolvacaciones
+DECLARE car1 NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioCrearSolicitud';
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE CrearSolicitudVacaciones_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:GenerarSolicitud;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:GenerarSolicitud;
+		
+		SET refOut.ns:objSolicitudVacaciones.car1:Apellidos				= refInp.Apellidos;
+	    SET refOut.ns:objSolicitudVacaciones.car1:Cargo					= refInp.Cargo;
+	    SET refOut.ns:objSolicitudVacaciones.car1:Comentarios			= refInp.Comentarios;
+	    SET refOut.ns:objSolicitudVacaciones.car1:CopiaDestinatarios	= refInp.CopiaDestinatarios;
+	    SET refOut.ns:objSolicitudVacaciones.car1:Destinatarios			= refInp.Destinatarios;
+	    SET refOut.ns:objSolicitudVacaciones.car1:Duracion				= refInp.Duracion;
+	    SET refOut.ns:objSolicitudVacaciones.car1:FechaAusencia			= refInp.FechaAusencia;
+		SET refOut.ns:objSolicitudVacaciones.car1:Identificacion		= refInp.Identificacion;
+		SET refOut.ns:objSolicitudVacaciones.car1:Nombres				= refInp.Nombres;
+		SET refOut.ns:objSolicitudVacaciones.car1:TipoContrato			= refInp.TipoContrato;
+		SET refOut.ns:objSolicitudVacaciones.car1:TipoSolicitudId		= refInp.TipoSolicitudId;
+		SET refOut.ns:objSolicitudVacaciones.car1:UsuarioId				= refInp.UsuarioId;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

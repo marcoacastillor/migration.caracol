@@ -1,0 +1,33 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\CrearSolicitudProduccion.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'http://srvpint2/ServicioCrearSolicitudAusencias/CrearSolicitud.svc?xsd=xsd1' has not been resolved because the import is unused, Line: 1, Column: 1178
+XSD: There is no xmlns declaration for namespace 'http://schemas.microsoft.com/2003/10/Serialization/', Line: 1, Column: 1178
+XSD: The location 'http://srvpint2/ServicioCrearSolicitudAusencias/CrearSolicitud.svc?xsd=xsd2' has not been resolved because the import is unused, Line: 1, Column: 1348
+XSD: There is no xmlns declaration for namespace 'http://schemas.datacontract.org/2004/07/ServicioCrearSolicitud', Line: 1, Column: 1348
+
+
+The WSDL import will proceed with bindings BasicHttpBinding_ICrearSolicitud.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/CrearSolicitudProduccion.wsdl.
+Parsing wsdl binding {http://tempuri.org/}BasicHttpBinding_ICrearSolicitud.
+Parsing wsdl binding input GenerarSolicitud.
+Parsing wsdl binding output GenerarSolicitud.
+Processing doc style for operation GenerarSolicitud.
+Populating WSDL schema CrearSolicitudProduccion.xsd.
+Removing unnecessary import statement with namespace http://schemas.microsoft.com/2003/10/Serialization/ from schema CrearSolicitudProduccion_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://schemas.datacontract.org/2004/07/ServicioCrearSolicitud from schema CrearSolicitudProduccion_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Creating file CrearSolicitudProduccion.xsd in the workspace.
+Creating file /Nomina-CrearSolicitudVacaciones-SV/xsd_xsd0.xsd in the workspace.
+Creating file /Nomina-CrearSolicitudVacaciones-SV/xsd_xsd2.xsd in the workspace.
+Copying source WSDL CrearSolicitudProduccion.wsdl to CrearSolicitudProduccion.wsdl.
+
+Elapsed time processing this message definition file: 0.125 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServicioCrearSolicitud" xmlns:tns="http://schemas.datacontract.org/2004/07/ServicioCrearSolicitud">
+  <xsd:complexType name="SolicitudVacaciones">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Apellidos" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Cargo" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Comentarios" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="CopiaDestinatarios" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Destinatarios" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Duracion" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="FechaAusencia" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="Identificacion" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Nombres" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="TipoContrato" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="TipoSolicitudId" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="UsuarioId" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="SolicitudVacaciones" nillable="true" type="tns:SolicitudVacaciones"/>
+  <xsd:complexType name="RespuestaSolicitud">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="IdSolicitud" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="Mensaje" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="RespuestaSolicitud" nillable="true" type="tns:RespuestaSolicitud"/>
+</xsd:schema>

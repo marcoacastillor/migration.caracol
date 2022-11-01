@@ -1,0 +1,15 @@
+BROKER SCHEMA Seguridad_ValidarToken
+
+
+CREATE COMPUTE MODULE "Seguridad_ValidarToken.subflow_RqValidateToken"
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Enviar datos de autenticación
+		SET OutputRoot.HTTPRequestHeader."Token" 	= InputRoot.HTTPRequestHeader."Token";
+		
+		--Guardar mensaje original
+		SET Environment.usr.originalMessage = InputRoot.JSON.Data;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

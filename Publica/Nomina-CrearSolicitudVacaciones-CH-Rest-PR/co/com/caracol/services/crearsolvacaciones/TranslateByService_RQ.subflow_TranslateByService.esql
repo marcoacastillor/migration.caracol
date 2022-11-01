@@ -1,0 +1,26 @@
+BROKER SCHEMA co.com.caracol.services.crearsolvacaciones
+
+
+CREATE COMPUTE MODULE TranslateByService_RQ_subflow_TranslateByService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2C 	= InputRoot.MQRFH2C;
+		
+		-- Referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Referencia a objeto de entrada
+		CREATE FIELD OutputRoot.XMLNSC.CrearSolicitudVacacionesRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.CrearSolicitudVacacionesRequest;
+		
+		--Copiar todo el mensaje
+		--TODO: Probar en debug
+		SET refOut = refInp;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

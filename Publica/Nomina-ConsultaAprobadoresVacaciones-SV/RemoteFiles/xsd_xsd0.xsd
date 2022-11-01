@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:tns="http://tempuri.org/">
+  <xsd:import namespace="http://schemas.datacontract.org/2004/07/ServicioConsultarAprobadores" schemaLocation="xsd_xsd2.xsd"/>
+  <xsd:element ibmSchExtn:docRoot="true" name="ConsultarListaAprobadores">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="tipoSolicitudId" type="xsd:int"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="ConsultarListaAprobadoresResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="ConsultarListaAprobadoresResult" nillable="true" type="q1:ArrayOfUsuario" xmlns:q1="http://schemas.datacontract.org/2004/07/ServicioConsultarAprobadores"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="ConsultarListaDistribucion">
+    <xsd:complexType>
+      <xsd:sequence/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element ibmSchExtn:docRoot="true" name="ConsultarListaDistribucionResponse">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element minOccurs="0" name="ConsultarListaDistribucionResult" nillable="true" type="q2:ArrayOfUsuario" xmlns:q2="http://schemas.datacontract.org/2004/07/ServicioConsultarAprobadores"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>
