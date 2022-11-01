@@ -1,0 +1,37 @@
+BROKER SCHEMA co.com.caracol.creacionpedidoconstosadicionales
+
+DECLARE ns NAMESPACE 'urn:valorem.com.co:canonicos:mm';
+
+CREATE COMPUTE MODULE CreacionPedidoCostosAdicionales_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:PedidoCostosAdicionales;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:PedidoCostosAdicionales;
+		
+		SET refOut.Cabecera.IdPaquete	  = FIELDVALUE(refInp.*:IdPaquete);
+		SET refOut.Cabecera.RefPed		  = FIELDVALUE(refInp.*:RefPed);
+		SET refOut.PosicionGeneral.Cantid = FIELDVALUE(refInp.*:Cantidad);
+		SET refOut.PosicionGeneral.CodMat = FIELDVALUE(refInp.*:CodMat);
+		SET refOut.PosicionGeneral.FecEnt = FIELDVALUE(refInp.*:FecEnt);
+		SET refOut.PosicionGeneral.IndAdi = FIELDVALUE(refInp.*:IndAdi);
+		SET refOut.PosicionGeneral.PreNet = FIELDVALUE(refInp.*:PreNet);
+		SET refOut.PosicionGeneral.RefPos = FIELDVALUE(refInp.*:RefPos);
+		SET refOut.PosicionGeneral.TaxCod = FIELDVALUE(refInp.*:TaxCod);
+		SET refOut.PosicionGeneral.UniMed = FIELDVALUE(refInp.*:UnidadMedida);
+		
+		
+		RETURN TRUE;
+	 END;	
+END MODULE;
+

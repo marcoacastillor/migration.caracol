@@ -1,0 +1,46 @@
+BROKER SCHEMA co.com.caracol.creacionpedidoconstosadicionales
+
+DECLARE s1 NAMESPACE 'http://www.caracoltv.com.co/transportes/gestionlogistica/creacionpedidocostosadicionales/';
+
+CREATE COMPUTE MODULE CreacionPedidoCostosAdicionales_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		
+		IF EXISTS(refInp.*:PosicionGeneral[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.s1:CreacionPedidoCostosAdicionalesResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.s1:CreacionPedidoCostosAdicionalesResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:PosicionGeneral.*:Cabecera[]  DO
+				
+				SET refOut.Cabecera[i].IdPaquete			= FIELDVALUE(refReqs.*:IdPaquete);
+				SET refOut.Cabecera[i].RefPed	    		= FIELDVALUE(refReqs.*:RefPed);	
+				SET refOut.PosicionGeneral.Cantid[i].Cantid	= FIELDVALUE(refReqs.*:Cantidad);	
+				SET refOut.PosicionGeneral.CodMat[i].CodMat	= FIELDVALUE(refReqs.*:CodMat);	
+				SET refOut.PosicionGeneral.FecEnt[i].FecEnt	= (refReqs.*:FecEnt);	
+				SET refOut.PosicionGeneral.IndAdi[i].IndAdi	= FIELDVALUE(refReqs.*:IndAdi);	
+				SET refOut.PosicionGeneral.PreNet[i].PreNet = FIELDVALUE(refReqs.*:PreNet);	
+				SET refOut.PosicionGeneral.RefPos[i].RefPos	= FIELDVALUE(refReqs.*:RefPos);	
+				SET refOut.PosicionGeneral.TaxCod[i].TaxCod	= FIELDVALUE(refReqs.*:TaxCod);	
+				SET refOut.PosicionGeneral.UniMed[i].UniMed	= FIELDVALUE(refReqs.*:UnidadMedida);	
+	
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

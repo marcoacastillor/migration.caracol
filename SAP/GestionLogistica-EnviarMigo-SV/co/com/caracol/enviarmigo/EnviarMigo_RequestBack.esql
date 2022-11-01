@@ -1,0 +1,37 @@
+BROKER SCHEMA co.com.caracol.enviarmigo
+
+DECLARE ns NAMESPACE 'urn:valorem.com.co:canonicos:mm';
+
+CREATE COMPUTE MODULE EnviarMigo_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ConfirmacionEMSIGO;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ConfirmacionEMSIGO ;
+		
+		SET refOut.Cabecera.CLSMOV	  	= FIELDVALUE(refInp.*:ClsMov);
+		SET refOut.Cabecera.CLVOPE	  	= FIELDVALUE(refInp.*:ClVope);
+		SET refOut.Cabecera.FECHA	  	= (refInp.*:Fecha);
+		SET refOut.Cabecera.IDPAQUETE	= FIELDVALUE(refInp.*:IdPaquete);
+		SET refOut.Cabecera.NOTENT	  	= FIELDVALUE(refInp.*:NotEnt);
+		SET refOut.Cabecera.PEDIDO	  	= FIELDVALUE(refInp.*:Pedido);
+		SET refOut.Cabecera.TXTCAB	 	= FIELDVALUE(refInp.*:txtCab);
+		SET refOut.Posiciones.CANTID 	= FIELDVALUE(refInp.*:Cantidad);
+		SET refOut.Posiciones.ENTFIN 	= FIELDVALUE(refInp.*:EntFin);
+		SET refOut.Posiciones.POSPED 	= FIELDVALUE(refInp.*:PosPed);
+		SET refOut.Posiciones.UNIDEM 	= FIELDVALUE(refInp.*:UnidadMedida);
+				
+		RETURN TRUE;
+	 END;	
+END MODULE;
+

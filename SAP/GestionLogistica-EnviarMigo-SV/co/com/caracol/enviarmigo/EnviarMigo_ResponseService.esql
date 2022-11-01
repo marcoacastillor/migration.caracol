@@ -1,0 +1,46 @@
+BROKER SCHEMA co.com.caracol.enviarmigo
+
+DECLARE s1 NAMESPACE 'http://www.caracoltv.com.co/transportes/gestionlogistica/migopedido/';
+
+CREATE COMPUTE MODULE EnviarMigo_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		
+		IF EXISTS(refInp.*:ConfirmacionEMSIGO[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.s1:EnviarMigoResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.s1:EnviarMigoResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:ConfirmacionEMSIGO[]  DO
+				
+			SET refOut.Cabecera[i].CLVOPE	  	= FIELDVALUE(refReqs.*:ClVope);
+			SET refOut.Cabecera[i].FECHA	  	= (refReqs.*:Fecha);
+			SET refOut.Cabecera[i].IDPAQUETE	= FIELDVALUE(refReqs.*:IdPaquete);
+			SET refOut.Cabecera[i].NOTENT	  	= FIELDVALUE(refReqs.*:NotEnt);
+			SET refOut.Cabecera[i].PEDIDO	  	= FIELDVALUE(refReqs.*:Pedido);
+			SET refOut.Cabecera[i].TXTCAB	 	= FIELDVALUE(refReqs.*:txtCab);
+			SET refOut.Posiciones[i].CANTID 	= FIELDVALUE(refReqs.*:Cantidad);
+			SET refOut.Posiciones[i].ENTFIN 	= FIELDVALUE(refReqs.*:EntFin);
+			SET refOut.Posiciones[i].POSPED 	= FIELDVALUE(refReqs.*:PosPed);
+			SET refOut.Posiciones[i].UNIDEM 	= FIELDVALUE(refReqs.*:UnidadMedida);
+	
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;
