@@ -1,0 +1,65 @@
+BROKER SCHEMA com.caracol.sv.nomina.registrarnovedadempleado
+CREATE COMPUTE MODULE SV_RegistarNovedadEmpleado_Backend
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*
+		 * Se declaran los namespaces que manejan los mensajes SOAP del Bus de Servicios.		 
+		 */			 		
+		--DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';								
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE tem NAMESPACE 'http://tempuri.org/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/';
+		DECLARE soapenv NAMESPACE  'http://schemas.xmlsoap.org/soap/envelope/';
+		DECLARE cliq NAMESPACE 'http://schemas.datacontract.org/2004/07/CLiquida.Servicios.ServiciosCaracol';
+		DECLARE soap NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		
+		SET OutputRoot.Properties = InputRoot.Properties;		
+		/*
+		 * Se declara la referencia al Header del mensaje de Entrada.		 
+		 */		
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.soap:Envelope.s11:Header;
+		/*
+		 * Se decla ra la referencia al cuerpo del mensaje de Entrada.
+		 * esta declaraciones es la del servicio del BUS  Nombre Servicio +  Request		 
+		 */
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.soapenv:Envelope.soapenv:Body.srv:NovedadEmpleadoRequest;
+		
+				SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Apellido= rBodyI.novedad.Apellido;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Cedula= rBodyI.novedad.Cedula;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:ClasificacionContrato= rBodyI.novedad.ClasificacionContrato;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoCargo= rBodyI.novedad.CodigoCargo;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoCentroCostos= rBodyI.novedad.CodigoCentroCostos;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoCiudad= rBodyI.novedad.CodigoCiudad;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoEmpresa= rBodyI.novedad.CodigoEmpresa;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoMarcacion= rBodyI.novedad.CodigoMarcacion;	
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CorreoElectronico = rBodyI.novedad.CorreoElectronico;	   
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:DiaDeDescanso= rBodyI.novedad.DiaDeDescanso;	     	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Estado= rBodyI.novedad.Estado;
+	    IF CAST(rBodyI.novedad.FechaDeRetiro AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+	    	SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:FechaDeRetiro= rBodyI.novedad.FechaDeRetiro;
+	    END IF;
+	    	
+    	IF CAST(rBodyI.novedad.FechaFinContrato AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+	    	SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:FechaFinContrato= rBodyI.novedad.FechaFinContrato;
+	    END IF;
+		
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:FechaIngreso= rBodyI.novedad.FechaIngreso;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Ficha= rBodyI.novedad.Ficha;
+        SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Genero= rBodyI.novedad.Genero;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Nombre= rBodyI.novedad.Nombre;		    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:NombreCargo= rBodyI.novedad.NombreCargo;	    	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:NombreCentroCostos= rBodyI.novedad.NombreCentroCostos;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:NombreCiudad= rBodyI.novedad.NombreCiudad;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:NombreEmpresa= rBodyI.novedad.NombreEmpresa;
+		IF  rBodyI.novedad.Regimen <> '' THEN
+	    	SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Regimen= rBodyI.novedad.Regimen;
+	    END IF;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Telefono= rBodyI.novedad.Telefono;	    	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:TipoDeContrato= rBodyI.novedad.TipoDeContrato;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:TipoLiquidacion= rBodyI.novedad.TipoLiquidacion;
+											 	    
+	   	SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/CLiquida.Servicios.ServiciosCaracol" xmlns:tns="http://schemas.datacontract.org/2004/07/CLiquida.Servicios.ServiciosCaracol">
+  <xsd:complexType name="Novedad">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="Apellido" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Cedula" type="xsd:decimal"/>
+      <xsd:element minOccurs="0" name="ClasificacionContrato" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="CodigoCargo" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="CodigoCentroCostos" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="CodigoCiudad" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="CodigoEmpresa" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="CodigoMarcacion" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="CorreoElectronico" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="DiaDeDescanso" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="Estado" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="FechaDeRetiro" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="FechaFinContrato" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="FechaIngreso" type="xsd:dateTime"/>
+      <xsd:element minOccurs="0" name="Ficha" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Genero" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Nombre" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="NombreCargo" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="NombreCentroCostos" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="NombreCiudad" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="NombreEmpresa" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="Regimen" type="xsd:int"/>
+      <xsd:element minOccurs="0" name="Telefono" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="TipoDeContrato" nillable="true" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="TipoLiquidacion" nillable="true" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Novedad" nillable="true" type="tns:Novedad"/>
+</xsd:schema>

@@ -1,0 +1,22 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\WS_CargaPlantillaV4.wsdl
+
+The WSDL import will proceed with bindings bdCargaPlantillaSOAP12Http2.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/WS_CargaPlantillaV4.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/correo/cargaplantilla4/}bdCargaPlantillaSOAP12Http2.
+Parsing wsdl binding input CargaPlantillav4.
+Parsing wsdl binding output CargaPlantillav4.
+Processing doc style for operation CargaPlantillav4.
+Populating WSDL schema WS_CargaPlantillaV4.xsd.
+Creating file WS_CargaPlantillaV4.xsd in the workspace.
+Creating file /Seguridad-ReasignarClaveUsuario/xsd_xsd0.xsd in the workspace.
+Copying source WSDL WS_CargaPlantillaV4.wsdl to WS_CargaPlantillaV4.wsdl.
+
+Elapsed time processing this message definition file: 0.255 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

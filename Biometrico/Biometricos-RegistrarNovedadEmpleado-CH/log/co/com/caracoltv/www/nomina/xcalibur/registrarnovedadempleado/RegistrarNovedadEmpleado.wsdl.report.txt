@@ -1,0 +1,29 @@
+
+
+Importing file: C:\Users\adminiib\Desktop\RegistrarNovedadEmpleado.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: The location 'ebms-header-3_0-200704.xsd' has not been resolved, Line: 29, Column: 1
+WSDL: The 'Messaging' element referenced by the detail part cannot be resolved., Line: 50, Column: 5
+
+
+The WSDL import will proceed with bindings bdRegistrarNovedadSOAP11Http.
+Creating wsdl schema document for file:///C:/Users/adminiib/Desktop/RegistrarNovedadEmpleado.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/}bdRegistrarNovedadSOAP11Http.
+Parsing wsdl binding input registro.
+Parsing wsdl binding output registro.
+Processing doc style for operation registro.
+Populating WSDL schema RegistrarNovedadEmpleado.xsd.
+Removing unnecessary import statement with namespace http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/ from schema RegistrarNovedadEmpleado_InlineSchema2.xsd.  This statement was not resolved and is never used.
+Creating file RegistrarNovedadEmpleado.xsd in the workspace.
+Creating file /CH_WS_Nomina-RegistrarNovedadEmpleado/novedadempleado.xsd in the workspace.
+Copying source WSDL RegistrarNovedadEmpleado.wsdl to RegistrarNovedadEmpleado.wsdl.
+
+Elapsed time processing this message definition file: 0.375 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

@@ -1,0 +1,19 @@
+BROKER SCHEMA com.caracol.intf.gestionarordencompra.recibirordencompra
+
+
+CREATE COMPUTE MODULE RecibirOrdenCompra02_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*Definicion de Namespace utilizados para construir el SOAP Request*/		
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';				
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/logisticaytransporte/gestionarordencompra/recibirordencompra/';  				
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:RecibirOrdenCompraResponse;                        
+        SET OutputRoot.Properties = InputRoot.Properties;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:RecibirOrdenCompraResponse.NumeroPedido  = 0;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:RecibirOrdenCompraResponse.Mensaje  = 'Recibido';
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:RecibirOrdenCompraResponse.Tipo  = 'Orden compra' ; 		  						 								
+		RETURN TRUE; 
+	END;
+END MODULE;

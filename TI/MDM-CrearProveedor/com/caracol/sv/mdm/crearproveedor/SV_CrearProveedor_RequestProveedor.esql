@@ -1,0 +1,45 @@
+BROKER SCHEMA com.caracol.sv.mdm.crearproveedor
+
+CREATE COMPUTE MODULE SV_CrearProveedor_RequestProveedor
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN	
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/ti/mdm/canonico/proveedor/';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;		
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;		
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Proveedor;			
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;				
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Proveedor TYPE Name;		
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.ns:Proveedor;
+		SET rBodyO.Codigo=rBodyI.Codigo;
+		SET rBodyO.Nombre=rBodyI.Nombre;
+		SET rBodyO.TipoIdentificacion=rBodyI.TipoIdentificacion;
+		SET rBodyO.Compania=rBodyI.Compania;
+		SET rBodyO.Direccion=rBodyI.Direccion;
+		SET rBodyO.Telefono1=rBodyI.Telefono1;
+		SET rBodyO.Telefono2=rBodyI.Telefono2;
+		SET rBodyO.Telefono3=rBodyI.Telefono3;
+		SET rBodyO.Email=rBodyI.Email;
+		SET rBodyO.NombreAlternativo=rBodyI.NombreAlternativo;
+		SET rBodyO.CuentaAsociada=rBodyI.CuentaAsociada;		
+		SET rBodyO.ProveedorContacto=rBodyI.ProveedorContacto;
+		SET rBodyO.ProveedorContactoTelefono=rBodyI.ProveedorContactoTelefono;
+		SET rBodyO.ProveedorCargoContacto=rBodyI.ProveedorCargoContacto;
+		SET rBodyO.ProveedorContactoEmail=rBodyI.ProveedorContactoEmail;		
+		SET rBodyO.Estado=rBodyI.Estado;
+		SET rBodyO.Plataforma=rBodyI.Plataforma;			
+		SET rBodyO.GrupoCuenta=rBodyI.GrupoCuenta;
+		SET rBodyO.Rut=rBodyI.Rut;		
+		SET rBodyO.TipoEmpresa=rBodyI.TipoEmpresa;			
+		SET rBodyO.CodigoSAP=rBodyI.CodigoSAP;
+		SET rBodyO.IdXCalibur=rBodyI.IdXCalibur;
+		SET rBodyO.Departamento=rBodyI.Departamento;
+		SET rBodyO.Ciudad=rBodyI.Ciudad;		
+		RETURN TRUE;
+	END;
+END MODULE;

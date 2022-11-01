@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+   targetNamespace="http://www.caracoltv.com.co/ti/registro/consultaeventonegocio/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+	xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/"
+	xmlns:srv="http://www.caracoltv.com.co/ti/registro/consultaeventonegocio/">
+<!-- wrapper element of the request message -->	
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaEventoNegocioRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element nillable="false" minOccurs="1" name="FechaInicial" type="xsd:dateTime"/>
+				<xsd:element nillable="false" minOccurs="1" name="FechaFinal" type="xsd:dateTime"/>
+				<xsd:element nillable="false" minOccurs="1" name="SistemaId" type="xsd:integer"/>				
+				<xsd:element nillable="true" minOccurs="0" name="UsuarioId" type="xsd:string"/>
+				<xsd:element nillable="true" minOccurs="0" name="Servidor" type="xsd:string"/>
+				<xsd:element nillable="true" minOccurs="0" name="AplicacionOrigen" type="xsd:string"/>
+				<xsd:element nillable="true" minOccurs="0" name="ComponenteOrigen" type="xsd:string"/>
+				<xsd:element nillable="true" minOccurs="0" name="ModuloFuncional" type="xsd:string"/>
+				<xsd:element nillable="true" minOccurs="0" name="AccionEjecutada" type="xsd:string"/>
+				<xsd:element nillable="true" minOccurs="0" name="Entidad" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ConsultaEventoNegocioResponse">
+
+		<xsd:complexType>
+			<xsd:sequence>				
+				<xsd:element maxOccurs="unbounded" minOccurs="0" name="EventoNegocio"  type="srv:EventoNegocio"/>				
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>
+		<xsd:complexType name="EventoNegocio" >
+		<xsd:sequence>
+				<xsd:element nillable="false" minOccurs="1" name="SistemaId" type="xsd:integer"/>
+				<xsd:element nillable="false" minOccurs="1" name="UsuarioId" type="xsd:string"/>
+				<xsd:element nillable="false" minOccurs="1" name="AplicacionOrigen" type="xsd:string"/>
+				<xsd:element nillable="false" minOccurs="1" name="ComponenteOrigen" type="xsd:string"/>
+				<xsd:element nillable="false" minOccurs="1" name="ModuloFuncional" type="xsd:string"/>
+				<xsd:element nillable="false" minOccurs="1" name="CodigoTransaccion" type="xsd:string"/>
+				<xsd:element nillable="false" minOccurs="1" name="AccionEjecutada" type="xsd:string"/>
+				<xsd:element nillable="false" minOccurs="1" name="Entidad" type="xsd:string"/>
+				<xsd:element nillable="false" minOccurs="1" name="DetalleTransaccion" type="xsd:string"/>
+				<xsd:element nillable="false" minOccurs="1" name="Fecha" type="xsd:string"/>
+				<xsd:element nillable="false" minOccurs="1" name="Servidor" type="xsd:string"/>
+      	</xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="EventoNegocio" type="srv:EventoNegocio" />   
+  </xsd:schema>

@@ -1,0 +1,34 @@
+BROKER SCHEMA com.caracol.intf.gestionarordencompra.recibirordencompra
+
+
+CREATE COMPUTE MODULE RecibiOrdenCompra01_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/logisticaytransporte/gestionarordencompra/recibirordencompra/';		
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;
+		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:RecibirOrdenCompraRequest TYPE Name; 
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:RecibirOrdenCompraRequest; 
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:RecibirOrdenCompraRequest; 	
+			
+		SET rBodyO.PedidoCompras.Cabecera.NumeroPedido= rBodyI.PedidoCompras.Cabecera.NumeroPedido;  
+		SET rBodyO.PedidoCompras.Cabecera.FechaDocumento= rBodyI.PedidoCompras.Cabecera.FechaDocumento; 
+		SET rBodyO.PedidoCompras.Cabecera.CreadoPor= rBodyI.PedidoCompras.Cabecera.CreadoPor; 
+		SET rBodyO.PedidoCompras.Cabecera.Solicitante= rBodyI.PedidoCompras.Cabecera.Solicitante; 
+		SET rBodyO.PedidoCompras.Cabecera.CodigoProveedor= rBodyI.PedidoCompras.Cabecera.CodigoProveedor; 
+		SET rBodyO.PedidoCompras.Cabecera.NombreProveedor= rBodyI.PedidoCompras.Cabecera.NombreProveedor; 
+		SET rBodyO.PedidoCompras.Detalle[<]=rBodyI.PedidoCompras.Detalle[<];  			
+	 	SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	      
+		RETURN TRUE;
+	END;
+END MODULE;

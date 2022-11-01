@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmLabel.msgnode="ComIbmLabel.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmRouteToLabel.msgnode="ComIbmRouteToLabel.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmValidate.msgnode="ComIbmValidate.msgnode" xmlns:Indicadores_EnviarInformacionEntrada.subflow="Indicadores/EnviarInformacionEntrada.subflow" xmlns:com_cysce_core_context_StoreContext.subflow="com/cysce/core/context/StoreContext.subflow"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="com/caracol/intf/usuarios/consultadirectorioactivo/CH_SeguridadConsultaUsuariosDominio01.msgflow" nsPrefix="com_caracol_intf_usuarios_consultadirectorioactivo_CH_SeguridadConsultaUsuariosDominio01.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="CH_SeguridadConsultaUsuariosDominio01" bundleName="com/caracol/intf/usuarios/consultadirectorioactivo/CH_SeguridadConsultaUsuariosDominio01" pluginId="CH_WS_Seguridad-ConsultaUsuariosDominio"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/CH_WS_Seguridad-ConsultaUsuariosDominio/icons/full/obj16/CH_SeguridadConsultaUsuariosDominio01.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/CH_WS_Seguridad-ConsultaUsuariosDominio/icons/full/obj30/CH_SeguridadConsultaUsuariosDominio01.gif"/>
+    <composition>
+      <nodes xmi:type="com_cysce_core_context_StoreContext.subflow:FCMComposite_1" xmi:id="FCMComposite_1_1" location="535,247" queueName="CSIF.ESB.GETDIRECTORIOACTIVO.STORE">
+        <translation xmi:type="utility:ConstantString" string="StoreContext"/>
+      </nodes>
+      <nodes xmi:type="ComIbmValidate.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="397,134" validateMaster="contentAndValue">
+        <translation xmi:type="utility:ConstantString" string="Validate"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="396,243" queueName="SV.USUARIOS.GETDIRECTORIOACTIVO.01" newMsgId="true" request="true" replyToQ="CH.WS.USUARIOS.GETDIRECTORIOACTIVO.02">
+        <translation xmi:type="utility:ConstantString" string="MQOUTPUT"/>
+      </nodes>
+      <nodes xmi:type="ComIbmRouteToLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="517,138">
+        <translation xmi:type="utility:ConstantString" string="Route To Label"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="260,242" computeExpression="esql://routine/com.caracol.intf.usuarios.consultadirectorioactivo#CH_ConsultaDirectorioActivo01_CrearRequest.Main">
+        <translation xmi:type="utility:ConstantString" string="CrearRequest"/>
+      </nodes>
+      <nodes xmi:type="ComIbmLabel.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="142,242" labelName="operacionConsultaUsuariosDA">
+        <translation xmi:type="utility:ConstantString" string="Label"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="215,138" wsdlFileName="ConsultaUsuariosDominio.wsdl" selectedPortType="ptConsultaUsuariosDA12" selectedBinding="bdConsultaUsuariosDAHttp" selectedPort="consultausuariosdominiocrc" targetNamespace="http://www.caracoltv.com.co/TI/seguridad/consultausuariosdominio/" useHTTPTransport="true" urlSelector="/services/s12/dominio/consultausuariosdominio" allowQueryWSDL="true">
+        <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
+      </nodes>
+      <nodes xmi:type="Indicadores_EnviarInformacionEntrada.subflow:FCMComposite_1" xmi:id="FCMComposite_1_6" location="335,68" servicio="Seguridad-ConsultaUsuariosDominio">
+        <translation xmi:type="utility:ConstantString" string="EnviarInformacionEntrada"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.match" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_9" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.Input"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

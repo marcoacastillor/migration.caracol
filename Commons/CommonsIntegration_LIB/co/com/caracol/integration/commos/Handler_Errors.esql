@@ -2,6 +2,76 @@ BROKER SCHEMA co.com.caracol.integration.commos
 
 DECLARE SPECIFIC_RESP CONSTANT CHARACTER 'RESP_ERROR';
 
+CREATE COMPUTE MODULE HandlerModules_ResponseWithowFacade
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Declarar referencia
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Declarar referencia de mensaje de entrada
+		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation 		= UDP_OPERATION;
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
+		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+		SET refMQRFH2.usr.transaction.toNotification 	= UDP_TONOTIFICATION;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
+		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
+		
+		--Copiar todo el mensaje que llega
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificWithowFacade
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Declarar referencia
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Declarar referencia de mensaje de entrada
+		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation 		= UDP_OPERATION;
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
+		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+		SET refMQRFH2.usr.transaction.toNotification 	= UDP_TONOTIFICATION;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		IF CONTAINS(nameError,'User') THEN
+			SET descError = SUBSTRING(descError AFTER '- CUST::');
+			SET nameError = 'Error recibiendo respuesta';
+		END IF;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
+		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
+		
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,refMQRFH2.usr.transaction.transactionID,codeError,codeError|| ' : ' ||nameError||' : '||descError);
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
 CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificWS
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN

@@ -1,0 +1,27 @@
+
+
+Importing file: C:\Users\oeacosta\Proyectos SOA\ServiciosDesarrollo\workspace\CH_WS_CrearArchivo\creararchivo.wsdl
+
+The WSDL import will proceed with bindings bdCrearArchivoSOAP11Http, bdCrearArchivoSOAP12Http.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Proyectos SOA/ServiciosDesarrollo/workspace/CH_WS_CrearArchivo/creararchivo.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/cliquida/biometrico/creararchivo/}bdCrearArchivoSOAP12Http.
+Parsing wsdl binding input crearFile.
+Parsing wsdl binding output crearFile.
+Parsing wsdl binding fault fault.
+Parsing wsdl binding {http://www.caracoltv.com.co/cliquida/biometrico/creararchivo/}bdCrearArchivoSOAP11Http.
+Parsing wsdl binding input crearFile.
+Parsing wsdl binding output crearFile.
+Processing doc style for operation crearFile.
+Populating WSDL schema creararchivo_wsdl.xsd.
+Creating file creararchivo_wsdl.xsd in the workspace.
+Creating file /CLiquida-NotificarHuellasHuerfanas/creararchivo.xsd in the workspace.
+Creating file /CLiquida-NotificarHuellasHuerfanas/CLiquida-NotificarHuellasHuerfanas/ebms-header-3_0-200704.xsd in the workspace.
+Copying source WSDL creararchivo.wsdl to creararchivo.wsdl.
+
+Elapsed time processing this message definition file: 0.315 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

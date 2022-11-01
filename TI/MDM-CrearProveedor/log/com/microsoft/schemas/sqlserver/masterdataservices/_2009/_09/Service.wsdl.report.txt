@@ -1,0 +1,473 @@
+
+
+Importing file: C:\Users\oeacosta\Desktop\Service.wsdl
+
+
+The following is a list of WS-I warning messages found when importing:
+XSD: There is no xmlns declaration for namespace 'http://www.w3.org/2005/09/ws-i18n', Line: 1, Column: 331260
+XSD: The location 'http://srvmdm.corp.canalcaracol.com/MDS/Service/Service.svc?xsd=xsd1' has not been resolved because the import is unused, Line: 1, Column: 331405
+XSD: There is no xmlns declaration for namespace 'http://schemas.microsoft.com/2003/10/Serialization/', Line: 1, Column: 331405
+XSD: The location 'http://srvmdm.corp.canalcaracol.com/MDS/Service/Service.svc?xsd=xsd3' has not been resolved because the import is unused, Line: 1, Column: 331568
+XSD: There is no xmlns declaration for namespace 'http://schemas.microsoft.com/2003/10/Serialization/Arrays', Line: 1, Column: 331568
+XSD: The location 'http://srvmdm.corp.canalcaracol.com/MDS/Service/Service.svc?xsd=xsd4' has not been resolved because the import is unused, Line: 1, Column: 331737
+XSD: There is no xmlns declaration for namespace 'http://schemas.datacontract.org/2004/07/System', Line: 1, Column: 331737
+WSDL: The MessageResponse output name is not unique for the IService port type., Line: 1, Column: 400915
+
+
+The WSDL import will proceed with bindings BasicHttpBinding_IService.
+Creating wsdl schema document for file:///C:/Users/oeacosta/Desktop/Service.wsdl.
+Parsing wsdl binding {http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09}BasicHttpBinding_IService.
+Parsing wsdl binding input BusinessRulesPaletteGet.
+Parsing wsdl binding output BusinessRulesPaletteGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input BusinessRulesClone.
+Parsing wsdl binding output BusinessRulesClone.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input BusinessRulesCreate.
+Parsing wsdl binding output BusinessRulesCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input BusinessRulesDelete.
+Parsing wsdl binding output BusinessRulesDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input BusinessRulesGet.
+Parsing wsdl binding output BusinessRulesGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input BusinessRulesPublish.
+Parsing wsdl binding output BusinessRulesPublish.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input BusinessRulesUpdate.
+Parsing wsdl binding output BusinessRulesUpdate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input DataQualityInstalledState.
+Parsing wsdl binding output DataQualityInstalledState.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input DataQualityKnowledgeBasesGet.
+Parsing wsdl binding output DataQualityKnowledgeBasesGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input DataQualityCleansingOperationCreate.
+Parsing wsdl binding output DataQualityCleansingOperationCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input DataQualityMatchingOperationCreate.
+Parsing wsdl binding output DataQualityMatchingOperationCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input DataQualityOperationStatus.
+Parsing wsdl binding output DataQualityOperationStatus.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input DataQualityOperationResultsGet.
+Parsing wsdl binding output DataQualityOperationResultsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input DataQualityStoreInputData.
+Parsing wsdl binding output DataQualityStoreInputData.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input DataQualityOperationStart.
+Parsing wsdl binding output DataQualityOperationStart.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input DataQualityOperationPurgeOperation.
+Parsing wsdl binding output DataQualityOperationPurgeOperation.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMembersGet.
+Parsing wsdl binding output EntityMembersGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberAttributesGet.
+Parsing wsdl binding output EntityMemberAttributesGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input HierarchyMembersGet.
+Parsing wsdl binding output HierarchyMembersGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ModelMembersGet.
+Parsing wsdl binding output ModelMembersGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMembersCreate.
+Parsing wsdl binding output EntityMembersCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMembersDelete.
+Parsing wsdl binding output EntityMembersDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMembersPurge.
+Parsing wsdl binding output EntityMembersPurge.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMembersUpdate.
+Parsing wsdl binding output EntityMembersUpdate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input HierarchyParentSave.
+Parsing wsdl binding output HierarchyParentSave.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMembersCopy.
+Parsing wsdl binding output EntityMembersCopy.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMembersMerge.
+Parsing wsdl binding output EntityMembersMerge.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityStagingLoad.
+Parsing wsdl binding output EntityStagingLoad.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityStagingGet.
+Parsing wsdl binding output EntityStagingGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityStagingClear.
+Parsing wsdl binding output EntityStagingClear.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityStagingProcess.
+Parsing wsdl binding output EntityStagingProcess.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input TransactionsGet.
+Parsing wsdl binding output TransactionsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input TransactionsReverse.
+Parsing wsdl binding output TransactionsReverse.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ValidationGet.
+Parsing wsdl binding output ValidationGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ValidationProcess.
+Parsing wsdl binding output ValidationProcess.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberAnnotationsCreate.
+Parsing wsdl binding output EntityMemberAnnotationsCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberAnnotationSave.
+Parsing wsdl binding output EntityMemberAnnotationSave.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberAnnotationDelete.
+Parsing wsdl binding output EntityMemberAnnotationDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input TransactionAnnotationsCreate.
+Parsing wsdl binding output TransactionAnnotationsCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberHistoryRollback.
+Parsing wsdl binding output EntityMemberHistoryRollback.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberAnnotationsGet.
+Parsing wsdl binding output EntityMemberAnnotationsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input TransactionAnnotationsGet.
+Parsing wsdl binding output TransactionAnnotationsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input AnnotationsUpdate.
+Parsing wsdl binding output AnnotationsUpdate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input AnnotationsDelete.
+Parsing wsdl binding output AnnotationsDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberChangesetsGet.
+Parsing wsdl binding output EntityMemberChangesetsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberChangesetSave.
+Parsing wsdl binding output EntityMemberChangesetSave.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberChangesetDelete.
+Parsing wsdl binding output EntityMemberChangesetDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input EntityMemberKeyLookup.
+Parsing wsdl binding output EntityMemberKeyLookup.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ExportViewCreate.
+Parsing wsdl binding output ExportViewCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ExportViewUpdate.
+Parsing wsdl binding output ExportViewUpdate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ExportViewDelete.
+Parsing wsdl binding output ExportViewDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ExportViewListGet.
+Parsing wsdl binding output ExportViewListGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input FileGet.
+Parsing wsdl binding output FileGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input FileSave.
+Parsing wsdl binding output FileSave.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input MetadataClone.
+Parsing wsdl binding output MetadataClone.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input MetadataCreate.
+Parsing wsdl binding output MetadataCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input MetadataDelete.
+Parsing wsdl binding output MetadataDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input MetadataGet.
+Parsing wsdl binding output MetadataGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input MetadataUpdate.
+Parsing wsdl binding output MetadataUpdate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input StagingNameCheck.
+Parsing wsdl binding output StagingNameCheck.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input AttributeChange.
+Parsing wsdl binding output AttributeChange.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SystemSettingsGet.
+Parsing wsdl binding output SystemSettingsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SystemSettingsUpdate.
+Parsing wsdl binding output SystemSettingsUpdate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SystemDomainListGet.
+Parsing wsdl binding output SystemDomainListGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SystemPropertiesGet.
+Parsing wsdl binding output SystemPropertiesGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ServiceCheck.
+Parsing wsdl binding output ServiceCheck.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ServiceVersionGet.
+Parsing wsdl binding output ServiceVersionGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input VersionCopy.
+Parsing wsdl binding output VersionCopy.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SyncRelationshipMerge.
+Parsing wsdl binding output SyncRelationshipMerge.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SyncRelationshipDelete.
+Parsing wsdl binding output SyncRelationshipDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SyncRelationshipsGet.
+Parsing wsdl binding output SyncRelationshipsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SyncRelationshipRefresh.
+Parsing wsdl binding output SyncRelationshipRefresh.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input UserPreferencesGet.
+Parsing wsdl binding output UserPreferencesGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input UserPreferencesUpdate.
+Parsing wsdl binding output UserPreferencesUpdate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input UserPreferencesDelete.
+Parsing wsdl binding output UserPreferencesDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input ErrorLogsGet.
+Parsing wsdl binding output ErrorLogsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrincipalsCreate.
+Parsing wsdl binding output SecurityPrincipalsCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrincipalsClone.
+Parsing wsdl binding output SecurityPrincipalsClone.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrincipalsUpdate.
+Parsing wsdl binding output SecurityPrincipalsUpdate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrincipalsGet.
+Parsing wsdl binding output SecurityPrincipalsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrincipalsDelete.
+Parsing wsdl binding output SecurityPrincipalsDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrivilegesCreate.
+Parsing wsdl binding output SecurityPrivilegesCreate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrivilegesClone.
+Parsing wsdl binding output SecurityPrivilegesClone.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrivilegesUpdate.
+Parsing wsdl binding output SecurityPrivilegesUpdate.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrivilegesGet.
+Parsing wsdl binding output SecurityPrivilegesGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input SecurityPrivilegesDelete.
+Parsing wsdl binding output SecurityPrivilegesDelete.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Parsing wsdl binding input UserEffectiveObjectPermissionsGet.
+Parsing wsdl binding output UserEffectiveObjectPermissionsGet.
+Parsing wsdl binding fault SkuNotSupportedMessageFault.
+Parsing wsdl binding fault EditionExpiredMessageFault.
+Processing doc style for operation BusinessRulesPaletteGet.
+Processing doc style for operation BusinessRulesClone.
+Processing doc style for operation BusinessRulesCreate.
+Processing doc style for operation BusinessRulesDelete.
+Processing doc style for operation BusinessRulesGet.
+Processing doc style for operation BusinessRulesPublish.
+Processing doc style for operation BusinessRulesUpdate.
+Processing doc style for operation DataQualityInstalledState.
+Processing doc style for operation DataQualityKnowledgeBasesGet.
+Processing doc style for operation DataQualityCleansingOperationCreate.
+Processing doc style for operation DataQualityMatchingOperationCreate.
+Processing doc style for operation DataQualityOperationStatus.
+Processing doc style for operation DataQualityOperationResultsGet.
+Processing doc style for operation DataQualityStoreInputData.
+Processing doc style for operation DataQualityOperationStart.
+Processing doc style for operation DataQualityOperationPurgeOperation.
+Processing doc style for operation EntityMembersGet.
+Processing doc style for operation EntityMemberAttributesGet.
+Processing doc style for operation HierarchyMembersGet.
+Processing doc style for operation ModelMembersGet.
+Processing doc style for operation EntityMembersCreate.
+Processing doc style for operation EntityMembersDelete.
+Processing doc style for operation EntityMembersPurge.
+Processing doc style for operation EntityMembersUpdate.
+Processing doc style for operation HierarchyParentSave.
+Processing doc style for operation EntityMembersCopy.
+Processing doc style for operation EntityMembersMerge.
+Processing doc style for operation EntityStagingLoad.
+Processing doc style for operation EntityStagingGet.
+Processing doc style for operation EntityStagingClear.
+Processing doc style for operation EntityStagingProcess.
+Processing doc style for operation TransactionsGet.
+Processing doc style for operation TransactionsReverse.
+Processing doc style for operation ValidationGet.
+Processing doc style for operation ValidationProcess.
+Processing doc style for operation EntityMemberAnnotationsCreate.
+Processing doc style for operation EntityMemberAnnotationSave.
+Processing doc style for operation EntityMemberAnnotationDelete.
+Processing doc style for operation TransactionAnnotationsCreate.
+Processing doc style for operation EntityMemberHistoryRollback.
+Processing doc style for operation EntityMemberAnnotationsGet.
+Processing doc style for operation TransactionAnnotationsGet.
+Processing doc style for operation AnnotationsUpdate.
+Processing doc style for operation AnnotationsDelete.
+Processing doc style for operation EntityMemberChangesetsGet.
+Processing doc style for operation EntityMemberChangesetSave.
+Processing doc style for operation EntityMemberChangesetDelete.
+Processing doc style for operation EntityMemberKeyLookup.
+Processing doc style for operation ExportViewCreate.
+Processing doc style for operation ExportViewUpdate.
+Processing doc style for operation ExportViewDelete.
+Processing doc style for operation ExportViewListGet.
+Processing doc style for operation FileGet.
+Processing doc style for operation FileSave.
+Processing doc style for operation MetadataClone.
+Processing doc style for operation MetadataCreate.
+Processing doc style for operation MetadataDelete.
+Processing doc style for operation MetadataGet.
+Processing doc style for operation MetadataUpdate.
+Processing doc style for operation StagingNameCheck.
+Processing doc style for operation AttributeChange.
+Processing doc style for operation SystemSettingsGet.
+Processing doc style for operation SystemSettingsUpdate.
+Processing doc style for operation SystemDomainListGet.
+Processing doc style for operation SystemPropertiesGet.
+Processing doc style for operation ServiceCheck.
+Processing doc style for operation ServiceVersionGet.
+Processing doc style for operation VersionCopy.
+Processing doc style for operation SyncRelationshipMerge.
+Processing doc style for operation SyncRelationshipDelete.
+Processing doc style for operation SyncRelationshipsGet.
+Processing doc style for operation SyncRelationshipRefresh.
+Processing doc style for operation UserPreferencesGet.
+Processing doc style for operation UserPreferencesUpdate.
+Processing doc style for operation UserPreferencesDelete.
+Processing doc style for operation ErrorLogsGet.
+Processing doc style for operation SecurityPrincipalsCreate.
+Processing doc style for operation SecurityPrincipalsClone.
+Processing doc style for operation SecurityPrincipalsUpdate.
+Processing doc style for operation SecurityPrincipalsGet.
+Processing doc style for operation SecurityPrincipalsDelete.
+Processing doc style for operation SecurityPrivilegesCreate.
+Processing doc style for operation SecurityPrivilegesClone.
+Processing doc style for operation SecurityPrivilegesUpdate.
+Processing doc style for operation SecurityPrivilegesGet.
+Processing doc style for operation SecurityPrivilegesDelete.
+Processing doc style for operation UserEffectiveObjectPermissionsGet.
+Populating WSDL schema Service.xsd.
+Removing unnecessary import statement with namespace http://schemas.microsoft.com/2003/10/Serialization/ from schema Service_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://schemas.microsoft.com/2003/10/Serialization/Arrays from schema Service_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Removing unnecessary import statement with namespace http://schemas.datacontract.org/2004/07/System from schema Service_InlineSchema1.xsd.  This statement was not resolved and is never used.
+Creating file Service.xsd in the workspace.
+Creating file /MDM-CrearProveedor/xsd_xsd0.xsd in the workspace.
+Creating file /MDM-CrearProveedor/xsd_xsd1.xsd in the workspace.
+Creating file /MDM-CrearProveedor/xsd_xsd3.xsd in the workspace.
+Creating file /MDM-CrearProveedor/xsd_xsd4.xsd in the workspace.
+Creating file /MDM-CrearProveedor/xsd_xsd2.xsd in the workspace.
+Copying source WSDL Service.wsdl to Service.wsdl.
+
+Elapsed time processing this message definition file: 6.397 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

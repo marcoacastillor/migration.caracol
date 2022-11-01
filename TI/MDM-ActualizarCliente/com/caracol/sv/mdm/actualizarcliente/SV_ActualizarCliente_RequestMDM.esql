@@ -1,0 +1,59 @@
+BROKER SCHEMA com.caracol.sv.mdm.actualizarcliente
+
+
+CREATE COMPUTE MODULE SV_ActualizarCliente_RequestMDM
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;		
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;		
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente;			
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;				
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente TYPE Name;	
+		IF InputRoot.SOAP.Body.ns:Cliente.Compania = '330' THEN 						
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Codigo=InputRoot.SOAP.Body.ns:Cliente.Codigo;				
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Nombre=InputRoot.SOAP.Body.ns:Cliente.Nombre;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.TipoIdentificacion=InputRoot.SOAP.Body.ns:Cliente.TipoIdentificacion;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.GrupoCuenta=InputRoot.SOAP.Body.ns:Cliente.GrupoCuenta;		
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Pais=InputRoot.SOAP.Body.ns:Cliente.Pais;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Departamento=InputRoot.SOAP.Body.ns:Cliente.Departamento;		
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Ciudad=InputRoot.SOAP.Body.ns:Cliente.Ciudad;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Direccion=InputRoot.SOAP.Body.ns:Cliente.Direccion;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Telefono1=InputRoot.SOAP.Body.ns:Cliente.Telefono1;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Telefono2=InputRoot.SOAP.Body.ns:Cliente.Telefono2;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Telefono3=InputRoot.SOAP.Body.ns:Cliente.Telefono3;		
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Email=InputRoot.SOAP.Body.ns:Cliente.Email;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Contacto=InputRoot.SOAP.Body.ns:Cliente.Contacto;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.NombreAlternativo=InputRoot.SOAP.Body.ns:Cliente.NombreAlternativo;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.ZonaPostal=InputRoot.SOAP.Body.ns:Cliente.ZonaPostal;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.SitioWeb=InputRoot.SOAP.Body.ns:Cliente.SitioWeb;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.RepresentanteLegal=InputRoot.SOAP.Body.ns:Cliente.RepresentanteLegal;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.MatriculaMercantil=InputRoot.SOAP.Body.ns:Cliente.MatriculaMercantil;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.NitSinDigito=InputRoot.SOAP.Body.ns:Cliente.NitSinDigito;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.DigitoVerificacion=InputRoot.SOAP.Body.ns:Cliente.DigitoVerificacion;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.TipoEstablecimientoComercial=InputRoot.SOAP.Body.ns:Cliente.TipoEstablecimientoComercial;				
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Responsabilidades=InputRoot.SOAP.Body.ns:Cliente.Responsabilidades;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.UsuarioAduanero=InputRoot.SOAP.Body.ns:Cliente.UsuarioAduanero;			
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.CodigoSAP=InputRoot.SOAP.Body.ns:Cliente.CodigoSAP;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.CuentaAsociada=InputRoot.SOAP.Body.ns:Cliente.CuentaAsociada;			
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.ClaseImpuesto=InputRoot.SOAP.Body.ns:Cliente.ClaseImpuesto;			
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Estado=InputRoot.SOAP.Body.ns:Cliente.Estado;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Plataforma=InputRoot.SOAP.Body.ns:Cliente.Plataforma;				
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Compania=InputRoot.SOAP.Body.ns:Cliente.Compania;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.TipoEmpresa=InputRoot.SOAP.Body.ns:Cliente.TipoEmpresa;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Rut=InputRoot.SOAP.Body.ns:Cliente.Rut;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.EmailFacturacion=InputRoot.SOAP.Body.ns:Cliente.EmailFacturacion;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Responsabilidades2=InputRoot.SOAP.Body.ns:Cliente.Responsabilidades2;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.ProveedorRelacionadoSAP=InputRoot.SOAP.Body.ns:Cliente.ProveedorRelacionadoSAP;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.ProveedorCuentaSAP=InputRoot.SOAP.Body.ns:Cliente.ProveedorCuentaSAP;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.IdXCalibur=InputRoot.SOAP.Body.ns:Cliente.IdXCalibur;
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.TipoPersona=InputRoot.SOAP.Body.ns:Cliente.TipoPersona;
+		ELSE
+			THROW USER EXCEPTION Message 3012 VALUES( 'Codigo de empresa no valido' ); 
+		END IF;		
+		RETURN TRUE;
+	END;
+END MODULE;

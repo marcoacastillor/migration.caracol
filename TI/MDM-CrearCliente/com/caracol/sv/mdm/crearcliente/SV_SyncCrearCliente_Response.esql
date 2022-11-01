@@ -1,0 +1,59 @@
+BROKER SCHEMA com.caracol.sv.mdm.crearcliente
+
+CREATE COMPUTE MODULE SV_SyncCrearCliente_Response
+	CREATE FUNCTION Main() ccc BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/ti/mdm/canonico/cliente/';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;		
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;		
+				
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;				
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente TYPE Name;
+		--Entrada			
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.ns:Cliente;
+		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Codigo=rBodyI.Codigo;		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Nombre=rBodyI.Nombre;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.TipoIdentificacion=rBodyI.TipoIdentificacion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.GrupoCuenta=rBodyI.GrupoCuenta;		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Pais=rBodyI.Pais;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Departamento=rBodyI.Departamento;		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Ciudad=rBodyI.Ciudad;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Direccion=rBodyI.Direccion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Telefono1=rBodyI.Telefono1;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Telefono2=rBodyI.Telefono2;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Telefono3=rBodyI.Telefono3;		
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Email=rBodyI.Email;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Contacto=rBodyI.Contacto;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.NombreAlternativo=rBodyI.NombreAlternativo;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.ZonaPostal=rBodyI.ZonaPostal;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.SitioWeb=rBodyI.SitioWeb;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.RepresentanteLegal=rBodyI.RepresentanteLegal;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.MatriculaMercantil=rBodyI.MatriculaMercantil;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.NitSinDigito=rBodyI.NitSinDigito;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.DigitoVerificacion=rBodyI.DigitoVerificacion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.TipoEstablecimientoComercial=rBodyI.TipoEstablecimientoComercial;				
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Responsabilidades=rBodyI.Responsabilidades;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.UsuarioAduanero=rBodyI.UsuarioAduanero;			
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.CodigoSAP=rBodyI.CodigoSAP;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.CuentaAsociada=rBodyI.CuentaAsociada;			
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.ClaseImpuesto=rBodyI.ClaseImpuesto;			
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Estado=rBodyI.Estado;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Plataforma=rBodyI.Plataforma;				
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Compania=rBodyI.Compania;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.TipoEmpresa=rBodyI.TipoEmpresa;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Rut=rBodyI.Rut;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.EmailFacturacion=rBodyI.EmailFacturacion;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.Responsabilidades2=rBodyI.Responsabilidades2;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.ProveedorRelacionadoSAP=rBodyI.ProveedorRelacionadoSAP;
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Cliente.ProveedorCuentaSAP=rBodyI.ProveedorCuentaSAP;
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;															
+		RETURN TRUE;
+	END;
+END MODULE;

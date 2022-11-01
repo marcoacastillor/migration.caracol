@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="NovedadesEmpleado" targetNamespace="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="BasicHttpBinding_I_NovedadesEmpleado" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" schemaLocation="RemoteFiles/xsd_xsd0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="I_NovedadesEmpleado_RegistrarNovedadEmpleado_InputMessage">
+    <wsdl:part element="tns:RegistrarNovedadEmpleado" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="I_NovedadesEmpleado_RegistrarNovedadEmpleado_OutputMessage">
+    <wsdl:part element="tns:RegistrarNovedadEmpleadoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="I_NovedadesEmpleado">
+    <wsdl:operation name="RegistrarNovedadEmpleado">
+      <wsdl:input message="tns:I_NovedadesEmpleado_RegistrarNovedadEmpleado_InputMessage" wsaw:Action="http://tempuri.org/I_NovedadesEmpleado/RegistrarNovedadEmpleado"/>
+      <wsdl:output message="tns:I_NovedadesEmpleado_RegistrarNovedadEmpleado_OutputMessage" wsaw:Action="http://tempuri.org/I_NovedadesEmpleado/RegistrarNovedadEmpleadoResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_I_NovedadesEmpleado" type="tns:I_NovedadesEmpleado">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="RegistrarNovedadEmpleado">
+      <soap:operation soapAction="http://tempuri.org/I_NovedadesEmpleado/RegistrarNovedadEmpleado" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="NovedadesEmpleado">
+    <wsdl:port binding="tns:BasicHttpBinding_I_NovedadesEmpleado" name="BasicHttpBinding_I_NovedadesEmpleado">
+      <soap:address location="http://172.17.4.223:9227/registrarnovedadempleadocliquida"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

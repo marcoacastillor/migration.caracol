@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessagePool xmlns="http://wwww.ibm.com/iib/test/1.0.0">
+    <MQInputMessage timestamp="1461105808520" nodeId="FCMComposite_1_1" name="new message 1" id="1461105808520-949">
+        <plainText>&lt;soapenv:Envelope &#xD;
+xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; &#xD;
+xmlns:reg=&quot;http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/&quot;&gt;&#xD;
+   &lt;soapenv:Header/&gt;&#xD;
+   &lt;soapenv:Body&gt;&#xD;
+      &lt;reg:NovedadEmpleadoRequest&gt;&#xD;
+         &lt;!--Zero or more repetitions:--&gt;&#xD;
+         &lt;novedad&gt;&#xD;
+			&lt;NombreEmpresa&gt;CARACOL TV&lt;/NombreEmpresa&gt;&#xD;
+			&lt;CodigoEmpresa&gt;1&lt;/CodigoEmpresa&gt;&#xD;
+			&lt;NombreCargo&gt;ANALISTA SOA&lt;/NombreCargo&gt;&#xD;
+			&lt;CodigoCargo&gt;123&lt;/CodigoCargo&gt;&#xD;
+			&lt;NombreCentroCostos&gt;TI&lt;/NombreCentroCostos&gt;&#xD;
+			&lt;CodigoCentroCostos&gt;3&lt;/CodigoCentroCostos&gt;&#xD;
+			&lt;NombreCiudad&gt;BOGOTA&lt;/NombreCiudad&gt;&#xD;
+			&lt;CodigoCiudad&gt;1254&lt;/CodigoCiudad&gt;&#xD;
+			&lt;Apellido&gt;ACOSTA CASAS&lt;/Apellido&gt;&#xD;
+			&lt;Nombre&gt;OMAR ENRIQUE&lt;/Nombre&gt;&#xD;
+			&lt;Cedula&gt;79701280&lt;/Cedula&gt;&#xD;
+			&lt;Ficha&gt;124&lt;/Ficha&gt;&#xD;
+			&lt;CodigoMarcacion&gt;1&lt;/CodigoMarcacion&gt;&#xD;
+			&lt;Genero&gt;M&lt;/Genero&gt;&#xD;
+			&lt;Estado&gt;1&lt;/Estado&gt;&#xD;
+			&lt;FechaIngreso&gt;2008-06-16T09:00:00&lt;/FechaIngreso&gt;&#xD;
+			&lt;FechaDeRetiro&gt;2008-06-16T09:00:00&lt;/FechaDeRetiro&gt;&#xD;
+			&lt;FechaFinContrato&gt;2008-06-16T09:00:00&lt;/FechaFinContrato&gt;&#xD;
+			&lt;TipoDeContrato&gt;1&lt;/TipoDeContrato&gt;&#xD;
+			&lt;ClasificacionContrato&gt;1&lt;/ClasificacionContrato&gt;&#xD;
+			&lt;TipoLiquidacion&gt;1&lt;/TipoLiquidacion&gt;&#xD;
+			&lt;DiaDeDescanso&gt;12&lt;/DiaDeDescanso&gt;&#xD;
+			&lt;Regimen&gt;1&lt;/Regimen&gt;&#xD;
+			&lt;Telefono&gt;1&lt;/Telefono&gt;&#xD;
+			&lt;CorreoElectronico&gt;1&lt;/CorreoElectronico&gt;&#xD;
+		&lt;/novedad&gt;&#xD;
+      &lt;/reg:NovedadEmpleadoRequest&gt;&#xD;
+   &lt;/soapenv:Body&gt;&#xD;
+&lt;/soapenv:Envelope&gt;</plainText>
+        <MessageHeader backoutCount="0" characterSet="0" encoding="0" expiry="-1" feedback="0" messageFlags="0" messageType="8" messageSequenceNumber="1" offset="0" originalLength="-1" persistence="2" priority="-1" putApplicationType="0" report="0"/>
+    </MQInputMessage>
+</MessagePool>

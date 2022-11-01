@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessagePool xmlns="http://wwww.ibm.com/iib/test/1.0.0">
+    <MQInputMessage timestamp="1459895859377" nodeId="FCMComposite_1_1" name="new message 1" id="1459895859377-745">
+        <plainText>&lt;NS1:Envelope xmlns:NS1=&quot;s11&quot;&gt;&#xD;
+ &lt;NS1:Header/&gt;&#xD;
+ &lt;NS1:Body&gt;&#xD;
+  &lt;NS2:NovedadEmpleadoRequest xmlns:NS2=&quot;http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/&quot;&gt;&#xD;
+   &lt;novedad&gt;&#xD;
+    &lt;NombreEmpresa&gt;caracol&lt;/NombreEmpresa&gt;&#xD;
+    &lt;CodigoEmpresa&gt;1&lt;/CodigoEmpresa&gt;&#xD;
+    &lt;NombreCargo&gt;Ing App I&lt;/NombreCargo&gt;&#xD;
+    &lt;CodigoCargo&gt;1&lt;/CodigoCargo&gt;&#xD;
+    &lt;NombreCentroCostos&gt;TI&lt;/NombreCentroCostos&gt;&#xD;
+    &lt;CodigoCentroCostos&gt;1&lt;/CodigoCentroCostos&gt;&#xD;
+    &lt;NombreCiudad&gt;Bogota&lt;/NombreCiudad&gt;&#xD;
+    &lt;CodigoCiudad&gt;1&lt;/CodigoCiudad&gt;&#xD;
+    &lt;Apellido&gt;Acosta&lt;/Apellido&gt;&#xD;
+    &lt;Nombre&gt;Omar&lt;/Nombre&gt;&#xD;
+    &lt;Cedula&gt;79701280&lt;/Cedula&gt;&#xD;
+    &lt;Ficha&gt;12345&lt;/Ficha&gt;&#xD;
+    &lt;CodigoMarcacion&gt;123456&lt;/CodigoMarcacion&gt;&#xD;
+    &lt;Genero&gt;H&lt;/Genero&gt;&#xD;
+    &lt;Estado&gt;1&lt;/Estado&gt;&#xD;
+    &lt;FechaIngreso&gt;2008-01-01&lt;/FechaIngreso&gt;&#xD;
+    &lt;FechaDeRetiro&gt;2002-09-24&lt;/FechaDeRetiro&gt;&#xD;
+    &lt;FechaFinContrato&gt;2002-09-24&lt;/FechaFinContrato&gt;&#xD;
+    &lt;TipoDeContrato&gt;1&lt;/TipoDeContrato&gt;&#xD;
+    &lt;ClasificacionContrato&gt;2&lt;/ClasificacionContrato&gt;&#xD;
+    &lt;TipoLiquidacion&gt;1&lt;/TipoLiquidacion&gt;&#xD;
+    &lt;DiaDeDescanso&gt;1&lt;/DiaDeDescanso&gt;&#xD;
+    &lt;Regimen&gt;2&lt;/Regimen&gt;&#xD;
+   &lt;/novedad&gt;&#xD;
+  &lt;/NS2:NovedadEmpleadoRequest&gt;&#xD;
+ &lt;/NS1:Body&gt;&#xD;
+&lt;/NS1:Envelope&gt;</plainText>
+        <MessageHeader backoutCount="0" characterSet="0" encoding="0" expiry="-1" feedback="0" messageFlags="0" messageType="8" messageSequenceNumber="1" offset="0" originalLength="-1" persistence="2" priority="-1" putApplicationType="0" report="0"/>
+    </MQInputMessage>
+</MessagePool>

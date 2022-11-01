@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:srv="http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/">
+<!-- wrapper element of the request message -->	
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" 
+	ibmSchExtn:docRoot="true" name="NovedadEmpleadoRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" minOccurs="0" name="novedad" type="srv:novedad"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	<!-- wrapper element of the response message -->		
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" 
+	ibmSchExtn:docRoot="true" name="NovedadEmpleadoResponse">
+<!--		type="srv:NovedadEmpleadoResponseType">		-->
+		<xsd:complexType>
+			<xsd:sequence>				
+				<xsd:element minOccurs="0" name="respuesta" type="xsd:boolean"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>
+	<!-- Type referenced by the wrapper element of the response message -->
+	<xsd:complexType name="novedad">
+	<xsd:sequence>
+			<xsd:element nillable="false" minOccurs="1" name="NombreEmpresa" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="CodigoEmpresa" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="NombreCargo" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="CodigoCargo" type="xsd:int"/>
+            <xsd:element nillable="false" minOccurs="1" name="NombreCentroCostos" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="CodigoCentroCostos" type="xsd:int"/>
+            <xsd:element nillable="false" minOccurs="1" name="NombreCiudad" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="CodigoCiudad" type="xsd:int"/>
+            <xsd:element nillable="false" minOccurs="1" name="Apellido" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="Nombre" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="Cedula" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="Ficha" type="xsd:int"/>
+            <xsd:element minOccurs="0" name="CodigoMarcacion" type="xsd:decimal"/>
+            <xsd:element nillable="false" minOccurs="1" name="Genero" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="Estado" type="xsd:int"/>
+            <xsd:element nillable="false" minOccurs="1" name="FechaIngreso" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="FechaDeRetiro" nillable="true" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="FechaFinContrato" nillable="true" type="xsd:date"/>
+            <xsd:element minOccurs="0" name="TipoDeContrato" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="ClasificacionContrato" type="xsd:string"/>
+            <xsd:element nillable="false" minOccurs="1" name="TipoLiquidacion" type="xsd:string"/>
+            <xsd:element minOccurs="0" name="DiaDeDescanso" type="xsd:int"/>
+            <xsd:element nillable="false" minOccurs="1" name="Regimen"  type="xsd:string"/>
+            <xsd:element minOccurs="0" name="CorreoElectronico"  type="xsd:string"/>            
+            <xsd:element minOccurs="0" name="Telefono" type="xsd:string"/> 
+      	</xsd:sequence>
+    </xsd:complexType>
+  </xsd:schema>

@@ -1,0 +1,35 @@
+BROKER SCHEMA co.com.caracol.services.notificacionhuellahuerfana
+DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla/';
+
+
+CREATE COMPUTE MODULE NotificarHuellaHuerfana_RqNotificaError
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crar referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		-- Crear mensaje salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:CargaPlantillaRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:CargaPlantillaRequest;
+		
+		SET refOut.De				=  'adminiib@caracoltv.com.co';
+		SET refOut.Para				= 'administradortecnico@caracoltv.com.co';
+		SET refOut.Copia			= '';
+	    SET refOut.CopiaOculta		= '';
+	    SET refOut.Asunto			= 'Se han encontrado Marcaciones Huérfanas CLiquida';
+	    SET refOut.Titulo			= 'Marcaciones Huérfanas';
+	    SET refOut.Mensaje1			= ' ';
+	    SET refOut.Mensaje2			= 'Adjunto, se envía el archivo de marcaciones huérfanas encontradas el día ' || OutputRoot.XML.Test.TIME4 ||  ' generadas por la aplicación CLiquida.' ; 	    
+	    SET refOut.TextoLink		= '</a>NOTA: Este mensaje ha sido enviado por un sistema automático.</p>Por favor no intente responder a este mensaje ya que este buzón de correo no es válido para información<a>';
+	    SET refOut.Link				= '';
+	    SET refOut.Formato			= 'html';
+	    SET refOut.Prioridad		= '1';
+	    SET refOut.NombreAdjunto	= refInp.Nombre;
+	    SET refOut.Adjuntos			= refInp.Valor;
+	    
+	    RETURN TRUE;
+		
+	END;
+END MODULE;

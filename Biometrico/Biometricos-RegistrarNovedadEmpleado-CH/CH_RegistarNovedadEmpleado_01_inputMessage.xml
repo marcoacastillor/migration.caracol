@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<MessagePool xmlns="http://wwww.ibm.com/iib/test/1.0.0">
+    <SOAPInputMessage WSDL_URI="platform:/resource/CH_WS_Nomina-RegistrarNovedadEmpleado/registrarnovedadempleado.wsdl" WSDL_OPERATION_OUT_NAME="NovedadEmpleado_Output" WSDL_OPERATION_NAME="registro" WSDL_OPERATION_IN_NAME="NovedadEmpleado_Input" timestamp="1461096276768" nodeId="FCMComposite_1_1" name="new message 1" id="1461096276768-248">
+        <plainText>&lt;soapenv:Envelope &#xD;
+xmlns:soapenv=&quot;http://schemas.xmlsoap.org/soap/envelope/&quot; &#xD;
+xmlns:reg=&quot;http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/&quot;&gt;&#xD;
+   &lt;soapenv:Header/&gt;&#xD;
+   &lt;soapenv:Body&gt;&#xD;
+      &lt;reg:NovedadEmpleadoRequest&gt;&#xD;
+         &lt;!--Zero or more repetitions:--&gt;&#xD;
+         &lt;novedad&gt;&#xD;
+			&lt;NombreEmpresa&gt;CARACOL TV&lt;/NombreEmpresa&gt;&#xD;
+			&lt;CodigoEmpresa&gt;1&lt;/CodigoEmpresa&gt;&#xD;
+			&lt;NombreCargo&gt;ANALISTA SOA&lt;/NombreCargo&gt;&#xD;
+			&lt;CodigoCargo&gt;123&lt;/CodigoCargo&gt;&#xD;
+			&lt;NombreCentroCostos&gt;TI&lt;/NombreCentroCostos&gt;&#xD;
+			&lt;CodigoCentroCostos&gt;3&lt;/CodigoCentroCostos&gt;&#xD;
+			&lt;NombreCiudad&gt;BOGOTA&lt;/NombreCiudad&gt;&#xD;
+			&lt;CodigoCiudad&gt;1254&lt;/CodigoCiudad&gt;&#xD;
+			&lt;Apellido&gt;ACOSTA CASAS&lt;/Apellido&gt;&#xD;
+			&lt;Nombre&gt;OMAR ENRIQUE&lt;/Nombre&gt;&#xD;
+			&lt;Cedula&gt;79701280&lt;/Cedula&gt;&#xD;
+			&lt;Ficha&gt;124&lt;/Ficha&gt;&#xD;
+			&lt;CodigoMarcacion&gt;1&lt;/CodigoMarcacion&gt;&#xD;
+			&lt;Genero&gt;M&lt;/Genero&gt;&#xD;
+			&lt;Estado&gt;1&lt;/Estado&gt;&#xD;
+			&lt;FechaIngreso&gt;2008-06-16&lt;/FechaIngreso&gt;&#xD;
+			&lt;FechaDeRetiro&gt;2008-06-16&lt;/FechaDeRetiro&gt;&#xD;
+			&lt;FechaFinContrato&gt;2008-06-16&lt;/FechaFinContrato&gt;&#xD;
+			&lt;TipoDeContrato&gt;1&lt;/TipoDeContrato&gt;&#xD;
+			&lt;ClasificacionContrato&gt;1&lt;/ClasificacionContrato&gt;&#xD;
+			&lt;TipoLiquidacion&gt;1&lt;/TipoLiquidacion&gt;&#xD;
+			&lt;DiaDeDescanso&gt;12&lt;/DiaDeDescanso&gt;&#xD;
+			&lt;Regimen&gt;1&lt;/Regimen&gt;&#xD;
+			&lt;CorreoElectronico&gt;OOOO@CARACOL.COM&lt;/CorreoElectronico&gt;			&#xD;
+			&lt;Telefono&gt;1&lt;/Telefono&gt;			&#xD;
+		&lt;/novedad&gt;&#xD;
+      &lt;/reg:NovedadEmpleadoRequest&gt;&#xD;
+   &lt;/soapenv:Body&gt;&#xD;
+&lt;/soapenv:Envelope&gt;&#xD;
+</plainText>
+    </SOAPInputMessage>
+</MessagePool>

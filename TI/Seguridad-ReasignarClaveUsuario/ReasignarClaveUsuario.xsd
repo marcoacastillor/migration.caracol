@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema 
+targetNamespace="http://www.caracoltv.com.co/ti/seguridad/reasignarclaveusuario/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/"
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:srv="http://www.caracoltv.com.co/ti/seguridad/reasignarclaveusuario/">
+  <!--wrapper element of the request message-->
+  
+  <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ReasignarClaveUsuarioRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+			<xsd:element name="NumeroCaso" type="xsd:string"/>
+				<xsd:element name="Usuario" type="xsd:string"/>
+				<xsd:element name="TipoSolicitud" type="xsd:string"/>
+				<xsd:element name="EnviarActa" type="xsd:string"/>
+				<xsd:element name="Notificar" type="xsd:string"/>				
+				<xsd:element name="Usuarionombre" type="xsd:string"/>
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>	
+	
+	<xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="ReasignarClaveUsuarioResponse">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Asignada" type="xsd:boolean"/>
+				<xsd:element name="Archivo" type="xsd:string"/>				
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>
+	   	
+  <xsd:element xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions"
+		ibmSchExtn:docRoot="true" name="TokenRequest">
+		<xsd:complexType>
+			<xsd:sequence>
+				 <xsd:element name="token" type="xsd:string"/>				       		
+			</xsd:sequence>
+		</xsd:complexType>		
+	</xsd:element>		   	
+  </xsd:schema>

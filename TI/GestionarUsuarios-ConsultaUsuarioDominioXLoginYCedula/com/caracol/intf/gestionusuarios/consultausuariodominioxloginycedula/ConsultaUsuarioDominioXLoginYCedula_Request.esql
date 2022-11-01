@@ -1,0 +1,29 @@
+BROKER SCHEMA com.caracol.intf.gestionusuarios.consultausuariodominioxloginycedula
+
+
+CREATE COMPUTE MODULE ConsultaUsuarioDominioXLoginYCedula_Request
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/ti/gestionarusuarios/consultausuariodominioxloginycedula/';
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaUsuarioDominioXLoginYCedulaRequest TYPE Name;
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaUsuarioDominioXLoginYCedulaRequest;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:ConsultaUsuarioDominioXLoginYCedulaRequest;		
+		SET rBodyO.Login=rBodyI.Login;
+		IF rBodyI.Cedula IS NULL THEN
+			SET rBodyO.Cedula=''; 
+		ELSE
+			SET rBodyO.Cedula=rBodyI.Cedula;
+		END IF;			 	
+		RETURN TRUE; 
+	END;
+END MODULE;

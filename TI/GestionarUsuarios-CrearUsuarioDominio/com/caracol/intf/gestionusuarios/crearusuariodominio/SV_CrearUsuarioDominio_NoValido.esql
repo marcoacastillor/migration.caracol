@@ -1,0 +1,13 @@
+BROKER SCHEMA com.caracol.intf.gestionusuarios.crearusuariodominio
+
+
+CREATE COMPUTE MODULE SV_CrearUsuarioDominio_NoValido
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		SET OutputRoot.SOAP.Context.Namespace.(SOAP.NamespaceDecl)xmlns:soapenv ='http://schemas.xmlsoap.org/soap/envelope/'; 
+		SET OutputRoot.SOAP.Body.Fault.faultcode = 'soapenv:Server.AppError'; 
+		SET OutputRoot.SOAP.Body.Fault.faultstring = 'Token no valido';  
+		RETURN TRUE;	
+	END;
+END MODULE;

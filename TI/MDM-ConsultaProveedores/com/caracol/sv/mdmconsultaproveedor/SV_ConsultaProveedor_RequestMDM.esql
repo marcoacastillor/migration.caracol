@@ -1,0 +1,57 @@
+BROKER SCHEMA com.caracol.sv.mdmconsultaproveedor
+
+
+
+CREATE COMPUTE MODULE SV_ConsultaProveedor_RequestMDM
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE SentenciaSQL CHAR;
+		DECLARE Estado CHAR; 
+		
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE ws NAMESPACE 'http://www.w3.org/2005/09/ws-i18n';
+		DECLARE ws2 NAMESPACE 'http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09';
+		DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/ti/mdm/canonico/proveedor/';
+		
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';	
+		--crear sentecia sql
+		SET Estado = '1';  
+		SET SentenciaSQL ='[CIA] ='|| '''' || InputRoot.SOAP.Body.ns:Consulta.Compania || '''';
+		SET SentenciaSQL = SentenciaSQL || ' AND [Estado] ='|| '''' || Estado || '''';
+		IF InputRoot.SOAP.Body.ns:Consulta.Codigo <> '' THEN
+			SET SentenciaSQL = SentenciaSQL || ' AND ' || '[Code] ='|| '''' || InputRoot.SOAP.Body.ns:Consulta.Codigo || '''';
+		END IF;
+		IF InputRoot.SOAP.Body.ns:Consulta.Nombre <> '' THEN
+			SET SentenciaSQL = SentenciaSQL || ' AND [Name] LIKE '|| '''' ||'%' || InputRoot.SOAP.Body.ns:Consulta.Nombre || '%' || '''';
+		END IF;		
+		IF InputRoot.SOAP.Body.ns:Consulta.CuentaAsociada <> '' THEN
+			SET SentenciaSQL =SentenciaSQL || ' AND ' || '[CuentaAsociada] ='|| '''' || InputRoot.SOAP.Body.ns:Consulta.CuentaAsociada || '''';
+		END IF;				
+		IF InputRoot.SOAP.Body.ns:Consulta.CodigoSAP <>'' THEN
+			SET SentenciaSQL =SentenciaSQL || ' AND ' || '[CodigoSAP] ='|| '''' || InputRoot.SOAP.Body.ns:Consulta.CodigoSAP || '''';
+		END IF;	
+		IF InputRoot.SOAP.Body.ns:Consulta.IdXCalibur <>'' THEN
+			SET SentenciaSQL = SentenciaSQL || ' AND ' || '[IdXCalibur] ='|| '''' || InputRoot.SOAP.Body.ns:Consulta.IdXCalibur || '''';
+		END IF;		
+		
+										
+		SET OutputRoot.SOAP.Header.ws:International ='';			
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:EntityId.ws2:Name= 'Proveedor';		
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:ExcludeAuditInfo=true;
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:MemberReturnOption='Data';
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:MemberType='Leaf';
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:ModelId.ws2:Name='MDS Caracol';
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:PageNumber=1;
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:PageSize=1000; 
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:SearchTerm=SentenciaSQL;		
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:SortColumnId.ws2:Name='IdXCalibur';
+		SET OutputRoot.SOAP.Body.ws2:EntityMembersGetRequest.ws2:MembersGetCriteria.ws2:VersionId.ws2:Name='VERSION_1';		
+		RETURN TRUE;
+		
+
+	END;
+END MODULE;

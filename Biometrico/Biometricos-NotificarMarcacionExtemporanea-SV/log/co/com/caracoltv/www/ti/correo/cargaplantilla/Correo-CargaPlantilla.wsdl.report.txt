@@ -1,0 +1,25 @@
+
+
+Importing file: C:\Users\adminiib\IBM\IIBT10\workspace\CH_WS_Correo\Correo-CargaPlantilla.wsdl
+
+The WSDL import will proceed with bindings bdCargaPlantillaSOAP11Http, bdCargaPlantillaSOAP12Http.
+Creating wsdl schema document for file:///C:/Users/adminiib/IBM/IIBT10/workspace/CH_WS_Correo/Correo-CargaPlantilla.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/correo/cargaplantilla/}bdCargaPlantillaSOAP12Http.
+Parsing wsdl binding input CargaPlantilla.
+Parsing wsdl binding output CargaPlantilla.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/correo/cargaplantilla/}bdCargaPlantillaSOAP11Http.
+Parsing wsdl binding input CargaPlantilla.
+Parsing wsdl binding output CargaPlantilla.
+Processing doc style for operation CargaPlantilla.
+Populating WSDL schema Correo-CargaPlantilla.xsd.
+Creating file Correo-CargaPlantilla.xsd in the workspace.
+Creating file /CLiquida-NotificarMarcacionExtemporanea/Correo-AdjuntarPlantilla.xsd in the workspace.
+Copying source WSDL Correo-CargaPlantilla.wsdl to Correo-CargaPlantilla.wsdl.
+
+Elapsed time processing this message definition file: 0.406 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

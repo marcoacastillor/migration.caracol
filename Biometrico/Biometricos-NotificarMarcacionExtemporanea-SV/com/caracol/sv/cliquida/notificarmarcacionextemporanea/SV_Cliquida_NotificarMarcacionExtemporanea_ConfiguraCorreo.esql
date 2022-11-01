@@ -1,0 +1,36 @@
+BROKER SCHEMA com.caracol.sv.cliquida.notificarmarcacionextemporanea
+
+
+CREATE COMPUTE MODULE SV_Cliquida_NotificarMarcacionExtemporanea_ConfiguraCorreo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		SET OutputRoot.Properties = InputRoot.Properties;	
+		/*Definicion de Namespace utilizados para construir el SOAP Request*/
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		SET OutputRoot.XML.Test.TIME4 = CAST(CURRENT_DATE AS CHARACTER FORMAT 'yyyy/MM/dd'); 
+		DECLARE body1 reference to  InputRoot.XMLNSC.s12:Envelope.s12:Body;					
+		/*Se construye el SOAP Request con la informacion necesaria*/				
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:s12='http://www.w3.org/2003/05/soap-envelope';
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.De=  'administradoriib@caracoltv.com.co';
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Para='administradortecnico@caracoltv.com.co';
+		SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Copia= '';
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.CopiaOculta= '';
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Asunto= 'Se han encontrado Marcaciones Extemporaneas CLiquida';
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Titulo= 'Marcaciones Extemporaneas';
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje1= ' ';
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje2= 'Adjunto, se envía el archivo de marcaciones extemporaneas encontradas el día ' || OutputRoot.XML.Test.TIME4 ||  ' generadas por la aplicación CLiquida.' ; 	    
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.TextoLink= '</a>NOTA: Este mensaje ha sido enviado por un sistema automático.</p>Por favor no intente responder a este mensaje ya que este buzón de correo no es válido para información<a>';
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Link= '';
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Formato= 'html';
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Prioridad= '1';
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.NombreAdjunto= body1.Nombre;
+	    SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Adjuntos=body1.Valor;
+		RETURN TRUE;	
+	END;
+
+
+END MODULE;

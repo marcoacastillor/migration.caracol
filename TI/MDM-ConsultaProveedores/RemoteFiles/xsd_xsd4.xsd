@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:tns="http://schemas.datacontract.org/2004/07/System">
+  <xsd:complexType name="Version">
+    <xsd:sequence>
+      <xsd:element name="_Build" type="xsd:int"/>
+      <xsd:element name="_Major" type="xsd:int"/>
+      <xsd:element name="_Minor" type="xsd:int"/>
+      <xsd:element name="_Revision" type="xsd:int"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="Version" nillable="true" type="tns:Version"/>
+</xsd:schema>

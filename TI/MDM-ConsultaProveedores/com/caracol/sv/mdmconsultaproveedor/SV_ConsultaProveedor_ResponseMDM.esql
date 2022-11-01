@@ -1,0 +1,140 @@
+BROKER SCHEMA com.caracol.sv.mdmconsultaproveedor
+
+
+CREATE COMPUTE MODULE SV_ConsultaProveedor_ResponseMDM
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN			
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';	
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/ti/mdm/canonico/proveedor/';	
+		DECLARE xsi NAMESPACE 'http://www.w3.org/2001/XMLSchema-instance';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE ws NAMESPACE 'http://www.w3.org/2005/09/ws-i18n';
+		DECLARE ws2 NAMESPACE 'http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09';				
+		DECLARE j integer;		
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	    
+		DECLARE intListaProveedor INTEGER CARDINALITY(InputRoot.SOAP.Body.ws2:EntityMembersGetResponse.ws2:EntityMembers.ws2:Members.ws2:Member[]);				
+		IF (intListaProveedor >= 1) THEN			
+			SET j = 1;
+			FOR rBodyProveedor AS InputRoot.SOAP.Body.ws2:EntityMembersGetResponse.ws2:EntityMembers.ws2:Members.ws2:Member[] DO
+				-- si el estado de la entidad es activo se muestra en la salida 
+				IF rBodyProveedor.ws2:Attributes.ws2:Attribute[15].ws2:Value.ws2:Name= 'Activo' THEN
+				    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Codigo=rBodyProveedor.ws2:MemberId.ws2:Code;
+				    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Nombre=rBodyProveedor.ws2:MemberId.ws2:Name;
+				    
+				    --tipo identificación
+				    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].TipoIdentificacion=rBodyProveedor.ws2:Attributes.ws2:Attribute[1].ws2:Value.ws2:Name;
+				    --grupocuenta
+					SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].GrupoCuenta=rBodyProveedor.ws2:Attributes.ws2:Attribute[2].ws2:Value.ws2:Name;
+					--compañia				
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[3].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Compania=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[3].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Compania='';
+					END IF;	
+					--direccion				
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[4].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Direccion=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[4].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Direccion='';
+					END IF;		
+					--telefono1				
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[5].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Telefono1=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[5].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Telefono1='';
+					END IF;							
+					--telefono2		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[6].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Telefono2=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[6].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Telefono2='';
+					END IF;							
+					--telefono3		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[7].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Telefono3=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[7].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Telefono3='';
+					END IF;							
+					--email		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[8].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Email=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[8].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Email='';
+					END IF;				
+					--nombre alternativo		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[9].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].NombreAlternativo=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[9].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].NombreAlternativo='';
+					END IF;		
+				--cuenta asociada		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[10].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].CuentaAsociada=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[10].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].CuentaAsociada='';
+					END IF;		
+					--ProveedorContacto		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[11].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].ProveedorContacto=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[11].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].ProveedorContacto='';
+					END IF;	
+					--ProveedorContactoTelefono						
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[12].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].ProveedorContactoTelefono=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[12].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].ProveedorContactoTelefono='';
+					END IF;	
+					--ProveedorCargoContacto					
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[14].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].ProveedorCargoContacto=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[14].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].ProveedorCargoContacto='';
+					END IF;											    	
+					--ProveedorContactoCorreo						
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[13].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].ProveedorContactoEmail=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[13].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].ProveedorContactoEmail='';
+					END IF;							    	
+			    	--estado
+				    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Estado=rBodyProveedor.ws2:Attributes.ws2:Attribute[15].ws2:Value.ws2:Name;
+					--plataforma		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[16].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Plataforma=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[16].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Plataforma='';
+					END IF;	
+					--Rut		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[17].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Rut=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[17].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Rut='';
+					END IF;
+					--tipo empresa
+				    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].TipoEmpresa=rBodyProveedor.ws2:Attributes.ws2:Attribute[18].ws2:Value.ws2:Name;
+					--codigo SAP		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[20].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].CodigoSAP=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[20].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].CodigoSAP='';
+					END IF;			    
+					--Id XCalibur		
+					IF  NOT rBodyProveedor.ws2:Attributes.ws2:Attribute[19].ws2:Value IS NULL THEN
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].IdXCalibur=CAST( rBodyProveedor.ws2:Attributes.ws2:Attribute[19].ws2:Value AS CHAR);												    			
+					ELSE
+						SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].IdXCalibur='';
+					END IF;
+					--departamento
+				    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Departamento=rBodyProveedor.ws2:Attributes.ws2:Attribute[21].ws2:Value.ws2:Name;
+					--ciudad
+				    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor[j].Ciudad=rBodyProveedor.ws2:Attributes.ws2:Attribute[22].ws2:Value.ws2:Name;				
+				END IF;			
+				SET j = j+1;					
+			END FOR;			
+		ELSE
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:Proveedores.Proveedor='';			
+		END IF;						
+	END;
+END MODULE;

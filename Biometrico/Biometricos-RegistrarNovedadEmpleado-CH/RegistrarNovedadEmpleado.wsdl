@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="registrarnovedadempleado" targetNamespace="http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/" xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:srv="http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdRegistrarNovedadSOAP11Http" originalBindingStyle="document"/>
+        <binding hasEncoding="false" imported="false" name="bdRegistrarNovedadSOAP12Http" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+   
+  
+   
+	  
+<wsdl:types>
+        <xsd:schema targetNamespace="http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+<xsd:include schemaLocation="novedadempleado.xsd"/>
+    </xsd:schema>
+		<xsd:schema/>
+		
+
+    </wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgNovedadEmpleadoRequest">
+    	<wsdl:part element="srv:NovedadEmpleadoRequest" name="NovedadEmpleadoRequest"/>
+<!--    	<wsdl:part element="eb:Messaging" name="Messaging"/>		-->
+  	</wsdl:message>
+  	
+  	<!-- Response message -->
+  	<wsdl:message name="msgNovedadEmpleadoResponse">
+    	<wsdl:part element="srv:NovedadEmpleadoResponse" name="NovedadEmpleadoResponse"/>
+<!--    	<wsdl:part element="eb:Messaging" name="Messaging"/>		-->
+  	</wsdl:message>
+	
+	<!-- Fault message -->
+	<wsdl:message name="msgRegistrarNovedadFault">
+<!--  		<wsdl:part element="mex:messageException" name="messageException"/>	
+  		<wsdl:part element="eb:Messaging" name="detail"/>-->
+  	</wsdl:message>
+  	  
+	
+<!-- Port type -->
+  	<wsdl:portType name="ptNovedad">
+    	<wsdl:operation name="registro">
+      		<wsdl:input message="srv:msgNovedadEmpleadoRequest" name="NovedadEmpleado_Input"/>
+      		<wsdl:output message="srv:msgNovedadEmpleadoResponse" name="NovedadEmpleado_Output"/>
+	        	
+	    </wsdl:operation>
+  	</wsdl:portType>
+
+<!-- Binding (SOAP 1.1/HTTP binding) -->
+	<wsdl:binding name="bdRegistrarNovedadSOAP11Http" type="srv:ptNovedad">
+		<S11:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+		<wsdl:operation name="registro">
+			<S11:operation soapAction="http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/"/>
+			<wsdl:input name="NovedadEmpleado_Input">
+				<S11:body parts="NovedadEmpleadoRequest" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="NovedadEmpleado_Output">
+				<S11:body parts="NovedadEmpleadoResponse" use="literal"/>
+			</wsdl:output>
+
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<!-- Binding (SOAP 1.2/HTTP binding) -->
+	<wsdl:binding name="bdRegistrarNovedadSOAP12Http" type="srv:ptNovedad">
+		<S12:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+		<wsdl:operation name="registro">
+			<S12:operation soapAction="http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/"/>
+			<wsdl:input name="NovedadEmpleado_Input">
+				<S12:body parts="NovedadEmpleadoRequest" use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="NovedadEmpleado_Output">
+				<S12:body parts="NovedadEmpleadoResponse" use="literal"/>
+			</wsdl:output>
+		
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<!-- Service -->
+  	<wsdl:service name="registrarnovedadempleado">    	
+    	<wsdl:port binding="srv:bdRegistrarNovedadSOAP11Http" name="ptRegistarNovedad11">
+      		<S11:address location="http://localhost:7800/services/s11/dominio/registrarnovedadempleado"/>
+    	</wsdl:port>
+    	
+    	<wsdl:port binding="srv:bdRegistrarNovedadSOAP12Http" name="ptRegistrarNovedad12">
+            <S12:address location="http://localhost:7800/services/s12/dominio/registrarnovedadempleado"/>
+        </wsdl:port>
+  	</wsdl:service>  	  
+</wsdl:definitions>

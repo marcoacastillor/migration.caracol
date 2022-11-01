@@ -1,0 +1,1385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+name="Service" targetNamespace="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09" 
+xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" 
+xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+xmlns:tns="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09" 
+xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" 
+xmlns:wsa10="http://www.w3.org/2005/08/addressing" 
+xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" 
+xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" 
+xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" 
+xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" 
+xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" 
+xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex"
+xmlns:wsx2="http://www.w3.org/2005/09/ws-i18n"  
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">      
+        <binding hasEncoding="false" imported="true" name="BasicHttpBinding_IService" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/Imports">
+      <xsd:import namespace="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09" schemaLocation="RemoteFiles/xsd_xsd0.xsd"/>
+      <xsd:import namespace="http://www.w3.org/2005/09/ws-i18n" schemaLocation="RemoteFiles/xsd_xsd2.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="BusinessRulesPaletteGetRequest">
+    <wsdl:part element="tns:BusinessRulesPaletteGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesPaletteGetRequest_Headers">
+    <wsdl:part element="q1:International" name="International" xmlns:q1="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesPaletteGetResponse">
+    <wsdl:part element="tns:BusinessRulesPaletteGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesPaletteGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesPaletteGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesCloneRequest">
+    <wsdl:part element="tns:BusinessRulesCloneRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesCloneRequest_Headers">
+    <wsdl:part element="q2:International" name="International" xmlns:q2="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="MessageResponse">
+    <wsdl:part element="tns:MessageResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesClone_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesClone_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesCreateRequest">
+    <wsdl:part element="tns:BusinessRulesCreateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesCreateRequest_Headers">
+    <wsdl:part element="q3:International" name="International" xmlns:q3="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesCreateResponse">
+    <wsdl:part element="tns:BusinessRulesCreateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesDeleteRequest">
+    <wsdl:part element="tns:BusinessRulesDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesDeleteRequest_Headers">
+    <wsdl:part element="q4:International" name="International" xmlns:q4="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesGetRequest">
+    <wsdl:part element="tns:BusinessRulesGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesGetRequest_Headers">
+    <wsdl:part element="q5:International" name="International" xmlns:q5="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesGetResponse">
+    <wsdl:part element="tns:BusinessRulesGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesPublishRequest">
+    <wsdl:part element="tns:BusinessRulesPublishRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesPublishRequest_Headers">
+    <wsdl:part element="q6:International" name="International" xmlns:q6="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesPublish_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesPublish_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesUpdateRequest">
+    <wsdl:part element="tns:BusinessRulesUpdateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="BusinessRulesUpdateRequest_Headers">
+    <wsdl:part element="q7:International" name="International" xmlns:q7="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesUpdate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_BusinessRulesUpdate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityInstalledStateRequest">
+    <wsdl:part element="tns:DataQualityInstalledStateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityInstalledStateRequest_Headers">
+    <wsdl:part element="q8:International" name="International" xmlns:q8="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityInstalledStateResponse">
+    <wsdl:part element="tns:DataQualityInstalledStateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityInstalledState_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityInstalledState_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityKnowledgeBasesGetRequest">
+    <wsdl:part element="tns:DataQualityKnowledgeBasesGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityKnowledgeBasesGetRequest_Headers">
+    <wsdl:part element="q9:International" name="International" xmlns:q9="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityKnowledgeBasesGetResponse">
+    <wsdl:part element="tns:DataQualityKnowledgeBasesGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityKnowledgeBasesGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityKnowledgeBasesGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityCleansingOperationCreateRequest">
+    <wsdl:part element="tns:DataQualityCleansingOperationCreateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityCleansingOperationCreateRequest_Headers">
+    <wsdl:part element="q10:International" name="International" xmlns:q10="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationCreateResponse">
+    <wsdl:part element="tns:DataQualityOperationCreateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityCleansingOperationCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityCleansingOperationCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityMatchingOperationCreateRequest">
+    <wsdl:part element="tns:DataQualityMatchingOperationCreateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityMatchingOperationCreateRequest_Headers">
+    <wsdl:part element="q11:International" name="International" xmlns:q11="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityMatchingOperationCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityMatchingOperationCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationStatusRequest">
+    <wsdl:part element="tns:DataQualityOperationStatusRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationStatusRequest_Headers">
+    <wsdl:part element="q12:International" name="International" xmlns:q12="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationStatusResponse">
+    <wsdl:part element="tns:DataQualityOperationStatusResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityOperationStatus_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityOperationStatus_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationResultsGetRequest">
+    <wsdl:part element="tns:DataQualityOperationResultsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationResultsGetRequest_Headers">
+    <wsdl:part element="q13:International" name="International" xmlns:q13="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationResultsGetResponse">
+    <wsdl:part element="tns:DataQualityOperationResultsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityOperationResultsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityOperationResultsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityStoreInputDataRequest">
+    <wsdl:part element="tns:DataQualityStoreInputDataRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityStoreInputDataRequest_Headers">
+    <wsdl:part element="q14:International" name="International" xmlns:q14="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityStoreInputDataResponse">
+    <wsdl:part element="tns:DataQualityStoreInputDataResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityStoreInputData_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityStoreInputData_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationStartRequest">
+    <wsdl:part element="tns:DataQualityOperationStartRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationStartRequest_Headers">
+    <wsdl:part element="q15:International" name="International" xmlns:q15="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationStartResponse">
+    <wsdl:part element="tns:DataQualityOperationStartResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityOperationStart_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityOperationStart_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationPurgeOperationRequest">
+    <wsdl:part element="tns:DataQualityOperationPurgeOperationRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationPurgeOperationRequest_Headers">
+    <wsdl:part element="q16:International" name="International" xmlns:q16="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="DataQualityOperationPurgeOperationResponse">
+    <wsdl:part element="tns:DataQualityOperationPurgeOperationResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityOperationPurgeOperation_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_DataQualityOperationPurgeOperation_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersGetRequest">
+    <wsdl:part element="tns:EntityMembersGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersGetRequest_Headers">
+    <wsdl:part element="q17:International" name="International" xmlns:q17="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersGetResponse">
+    <wsdl:part element="tns:EntityMembersGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAttributesGetRequest">
+    <wsdl:part element="tns:EntityMemberAttributesGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAttributesGetRequest_Headers">
+    <wsdl:part element="q18:International" name="International" xmlns:q18="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAttributesGetResponse">
+    <wsdl:part element="tns:EntityMemberAttributesGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAttributesGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAttributesGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="HierarchyMembersGetRequest">
+    <wsdl:part element="tns:HierarchyMembersGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="HierarchyMembersGetRequest_Headers">
+    <wsdl:part element="q19:International" name="International" xmlns:q19="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="HierarchyMembersGetResponse">
+    <wsdl:part element="tns:HierarchyMembersGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_HierarchyMembersGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_HierarchyMembersGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ModelMembersGetRequest">
+    <wsdl:part element="tns:ModelMembersGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ModelMembersGetRequest_Headers">
+    <wsdl:part element="q20:International" name="International" xmlns:q20="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="ModelMembersGetResponse">
+    <wsdl:part element="tns:ModelMembersGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ModelMembersGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ModelMembersGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersCreateRequest">
+    <wsdl:part element="tns:EntityMembersCreateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersCreateRequest_Headers">
+    <wsdl:part element="q21:International" name="International" xmlns:q21="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersCreateResponse">
+    <wsdl:part element="tns:EntityMembersCreateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersDeleteRequest">
+    <wsdl:part element="tns:EntityMembersDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersDeleteRequest_Headers">
+    <wsdl:part element="q22:International" name="International" xmlns:q22="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersDeleteResponse">
+    <wsdl:part element="tns:EntityMembersDeleteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersPurgeRequest">
+    <wsdl:part element="tns:EntityMembersPurgeRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersPurgeRequest_Headers">
+    <wsdl:part element="q23:International" name="International" xmlns:q23="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersPurgeResponse">
+    <wsdl:part element="tns:EntityMembersPurgeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersPurge_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersPurge_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersUpdateRequest">
+    <wsdl:part element="tns:EntityMembersUpdateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersUpdateRequest_Headers">
+    <wsdl:part element="q24:International" name="International" xmlns:q24="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersUpdateResponse">
+    <wsdl:part element="tns:EntityMembersUpdateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersUpdate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersUpdate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="HierarchyParentSaveRequest">
+    <wsdl:part element="tns:HierarchyParentSaveRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="HierarchyParentSaveRequest_Headers">
+    <wsdl:part element="q25:International" name="International" xmlns:q25="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="HierarchyParentSaveResponse">
+    <wsdl:part element="tns:HierarchyParentSaveResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_HierarchyParentSave_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_HierarchyParentSave_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersCopyRequest">
+    <wsdl:part element="tns:EntityMembersCopyRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersCopyRequest_Headers">
+    <wsdl:part element="q26:International" name="International" xmlns:q26="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersCopyResponse">
+    <wsdl:part element="tns:EntityMembersCopyResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersCopy_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersCopy_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersMergeRequest">
+    <wsdl:part element="tns:EntityMembersMergeRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersMergeRequest_Headers">
+    <wsdl:part element="q27:International" name="International" xmlns:q27="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMembersMergeResponse">
+    <wsdl:part element="tns:EntityMembersMergeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersMerge_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMembersMerge_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingLoadRequest">
+    <wsdl:part element="tns:EntityStagingLoadRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingLoadRequest_Headers">
+    <wsdl:part element="q28:International" name="International" xmlns:q28="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingLoadResponse">
+    <wsdl:part element="tns:EntityStagingLoadResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityStagingLoad_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityStagingLoad_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingGetRequest">
+    <wsdl:part element="tns:EntityStagingGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingGetRequest_Headers">
+    <wsdl:part element="q29:International" name="International" xmlns:q29="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingGetResponse">
+    <wsdl:part element="tns:EntityStagingGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityStagingGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityStagingGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingClearRequest">
+    <wsdl:part element="tns:EntityStagingClearRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingClearRequest_Headers">
+    <wsdl:part element="q30:International" name="International" xmlns:q30="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingClearResponse">
+    <wsdl:part element="tns:EntityStagingClearResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityStagingClear_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityStagingClear_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingProcessRequest">
+    <wsdl:part element="tns:EntityStagingProcessRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingProcessRequest_Headers">
+    <wsdl:part element="q31:International" name="International" xmlns:q31="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityStagingProcessResponse">
+    <wsdl:part element="tns:EntityStagingProcessResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityStagingProcess_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityStagingProcess_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionsGetRequest">
+    <wsdl:part element="tns:TransactionsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionsGetRequest_Headers">
+    <wsdl:part element="q32:International" name="International" xmlns:q32="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionsGetResponse">
+    <wsdl:part element="tns:TransactionsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_TransactionsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_TransactionsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionsReverseRequest">
+    <wsdl:part element="tns:TransactionsReverseRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionsReverseRequest_Headers">
+    <wsdl:part element="q33:International" name="International" xmlns:q33="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionsReverseResponse">
+    <wsdl:part element="tns:TransactionsReverseResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_TransactionsReverse_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_TransactionsReverse_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ValidationGetRequest">
+    <wsdl:part element="tns:ValidationGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ValidationGetRequest_Headers">
+    <wsdl:part element="q34:International" name="International" xmlns:q34="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="ValidationGetResponse">
+    <wsdl:part element="tns:ValidationGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ValidationGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ValidationGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ValidationProcessRequest">
+    <wsdl:part element="tns:ValidationProcessRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ValidationProcessRequest_Headers">
+    <wsdl:part element="q35:International" name="International" xmlns:q35="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="ValidationProcessResponse">
+    <wsdl:part element="tns:ValidationProcessResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ValidationProcess_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ValidationProcess_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationsCreateRequest">
+    <wsdl:part element="tns:EntityMemberAnnotationsCreateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationsCreateRequest_Headers">
+    <wsdl:part element="q36:International" name="International" xmlns:q36="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="AnnotationsCreateResponse">
+    <wsdl:part element="tns:AnnotationsCreateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAnnotationsCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAnnotationsCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationSaveRequest">
+    <wsdl:part element="tns:EntityMemberAnnotationSaveRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationSaveRequest_Headers">
+    <wsdl:part element="q37:International" name="International" xmlns:q37="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationSaveResponse">
+    <wsdl:part element="tns:EntityMemberAnnotationSaveResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAnnotationSave_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAnnotationSave_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationDeleteRequest">
+    <wsdl:part element="tns:EntityMemberAnnotationDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationDeleteRequest_Headers">
+    <wsdl:part element="q38:International" name="International" xmlns:q38="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationDeleteResponse">
+    <wsdl:part element="tns:EntityMemberAnnotationDeleteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAnnotationDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAnnotationDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionAnnotationsCreateRequest">
+    <wsdl:part element="tns:TransactionAnnotationsCreateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionAnnotationsCreateRequest_Headers">
+    <wsdl:part element="q39:International" name="International" xmlns:q39="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="IService_TransactionAnnotationsCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_TransactionAnnotationsCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberHistoryRollbackRequest">
+    <wsdl:part element="tns:EntityMemberHistoryRollbackRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberHistoryRollbackRequest_Headers">
+    <wsdl:part element="q40:International" name="International" xmlns:q40="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberHistoryRollbackResponse">
+    <wsdl:part element="tns:EntityMemberHistoryRollbackResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberHistoryRollback_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberHistoryRollback_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationsGetRequest">
+    <wsdl:part element="tns:EntityMemberAnnotationsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationsGetRequest_Headers">
+    <wsdl:part element="q41:International" name="International" xmlns:q41="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberAnnotationsGetResponse">
+    <wsdl:part element="tns:EntityMemberAnnotationsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAnnotationsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberAnnotationsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionAnnotationsGetRequest">
+    <wsdl:part element="tns:TransactionAnnotationsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionAnnotationsGetRequest_Headers">
+    <wsdl:part element="q42:International" name="International" xmlns:q42="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="TransactionAnnotationsGetResponse">
+    <wsdl:part element="tns:TransactionAnnotationsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_TransactionAnnotationsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_TransactionAnnotationsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="AnnotationsUpdateRequest">
+    <wsdl:part element="tns:AnnotationsUpdateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AnnotationsUpdateRequest_Headers">
+    <wsdl:part element="q43:International" name="International" xmlns:q43="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="AnnotationsUpdateResponse">
+    <wsdl:part element="tns:AnnotationsUpdateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_AnnotationsUpdate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_AnnotationsUpdate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="AnnotationsDeleteRequest">
+    <wsdl:part element="tns:AnnotationsDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AnnotationsDeleteRequest_Headers">
+    <wsdl:part element="q44:International" name="International" xmlns:q44="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="AnnotationsDeleteResponse">
+    <wsdl:part element="tns:AnnotationsDeleteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_AnnotationsDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_AnnotationsDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberChangesetsGetRequest">
+    <wsdl:part element="tns:EntityMemberChangesetsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberChangesetsGetRequest_Headers">
+    <wsdl:part element="q45:International" name="International" xmlns:q45="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberChangesetsGetResponse">
+    <wsdl:part element="tns:EntityMemberChangesetsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberChangesetsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberChangesetsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberChangesetSaveRequest">
+    <wsdl:part element="tns:EntityMemberChangesetSaveRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberChangesetSaveRequest_Headers">
+    <wsdl:part element="q46:International" name="International" xmlns:q46="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberChangesetSaveResponse">
+    <wsdl:part element="tns:EntityMemberChangesetSaveResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberChangesetSave_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberChangesetSave_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberChangesetDeleteRequest">
+    <wsdl:part element="tns:EntityMemberChangesetDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberChangesetDeleteRequest_Headers">
+    <wsdl:part element="q47:International" name="International" xmlns:q47="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberChangesetDeleteResponse">
+    <wsdl:part element="tns:EntityMemberChangesetDeleteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberChangesetDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberChangesetDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberKeyGetRequest">
+    <wsdl:part element="tns:EntityMemberKeyGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberKeyGetRequest_Headers">
+    <wsdl:part element="q48:International" name="International" xmlns:q48="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="EntityMemberKeyGetResponse">
+    <wsdl:part element="tns:EntityMemberKeyGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberKeyLookup_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_EntityMemberKeyLookup_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewCreateRequest">
+    <wsdl:part element="tns:ExportViewCreateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewCreateRequest_Headers">
+    <wsdl:part element="q49:International" name="International" xmlns:q49="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewCreateResponse">
+    <wsdl:part element="tns:ExportViewCreateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ExportViewCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ExportViewCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewUpdateRequest">
+    <wsdl:part element="tns:ExportViewUpdateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewUpdateRequest_Headers">
+    <wsdl:part element="q50:International" name="International" xmlns:q50="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewUpdateResponse">
+    <wsdl:part element="tns:ExportViewUpdateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ExportViewUpdate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ExportViewUpdate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewDeleteRequest">
+    <wsdl:part element="tns:ExportViewDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewDeleteRequest_Headers">
+    <wsdl:part element="q51:International" name="International" xmlns:q51="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewDeleteResponse">
+    <wsdl:part element="tns:ExportViewDeleteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ExportViewDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ExportViewDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewListGetRequest">
+    <wsdl:part element="tns:ExportViewListGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewListGetRequest_Headers">
+    <wsdl:part element="q52:International" name="International" xmlns:q52="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="ExportViewListGetResponse">
+    <wsdl:part element="tns:ExportViewListGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ExportViewListGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ExportViewListGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="FileGetRequest">
+    <wsdl:part element="tns:FileGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="FileGetRequest_Headers">
+    <wsdl:part element="q53:International" name="International" xmlns:q53="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="FileGetResponse">
+    <wsdl:part element="tns:FileGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_FileGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_FileGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="FileSaveRequest">
+    <wsdl:part element="tns:FileSaveRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="FileSaveRequest_Headers">
+    <wsdl:part element="q54:International" name="International" xmlns:q54="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="FileSaveResponse">
+    <wsdl:part element="tns:FileSaveResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_FileSave_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_FileSave_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataCloneRequest">
+    <wsdl:part element="tns:MetadataCloneRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataCloneRequest_Headers">
+    <wsdl:part element="q55:International" name="International" xmlns:q55="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataCloneResponse">
+    <wsdl:part element="tns:MetadataCloneResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataClone_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataClone_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataCreateRequest">
+    <wsdl:part element="tns:MetadataCreateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataCreateRequest_Headers">
+    <wsdl:part element="q56:International" name="International" xmlns:q56="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataCreateResponse">
+    <wsdl:part element="tns:MetadataCreateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataDeleteRequest">
+    <wsdl:part element="tns:MetadataDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataDeleteRequest_Headers">
+    <wsdl:part element="q57:International" name="International" xmlns:q57="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataDeleteResponse">
+    <wsdl:part element="tns:MetadataDeleteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataGetRequest">
+    <wsdl:part element="tns:MetadataGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataGetRequest_Headers">
+    <wsdl:part element="q58:International" name="International" xmlns:q58="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataGetResponse">
+    <wsdl:part element="tns:MetadataGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataUpdateRequest">
+    <wsdl:part element="tns:MetadataUpdateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataUpdateRequest_Headers">
+    <wsdl:part element="q59:International" name="International" xmlns:q59="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="MetadataUpdateResponse">
+    <wsdl:part element="tns:MetadataUpdateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataUpdate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_MetadataUpdate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="StagingNameCheckRequest">
+    <wsdl:part element="tns:StagingNameCheckRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="StagingNameCheckRequest_Headers">
+    <wsdl:part element="q60:International" name="International" xmlns:q60="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="StagingNameCheckResponse">
+    <wsdl:part element="tns:StagingNameCheckResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_StagingNameCheck_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_StagingNameCheck_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="AttributeChangeRequest">
+    <wsdl:part element="tns:AttributeChangeRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="AttributeChangeRequest_Headers">
+    <wsdl:part element="q61:International" name="International" xmlns:q61="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="AttributeChangeResponse">
+    <wsdl:part element="tns:AttributeChangeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_AttributeChange_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_AttributeChange_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SystemSettingsGetRequest">
+    <wsdl:part element="tns:SystemSettingsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SystemSettingsGetRequest_Headers">
+    <wsdl:part element="q62:International" name="International" xmlns:q62="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SystemSettingsGetResponse">
+    <wsdl:part element="tns:SystemSettingsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SystemSettingsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SystemSettingsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SystemSettingsUpdateRequest">
+    <wsdl:part element="tns:SystemSettingsUpdateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SystemSettingsUpdateRequest_Headers">
+    <wsdl:part element="q63:International" name="International" xmlns:q63="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SystemSettingsUpdateResponse">
+    <wsdl:part element="tns:SystemSettingsUpdateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SystemSettingsUpdate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SystemSettingsUpdate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SystemDomainListGetRequest">
+    <wsdl:part element="tns:SystemDomainListGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SystemDomainListGetRequest_Headers">
+    <wsdl:part element="q64:International" name="International" xmlns:q64="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SystemDomainListGetResponse">
+    <wsdl:part element="tns:SystemDomainListGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SystemDomainListGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SystemDomainListGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SystemPropertiesGetRequest">
+    <wsdl:part element="tns:SystemPropertiesGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SystemPropertiesGetRequest_Headers">
+    <wsdl:part element="q65:International" name="International" xmlns:q65="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SystemPropertiesGetResponse">
+    <wsdl:part element="tns:SystemPropertiesGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SystemPropertiesGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SystemPropertiesGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ServiceCheckGetRequest">
+    <wsdl:part element="tns:ServiceCheckGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ServiceCheckGetRequest_Headers">
+    <wsdl:part element="q66:International" name="International" xmlns:q66="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ServiceCheck_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ServiceCheck_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ServiceVersionGetRequest">
+    <wsdl:part element="tns:ServiceVersionGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ServiceVersionGetRequest_Headers">
+    <wsdl:part element="q67:International" name="International" xmlns:q67="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="ServiceVersionGetResponse">
+    <wsdl:part element="tns:ServiceVersionGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ServiceVersionGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ServiceVersionGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="VersionCopyRequest">
+    <wsdl:part element="tns:VersionCopyRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="VersionCopyRequest_Headers">
+    <wsdl:part element="q68:International" name="International" xmlns:q68="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="VersionCopyResponse">
+    <wsdl:part element="tns:VersionCopyResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_VersionCopy_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_VersionCopy_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipMergeRequest">
+    <wsdl:part element="tns:SyncRelationshipMergeRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipMergeRequest_Headers">
+    <wsdl:part element="q69:International" name="International" xmlns:q69="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipMergeResponse">
+    <wsdl:part element="tns:SyncRelationshipMergeResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SyncRelationshipMerge_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SyncRelationshipMerge_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipDeleteRequest">
+    <wsdl:part element="tns:SyncRelationshipDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipDeleteRequest_Headers">
+    <wsdl:part element="q70:International" name="International" xmlns:q70="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipDeleteResponse">
+    <wsdl:part element="tns:SyncRelationshipDeleteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SyncRelationshipDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SyncRelationshipDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipsGetRequest">
+    <wsdl:part element="tns:SyncRelationshipsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipsGetRequest_Headers">
+    <wsdl:part element="q71:International" name="International" xmlns:q71="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipsGetResponse">
+    <wsdl:part element="tns:SyncRelationshipsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SyncRelationshipsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SyncRelationshipsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipRefreshRequest">
+    <wsdl:part element="tns:SyncRelationshipRefreshRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipRefreshRequest_Headers">
+    <wsdl:part element="q72:International" name="International" xmlns:q72="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SyncRelationshipRefreshResponse">
+    <wsdl:part element="tns:SyncRelationshipRefreshResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SyncRelationshipRefresh_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SyncRelationshipRefresh_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="UserPreferencesGetRequest">
+    <wsdl:part element="tns:UserPreferencesGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UserPreferencesGetRequest_Headers">
+    <wsdl:part element="q73:International" name="International" xmlns:q73="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="UserPreferencesGetResponse">
+    <wsdl:part element="tns:UserPreferencesGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_UserPreferencesGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_UserPreferencesGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="UserPreferencesUpdateRequest">
+    <wsdl:part element="tns:UserPreferencesUpdateRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UserPreferencesUpdateRequest_Headers">
+    <wsdl:part element="q74:International" name="International" xmlns:q74="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="UserPreferencesUpdateResponse">
+    <wsdl:part element="tns:UserPreferencesUpdateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_UserPreferencesUpdate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_UserPreferencesUpdate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="UserPreferencesDeleteRequest">
+    <wsdl:part element="tns:UserPreferencesDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UserPreferencesDeleteRequest_Headers">
+    <wsdl:part element="q75:International" name="International" xmlns:q75="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="UserPreferencesDeleteResponse">
+    <wsdl:part element="tns:UserPreferencesDeleteResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_UserPreferencesDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_UserPreferencesDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="ErrorLogsGetRequest">
+    <wsdl:part element="tns:ErrorLogsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="ErrorLogsGetRequest_Headers">
+    <wsdl:part element="q76:International" name="International" xmlns:q76="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="ErrorLogsGetResponse">
+    <wsdl:part element="tns:ErrorLogsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ErrorLogsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_ErrorLogsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrincipalsRequest">
+    <wsdl:part element="tns:SecurityPrincipalsRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrincipalsRequest_Headers">
+    <wsdl:part element="q77:International" name="International" xmlns:q77="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityCreateResponse">
+    <wsdl:part element="tns:SecurityCreateResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsClone_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsClone_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsUpdate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsUpdate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrincipalsGetRequest">
+    <wsdl:part element="tns:SecurityPrincipalsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrincipalsGetRequest_Headers">
+    <wsdl:part element="q78:International" name="International" xmlns:q78="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrincipalsGetResponse">
+    <wsdl:part element="tns:SecurityPrincipalsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrincipalsDeleteRequest">
+    <wsdl:part element="tns:SecurityPrincipalsDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrincipalsDeleteRequest_Headers">
+    <wsdl:part element="q79:International" name="International" xmlns:q79="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrincipalsDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrivilegesRequest">
+    <wsdl:part element="tns:SecurityPrivilegesRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrivilegesRequest_Headers">
+    <wsdl:part element="q80:International" name="International" xmlns:q80="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesCreate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesCreate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesClone_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesClone_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesUpdate_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesUpdate_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrivilegesGetRequest">
+    <wsdl:part element="tns:SecurityPrivilegesGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrivilegesGetRequest_Headers">
+    <wsdl:part element="q81:International" name="International" xmlns:q81="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrivilegesGetResponse">
+    <wsdl:part element="tns:SecurityPrivilegesGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrivilegesDeleteRequest">
+    <wsdl:part element="tns:SecurityPrivilegesDeleteRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="SecurityPrivilegesDeleteRequest_Headers">
+    <wsdl:part element="q82:International" name="International" xmlns:q82="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesDelete_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_SecurityPrivilegesDelete_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="UserEffectiveObjectPermissionsGetRequest">
+    <wsdl:part element="tns:UserEffectiveObjectPermissionsGetRequest" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="UserEffectiveObjectPermissionsGetRequest_Headers">
+    <wsdl:part element="q83:International" name="International" xmlns:q83="http://www.w3.org/2005/09/ws-i18n"/>
+  </wsdl:message>
+  <wsdl:message name="UserEffectiveObjectPermissionsGetResponse">
+    <wsdl:part element="tns:UserEffectiveObjectPermissionsGetResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IService_UserEffectiveObjectPermissionsGet_EditionExpiredMessageFault_FaultMessage">
+    <wsdl:part element="tns:EditionExpiredMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:message name="IService_UserEffectiveObjectPermissionsGet_SkuNotSupportedMessageFault_FaultMessage">
+    <wsdl:part element="tns:SkuNotSupportedMessage" name="detail"/>
+  </wsdl:message>
+  <wsdl:portType name="IService">
+    <wsdl:operation name="EntityMembersGet">
+      <wsdl:input message="tns:EntityMembersGetRequest" name="EntityMembersGetRequest" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersGet"/>
+      <wsdl:output message="tns:EntityMembersGetResponse" name="EntityMembersGetResponse" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersGetResponse"/>
+      <wsdl:fault message="tns:IService_EntityMembersGet_EditionExpiredMessageFault_FaultMessage" name="EditionExpiredMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersGetEditionExpiredMessageFault"/>
+      <wsdl:fault message="tns:IService_EntityMembersGet_SkuNotSupportedMessageFault_FaultMessage" name="SkuNotSupportedMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersGetSkuNotSupportedMessageFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="EntityMembersCreate">
+      <wsdl:input message="tns:EntityMembersCreateRequest" name="EntityMembersCreateRequest" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersCreate"/>
+      <wsdl:output message="tns:EntityMembersCreateResponse" name="EntityMembersCreateResponse" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersCreateResponse"/>
+      <wsdl:fault message="tns:IService_EntityMembersCreate_EditionExpiredMessageFault_FaultMessage" name="EditionExpiredMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersCreateEditionExpiredMessageFault"/>
+      <wsdl:fault message="tns:IService_EntityMembersCreate_SkuNotSupportedMessageFault_FaultMessage" name="SkuNotSupportedMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersCreateSkuNotSupportedMessageFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="EntityMembersDelete">
+      <wsdl:input message="tns:EntityMembersDeleteRequest" name="EntityMembersDeleteRequest" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersDelete"/>
+      <wsdl:output message="tns:EntityMembersDeleteResponse" name="EntityMembersDeleteResponse" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersDeleteResponse"/>
+      <wsdl:fault message="tns:IService_EntityMembersDelete_EditionExpiredMessageFault_FaultMessage" name="EditionExpiredMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersDeleteEditionExpiredMessageFault"/>
+      <wsdl:fault message="tns:IService_EntityMembersDelete_SkuNotSupportedMessageFault_FaultMessage" name="SkuNotSupportedMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersDeleteSkuNotSupportedMessageFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="EntityMembersUpdate">
+      <wsdl:input message="tns:EntityMembersUpdateRequest" name="EntityMembersUpdateRequest" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersUpdate"/>
+      <wsdl:output message="tns:EntityMembersUpdateResponse" name="EntityMembersUpdateResponse" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersUpdateResponse"/>
+      <wsdl:fault message="tns:IService_EntityMembersUpdate_EditionExpiredMessageFault_FaultMessage" name="EditionExpiredMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersUpdateEditionExpiredMessageFault"/>
+      <wsdl:fault message="tns:IService_EntityMembersUpdate_SkuNotSupportedMessageFault_FaultMessage" name="SkuNotSupportedMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersUpdateSkuNotSupportedMessageFault"/>
+    </wsdl:operation>
+    <wsdl:operation name="ValidationProcess">
+      <wsdl:input message="tns:ValidationProcessRequest" name="ValidationProcessRequest" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/ValidationProcess"/>
+      <wsdl:output message="tns:ValidationProcessResponse" name="ValidationProcessResponse" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/ValidationProcessResponse"/>
+      <wsdl:fault message="tns:IService_ValidationProcess_EditionExpiredMessageFault_FaultMessage" name="EditionExpiredMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/ValidationProcessEditionExpiredMessageFault"/>
+      <wsdl:fault message="tns:IService_ValidationProcess_SkuNotSupportedMessageFault_FaultMessage" name="SkuNotSupportedMessageFault" wsaw:Action="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/ValidationProcessSkuNotSupportedMessageFault"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IService" type="tns:IService">
+    <wsp:PolicyReference URI="#BasicHttpBinding_IService_policy"/>
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="EntityMembersGet">
+      <soap:operation soapAction="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersGet" style="document"/>
+      <wsdl:input name="EntityMembersGetRequest">
+        <soap:header message="tns:EntityMembersGetRequest_Headers" part="International" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EntityMembersGetResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EditionExpiredMessageFault">
+        <soap:fault name="EditionExpiredMessageFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SkuNotSupportedMessageFault">
+        <soap:fault name="SkuNotSupportedMessageFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EntityMembersCreate">
+      <soap:operation soapAction="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersCreate" style="document"/>
+      <wsdl:input name="EntityMembersCreateRequest">
+        <soap:header message="tns:EntityMembersCreateRequest_Headers" part="International" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EntityMembersCreateResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+     
+     
+      <wsdl:fault name="EditionExpiredMessageFault">
+        <soap:fault name="EditionExpiredMessageFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SkuNotSupportedMessageFault">
+        <soap:fault name="SkuNotSupportedMessageFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    
+    <wsdl:operation name="EntityMembersDelete">
+      <soap:operation soapAction="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/EntityMembersDelete" style="document"/>
+      <wsdl:input name="EntityMembersDeleteRequest">
+        <soap:header message="tns:EntityMembersDeleteRequest_Headers" part="International" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EntityMembersDeleteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EditionExpiredMessageFault">
+        <soap:fault name="EditionExpiredMessageFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SkuNotSupportedMessageFault">
+        <soap:fault name="SkuNotSupportedMessageFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    
+   <wsdl:operation name="ValidationProcess">
+      <soap:operation soapAction="http://schemas.microsoft.com/sqlserver/masterdataservices/2009/09/IService/ValidationProcess" style="document"/>
+      <wsdl:input name="ValidationProcessRequest">
+        <soap:header message="tns:ValidationProcessRequest_Headers" part="International" use="literal"/>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ValidationProcessResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="EditionExpiredMessageFault">
+        <soap:fault name="EditionExpiredMessageFault" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="SkuNotSupportedMessageFault">
+        <soap:fault name="SkuNotSupportedMessageFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  
+    </wsdl:binding>
+  <wsdl:service name="Service">
+    <wsdl:port binding="tns:BasicHttpBinding_IService" name="BasicHttpBinding_IService">
+      <soap:address location="http://srvmdm.corp.canalcaracol.com/MDS/Service/Service.svc/bhb"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

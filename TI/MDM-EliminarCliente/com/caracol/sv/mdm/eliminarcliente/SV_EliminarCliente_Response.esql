@@ -1,0 +1,14 @@
+BROKER SCHEMA com.caracol.sv.mdm.eliminarcliente
+
+
+CREATE COMPUTE MODULE SV_EliminarCliente_Response
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/ti/eliminarcliente/';									 
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';				
+    	SET OutputRoot.Properties = InputRoot.Properties;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;				
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:EliminarResponse.Eliminado = InputRoot.XMLNSC.s12:Envelope.s12:Body.ns:EliminarResponse.Eliminado;								
+		RETURN TRUE;
+	END;
+END MODULE;

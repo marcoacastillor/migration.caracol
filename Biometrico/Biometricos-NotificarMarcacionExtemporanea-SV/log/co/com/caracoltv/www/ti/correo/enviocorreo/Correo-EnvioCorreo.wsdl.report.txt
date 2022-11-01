@@ -1,0 +1,25 @@
+
+
+Importing file: C:\Users\adminiib\IBM\IIBT10\workspace\CH_WS_EnvioCorreo\Correo-EnvioCorreo.wsdl
+
+The WSDL import will proceed with bindings bdEnvioCorreoSOAP11Http, bdEnvioCorreoSOAP12Http.
+Creating wsdl schema document for file:///C:/Users/adminiib/IBM/IIBT10/workspace/CH_WS_EnvioCorreo/Correo-EnvioCorreo.wsdl.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/correo/enviocorreo/}bdEnvioCorreoSOAP11Http.
+Parsing wsdl binding input EnvioCorreo.
+Parsing wsdl binding output EnvioCorreo.
+Parsing wsdl binding {http://www.caracoltv.com.co/TI/correo/enviocorreo/}bdEnvioCorreoSOAP12Http.
+Parsing wsdl binding input EnvioCorreo.
+Parsing wsdl binding output EnvioCorreo.
+Processing doc style for operation EnvioCorreo.
+Populating WSDL schema Correo-EnvioCorreo_wsdl.xsd.
+Creating file Correo-EnvioCorreo_wsdl.xsd in the workspace.
+Creating file /CLiquida-NotificarMarcacionExtemporanea/Correo-EnvioCorreo.xsd in the workspace.
+Copying source WSDL Correo-EnvioCorreo.wsdl to Correo-EnvioCorreo.wsdl.
+
+Elapsed time processing this message definition file: 0.375 seconds
+Number of warnings for this message definition file: 0
+
+
+Number of files processed: 1
+
+

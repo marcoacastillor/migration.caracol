@@ -1,0 +1,34 @@
+BROKER SCHEMA com.caracol.sv.ti.seguridad.reasignarclaveusuario
+
+
+CREATE COMPUTE MODULE ReasignarClaveUsuario_encabezados
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';		
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/ti/seguridad/reasignarclaveusuario/';		
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header.srv:TokenRequest TYPE Name;
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ReasignarClaveUsuarioRequest TYPE Name;		
+		DECLARE rBodyHeaderI REFERENCE TO InputRoot.SOAP.Header.srv:TokenRequest;		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ReasignarClaveUsuarioRequest TYPE Name;		
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:ReasignarClaveUsuarioRequest;	
+		-- Add an MQMD						
+		SET Environment.Variables.JWT[] =LIST{rBodyHeaderI.token};			
+		--valor del id servicio del modulo de usuarios que se quiere validar token				
+		SET Environment.Variables.Servicio[] =LIST{'2074'};
+		SET Environment.Variables.NumeroCaso[] =LIST{rBodyI.NumeroCaso};				
+		SET Environment.Variables.Usuario[] =LIST{rBodyI.Usuario};				
+		SET Environment.Variables.TipoSolicitud[] =LIST{rBodyI.TipoSolicitud};
+		SET Environment.Variables.EnviarActa[] =LIST{rBodyI.EnviarActa};		
+		SET Environment.Variables.Notificar[] =LIST{rBodyI.Notificar};					
+		SET Environment.Variables.UsuarioNombre[] =LIST{rBodyI.Usuarionombre};		
+		RETURN TRUE;				
+	END;
+END MODULE;

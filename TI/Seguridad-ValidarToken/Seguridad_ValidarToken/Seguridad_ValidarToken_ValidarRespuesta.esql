@@ -1,0 +1,50 @@
+BROKER SCHEMA Seguridad_ValidarToken
+
+
+CREATE COMPUTE MODULE Seguridad_ValidarToken_ValidarRespuesta
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		
+		DECLARE rBodyI REFERENCE TO InputRoot.JSON.Data;
+		DECLARE rBodyI2 REFERENCE TO InputRoot.XMLNSC.Envelope.Body;
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	
+		SET OutputRoot.JSON.Data=InputRoot.JSON.Data;		
+		
+		DECLARE valido BOOLEAN;
+		SET valido=rBodyI.Valido;
+		
+		
+		DECLARE valido1 BOOLEAN;
+		SET valido1=rBodyI2.Valido;
+		
+		
+		
+		IF NOT InputRoot.JSON.Data.Valido THEN								
+			SET OutputLocalEnvironment.Destination.HTTP."X-Original-HTTP-Status-Code"=401;	
+			SET OutputRoot.JSON.Data.Error = 'Token Invalida';
+			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+			RETURN FALSE;
+		ELSEIF rBodyI.Valido THEN			
+			PROPAGATE TO TERMINAL 'out' DELETE NONE;
+			RETURN FALSE;
+		ELSEIF rBodyI2.Valido THEN			
+			PROPAGATE TO TERMINAL 'out' DELETE NONE;
+			RETURN FALSE;
+		ELSEIF rBodyI.Valido=false THEN			
+			SET OutputLocalEnvironment.Destination.HTTP."X-Original-HTTP-Status-Code"=401;	
+			SET OutputRoot.JSON.Data.Error = 'Token Invalida';
+			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+			RETURN FALSE;
+			
+		ELSE
+		    SET OutputLocalEnvironment.Destination.HTTP."X-Original-HTTP-Status-Code"=401;	
+			SET OutputRoot.JSON.Data.Error = 'Token Invalida';
+			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+		END IF;	
+		RETURN TRUE;
+	END;
+	
+	
+END MODULE;

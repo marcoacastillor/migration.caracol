@@ -1,0 +1,33 @@
+BROKER SCHEMA com.caracol.sv.ti.seguridad.reasignarclaveusuario
+
+
+CREATE COMPUTE MODULE ReasignarClaveUsuario_NotificarCopiaSinArchivo
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+	DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla4/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';				
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE s11 NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE srvreasignar NAMESPACE 'http://www.caracoltv.com.co/ti/seguridad/reasignarclaveusuario/';				
+		DECLARE element_Index INTEGER;                 
+        SET element_Index =1;                             
+        SET OutputRoot.Properties = InputRoot.Properties;
+        --Envia correo si es Asignada una clave nueva- TRUE        
+		IF Environment.Variables.Asignada[1] = true THEN				    	
+	        SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://www.w3.org/2003/05/soap-envelope';        
+			SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.De=  'administradorbus@caracoltv.com.co';			                        
+	        SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Para=Environment.Variables.Notificar[1];	        
+			SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Copia='administradoresbusintegracion@caracoltv.com.co';	        
+	        SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Asunto='Cambio de Contraseña ' || Environment.Variables.TipoSolicitud[1] || ' del usuario: ' || Environment.Variables.Usuario[1];         
+	        SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Titulo='Cambio de Contraseña del usuario: ' || Environment.Variables.Usuario[1];                                               				                                   
+	        SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje1='Cordial saludo,<br><br> La solicitud de ' || Environment.Variables.TipoSolicitud[1] || ' #'|| Environment.Variables.NumeroCaso[1] || ' de ' || Environment.Variables.UsuarioNombre[1] || ' ha generado una reasignación de contraseña del usuario ' || Environment.Variables.Usuario[1] || '. (ver adjunto)' || '<br>Gracias,<br>Coordinador Service Desk'; 	        
+	        SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje2=' ';                                     
+	        SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.TextoLink='NOTA: Este mensaje ha sido enviado por un sistema automático. Por favor no intente responder a este mensaje ya que este buzón de correo no es válido.';
+	     	SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Link='';         	           
+	        SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Prioridad='1';        
+	        SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Plantilla='Caracol.html';	        	                	   	             	                                                   
+	    END IF;	    	                                    
+        RETURN TRUE;        
+
+	END;
+END MODULE;

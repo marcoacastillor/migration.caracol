@@ -1,0 +1,16 @@
+BROKER SCHEMA com.caracol.sv.mdm.actualizarcliente
+
+
+CREATE COMPUTE MODULE SV_ActualizarCliente_Response
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/ti/mdm/canonico/cliente/';		
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';		
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;				
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Resultado.Codigo = InputRoot.XMLNSC.s12:Envelope.s12:Body.ns:Resultado.Codigo;						
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;				
+		RETURN TRUE;
+	END;
+END MODULE;
