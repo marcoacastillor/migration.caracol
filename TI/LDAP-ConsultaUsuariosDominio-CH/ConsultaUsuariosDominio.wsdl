@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+name="consultausuariosdominio" 
+targetNamespace="http://www.caracoltv.com.co/TI/seguridad/consultausuariosdominio/" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/" 
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+xmlns:srv="http://www.caracoltv.com.co/TI/seguridad/consultausuariosdominio/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdConsultaUsuariosDAHttp" originalBindingStyle="document"/>
+        <generatedXSD location="DirectorioActivo.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation> 
+	  
+<wsdl:types>
+   <xsd:schema targetNamespace="http://www.caracoltv.com.co/TI/seguridad/consultausuariosdominio/"
+			xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+			<xsd:include schemaLocation="DirectorioActivo.xsd" />
+    </xsd:schema>
+	<xsd:schema>
+		<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+		schemaLocation="ebms-header-3_0-200704.xsd"/>
+	</xsd:schema>	
+</wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgConsultaUsuariosDARequest">
+    	<wsdl:part element="srv:ConsultaUsuariosDominioRequest" name="ConsultaUsuariosDARequest"/>
+  	</wsdl:message>
+  	
+  	<!-- Response message -->
+  	<wsdl:message name="msgConsultaUsuariosDAResponse">
+    	<wsdl:part element="srv:ConsultaUsuariosDominioResponse" name="ConsultaUsuariosDAResponse"/>
+  	</wsdl:message>
+	
+	<!-- Fault message -->
+	<wsdl:message name="msgConsultaUsuariosDAFault">
+  		<wsdl:part element="eb:Messaging" name="detail"/>
+  	</wsdl:message>
+  	  
+	
+<!-- Port type -->
+  	<wsdl:portType name="ptConsultaUsuariosDA12">
+    	<wsdl:operation name="operacionConsultaUsuariosDA">
+      		<wsdl:input message="srv:msgConsultaUsuariosDARequest" name="ConsultaUsuariosDA_Input"/>
+      		<wsdl:output message="srv:msgConsultaUsuariosDAResponse" name="ConsultaUsuariosDA_Output"/>
+	        <wsdl:fault message="srv:msgConsultaUsuariosDAFault" name="fault"/>		
+	    </wsdl:operation>
+  	</wsdl:portType>
+	
+    <!-- Service -->
+    <wsdl:binding name="bdConsultaUsuariosDAHttp" type="srv:ptConsultaUsuariosDA12">
+    	<S12:binding style="document"
+    		transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="operacionConsultaUsuariosDA">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/TI/seguridad/consultausuariosdominio/"/>
+	      	<wsdl:input name="ConsultaUsuariosDA_Input">
+	        	<S12:body parts="ConsultaUsuariosDARequest" use="literal"/>
+	      	</wsdl:input>
+	      	<wsdl:output name="ConsultaUsuariosDA_Output">
+	        	<S12:body parts="ConsultaUsuariosDAResponse" use="literal"/>
+	      	</wsdl:output>
+	      	<wsdl:fault name="fault">
+	      		<S12:fault name="fault" use="literal"/>
+	      	</wsdl:fault>		
+    	</wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="consultausuariosdominio">    	    	
+    	<wsdl:port binding="srv:bdConsultaUsuariosDAHttp" name="consultausuariosdominiocrc">
+      		<S12:address location="http://localhost:7800/services/s12/dominio/consultausuariosdominio"/>
+    	</wsdl:port>
+  	</wsdl:service>  	  
+</wsdl:definitions>

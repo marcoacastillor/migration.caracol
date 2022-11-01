@@ -1,0 +1,10 @@
+BROKER SCHEMA com.caracol.intf.transportes.gestionlogistica.creacionpedidocostosadicionales
+
+
+CREATE COMPUTE MODULE SV_CreacionPedidoCostosAdicionales_ResponseSAPPedido
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+
+		RETURN TRUE;
+	END;
+END MODULE;

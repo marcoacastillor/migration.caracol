@@ -13,7 +13,7 @@ CREATE COMPUTE MODULE ConsultaEmpleados_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC;

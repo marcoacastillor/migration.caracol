@@ -1,0 +1,44 @@
+BROKER SCHEMA com.caracol.intf.ch.financiera.consultacertificado
+
+
+CREATE COMPUTE MODULE SV_ConsultaCertificadoRetenciones_Request
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE tem NAMESPACE 'urn:valorem.com.co:canonicos:fi';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/financiera/generarcertificadofinanciero/consultacertificadoretenciones/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		SET OutputRoot.Properties = InputRoot.Properties;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CertificadoRetencionesRequest;
+				
+				
+		SET OutputRoot.SOAP.Body.tem:RequestCertificadoProveedor.Sociedad= rBodyI.Sociedad;	   	   
+		SET OutputRoot.SOAP.Body.tem:RequestCertificadoProveedor.FechaInicialConsulta= rBodyI.FechaInicialConsulta;
+		SET OutputRoot.SOAP.Body.tem:RequestCertificadoProveedor.FechaFinalConsulta= rBodyI.FechaFinalConsulta;
+		SET OutputRoot.SOAP.Body.tem:RequestCertificadoProveedor.IdentificadorFiscal= rBodyI.IdentificadorFiscal;
+		SET OutputRoot.SOAP.Body.tem:RequestCertificadoProveedor.TipoCertificado= rBodyI.TipoCertificado;
+		
+		--Autenticación
+		SET OutputRoot.Properties.IdentitySourceType='Username+password';
+		SET OutputRoot.Properties.IdentitySourceToken = 'piappl_caracol';
+		SET OutputRoot.Properties.IdentitySourcePassword = 'caracol2015';
+		SET OutputRoot.Properties.IdentitySourceIssuedBy = '';		
+		SET OutputRoot.Properties.IdentityMappedType='Username+password';
+		SET OutputRoot.Properties.IdentityMappedToken = 'piappl_caracol';
+		SET OutputRoot.Properties.IdentityMappedPassword = 'caracol2015';
+		SET OutputRoot.Properties.IdentityMappedIssuedBy = ''; 		
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+	     
+	    SET OutputRoot.HTTPRequestHeader."Authorization" =  basicAuthentication(OutputRoot.Properties.IdentitySourceToken,OutputRoot.Properties.IdentitySourcePassword,InputRoot.Properties.CodedCharSetId);
+		  																																													 
+	    
+		RETURN TRUE;	
+	END;
+	
+	CREATE FUNCTION basicAuthentication(IN user CHARACTER, IN pass CHARACTER, IN codCharseId INTEGER)RETURNS CHARACTER
+		BEGIN
+	RETURN 'Basic '|| BASE64ENCODE(CAST(user||':'||pass as BLOB CCSID codCharseId));
+END;
+END MODULE;

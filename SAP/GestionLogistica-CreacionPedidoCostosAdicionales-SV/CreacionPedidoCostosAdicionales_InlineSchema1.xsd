@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:valorem.com.co:canonicos:mm" xmlns="urn:valorem.com.co:canonicos:mm" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:p1="urn:caracoltv.com:sigo:interfaces" xmlns:p2="urn:valorem.com.co:canonicos:mm" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+  <xsd:element ibmSchExtn:docRoot="true" name="PedidoCostosAdicionales" type="PedidoCostosAdicionales"/>
+  <xsd:complexType name="PedidoCostosAdicionales">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="EN">Pedido Costos Adicionales</xsd:documentation>
+      <xsd:appinfo source="http://sap.com/xi/VersionID">4aa1502993f411eca8a8000000208852</xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Cabecera">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/TextID">3c5335068feb11ecc37700090ffe0001</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="RefPed" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">3c530b498feb11ecb0e800090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IdPaquete" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" name="PosicionGeneral">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/TextID">49a3f03a93f411ec8ca800090ffe0001</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="RefPos" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">49a3ca1c93f411ecc15f00090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CodMat" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">49a3ca1d93f411ecb22a00090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="Cantid" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">49a3ca1e93f411ec8d3c00090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="UniMed" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">49a3ca1f93f411ecc22200090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="PreNet" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">49a3ca2093f411ecc5f200090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TaxCod" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">49a3ca2193f411ec9c8800090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="FecEnt" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">49a3ca2293f411eccd8600090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IndAdi" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">49a3ca2393f411ec94b000090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

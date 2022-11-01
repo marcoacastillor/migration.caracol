@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ConsultaCertificadosProveedor_Out" targetNamespace="urn:caracoltv:extranet:interfaces" xmlns:p1="urn:caracoltv:extranet:interfaces" xmlns:p2="urn:valorem.com.co:canonicos:fi" xmlns:p3="urn:valorem.com.co:canonicos:fi:td" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="CertificadoRetenciones_InlineSchema1.xsd"/>
+        <generatedXSD location="CertificadoRetenciones_InlineSchema2.xsd"/>
+        <binding hasEncoding="false" imported="true" name="ConsultaCertificadosProveedor_OutBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsp:UsingPolicy wsdl:required="true"/>
+  <wsp:Policy wsu:Id="OP_ConsultaCertificadosProveedor_Out"/>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:valorem.com.co:canonicos:fi" xmlns="urn:valorem.com.co:canonicos:fi" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:import namespace="urn:valorem.com.co:canonicos:fi:td" schemaLocation="CertificadoRetenciones_InlineSchema2.xsd"/>
+      <xsd:include schemaLocation="CertificadoRetenciones_InlineSchema1.xsd"/>
+    </xsd:schema>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:valorem.com.co:canonicos:fi:td" xmlns="urn:valorem.com.co:canonicos:fi:td">
+      <xsd:include schemaLocation="CertificadoRetenciones_InlineSchema2.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="p3.RequestCertificadoProveedor">
+    <wsdl:documentation/>
+    <wsdl:part element="p2:RequestCertificadoProveedor" name="RequestCertificadoProveedor"/>
+  </wsdl:message>
+  <wsdl:message name="p3.ResponseCertificadoProveedor">
+    <wsdl:documentation/>
+    <wsdl:part element="p2:ResponseCertificadoProveedor" name="ResponseCertificadoProveedor"/>
+  </wsdl:message>
+  <wsdl:portType name="ConsultaCertificadosProveedor_Out">
+    <wsdl:documentation/>
+    <wsdl:operation name="ConsultaCertificadosProveedor_Out">
+      <wsdl:documentation/>
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_ConsultaCertificadosProveedor_Out"/>
+      </wsp:Policy>
+      <wsdl:input message="p1:p3.RequestCertificadoProveedor"/>
+      <wsdl:output message="p1:p3.ResponseCertificadoProveedor"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConsultaCertificadosProveedor_OutBinding" type="p1:ConsultaCertificadosProveedor_Out">
+    <soap:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConsultaCertificadosProveedor_Out">
+      <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://sap.com/xi/WebService/soap1.1"/>
+      <wsdl:input>
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConsultaCertificadosProveedor_OutService">
+    <wsdl:port binding="p1:ConsultaCertificadosProveedor_OutBinding" name="HTTP_Port">
+      <soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="http://sapvpp.valorem.col:50100/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=EXTRANET_CARACOL_PRD&amp;receiverParty=&amp;receiverService=&amp;interface=ConsultaCertificadosProveedor_Out&amp;interfaceNamespace=urn%3Acaracoltv%3Aextranet%3Ainterfaces"/>
+    </wsdl:port>
+    <wsdl:port binding="p1:ConsultaCertificadosProveedor_OutBinding" name="HTTPS_Port">
+      <soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="https://sapvpp.valorem.col:50101/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=EXTRANET_CARACOL_PRD&amp;receiverParty=&amp;receiverService=&amp;interface=ConsultaCertificadosProveedor_Out&amp;interfaceNamespace=urn%3Acaracoltv%3Aextranet%3Ainterfaces"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:valorem.com.co:canonicos:mm" xmlns="urn:valorem.com.co:canonicos:mm" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:p1="urn:caracoltv.com:sigo:interfaces" xmlns:p2="urn:valorem.com.co:canonicos:mm" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+  <xsd:element ibmSchExtn:docRoot="true" name="ConfirmacionEMSIGO" type="ConfirmacionEMSIGO"/>
+  <xsd:complexType name="ConfirmacionEMSIGO">
+    <xsd:annotation>
+      <xsd:documentation xml:lang="EN">Confirmación Entrada M SIGO</xsd:documentation>
+      <xsd:appinfo source="http://sap.com/xi/VersionID">262d18067f7411ec8bfc000000208852</xsd:appinfo>
+    </xsd:annotation>
+    <xsd:sequence>
+      <xsd:element name="Cabecera">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/TextID">33c1494946db11ec9b0200090ffe0001</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="NOTENT" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">33c0e07546db11ecb5dd00090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="TXTCAB" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">33c11f8846db11eca0e300090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="PEDIDO" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">33c12d9046db11ec8c3100090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CLVOPE" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">33c12d9146db11eccbc100090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CLSMOV" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">33c12d9246db11ec907100090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="FECHA" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">33c12d9346db11eca7cd00090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="IDPAQUETE" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element maxOccurs="unbounded" name="Posiciones">
+        <xsd:annotation>
+          <xsd:appinfo source="http://sap.com/xi/TextID">33c1494a46db11eca2b300090ffe0001</xsd:appinfo>
+        </xsd:annotation>
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="POSPED" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">78a78e4c498111ec9ad900090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="CANTID" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">78a79f30498111ecc8b300090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element name="UNIDEM" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">78a79f31498111ecc61400090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+            <xsd:element minOccurs="0" name="ENTFIN" type="xsd:string">
+              <xsd:annotation>
+                <xsd:appinfo source="http://sap.com/xi/TextID">78a79f32498111ecaf8300090ffe0001</xsd:appinfo>
+              </xsd:annotation>
+            </xsd:element>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>

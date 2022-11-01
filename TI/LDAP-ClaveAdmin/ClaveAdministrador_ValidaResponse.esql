@@ -1,0 +1,40 @@
+
+
+CREATE COMPUTE MODULE ClaveAdministrador_ValidaResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		/*Definicion de Namespace utilizados para construir el SOAP Request*/			
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/ti/asignarclaveadminlocal/generarclaveadminv2/';	
+		DECLARE srv1 NAMESPACE 'http://www.caracoltv.com.co/ti/consulta/consultarmaquinadominio/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		SET OutputRoot.Properties = InputRoot.Properties;
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;
+		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarClaveAdminV2Request TYPE Name;
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:GenerarClaveAdminV2Request;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:GenerarClaveAdminV2Request;		
+						
+		
+		/*Se lee la informacion de entrada que proviene de un SOAP Request*/					
+		DECLARE rBodyIValidaMaquina REFERENCE TO InputRoot.SOAP.Body.srv1:ValidarMaquinaResponse;
+		/*Se construye el SOAP Request con la informacion necesaria*/
+		IF rBodyIValidaMaquina.EnDominio = FALSE THEN
+			THROW USER EXCEPTION VALUES ('Maquina no Existe en el Dominio o es un servidor');
+		ELSE
+		 
+			SET rBodyO.Solicitante = Environment.Variables.Solicitante[1];
+			SET rBodyO.NumeroTicket = Environment.Variables.NumeroTicket[1];
+			SET rBodyO.NombreMaquina = Environment.Variables.NombreMaquina[1];
+			SET rBodyO.ObservacionesSolicitud = Environment.Variables.ObservacionesSolicitud[1];
+		END IF;	
+		RETURN TRUE;
+	END;
+END MODULE;

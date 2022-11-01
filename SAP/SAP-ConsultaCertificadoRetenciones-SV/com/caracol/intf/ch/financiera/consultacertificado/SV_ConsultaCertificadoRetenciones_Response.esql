@@ -1,0 +1,33 @@
+BROKER SCHEMA com.caracol.intf.ch.financiera.consultacertificado
+
+
+CREATE COMPUTE MODULE SV_ConsultaCertificadoRetenciones_Response
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/financiera/generarcertificadofinanciero/consultacertificadoretenciones/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';		
+		DECLARE tem NAMESPACE 'urn:valorem.com.co:canonicos:fi';	
+		DECLARE element_Index INTEGER;	
+		DECLARE intLista INTEGER;	
+		DECLARE j integer;		
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+   		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.tem:ResponseCertificadoProveedor;			
+		SET intLista = CARDINALITY(InputRoot.SOAP.Body.tem:ResponseCertificadoProveedor.Certificado[]);
+		IF (intLista >= 1) THEN
+			SET j = 1;
+			FOR rBody1 AS InputRoot.SOAP.Body.tem:ResponseCertificadoProveedor.Certificado[] DO
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CertificadoRetencionesResponse.Certificados.Certificado[j].DocumentoPdf=rBody1.DocumentoPdf;				
+				SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CertificadoRetencionesResponse.Certificados.Certificado[j].DescripcionIndicador=rBody1.DescripcionIndicador;	
+				SET j=j+1;
+			END FOR;
+		ELSE							
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CertificadoRetencionesResponse.Mensaje=rBodyI.Mensaje;			
+		END IF;	
+		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	
+		RETURN TRUE;	
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQOutput.msgnode="ComIbmMQOutput.msgnode" xmlns:ComIbmSOAPInput.msgnode="ComIbmSOAPInput.msgnode" xmlns:ComIbmSOAPReply.msgnode="ComIbmSOAPReply.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:gen_CreacionPedidoCostosAdicionales_RQ.subflow="gen/CreacionPedidoCostosAdicionales_RQ.subflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility"
+    nsURI="co/com/caracol/service/facade/CreacionPedidoCostosAdicionales_RQ.msgflow" nsPrefix="co_com_caracol_service_facade_CreacionPedidoCostosAdicionales_RQ.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_SERVICE" name="UDP_SERVICE" lowerBound="1" defaultValueLiteral="CREACION_PEDIDO_COSTOS_ADICIONALES">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TRACING" name="UDP_TRACING" lowerBound="1" defaultValueLiteral="true">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <translation xmi:type="utility:TranslatableString" key="CreacionPedidoCostosAdicionales_RQ" bundleName="co/com/caracol/service/facade/CreacionPedidoCostosAdicionales_RQ" pluginId="GestionLogistica-CreacionPedidoCostosAdicionales-CH"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/GestionLogistica-CreacionPedidoCostosAdicionales-CH/icons/full/obj16/CreacionPedidoCostosAdicionales_RQ.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/GestionLogistica-CreacionPedidoCostosAdicionales-CH/icons/full/obj30/CreacionPedidoCostosAdicionales_RQ.gif"/>
+    <composition>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="775,270" queueName="SV.TRAZABILITY.REGISTER.01">
+        <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="559,168" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdWS.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="RouteMessage"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="785,169" queueName="DYNAMIC.QUEUE" destinationMode="list" request="true" replyToQ="CH.WS.SAP.PEDIDOCOSTOSADICIONALES.02">
+        <translation xmi:type="utility:ConstantString" string="DYNAMIC.QUEUE"/>
+      </nodes>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="1003,172" queueName="SV.TRAZABILITY.REGISTER.01">
+        <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01_1"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="557,266">
+        <translation xmi:type="utility:ConstantString" string="SOAP Reply"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="331,266" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdWS.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="CreateErrorMessage"/>
+      </nodes>
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="31,167" wsdlFileName="CreacionPedidoCostosAdicionales.wsdl" selectedPortType="ptCreacionPedidoCostosAdicionales12" selectedBinding="bdCreacionPedidoCostosAdicionalesHttp" selectedPort="creacionpedidocostosadicionales" targetNamespace="http://www.caracoltv.com.co/transportes/gestionlogistica/creacionpedidocostosadicionales/" useHTTPTransport="true" urlSelector="/services/s12/transportes/gestionlogistica/creacionpedidocostosadicionales">
+        <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
+      </nodes>
+      <nodes xmi:type="gen_CreacionPedidoCostosAdicionales_RQ.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="331,164">
+        <translation xmi:type="utility:ConstantString" string="CreacionPedidoCostosAdicionales"/>
+        <shortDescription xmi:type="utility:ConstantString" string="Extracts message body from the SOAP message"/>
+        <longDescription xmi:type="utility:ConstantString" string="This subflow extracts the body out of the SOAP message, has one output node per operation. This was generated by a WSDL file drag and drop operation."/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_1" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_3" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_8" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_8" sourceTerminalName="OutTerminal.CreacionPedidoCostosAdicionalesRequest" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_7" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_SERVICE">
+        <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_SERVICE" bundleName="co/com/caracol/service/facade/CreacionPedidoCostosAdicionales_RQ" pluginId="GestionLogistica-CreacionPedidoCostosAdicionales-CH"/>
+        <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TRACING">
+          <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TRACING" bundleName="co/com/caracol/service/facade/CreacionPedidoCostosAdicionales_RQ" pluginId="GestionLogistica-CreacionPedidoCostosAdicionales-CH"/>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>

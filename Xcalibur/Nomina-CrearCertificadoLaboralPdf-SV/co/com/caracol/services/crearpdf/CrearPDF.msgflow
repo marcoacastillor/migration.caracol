@@ -7,31 +7,31 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-CrearCertificadoLaboralPdf-SV/icons/full/obj16/CrearPDF.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-CrearCertificadoLaboralPdf-SV/icons/full/obj30/CrearPDF.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="608,127" URLSpecifier="http://kappaprpi:7272/api/createpdf" timeoutForServer="10" httpVersion="1.1" protocol="TLS">
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="446,128" URLSpecifier="http://kappaprpi:7272/api/createpdf" timeoutForServer="10" httpVersion="1.1" protocol="TLS">
         <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="389,202" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="227,203" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="379,126" computeExpression="esql://routine/co.com.caracol.services.crearpdf#CrearPDF_RequestBack.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="217,127" computeExpression="esql://routine/co.com.caracol.services.crearpdf#CrearPDF_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="777,39" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="615,40" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="833,134" queueName="CH.WS.NOMINA.CREACERTIFICADOPDFVER2.02" request="true">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="671,135" queueName="CH.WS.NOMINA.CREACERTIFICADOPDFVER2.02" request="true">
         <translation xmi:type="utility:ConstantString" string="CH.WS.NOMINA.CREACERTIFICADOPDFVER2.02"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="174,127" queueName="SV.NOMINA.CREARCERTIFICADOPDFVER2.01" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="12,128" queueName="SV.NOMINA.CREARCERTIFICADOPDFVER2.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.AUSENCIAS.ANULARAPROBARVACACIONES.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="1254,140">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="1092,141">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="1035,139" computeExpression="esql://routine/co.com.caracol.services.crearpdf#CrearPDF_ResponseService.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="873,140" computeExpression="esql://routine/co.com.caracol.services.crearpdf#CrearPDF_ResponseService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="608,202">
+      <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="446,203">
         <translation xmi:type="utility:ConstantString" string="MQ Reply1"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>

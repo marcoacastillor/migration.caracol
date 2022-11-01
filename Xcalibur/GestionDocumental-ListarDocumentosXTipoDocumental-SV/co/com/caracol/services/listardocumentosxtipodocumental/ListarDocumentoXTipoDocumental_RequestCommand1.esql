@@ -12,7 +12,7 @@ CREATE COMPUTE MODULE ListarDocumentoXTipoDocumental_RequestCommand1
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		DECLARE Comando CHARACTER '';
 		DECLARE i INTEGER 1;

@@ -4,8 +4,8 @@
 	<comment></comment>
 	<projects>
 		<project>Lib-OnBase-CargarArchivos</project>
-		<project>OnBase-CargaArchivos</project>
 		<project>CommonsIntegration_LIB</project>
+		<project>OnBase-CargaArchivos</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

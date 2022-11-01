@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="ConfirmacionEMSIGO_Out" targetNamespace="urn:caracoltv.com:sigo:interfaces" xmlns:p1="urn:caracoltv.com:sigo:interfaces" xmlns:p2="urn:valorem.com.co:canonicos:mm" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <generatedXSD location="pedidomigo_InlineSchema1.xsd"/>
+        <binding hasEncoding="false" imported="true" name="ConfirmacionEMSIGO_OutBinding" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsp:UsingPolicy wsdl:required="true"/>
+  <wsp:Policy wsu:Id="OP_ConfirmacionEMSIGO_Out"/>
+  <wsdl:types>
+    <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:valorem.com.co:canonicos:mm" xmlns="urn:valorem.com.co:canonicos:mm" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+      <xsd:include schemaLocation="pedidomigo_InlineSchema1.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="p2.ConfirmacionEMSIGO">
+    <wsdl:documentation/>
+    <wsdl:part element="p2:ConfirmacionEMSIGO" name="ConfirmacionEMSIGO"/>
+  </wsdl:message>
+  <wsdl:portType name="ConfirmacionEMSIGO_Out">
+    <wsdl:documentation/>
+    <wsdl:operation name="ConfirmacionEMSIGO_Out">
+      <wsdl:documentation/>
+      <wsp:Policy>
+        <wsp:PolicyReference URI="#OP_ConfirmacionEMSIGO_Out"/>
+      </wsp:Policy>
+      <wsdl:input message="p1:p2.ConfirmacionEMSIGO"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ConfirmacionEMSIGO_OutBinding" type="p1:ConfirmacionEMSIGO_Out">
+    <soap:binding xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConfirmacionEMSIGO_Out">
+      <soap:operation xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" soapAction="http://sap.com/xi/WebService/soap1.1"/>
+      <wsdl:input>
+        <soap:body xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ConfirmacionEMSIGO_OutService">
+    <wsdl:port binding="p1:ConfirmacionEMSIGO_OutBinding" name="HTTP_Port">
+      <soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="http://svmsappo02.valorem.col:50000/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=CCNP_CARACOL&amp;receiverParty=&amp;receiverService=&amp;interface=ConfirmacionEMSIGO_Out&amp;interfaceNamespace=urn%3Acaracoltv.com%3Asigo%3Ainterfaces"/>
+    </wsdl:port>
+    <wsdl:port binding="p1:ConfirmacionEMSIGO_OutBinding" name="HTTPS_Port">
+      <soap:address xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" location="https://svmsappo02.valorem.col:50001/XISOAPAdapter/MessageServlet?senderParty=&amp;senderService=CCNP_CARACOL&amp;receiverParty=&amp;receiverService=&amp;interface=ConfirmacionEMSIGO_Out&amp;interfaceNamespace=urn%3Acaracoltv.com%3Asigo%3Ainterfaces"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,46 @@
+BROKER SCHEMA com.caracol.intf.transportes.gestionlogistica.creacionpedidocostosadicionales
+DECLARE ns NAMESPACE 'urn:valorem.com.co:canonicos:mm';
+
+CREATE COMPUTE MODULE SV_CreacionPedidoCostosAdicionales_RequestCrearPedido
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE tem NAMESPACE 'urn:caracoltv.com:sigo:interfaces'; 
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/transportes/gestionlogistica/creacionpedidocostosadicionales/';   
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		SET OutputRoot.Properties = InputRoot.Properties;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:CreacionPedidoCostosAdicionalesRequest;  
+		DECLARE Item_Index INTEGER; 
+		SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.Cabecera.RefPed= rBodyI.Cabecera.RefPed;
+		SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.Cabecera.IdPaquete= rBodyI.Cabecera.IdPaquete; 
+		DECLARE intDetallePedido INTEGER CARDINALITY(rBodyI.PosicionGeneral.*[]);     
+		IF (intDetallePedido >= 1) THEN
+			SET Item_Index =1;									
+			FOR rBodyDetalles AS rBodyI.PosicionGeneral[] DO   
+				SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.PosicionGeneral[Item_Index].RefPos=	rBodyI.PosicionGeneral.RefPos;
+				SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.PosicionGeneral[Item_Index].CodMat=	rBodyI.PosicionGeneral.CodMat;
+				SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.PosicionGeneral[Item_Index].Cantid=	rBodyI.PosicionGeneral.Cantidad;
+				SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.PosicionGeneral[Item_Index].UniMed=	rBodyI.PosicionGeneral.UnidadMedida;
+				SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.PosicionGeneral[Item_Index].PreNet=	rBodyI.PosicionGeneral.PreNet;
+				SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.PosicionGeneral[Item_Index].TaxCod=	rBodyI.PosicionGeneral.TaxCod;
+				SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.PosicionGeneral[Item_Index].FecEnt=	rBodyI.PosicionGeneral.FecEnt;
+				SET OutputRoot.SOAP.Body.ns:PedidoCostosAdicionales.PosicionGeneral[Item_Index].IndAdi=	rBodyI.PosicionGeneral.IndAdi; 				
+				SET Item_Index = Item_Index +1;   	   
+			END FOR;								  						   	   				
+		END IF;
+		--Autenticación
+		SET OutputRoot.Properties.IdentitySourceType='usernameAndPassword';
+		SET OutputRoot.Properties.IdentitySourceToken = 'PIAPPL_CARACOL';
+		SET OutputRoot.Properties.IdentitySourcePassword = 'Edg&JG47xW4';
+		SET OutputRoot.Properties.IdentitySourceIssuedBy = '';		
+		SET OutputRoot.Properties.IdentityMappedType='usernameAndPassword';
+		SET OutputRoot.Properties.IdentityMappedToken = 'PIAPPL_CARACOL'; 
+		SET OutputRoot.Properties.IdentityMappedPassword = 'Edg&JG47xW4'; 
+		SET OutputRoot.Properties.IdentityMappedIssuedBy = ''; 		
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		RETURN TRUE;		 
+	END;
+END MODULE;
+

@@ -13,18 +13,12 @@ CREATE COMPUTE MODULE ConsultaProveedores_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
-		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
+		--MOVE refInp LASTCHILD;
 		
 		IF EXISTS(refInp.*:Proveedor[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:ConsultaProveedoresResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaOrdenesResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaProveedoresResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaOrdenesResponse;
 		
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:Proveedor.*:ProveedorRow[]  DO

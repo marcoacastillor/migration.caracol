@@ -1,0 +1,16 @@
+BROKER SCHEMA com.caracol.intf.transportes.gestionlogistica.recibirrespuestamigopedido
+
+
+CREATE COMPUTE MODULE CH1_RecibirRespuestaMigoPedido_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope'; 
+		DECLARE nsv NAMESPACE 'http://www.caracoltv.com.co/transportes/gestionlogistica/recibirrespuestamigopedido/';
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+    	SET OutputRoot.Properties = InputRoot.Properties;
+    	SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header; 
+    	SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:RecibirRespuestaMigoPedidoResponse.EstadoRecibido= true; 
+		RETURN TRUE;
+	END;
+END MODULE;

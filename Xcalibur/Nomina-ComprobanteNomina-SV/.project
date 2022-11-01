@@ -3,7 +3,6 @@
 	<name>Nomina-ComprobanteNomina-SV</name>
 	<comment></comment>
 	<projects>
-		<project>Indicadores</project>
 		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
