@@ -7,8 +7,8 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Biometricos-RegistrarNovedadEmpleado-SV/icons/full/obj16/RegistrarNovedadEmpleado.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Biometricos-RegistrarNovedadEmpleado-SV/icons/full/obj30/RegistrarNovedadEmpleado.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="6,122" queueName="SV.GESTIONMOVIMIENTOS.CONSULTACLIENTES_VI.01" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="SV.GESTIONMOVIMIENTOS.CONSULTACLIENTES_VI.01"/>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="6,122" queueName="SV.REGISTRARNOVEDADEMPLEADO.RECIBENOVEDAD.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="SV.REGISTRARNOVEDADEMPLEADO.RECIBENOVEDAD.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="219,122" computeExpression="esql://routine/co.com.caracol.registrarnovedadempleado#RegistrarNovedadEmpleado_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>

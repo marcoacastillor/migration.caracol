@@ -1,6 +1,6 @@
 BROKER SCHEMA co.com.caracol.registrarnovedadempleado
 
-DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultaclientes/';
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/';
 
 CREATE COMPUTE MODULE RegistrarNovedadEmpleado_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -15,47 +15,45 @@ CREATE COMPUTE MODULE RegistrarNovedadEmpleado_ResponseService
 		MOVE refInp LASTCHILD;
 		--MOVE refInp LASTCHILD;
 		
-		IF EXISTS(refInp.*:novedad[]) THEN
+		IF EXISTS(refInp.*:RegistrarNovedadEmpleadoResult[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.ns:RegistrarNovedadEmpleadoResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:RegistrarNovedadEmpleadoResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:RegistrarNovedadEmpleadoResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:RegistrarNovedadEmpleadoResponse;
+			
+			
+		        SET refOut.ns1:RegistrarNovedadEmpleadoResult.Cedula	        		= FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:Cedula);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.ClasificacionContrato	= FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:ClasificacionContrato);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.CodigoCentroCostos	    = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:CodigoCentroCostos);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.CodigoCiudad	        	= FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:CodigoCiudad);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.CodigoEmpresa	        = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:CodigoEmpresa);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.CodigoMarcacion	    	= FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:CodigoMarcacion);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.CorreoElectronico	    = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:CorreoElectronico);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.DiaDeDescanso	        = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:DiaDeDescanso);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.Estado	        		= FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:Estado);
+				IF CAST(refInp.RegistrarNovedadEmpleadoResult.FechaDeRetiro AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+			 		SET refOut.ns1:RegistrarNovedadEmpleadoResult.FechaDeRetiro		= (refInp.*:RegistrarNovedadEmpleadoResult.*:FechaDeRetiro);
+				END IF;
+				IF CAST(refInp.RegistrarNovedadEmpleadoResult.FechaFinContrato AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+			 		SET refOut.ns1:RegistrarNovedadEmpleadoResult.FechaFinContrato	= (refInp.*:RegistrarNovedadEmpleadoResult.*:FechaFinContrato);
+				END IF;
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.FechaIngreso	        = (refInp.*:RegistrarNovedadEmpleadoResult.*:_clienteCampo1);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.Ficha	        		= FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:FechaIngreso);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.Genero	        		= FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:Ficha);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.Nombre	        		= FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:Nombre);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.NombreCargo	        = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:NombreCargo);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.NombreCentroCostos	    = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:NombreCentroCostos);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.NombreCiudad	        = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:NombreCiudad);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.NombreEmpresa	        = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:NombreEmpresa);
+			
+				IF refInp.RegistrarNovedadEmpleadoResult.Regimen <> '' THEN
+					SET refOut.ns1:RegistrarNovedadEmpleadoResult.Regimen			= (refInp.*:RegistrarNovedadEmpleadoResult.*:Regimen);
+				END IF;
+				
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.Telefono	        	= FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:Telefono);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.TipoDeContrato	     = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:TipoDeContrato);
+				SET refOut.ns1:RegistrarNovedadEmpleadoResult.TipoLiquidacion	    = FIELDVALUE(refInp.*:RegistrarNovedadEmpleadoResult.*:TipoLiquidacion);
+				
 		
-			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:novedad.*:NovedadEmpleadoRequest[]  DO
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Apellido	        	= FIELDVALUE(refReqs.*:Apellido);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Cedula	        		= FIELDVALUE(refReqs.*:Cedula);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:ClasificacionContrato	= FIELDVALUE(refReqs.*:ClasificacionContrato);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CodigoCentroCostos	    = FIELDVALUE(refReqs.*:CodigoCentroCostos);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CodigoCiudad	        = FIELDVALUE(refReqs.*:CodigoCiudad);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CodigoEmpresa	        = FIELDVALUE(refReqs.*:CodigoEmpresa);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CodigoMarcacion	    = FIELDVALUE(refReqs.*:CodigoMarcacion);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CorreoElectronico	    = FIELDVALUE(refReqs.*:CorreoElectronico);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:DiaDeDescanso	        = FIELDVALUE(refReqs.*:DiaDeDescanso);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Estado	        		= FIELDVALUE(refReqs.*:Estado);
-				IF CAST(refReqs.novedad.FechaRetiro AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
-			 		SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest.[i].ns1:FechaDeRetiro		= (refReqs.*:FechaDeRetiro);
-				END IF;
-				IF CAST(refReqs.novedad.FechaFinContrato AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
-			 		SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest.[i].ns1:FechaFinContrato	= (refReqs.*:FechaFinContrato);
-				END IF;
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:FechaIngreso	        = (refReqs.*:_clienteCampo1);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Ficha	        		= FIELDVALUE(refReqs.*:FechaIngreso);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Genero	        		= FIELDVALUE(refReqs.*:Ficha);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Nombre	        		= FIELDVALUE(refReqs.*:Nombre);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:NombreCargo	        = FIELDVALUE(refReqs.*:NombreCargo);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:NombreCentroCostos	    = FIELDVALUE(refReqs.*:NombreCentroCostos);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:NombreCiudad	        = FIELDVALUE(refReqs.*:NombreCiudad);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:NombreEmpresa	        = FIELDVALUE(refReqs.*:NombreCiudad);
-				IF refReqs.novedad.Regimen <> '' THEN
-					SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest.[i].ns1:Regimen			= (refReqs.*:Regimen);
-				END IF;
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Telefono	        	= FIELDVALUE(refReqs.*:Telefono);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:TipoDeContrato	        = FIELDVALUE(refReqs.*:TipoDeContrato);
-				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:TipoLiquidacion	    = FIELDVALUE(refReqs.*:TipoLiquidacion);
-				
-				
-				SET i = i + 1;
-			END FOR;
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
 		END IF;
