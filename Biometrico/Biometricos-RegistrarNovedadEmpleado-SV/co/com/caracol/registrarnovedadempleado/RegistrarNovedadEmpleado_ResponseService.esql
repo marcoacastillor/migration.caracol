@@ -1,0 +1,65 @@
+BROKER SCHEMA co.com.caracol.registrarnovedadempleado
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultaclientes/';
+
+CREATE COMPUTE MODULE RegistrarNovedadEmpleado_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		IF EXISTS(refInp.*:novedad[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.ns:RegistrarNovedadEmpleadoResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:RegistrarNovedadEmpleadoResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:novedad.*:NovedadEmpleadoRequest[]  DO
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Apellido	        	= FIELDVALUE(refReqs.*:Apellido);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Cedula	        		= FIELDVALUE(refReqs.*:Cedula);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:ClasificacionContrato	= FIELDVALUE(refReqs.*:ClasificacionContrato);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CodigoCentroCostos	    = FIELDVALUE(refReqs.*:CodigoCentroCostos);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CodigoCiudad	        = FIELDVALUE(refReqs.*:CodigoCiudad);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CodigoEmpresa	        = FIELDVALUE(refReqs.*:CodigoEmpresa);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CodigoMarcacion	    = FIELDVALUE(refReqs.*:CodigoMarcacion);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:CorreoElectronico	    = FIELDVALUE(refReqs.*:CorreoElectronico);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:DiaDeDescanso	        = FIELDVALUE(refReqs.*:DiaDeDescanso);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Estado	        		= FIELDVALUE(refReqs.*:Estado);
+				IF CAST(refReqs.novedad.FechaRetiro AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+			 		SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest.[i].ns1:FechaDeRetiro		= (refReqs.*:FechaDeRetiro);
+				END IF;
+				IF CAST(refReqs.novedad.FechaFinContrato AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+			 		SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest.[i].ns1:FechaFinContrato	= (refReqs.*:FechaFinContrato);
+				END IF;
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:FechaIngreso	        = (refReqs.*:_clienteCampo1);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Ficha	        		= FIELDVALUE(refReqs.*:FechaIngreso);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Genero	        		= FIELDVALUE(refReqs.*:Ficha);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Nombre	        		= FIELDVALUE(refReqs.*:Nombre);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:NombreCargo	        = FIELDVALUE(refReqs.*:NombreCargo);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:NombreCentroCostos	    = FIELDVALUE(refReqs.*:NombreCentroCostos);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:NombreCiudad	        = FIELDVALUE(refReqs.*:NombreCiudad);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:NombreEmpresa	        = FIELDVALUE(refReqs.*:NombreCiudad);
+				IF refReqs.novedad.Regimen <> '' THEN
+					SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest.[i].ns1:Regimen			= (refReqs.*:Regimen);
+				END IF;
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:Telefono	        	= FIELDVALUE(refReqs.*:Telefono);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:TipoDeContrato	        = FIELDVALUE(refReqs.*:TipoDeContrato);
+				SET refOut.ns1:novedad.ns1:NovedadEmpleadoRequest[i].ns1:TipoLiquidacion	    = FIELDVALUE(refReqs.*:TipoLiquidacion);
+				
+				
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;
+	
