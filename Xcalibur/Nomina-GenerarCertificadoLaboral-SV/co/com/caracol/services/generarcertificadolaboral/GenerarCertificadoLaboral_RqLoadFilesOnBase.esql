@@ -4,20 +4,14 @@ BROKER SCHEMA co.com.caracol.services.generarcertificadolaboral
 CREATE COMPUTE MODULE GenerarCertificadoLaboral_RqLoadFilesOnBase
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
-		--Declarar variable referencia de entrada
-		DECLARE refInp REFERENCE TO InputRoot;
-		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 		
-		SET refOut.ArchivoPdf		= Environment.Variables.D1De[1];
-		SET refOut.RutaPdf			= 'E:\Onbase\Compartida\DIP\Historia Laboral\BaseCer\';	    	   
+		SET refOut.ArchivoPdf		= Environment.Variables.PDF[1];
+		SET refOut.RutaPdf			= '/opt/ace/Onbase/Compartida/DIP/Historia Laboral/BaseCer/';	    	   
 	    SET refOut.ArchivoCSV		= Environment.Variables.CSV[1];	    
-	    SET refOut.RutaCSV			= 'E:\Onbase\Compartida\DIP\Historia Laboral\BaseCer\';
+	    SET refOut.RutaCSV			= '/opt/ace/Onbase/Compartida/DIP/Historia Laboral/BaseCer/';
 		SET refOut.HoraEjecucion	= '14';
 		SET refOut.Ficha			= Environment.Variables.Ficha[1];
 				

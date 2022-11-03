@@ -1,4 +1,4 @@
-BROKER SCHEMA co.com.caracol.consultadocumentoxtipodocumental
+BROKER SCHEMA co.com.caracol.services.consultadocumentoxtipodocumental
 
 
 CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_RequestCommand2
@@ -12,12 +12,12 @@ CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_RequestCommand2
 		MOVE refInp LASTCHILD;
 		
 		--Declarar variables
-		DECLARE Comando2 CHARACTER '<Request><Type>DocumentData</Type><Query><DocumentHandle>';	
+		DECLARE Comando2 CHARACTER '<Request><Type>DocumentData</Type><Query><DocumentHandle>';
 		DECLARE i INTEGER 1;
 		
 		DECLARE intDocumento INTEGER CARDINALITY(refInp.Result.*[]);
 		IF (intDocumento >= 1) THEN		
-			FOR rBodyDocumento AS refInp.Document[] DO	
+			FOR rBodyDocumento AS refInp.*:Result.*:Document[] DO	
 				SET Comando2 = Comando2 ||  rBodyDocumento.id || '</DocumentHandle><KeywordsFilter>'; 
 				DECLARE intKeyword INTEGER CARDINALITY(rBodyDocumento.Keywords.*[]);	
 				IF (intKeyword >= 1) THEN		

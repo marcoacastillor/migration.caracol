@@ -7,7 +7,6 @@ CREATE COMPUTE MODULE CaragaArchivosOnbase_Data
 		--Declarar referencia a objeto de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 							
 		/*Se construye el SOAP Request con la informacion necesaria*/	   	     		
 		SET Environment.Variables.RutaPdf[] 		= LIST{refInp.RutaPdf};

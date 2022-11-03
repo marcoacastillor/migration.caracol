@@ -1,6 +1,4 @@
-BROKER SCHEMA OnBase_EjecutarComandoDECLARE ns NAMESPACE 'http://tempuri.org/';
-
-
+BROKER SCHEMA OnBase_EjecutarComandoDECLARE ns NAMESPACE 'http://tempuri.org/';
 
 CREATE COMPUTE MODULE EjecutaComandoECM_Request
 	CREATE FUNCTION Main() RETURNS BOOLEAN

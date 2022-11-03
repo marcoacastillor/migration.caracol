@@ -31,7 +31,8 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="720,270" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="27,168" wsdlFileName="GenerarCertificadoLaboralV2_2.wsdl" selectedPortType="ptGenerarCertificadoLaboral" selectedBinding="bdGenerarCertificadoLaboralSOAP12Http" selectedPort="ptGenerarCertificadoLaboral12" targetNamespace="http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/" useHTTPTransport="true" urlSelector="/services/s12/dominio/GenerarCertificadoLaboralv2">
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="27,168" wsdlFileName="GenerarCertificadoLaboralV2_2.wsdl" selectedPortType="ptGenerarCertificadoLaboral" selectedBinding="bdGenerarCertificadoLaboralSOAP12Http" selectedPort="ptGenerarCertificadoLaboral12" targetNamespace="http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/" useHTTPTransport="true" urlSelector="/services/s12/dominio/GenerarCertificadoLaboralv2" parserXmlnscBuildTreeUsingXMLSchema="false"
+          validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
       </nodes>
       <nodes xmi:type="gen_Generar_CertificadoLaboral_RQ.subflow:FCMComposite_1" xmi:id="FCMComposite_1_2" location="276,164">

@@ -1,4 +1,4 @@
-BROKER SCHEMA co.com.caracol.consultadocumentoxtipodocumental
+BROKER SCHEMA co.com.caracol.services.consultadocumentoxtipodocumental
 
 
 CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_RequestCommand1
@@ -12,7 +12,7 @@ CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_RequestCommand1
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		DECLARE Comando CHARACTER '';
 		DECLARE i INTEGER 1;

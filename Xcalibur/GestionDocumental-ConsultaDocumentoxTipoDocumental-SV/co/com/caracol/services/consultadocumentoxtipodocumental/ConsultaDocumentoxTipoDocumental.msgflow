@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQReply.msgnode="ComIbmMQReply.msgnode" xmlns:OnBase_EjecutarComando_EjecutaComandoECM.subflow="OnBase_EjecutarComando/EjecutaComandoECM.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="co/com/caracol/consultadocumentoxtipodocumental/ConsultaDocumentoxTipoDocumental.msgflow" nsPrefix="co_com_caracol_consultadocumentoxtipodocumental_ConsultaDocumentoxTipoDocumental.msgflow">
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmMQInput.msgnode="ComIbmMQInput.msgnode" xmlns:ComIbmMQReply.msgnode="ComIbmMQReply.msgnode" xmlns:OnBase_EjecutarComando_EjecutaComandoECM.subflow="OnBase_EjecutarComando/EjecutaComandoECM.subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="co/com/caracol/services/consultadocumentoxtipodocumental/ConsultaDocumentoxTipoDocumental.msgflow" nsPrefix="co_com_caracol_services_consultadocumentoxtipodocumental_ConsultaDocumentoxTipoDocumental.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
-    <translation xmi:type="utility:TranslatableString" key="ConsultaDocumentoxTipoDocumental" bundleName="co/com/caracol/consultadocumentoxtipodocumental/ConsultaDocumentoxTipoDocumental" pluginId="GestionDocumental-ConsultaDocumentoxTipoDocumental-SV"/>
+    <translation xmi:type="utility:TranslatableString" key="ConsultaDocumentoxTipoDocumental" bundleName="co/com/caracol/services/consultadocumentoxtipodocumental/ConsultaDocumentoxTipoDocumental" pluginId="GestionDocumental-ConsultaDocumentoxTipoDocumental-SV"/>
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/GestionDocumental-ConsultaDocumentoxTipoDocumental-SV/icons/full/obj16/ConsultaDocumentoxTipoDocumental.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/GestionDocumental-ConsultaDocumentoxTipoDocumental-SV/icons/full/obj30/ConsultaDocumentoxTipoDocumental.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="706,174" computeExpression="esql://routine/co.com.caracol.consultadocumentoxtipodocumental#ConsultaDocumentoxTipoDocumental_RequestCommand2.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="706,174" computeExpression="esql://routine/co.com.caracol.services.consultadocumentoxtipodocumental#ConsultaDocumentoxTipoDocumental_RequestCommand2.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestCommand2"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="223,250" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
@@ -18,7 +18,7 @@
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="8,175" queueName="SV.DOCUMENTOXTIPODOCUMENTAL.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.DOCUMENTOXTIPODOCUMENTAL.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="221,175" computeExpression="esql://routine/co.com.caracol.consultadocumentoxtipodocumental#ConsultaDocumentoxTipoDocumental_RequestCommand1.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="221,175" computeExpression="esql://routine/co.com.caracol.services.consultadocumentoxtipodocumental#ConsultaDocumentoxTipoDocumental_RequestCommand1.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestCommand1"/>
       </nodes>
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="443,251">
@@ -30,7 +30,7 @@
       <nodes xmi:type="OnBase_EjecutarComando_EjecutaComandoECM.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="924,175">
         <translation xmi:type="utility:ConstantString" string="EjecutaComandoECM1"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="1139,174" computeExpression="esql://routine/co.com.caracol.consultadocumentoxtipodocumental#ConsultaDocumentoxTipoDocumental_ResponseService.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="1139,174" computeExpression="esql://routine/co.com.caracol.services.consultadocumentoxtipodocumental#ConsultaDocumentoxTipoDocumental_ResponseService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_2" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>

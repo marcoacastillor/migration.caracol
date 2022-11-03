@@ -8,8 +8,7 @@ CREATE COMPUTE MODULE GenerarCertificadoLaboral_RqCertificateNotificate
 		--Declarar variable referencia de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;		
 		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC.ns15:CargaPlantillaRequest;

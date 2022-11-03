@@ -12,35 +12,31 @@ CREATE COMPUTE MODULE ListarDocumentoXTipoDocumental_RsponseCommand
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
 		--Declarar variables
 		DECLARE ComandoRespuesta CHARACTER '';	
 		DECLARE i,j INTEGER 1;
 		
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
 		IF EXISTS(refInp.*:Response[]) THEN
-			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.Documentos;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.Documentos;
-			
-			FOR rBodyDocumento AS refInp.Result.Document[] DO  
-				SET refOut.Documento[i].IdDocumento				= CAST (rBodyDocumento.id AS INTEGER);  
-				SET refOut.Documento[i].Nombre					= CAST (rBodyDocumento.name AS CHARACTER);   
-				SET refOut.Documento[i].UltimaRevision			= rBodyDocumento.LatestRevision; 
-				SET refOut.Documento[i].TipoDocumental			= CAST( rBodyDocumento.DocumentType AS CHAR);
-				SET refOut.Documento[i].FechaCreacion			= CAST( SUBSTRING(rBodyDocumento.DateStored FROM 1 FOR 10) AS DATE);
-				    				 
-				DECLARE intKeyword INTEGER CARDINALITY(rBodyDocumento.Keywords.*[]);	
-				IF (intKeyword >= 1) THEN		
-					SET j =1;	
-					--Crear KeyWord 							
-					FOR rBodyKeyWord AS refInp.Result.Document.Keywords.Keyword[] DO 												
-						SET refOut.Documento[i].KeyWords.KeyWord[j].Nombre= CAST(rBodyKeyWord.name AS CHARACTER);     
-						SET refOut.Documento[i].KeyWords.KeyWord[j].Valor=CAST( rBodyKeyWord AS CHARACTER);     						 						 						 						
-						SET j = j +1;  				
-					END FOR; 							
-				END IF;	
-				set i = i +1;																																												
+			FOR rBodyDocumento AS refInp.Response.Result.Document[] DO  
+				SET refOut.(JSON.Array)Documento.d[i].IdDocumento			= CAST (rBodyDocumento.id AS INTEGER);  
+				SET refOut.(JSON.Array)Documento.d[i].Nombre					= CAST (rBodyDocumento.name AS CHARACTER);   
+				SET refOut.(JSON.Array)Documento.d[i].UltimaRevision			= rBodyDocumento.LatestRevision; 
+				SET refOut.(JSON.Array)Documento.d[i].TipoDocumental			= CAST( rBodyDocumento.DocumentType AS CHAR);
+				SET refOut.(JSON.Array)Documento.d[i].FechaCreacion			= CAST( SUBSTRING(rBodyDocumento.DateStored FROM 1 FOR 10) AS DATE);
+				
+				--Crear KeyWord 							
+				SET j = 1;
+				FOR rBodyKeyWord AS rBodyDocumento.Keywords.*[] DO
+					SET refOut.(JSON.Array).d[i].KeyWord[j].Nombre	= CAST(rBodyKeyWord.name AS CHARACTER);     
+					SET refOut.(JSON.Array).d[i].KeyWord[j].Valor	= CAST( rBodyKeyWord AS CHARACTER);     						 						 						 						
+					SET j = j +1;  				
+				END FOR; 	
+									
+				SET i = i +1;
 			END FOR;									
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');

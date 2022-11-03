@@ -1,4 +1,4 @@
-BROKER SCHEMA co.com.caracol.consultadocumentoxtipodocumental
+BROKER SCHEMA co.com.caracol.services.consultadocumentoxtipodocumental
 
 DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/gestiondocumental/consultadocumentoxtipodocumental/';
 
@@ -19,16 +19,10 @@ CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_ResponseService
 		DECLARE ComandoRespuesta CHARACTER '';	
 		DECLARE i INTEGER 1;
 		
-		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
-		
 		IF EXISTS(refInp.*:Response[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:ConsultaDocumentoXTipoDocumentalResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaDocumentoXTipoDocumentalResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaDocumentoXTipoDocumentalResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaDocumentoXTipoDocumentalResponse;
 			
 			SET refOut.ns1:IdDocumento			= FIELDVALUE(refInp.*:id);  
 			SET refOut.ns1:Nombre				= FIELDVALUE(refInp.*:name);   

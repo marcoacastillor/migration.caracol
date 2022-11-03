@@ -12,10 +12,10 @@ CREATE COMPUTE MODULE ConsultaCertificadoLaboral_ResponseService
 		--Declarar variable referencia de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
-		IF EXISTS(refInp.*:CertificadoLaboral[]) THEN
+		IF EXISTS(refInp.*:ConsultarDatosCertificadoResponse[]) THEN
+			MOVE refInp LASTCHILD;
+			
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultarDatosCertificadoResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultarDatosCertificadoResponse;

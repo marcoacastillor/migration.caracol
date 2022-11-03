@@ -13,6 +13,7 @@ CREATE COMPUTE MODULE EjecutaComandoECM_Response
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
 		
 		-- Convert Char to BLOB
 		DECLARE messageBlob BLOB CAST(refInp.ns2:ExecuteResult AS BLOB CCSID 1200);

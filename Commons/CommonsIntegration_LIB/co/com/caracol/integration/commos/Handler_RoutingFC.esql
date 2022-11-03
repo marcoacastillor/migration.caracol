@@ -123,20 +123,21 @@ CREATE COMPUTE MODULE HandlerModules_ResponseFcdREST
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		--Copiar cabeceras
-		SET OutputRoot.MQMD = InputRoot.MQMD;
-		SET OutputRoot.MQRFH2 = InputRoot.MQRFH2;
+		SET OutputRoot 	= InputRoot;
 		
 		--Declarar referencia de mensaje de entrada
-		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2;
 		
 		--Guardar datos para auditoria
 		SET refMQRFH2.usr.transaction.traceId 			= FACADE_RESP;
 		
+		PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= NULL;
+		SET OutputRoot.MQRFH2 	= NULL;
+		
 		--Copiar replyIdentifer
 		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = CAST(refMQRFH2.usr.responseREST.replyIdentifier AS BLOB);
-		
-		--Copiar mensaje completo
-		SET OutputRoot.JSON = InputRoot.JSON;
 		
 		RETURN TRUE;
 	END;

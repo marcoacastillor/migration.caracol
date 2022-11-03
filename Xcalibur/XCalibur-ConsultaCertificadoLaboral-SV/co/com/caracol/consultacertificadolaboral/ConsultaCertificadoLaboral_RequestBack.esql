@@ -1,6 +1,6 @@
 BROKER SCHEMA co.com.caracol.consultacertificadolaboral
 
-DECLARE temp NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/NM/CerLaboral/ConsultaCertificadoLaboralXcalibur';
+DECLARE tem NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/NM/CerLaboral/ConsultaCertificadoLaboralXcalibur';
 
 CREATE COMPUTE MODULE ConsultaCertificadoLaboral_RequestBack
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -13,18 +13,14 @@ CREATE COMPUTE MODULE ConsultaCertificadoLaboral_RequestBack
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNS.temp:ConsultarDatosCertificado;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultarDatosCertificado;
-		
-		SET refOut.temp:Cedula 		= FIELDVALUE(refInp.*:Cedula);
-		SET refOut.temp:Cia 		= FIELDVALUE(refInp.*:Cia);
-		
+		SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://www.caracoltv.com.co/Xcalibur/NM/CerLaboral/ConsultaCertificadoLaboralXcalibur';
+		SET OutputRoot.SOAP.Body.tem:ConsultarDatosCertificado.tem:Cia		= refInp.Cia;
+	    SET OutputRoot.SOAP.Body.tem:ConsultarDatosCertificado.tem:Cedula	= refInp.Cedula;
 	   
    	    IF CAST(refInp.FechaNacimiento AS CHARACTER FORMAT 'yyyyMMdd')<> '' THEN	    
-    		SET refOut.temp:Fechanacimiento 		= FIELDVALUE(refInp.*:FechaNacimiento);  	    	   	    
+    		SET OutputRoot.SOAP.Body.tem:ConsultarDatosCertificado.tem:Fechanacimiento= refInp.FechaNacimiento;   	    	   	    
 	    END IF;
 		
 		RETURN TRUE;

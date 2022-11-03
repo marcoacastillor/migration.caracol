@@ -12,10 +12,6 @@ CREATE COMPUTE MODULE ListarDocumentoXTipoDocumental_RequestCommand1
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-<<<<<<< HEAD
-		--MOVE refInp LASTCHILD;
-=======
->>>>>>> eab70165c19ac47fb195bd16967ad9dc8c6661fe
 		
 		DECLARE Comando CHARACTER '';
 		DECLARE i INTEGER 1;
@@ -27,7 +23,7 @@ CREATE COMPUTE MODULE ListarDocumentoXTipoDocumental_RequestCommand1
 		DECLARE intKeyWord INTEGER CARDINALITY(refInp.KeyWords.*[]);
 		IF (intKeyWord >= 1) THEN		
 			SET i =1;					
-			FOR rBodyKeyWord AS refInp.KeyWords.KeyWord[] DO	
+			FOR rBodyKeyWord AS refInp.KeyWords.*[] DO	
 				--Crear concatenación de KeyWord					
 				IF rBodyKeyWord.Condicion IS NULL OR rBodyKeyWord.Condicion ='' THEN
 					SET rBodyKeyWord.Condicion= '"' || rBodyKeyWord.Condicion || '"' ; 
@@ -52,7 +48,7 @@ CREATE COMPUTE MODULE ListarDocumentoXTipoDocumental_RequestCommand1
 		IF (intKeyWordFilter >= 1) THEN		
 			SET i =1;	
 			--Crear concatenación de KeyWordFilter								
-			FOR rBodyKeyWordFilter AS refInp.KeywordsFilter.KewordFilter[] DO 						
+			FOR rBodyKeyWordFilter AS refInp.KeywordsFilter.*[] DO 						
 				SET Comando= Comando || '<KeywordFilterName>' || rBodyKeyWordFilter.Nombre || '</KeywordFilterName>';		 									
 				SET i = i +1;				
 			END FOR;			
