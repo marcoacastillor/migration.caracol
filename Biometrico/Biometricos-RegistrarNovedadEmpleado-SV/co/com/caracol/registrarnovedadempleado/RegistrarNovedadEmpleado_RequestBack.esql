@@ -1,0 +1,62 @@
+BROKER SCHEMA co.com.caracol.registrarnovedadempleado
+
+DECLARE ns3 NAMESPACE 'http://schemas.datacontract.org/2004/07/CLiquida.Servicios.ServiciosCaracol';
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+
+CREATE COMPUTE MODULE RegistrarNovedadEmpleado_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:RegistrarNovedadEmpleado;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:RegistrarNovedadEmpleado;
+		
+		SET refOut.ns:novedad.ns3:Apellido					= FIELDVALUE(refInp.*:Apellido);
+		SET refOut.ns:novedad.ns3:Cedula					= FIELDVALUE(refInp.*:Cedula);
+		SET refOut.ns:novedad.ns3:ClasificacionContrato		= FIELDVALUE(refInp.*:ClasificacionContrato);
+		SET refOut.ns:novedad.ns3:CodigoCargo				= FIELDVALUE(refInp.*:CodigoCargo);
+		SET refOut.ns:novedad.ns3:CodigoCentroCostos		= FIELDVALUE(refInp.*:CodigoCentroCostos);
+		SET refOut.ns:novedad.ns3:CodigoCiudad				= FIELDVALUE(refInp.*:CodigoCiudad);
+		SET refOut.ns:novedad.ns3:CodigoEmpresa				= FIELDVALUE(refInp.*:CodigoEmpresa);
+		SET refOut.ns:novedad.ns3:CodigoMarcacion			= FIELDVALUE(refInp.*:CodigoMarcacion);
+		SET refOut.ns:novedad.ns3:CorreoElectronico			= FIELDVALUE(refInp.*:CorreoElectronico);
+		SET refOut.ns:novedad.ns3:DiaDeDescanso				= FIELDVALUE(refInp.*:DiaDeDescanso);
+		SET refOut.ns:novedad.ns3:Estado					= FIELDVALUE(refInp.*:Estado);
+		IF CAST(refInp.novedad.FechaRetiro AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+			SET refOut.ns:novedad.ns3:FechaDeRetiro			= FIELDVALUE(refInp.*:FechaDeRetiro);
+		END IF;
+		
+		IF CAST(refInp.novedad.FechaFinContrato AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+			SET refOut.ns:novedad.ns3:FechaFinContrato		= FIELDVALUE(refInp.*:FechaFinContrato);
+		END IF;
+		
+		SET refOut.ns:novedad.ns3:FechaIngreso			= FIELDVALUE(refInp.*:FechaIngreso);
+		SET refOut.ns:novedad.ns3:Ficha					= FIELDVALUE(refInp.*:Ficha);
+		SET refOut.ns:novedad.ns3:Genero				= FIELDVALUE(refInp.*:Genero);
+		SET refOut.ns:novedad.ns3:Nombre				= FIELDVALUE(refInp.*:Nombre);
+		SET refOut.ns:novedad.ns3:NombreCargo			= FIELDVALUE(refInp.*:NombreCargo);
+		SET refOut.ns:novedad.ns3:NombreCentroCostos	= FIELDVALUE(refInp.*:NombreCentroCostos);
+		SET refOut.ns:novedad.ns3:NombreCiudad			= FIELDVALUE(refInp.*:NombreCiudad);
+		SET refOut.ns:novedad.ns3:NombreEmpresa			= FIELDVALUE(refInp.*:NombreEmpresa);
+		IF refInp.novedad.Regimen <> '' THEN
+			SET refOut.ns:novedad.ns3:Regimen			= FIELDVALUE(refInp.*:Regimen);
+		END IF;
+		SET refOut.ns:novedad.ns3:Telefono				= FIELDVALUE(refInp.*:Telefono);
+		SET refOut.ns:novedad.ns3:TipoDeContrato		= FIELDVALUE(refInp.*:TipoDeContrato);
+		SET refOut.ns:novedad.ns3:TipoLiquidacion		= FIELDVALUE(refInp.*:TipoLiquidacion);
+	
+		RETURN TRUE;
+	END;	
+END MODULE;
+

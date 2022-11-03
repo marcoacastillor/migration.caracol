@@ -19,7 +19,7 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Biometricos-CopiarArchivoLiquidacionDeTiempos-SV/icons/full/obj16/CopiaArchivoLiquidacion.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Biometricos-CopiarArchivoLiquidacionDeTiempos-SV/icons/full/obj30/CopiaArchivoLiquidacion.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="331,224" outputDirectory="\\srv_aplicacione\produccion\xcalibur\planosCliquida" outputFilename="*.csv" replaceDuplicateArchives="true">
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="289,88" outputDirectory="\\betacl01\Produccion\Xcalibur\PlanosCliquida\" outputFilename="*.csv" replaceDuplicateArchives="true">
         <translation xmi:type="utility:ConstantString" string="FileOutput-Copiar"/>
         <monitorEvents eventSourceDescription="In terminal" eventSourceName="FileOutput-Copiar.terminal.in" eventIdentity="Archivo_CopiaArchivoLiquidacionBiometricos‪.InTerminal">
           <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
@@ -42,7 +42,7 @@
           </eventXMLDoc>
         </monitorEvents>
       </nodes>
-      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="566,229" outputDirectory="/opt/ace/Nomina/CopiarArchivoLiquidacionDeTiempos/BACKUP" outputFilename="*.csv">
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="524,93" outputDirectory="/opt/ace/Nomina/CopiarArchivoLiquidacionDeTiempos/BACKUP" outputFilename="*.csv">
         <translation xmi:type="utility:ConstantString" string="FileOutput-Backup"/>
         <monitorEvents eventSourceDescription="In terminal" eventSourceName="FileOutput-Backup.terminal.in" eventIdentity="Archivo_CopiaArchivoLiquidacionBiometricos‪.InTerminal">
           <eventXMLDoc xmi:type="mbmonitor:MonitorEvent">
@@ -65,7 +65,7 @@
           </eventXMLDoc>
         </monitorEvents>
       </nodes>
-      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="125,223" inputDirectory="\\SRVBIOMETRIC\Liquidaciones" filenamePattern="??-*-????????-????.csv" replaceDuplicateArchives="true" retryMechanism="shortAndLongRetry" shortRetryInterval="300" longRetryInterval="600">
+      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="83,87" inputDirectory="\\betacl01\Liquidaciones" filenamePattern="??-*-????????-????.csv" replaceDuplicateArchives="true" retryMechanism="shortAndLongRetry" shortRetryInterval="300" longRetryInterval="600">
         <translation xmi:type="utility:ConstantString" string="FileInput-Escuchar"/>
         <nsMappingTable nsPrefix="tns" namespace="http://schemas.xmlsoap.org/soap/envelope/"/>
         <monitorEvents eventSourceDescription="Transaction start" eventSourceName="FileInput-Escuchar.transaction.Start" eventIdentity="Archivo_CopiaArchivoLiquidacionBiometricos.TransactionStart">
@@ -105,10 +105,10 @@
           </eventXMLDoc>
         </monitorEvents>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="327,307" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWithowFacade.Main">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="285,171" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWithowFacade.Main">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMessage"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="559,308" queueName="SV.TRAZABILITY.REGISTER.01">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="517,172" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
