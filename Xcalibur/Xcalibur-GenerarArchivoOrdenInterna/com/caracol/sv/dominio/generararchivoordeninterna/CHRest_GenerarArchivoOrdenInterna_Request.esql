@@ -1,27 +1,19 @@
 BROKER SCHEMA com.caracol.sv.dominio.generararchivoordeninterna
+DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/';
 
 
 CREATE COMPUTE MODULE CHRest_GenerarArchivoOrdenInterna_Request
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ConsultaOrdenesInternasRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ConsultaOrdenesInternasRequest;
 		
-		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
-		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
-		
-		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/'; 
-		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
-		/*Copia de variales de entrada a varialbes de salida*/
-		SET OutputRoot.Properties = InputRoot.Properties;	 			
-		/*Se lee la informacion de entrada que proviene de un SOAPInput*/
-		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;
-		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body;							   
-		/*Se guarda el mensaje de entrada en varialbles de entorno, para ser utilizadas en nodos posteriores*/
-		SET OutputRoot.SOAP.Body.srv:ConsultaOrdenesInternasRequest.Compania= '330'; 
-	    SET OutputRoot.SOAP.Body.srv:ConsultaOrdenesInternasRequest.Ubicacion='';
-	    SET OutputRoot.SOAP.Body.srv:ConsultaOrdenesInternasRequest.Descripcion='CTA 7';
-	    SET OutputRoot.SOAP.Body.srv:ConsultaOrdenesInternasRequest.CodigoSap='';  
+		SET refOut.Compania		= '330'; 
+	    SET refOut.Ubicacion	='';
+	    SET refOut.Descripcion	='CTA 7';
+	    SET refOut.CodigoSap	='';  
 	        
- 		SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;	    	
 		RETURN TRUE;		
 	END;
 END MODULE;
