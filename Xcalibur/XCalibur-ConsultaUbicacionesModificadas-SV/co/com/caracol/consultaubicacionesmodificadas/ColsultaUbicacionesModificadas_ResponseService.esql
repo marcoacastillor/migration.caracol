@@ -1,7 +1,6 @@
 BROKER SCHEMA co.com.caracol.consultaubicacionesmodificadas
 
 DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/financiera/xcalibur/consultaubicacionesmodificadas/';
-DECLARE car NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/CG/Ubicaciones/ConsultaUbicaciones';
 
 
 CREATE COMPUTE MODULE ColsultaUbicacionesModificadas_ResponseService
@@ -15,7 +14,6 @@ CREATE COMPUTE MODULE ColsultaUbicacionesModificadas_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
 		IF EXISTS(refInp.*:Ubicacion[]) THEN
 			--Crear mensaje de salida
@@ -25,26 +23,26 @@ CREATE COMPUTE MODULE ColsultaUbicacionesModificadas_ResponseService
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:Ubicacion.*:UbicacionRow[]  DO
 			
-			--asigna valores recibidos de xcalibur al response del servicio del ESB		
-				
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionIdCompania		 = FIELDVALUE(refReqs.*:cia);
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionId				 = FIELDVALUE(refReqs.*:codigo_ubicacion);
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionNombre			 = FIELDVALUE(refReqs.*:nombre);
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionCentroBeneficio	 = FIELDVALUE(refReqs.*:centro_beneficio);
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionCentroCosto		 = FIELDVALUE(refReqs.*:centro_costo);
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionOrdenInterna		 = FIELDVALUE(refReqs.*:orden_interna);
-		
-			IF refReqs.Ubicaciones.car:activo ='S' THEN					
-					SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionActivo = true;
-				ELSE
-					SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionActivo = false;
-				END IF;
-				
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionFechaActualizacion = FIELDVALUE(refReqs.*:fecha_actualizacion);
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionFechaVencimiento	 = FIELDVALUE(refReqs.*:fecha_vencimiento);
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionClase				 = FIELDVALUE(refReqs.*:clase);
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionCuentaDesde		 = FIELDVALUE(refReqs.*:cuenta_desde);
-			SET refOut.ns1:Ubicacion.ns1:UbicacionRow[i].ns1:UbicacionCuentaHasta		 = FIELDVALUE(refReqs.*:cuenta_hasta);
+				--asigna valores recibidos de xcalibur al response del servicio del ESB		
+					
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionIdCompania		 = FIELDVALUE(refReqs.*:cia);
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionId				 = FIELDVALUE(refReqs.*:codigo_ubicacion);
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionNombre			 = FIELDVALUE(refReqs.*:nombre);
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionCentroBeneficio	 = FIELDVALUE(refReqs.*:centro_beneficio);
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionCentroCosto		 = FIELDVALUE(refReqs.*:centro_costo);
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionOrdenInterna		 = FIELDVALUE(refReqs.*:orden_interna);
+			
+				IF refReqs.*:Ubicaciones.*:activo ='S' THEN					
+						SET refOut.Ubicaciones.Ubicacion[i].UbicacionActivo = true;
+					ELSE
+						SET refOut.Ubicaciones.Ubicacion[i].UbicacionActivo = false;
+					END IF;
+					
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionFechaActualizacion = FIELDVALUE(refReqs.*:fecha_actualizacion);
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionFechaVencimiento	 = FIELDVALUE(refReqs.*:fecha_vencimiento);
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionClase				 = FIELDVALUE(refReqs.*:clase);
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionCuentaDesde		 = FIELDVALUE(refReqs.*:cuenta_desde);
+				SET refOut.Ubicaciones.Ubicacion[i].UbicacionCuentaHasta		 = FIELDVALUE(refReqs.*:cuenta_hasta);
 			
 			
 				SET i = i + 1;

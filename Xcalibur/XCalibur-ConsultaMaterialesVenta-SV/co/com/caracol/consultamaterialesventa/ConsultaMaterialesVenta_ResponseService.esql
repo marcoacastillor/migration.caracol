@@ -1,6 +1,6 @@
 BROKER SCHEMA co.com.caracol.consultamaterialesventa
 
-DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/financiera/xcalibur/consultaempleados/';
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultamaterialesventa/';
 
 CREATE COMPUTE MODULE ConsultaMaterialesVenta_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -13,29 +13,19 @@ CREATE COMPUTE MODULE ConsultaMaterialesVenta_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
-		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
-		
-		IF EXISTS(refInp.*:MaterialVenta[]) THEN
+		IF EXISTS(refInp.*:Material[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:ConsultaMaterialesResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaMaterialesVentaResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaMaterialesVentaResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaMaterialesVentaResponse;
 		
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:Material.*:MaterialRow[]  DO
 			
-			--asigna valores recibidos de xcalibur al response del servicio del ESB		
-				
-			SET refOut.ns1:Material.ns1:MaterialRow[i].ns1:CodigoUbicacion	     = FIELDVALUE(refReqs.*:Ubicacion);
-			SET refOut.ns1:Material.ns1:MaterialRow[i].ns1:NombreMaterial	     = FIELDVALUE(refReqs.*:Nombre);
-			SET refOut.ns1:Material.ns1:MaterialRow[i].ns1:CodigoMaterialSAP	 = FIELDVALUE(refReqs.*:Material);
-			SET refOut.ns1:Material.ns1:MaterialRow[i].ns1:CentroBeneficioSAP	 = FIELDVALUE(refReqs.*:CenBef);
-			
+				SET refOut.MaterialesVenta.MaterialVenta[i].CodigoUbicacion	     = FIELDVALUE(refReqs.*:Ubicacion);
+				SET refOut.MaterialesVenta.MaterialVenta[i].NombreMaterial	     = FIELDVALUE(refReqs.*:Nombre);
+				SET refOut.MaterialesVenta.MaterialVenta[i].CodigoMaterialSAP	 = FIELDVALUE(refReqs.*:Material);
+				SET refOut.MaterialesVenta.MaterialVenta[i].CentroBeneficioSAP	 = FIELDVALUE(refReqs.*:CenBef);			
 			
 				SET i = i + 1;
 			END FOR;

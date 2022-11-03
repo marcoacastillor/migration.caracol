@@ -174,37 +174,37 @@ BEGIN
 			
 		WHEN 'XCALIBUR_CONSULTAR_EMPLEADOS' THEN
 			CASE operation
-			WHEN 'XcaliburConsultarEmpleados' THEN
+			WHEN 'OperacionConsultaEmpleados' THEN
 				RETURN 'SV.XCALIBUR.CONSULTAEMPLEADOS.01';
 			END CASE;
 			
 		WHEN 'XCALIBUR_CONSULTA_MATERIALES_VENTA' THEN
 			CASE operation
-			WHEN 'XcaliburConsultaMaterialesVenta' THEN
+			WHEN 'ConsultaMaterialesVenta' THEN
 				RETURN 'SV.XCALIBUR.CONSULTAMATERIALESVENTA.01';
 			END CASE;
 			
 		WHEN 'XCALIBUR_CONSULTARORDENESINTERNAS' THEN
 			CASE operation
-			WHEN 'XcaliburConsultaOrdenesInternas' THEN
+			WHEN 'ConsultaOrdenesInternas' THEN
 				RETURN 'SV.XCALIBUR.CONSULTAORDENESINTERNAS.01';
 			END CASE;
 			
 		WHEN 'XCALIBUR_CONSULTAPROVEDORES' THEN
 			CASE operation
-			WHEN 'XcaliburConsultaProveedores' THEN
+			WHEN 'ConsultaProveedores' THEN
 				RETURN 'SV.XCALIBUR.CONSULTAPROVEEDORES.01';
 			END CASE;
 			
 		WHEN 'XACLIBUR_CONSULTA_UBICACIONESMODIFICADAS' THEN
 			CASE operation
-			WHEN 'XcaliburConsultaUbicacionesModificadas' THEN
+			WHEN 'ConsultaUbicacionesModificadas' THEN
 				RETURN 'SV.XCALIBUR.UBICACIONESMODIFICADAS.01';
 			END CASE;
 			
 		WHEN 'XCALIBUR_NOMINA_APROVACION_VACACIONES' THEN
 			CASE operation
-			WHEN 'XcaliburNominaAprobacionVacaciones' THEN
+			WHEN 'NominaAprobacionVacaciones' THEN
 				RETURN 'SV.XCALIBUR.NOMINAAPROVACIONVACACIONES.01';
 			END CASE;
 

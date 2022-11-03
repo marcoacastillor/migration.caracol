@@ -13,27 +13,20 @@ CREATE COMPUTE MODULE ConsultaOrdenesInternas_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
-		
-		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
 		
 		IF EXISTS(refInp.*:OrdenInterna[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaOrdenesResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaOrdenesResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaOrdenesInternasResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaOrdenesInternasResponse;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:OrdenInterna.*:OrdenInternaRow[]  DO
-			
-			--asigna valores recibidos de xcalibur al response del servicio del ESB		
+			FOR refReqs AS refInp.*:OrdenInterna.*:OrdenInternaRow[]  DO					
+				SET refOut.OrdenesInternas.OrdenInterna[i].CodigoUbicacion	     = FIELDVALUE(refReqs.*:Ubicacion);
+				SET refOut.OrdenesInternas.OrdenInterna[i].Nombre	       		 = FIELDVALUE(refReqs.*:Nombre);
+				SET refOut.OrdenesInternas.OrdenInterna[i].CodigoSap	         = FIELDVALUE(refReqs.*:OrdenInterna);
+				SET refOut.OrdenesInternas.OrdenInterna[i].Clase	       		 = FIELDVALUE(refReqs.*:Clase);
+				SET refOut.OrdenesInternas.OrdenInterna[i].Rango	       		 = FIELDVALUE(refReqs.*:Rango);
 				
-			SET refOut.ns1:OrdenInterna.ns1:OrdenInternaRow[i].ns1:CodigoUbicacion	     = FIELDVALUE(refReqs.*:Ubicacion);
-			SET refOut.ns1:OrdenInterna.ns1:OrdenInternaRow[i].ns1:Nombre	       		 = FIELDVALUE(refReqs.*:Nombre);
-			SET refOut.ns1:OrdenInterna.ns1:OrdenInternaRow[i].ns1:CodigoSap	         = FIELDVALUE(refReqs.*:OrdenInterna);
-			SET refOut.ns1:OrdenInterna.ns1:OrdenInternaRow[i].ns1:Clase	       		 = FIELDVALUE(refReqs.*:Clase);
-			SET refOut.ns1:OrdenInterna.ns1:OrdenInternaRow[i].ns1:Rango	       		 = FIELDVALUE(refReqs.*:Rango);
-			
-			
 				SET i = i + 1;
 			END FOR;
 		ELSE

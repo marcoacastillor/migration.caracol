@@ -18,26 +18,10 @@ CREATE COMPUTE MODULE NominaAprovacionVacaciones_ResponseService
 		CREATE FIELD OutputRoot.XMLNSC.ns:AprobacionVacacionesResponse;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:AprobacionVacacionesResponse;
 		
-		
-		IF rBodyI.car:grabado=FALSE THEN	
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Code.s12:Value 	= 1;		
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Reason.s12:Text = rBodyI.car:descerror;
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Reason.s12:Text.(XMLNSC.Attribute)ns:lang = rBodyI.car:descerror;
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)origin 				= 'esb';
-			-- eb:Error/@category (optional)
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)category 				= 'Validacion';
-			-- eb:Error/@errorCode (required)
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)errorCode 				= 20000;
-			-- eb:Error/@severity (required)
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)severity 				= '';
-			-- eb:Error/@refToMessageInError (optional)
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)refToMessageInError 	= '';
-			-- eb:Error/@shortDescription (optional)
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)shortDescription		='Falla por validacion Xcalibur Servicio Aprobar Vacaciones';
-			-- eb:Error/Description (optional)
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:Description.(XMLNSC.Attribute)ns:lang = 'en';
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:Description 	=rBodyI.car:descerror;
-			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:ErrorDetail 	=rBodyI.car:descerror;
+		IF refInp.*:grabado=FALSE THEN	
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 20000 VALUES('CUST::Falla por validacion Xcalibur Servicio Aprobar Vacaciones');
+		ELSEIF refInp.*:grabado=TRUE THEN
+			SET refOut.RespuestaSolicitud= refInp.*:grabado;
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
 		END IF;

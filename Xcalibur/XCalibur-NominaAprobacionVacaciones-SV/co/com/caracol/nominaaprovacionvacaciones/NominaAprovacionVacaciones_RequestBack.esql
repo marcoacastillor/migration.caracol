@@ -1,6 +1,5 @@
 BROKER SCHEMA co.com.caracol.nominaaprovacionvacaciones
 
-DECLARE temp NAMESPACE 'http://tempuri.org/';
 DECLARE ns NAMESPACE 'http://www.caracoltv.com.co/Xcalibur/NM/AprobacionVacaciones/AprobacionVacaciones';
 
 CREATE COMPUTE MODULE NominaAprovacionVacaciones_RequestBack
@@ -17,23 +16,21 @@ CREATE COMPUTE MODULE NominaAprovacionVacaciones_RequestBack
 		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC.temp:AprobacionVacaciones ;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:AprobacionVacaciones;
+		CREATE FIELD OutputRoot.XMLNSC.ns:AprobacionVacaciones;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:AprobacionVacaciones;
 		
-	
-		SET refOut.temp:Request.ns:cia 			= FIELDVALUE(refInp.*:Compania);
-		SET refOut.temp:Request.ns:ficha 		= FIELDVALUE(refInp.*:Ficha);
-		SET refOut.temp:Request.ns:fecini 		= FIELDVALUE(refInp.*:DiasTomar);
-		SET refOut.temp:Request.ns:diasvac 		= FIELDVALUE(refInp.*:ComentarProcedenciaRegistroios);
-		SET refOut.temp:Request.ns:procedencia 	= FIELDVALUE(refInp.*:ProcedenciaRegistro);
-		SET refOut.temp:Request.ns:idaproba 	= FIELDVALUE(refInp.*:LoginAprobador);
-		SET refOut.temp:Request.ns:aprobador 	= FIELDVALUE(refInp.*:UsAprobadoruario);
-		SET refOut.temp:Request.ns:fecapro		= FIELDVALUE(refInp.*:FechaAprobacion);
-		SET refOut.temp:Request.ns:comsol 		= FIELDVALUE(refInp.*:ComentarioSolicita);
-		SET refOut.temp:Request.ns:comapro 		= FIELDVALUE(refInp.*:ComentarComentarioAprobadorios);
-		SET refOut.temp:Request.ns:idausencia 	= FIELDVALUE(refInp.*:SolicitudAusenciaId);
-
-		
+		SET refOut.ns:cia			= refInp.Compania;
+		SET refOut.ns:ficha			= refInp.Ficha;
+		SET refOut.ns:fecini		= refInp.FechaInicioVacaciones;
+		SET refOut.ns:diasvac		= refInp.DiasTomar;
+		SET refOut.ns:procedencia	= refInp.ProcedenciaRegistro;
+		SET refOut.ns:idaproba		= refInp.LoginAprobador;
+		SET refOut.ns:aprobador		= refInp.Aprobador;
+		SET refOut.ns:fecapro		= refInp.FechaAprobacion;
+		SET refOut.ns:comsol		= refInp.ComentarioSolicita;
+		SET refOut.ns:comapro		= refInp.ComentarioAprobador;
+		SET refOut.ns:idausencia	= refInp.SolicitudAusenciaId;
+				
 		RETURN TRUE;
 	END;	
 END MODULE;

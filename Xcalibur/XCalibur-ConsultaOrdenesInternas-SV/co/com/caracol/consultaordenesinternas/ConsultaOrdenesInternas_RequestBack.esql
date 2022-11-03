@@ -20,14 +20,11 @@ CREATE COMPUTE MODULE ConsultaOrdenesInternas_RequestBack
 		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultaOrdenes;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultaOrdenes;
 		
-		-- Consulta Clientes XSD del servicio de Xcalibur
-		
-		SET refOut.temp:ipCia		= FIELDVALUE(refInp.*:CompaniaId);
+		SET refOut.temp:ipCia		= FIELDVALUE(refInp.*:Compania);
 		SET refOut.temp:ipUbicacion = FIELDVALUE(refInp.*:Ubicacion);
 		SET refOut.temp:ipCodSap	= FIELDVALUE(refInp.*:CodigoSap);
 		SET refOut.temp:ipNombre	= FIELDVALUE(refInp.*:Descripcion);	
 		
-	
 		RETURN TRUE;
 	END;
 END MODULE;

@@ -13,36 +13,28 @@ CREATE COMPUTE MODULE ConsultaClientes_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
-		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 		
 		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
 		
 		IF EXISTS(refInp.*:Cliente[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:ConsultaClientesResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaClientesResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaClientesResponse.Clientes;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaClientesResponse.Clientes;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:Cliente.*:ClienteRow[]  DO
-			
-			-- XSD CH 1 
-				
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:NumeroAuxiliar	        = FIELDVALUE(refReqs.*:Auxiliar);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:Nombre	        		= FIELDVALUE(refReqs.*:Nombre);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:Nit	        		= FIELDVALUE(refReqs.*:Nit);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:CodigoSap	        	= FIELDVALUE(refReqs.*:CodSap);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:CuentaAsociada	        = FIELDVALUE(refReqs.*:CuentaAsociada);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:Telefono	        	= FIELDVALUE(refReqs.*:Telefono);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:Direccion	        	= FIELDVALUE(refReqs.*:Direccion);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:Correo	        		= FIELDVALUE(refReqs.*:Correo);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:ProveedorRelacionado	= FIELDVALUE(refReqs.*:ProveedorRelacionado);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:CuentaProveedor	    = FIELDVALUE(refReqs.*:CuentaProveedor);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:Region	        	  	= FIELDVALUE(refReqs.*:Region);
-				SET refOut.ns1:Cliente.ns1:ClienteRow[i].ns1:Poblacion	        	= FIELDVALUE(refReqs.*:Poblacion);
+			FOR refReqs AS refInp.*:Cliente.*:ClienteRow[]  DO	
+				SET refOut.Cliente[i].NumeroAuxiliar	    = FIELDVALUE(refReqs.*:Auxiliar);
+				SET refOut.Cliente[i].Nombre	        	= FIELDVALUE(refReqs.*:Nombre);
+				SET refOut.Cliente[i].Nit	        		= FIELDVALUE(refReqs.*:Nit);
+				SET refOut.Cliente[i].CodigoSap	        	= FIELDVALUE(refReqs.*:CodSap);
+				SET refOut.Cliente[i].CuentaAsociada	    = FIELDVALUE(refReqs.*:CuentaAsociada);
+				SET refOut.Cliente[i].Telefono	        	= FIELDVALUE(refReqs.*:Telefono);
+				SET refOut.Cliente[i].Direccion	        	= FIELDVALUE(refReqs.*:Direccion);
+				SET refOut.Cliente[i].Correo	        	= FIELDVALUE(refReqs.*:Correo);
+				SET refOut.Cliente[i].ProveedorRelacionado	= FIELDVALUE(refReqs.*:ProveedorRelacionado);
+				SET refOut.Cliente[i].CuentaProveedor	    = FIELDVALUE(refReqs.*:CuentaProveedor);
+				SET refOut.Cliente[i].Region	        	= FIELDVALUE(refReqs.*:Region);
+				SET refOut.Cliente[i].Poblacion	        	= FIELDVALUE(refReqs.*:Poblacion);
 				
 				SET i = i + 1;
 			END FOR;

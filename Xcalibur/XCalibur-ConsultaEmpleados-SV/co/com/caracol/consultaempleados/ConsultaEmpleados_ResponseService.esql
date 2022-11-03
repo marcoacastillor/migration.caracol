@@ -13,45 +13,36 @@ CREATE COMPUTE MODULE ConsultaEmpleados_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
-		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
-		
-		IF EXISTS(refInp.*:Empleado[]) THEN
+		IF EXISTS(refInp.*:Empleados[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:ConsultaEmpleadosResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaEmpleadosResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaEmpleadosResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaEmpleadosResponse;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:Empleados.*:EmpleadosRow[]  DO
-			
-			--asigna valores recibidos de xcalibur al response del servicio del ESB		
-				
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Ficha	       		 = FIELDVALUE(refReqs.*:Ficha);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Nombre	       		 = FIELDVALUE(refReqs.*:Nombre);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoIdentificacion	 = FIELDVALUE(refReqs.*:TipoIdentificacion);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Identificacion	     = FIELDVALUE(refReqs.*:Identificacion);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:FechaIngreso	     = FIELDVALUE(refReqs.*:FechaIngreso);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Ubicacion	         = FIELDVALUE(refReqs.*:Ubicacion);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:CentroCosto	     = FIELDVALUE(refReqs.*:CentroCosto);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:OrdenInterna	     = FIELDVALUE(refReqs.*:OrdenInterna);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Nombrecargo	     = FIELDVALUE(refReqs.*:Nombrecargo);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:DeudorSAP	       	 = FIELDVALUE(refReqs.*:DeudorSAP);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:ProveedorSAP	     = FIELDVALUE(refReqs.*:ProveedorSAP);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoGasto	       	 = FIELDVALUE(refReqs.*:TipoGasto);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Direccion	       	 = FIELDVALUE(refReqs.*:Direccion);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Telefono	         = FIELDVALUE(refReqs.*:Telefono);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Email	       		 = FIELDVALUE(refReqs.*:Email);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Banco	       		 = FIELDVALUE(refReqs.*:Banco);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:NombreBanco	     = FIELDVALUE(refReqs.*:NombreBanco);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoCuenta	       	 = FIELDVALUE(refReqs.*:TipoCuenta);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:Cuenta	       		 = FIELDVALUE(refReqs.*:Cuenta);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoContratoCodigo	 = FIELDVALUE(refReqs.*:TipoContratoCodigo);
-			SET refOut.ns1:Empleados.ns1:EmpleadosRow[i].ns1:TipoContratoNombre	 = FIELDVALUE(refReqs.*:TipoContratoNombre);
+			FOR refReqs AS refInp.*:Empleados.*:EmpleadosRow[]  DO					
+				SET refOut.Empleado[i].Ficha	       		 = FIELDVALUE(refReqs.*:Ficha);
+				SET refOut.Empleado[i].Nombre	       		 = FIELDVALUE(refReqs.*:Nombre);
+				SET refOut.Empleado[i].TipoIdentificacion	 = FIELDVALUE(refReqs.*:TipoIdentificacion);
+				SET refOut.Empleado[i].Identificacion	     = FIELDVALUE(refReqs.*:Identificacion);
+				SET refOut.Empleado[i].FechaIngreso	     = FIELDVALUE(refReqs.*:FechaIngreso);
+				SET refOut.Empleado[i].Ubicacion	         = FIELDVALUE(refReqs.*:Ubicacion);
+				SET refOut.Empleado[i].CentroCosto	     = FIELDVALUE(refReqs.*:CentroCosto);
+				SET refOut.Empleado[i].OrdenInterna	     = FIELDVALUE(refReqs.*:OrdenInterna);
+				SET refOut.Empleado[i].Cargo		     = FIELDVALUE(refReqs.*:Cargo);
+				SET refOut.Empleado[i].Nombrecargo	     = FIELDVALUE(refReqs.*:Nombrecargo);
+				SET refOut.Empleado[i].DeudorSAP	       	 = FIELDVALUE(refReqs.*:DeudorSAP);
+				SET refOut.Empleado[i].ProveedorSAP	     = FIELDVALUE(refReqs.*:ProveedorSAP);
+				SET refOut.Empleado[i].TipoGasto	       	 = FIELDVALUE(refReqs.*:TipoGasto);
+				SET refOut.Empleado[i].Direccion	       	 = FIELDVALUE(refReqs.*:Direccion);
+				SET refOut.Empleado[i].Telefono	         = FIELDVALUE(refReqs.*:Telefono);
+				SET refOut.Empleado[i].Email	       		 = FIELDVALUE(refReqs.*:Email);
+				SET refOut.Empleado[i].Banco	       		 = FIELDVALUE(refReqs.*:Banco);
+				SET refOut.Empleado[i].NombreBanco	     = FIELDVALUE(refReqs.*:NombreBanco);
+				SET refOut.Empleado[i].TipoCuenta	       	 = FIELDVALUE(refReqs.*:TipoCuenta);
+				SET refOut.Empleado[i].Cuenta	       		 = FIELDVALUE(refReqs.*:Cuenta);
+				SET refOut.Empleado[i].TipoContratoCodigo	 = FIELDVALUE(refReqs.*:TipoContratoCodigo);
+				SET refOut.Empleado[i].TipoContratoNombre	 = FIELDVALUE(refReqs.*:TipoContratoNombre);
 			
 				SET i = i + 1;
 			END FOR;

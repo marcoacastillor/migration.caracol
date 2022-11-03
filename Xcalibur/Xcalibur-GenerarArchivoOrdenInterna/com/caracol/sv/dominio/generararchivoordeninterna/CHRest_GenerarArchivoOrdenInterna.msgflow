@@ -32,7 +32,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="531,323" computeExpression="esql://routine/com.caracol.sv.dominio.generararchivoordeninterna#CHRest_GenerarArchivoOrdenInterna_Compute.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CrearCSV"/>
       </nodes>
-      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="663,330" outputDirectory="E:\Contabilidad\Quantum_NAS_CaracolTV\OrdenesInternas\" outputFilename="OrdenesInternasTecnica.csv">
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="663,330" outputDirectory="/opt/ace/Contabilidad/Quantum_NAS_CaracolTV/OrdenesInternas/" outputFilename="OrdenesInternasTecnica.csv">
         <translation xmi:type="utility:ConstantString" string="File Output"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="833,324" computeExpression="esql://routine/com.caracol.sv.dominio.generararchivoordeninterna#CHRest_GenerarArchivoOrdenInterna_Resp_JSON.Main" computeMode="destinationAndMessage">

@@ -22,9 +22,10 @@ CREATE COMPUTE MODULE ConsultaEmpleados_RequestBack
 		
 		-- Consulta Clientes XSD del servicio de Xcalibur
 		
-		SET refOut.temp:ipCia				= FIELDVALUE(refInp.*:Compania);
-		SET refOut.temp:ipUbicacion				= FIELDVALUE(refInp.*:Ubicacion);
-		SET refOut.temp:ipFechaActualizacion	= FIELDVALUE(refInp.*:FechaModificacion);
+		SET refOut.temp:ipCia					= FIELDVALUE(refInp.*:CompaniaId);
+		SET refOut.temp:ipFicha					= FIELDVALUE(refInp.*:FichaId);
+		SET refOut.temp:ipIdentificacion		= FIELDVALUE(refInp.*:Identificacion);
+		SET refOut.temp:ipNombre				= FIELDVALUE(refInp.*:Nombre);
 	
 		RETURN TRUE;
 	END;
