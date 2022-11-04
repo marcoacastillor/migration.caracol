@@ -12,7 +12,6 @@ CREATE COMPUTE MODULE ComprobantesNomina_2_RequestBack
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
 		SET OutputRoot.JSON = InputRoot.JSON;
