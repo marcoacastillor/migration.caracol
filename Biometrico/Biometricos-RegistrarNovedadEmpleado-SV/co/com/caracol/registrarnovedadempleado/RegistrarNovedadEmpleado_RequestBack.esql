@@ -1,10 +1,8 @@
 BROKER SCHEMA co.com.caracol.registrarnovedadempleado
 
-DECLARE ns3 NAMESPACE 'http://schemas.datacontract.org/2004/07/CLiquida.Servicios.ServiciosCaracol';
-DECLARE ns NAMESPACE 'http://tempuri.org/';
-
+DECLARE cliq NAMESPACE 'http://schemas.datacontract.org/2004/07/CLiquida.Servicios.ServiciosCaracol';
 DECLARE soap NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
-
+DECLARE tem NAMESPACE 'http://tempuri.org/';
 
 CREATE COMPUTE MODULE RegistrarNovedadEmpleado_RequestBack
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -17,46 +15,41 @@ CREATE COMPUTE MODULE RegistrarNovedadEmpleado_RequestBack
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Apellido				= refInp.novedad.Apellido;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Cedula					= refInp.novedad.Cedula;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:ClasificacionContrato	= refInp.novedad.ClasificacionContrato;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoCargo				= refInp.novedad.CodigoCargo;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoCentroCostos		= refInp.novedad.CodigoCentroCostos;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoCiudad			= refInp.novedad.CodigoCiudad;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoEmpresa			= refInp.novedad.CodigoEmpresa;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CodigoMarcacion			= refInp.novedad.CodigoMarcacion;	
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:CorreoElectronico 		= refInp.novedad.CorreoElectronico;	   
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:DiaDeDescanso			= refInp.novedad.DiaDeDescanso;	     	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Estado					= refInp.novedad.Estado;
+	    
+	    IF CAST(refInp.novedad.FechaDeRetiro AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+	    	SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:FechaDeRetiro		= refInp.novedad.FechaDeRetiro;
+	    END IF;
+	    	
+    	IF CAST(refInp.novedad.FechaFinContrato AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
+	    	SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:FechaFinContrato	= refInp.novedad.FechaFinContrato;
+	    END IF;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC.ns:RegistrarNovedadEmpleado;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:RegistrarNovedadEmpleado;
-		
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:Apellido					= (refInp.Apellido);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:Cedula						= (refInp.Cedula);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:ClasificacionContrato		= (refInp.ClasificacionContrato);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:CodigoCargo				= (refInp.CodigoCargo);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:CodigoCentroCostos			= (refInp.CodigoCentroCostos);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:CodigoCiudad				= (refInp.CodigoCiudad);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:CodigoEmpresa				= (refInp.CodigoEmpresa);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:CodigoMarcacion			= (refInp.CodigoMarcacion);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:CorreoElectronico			= (refInp.CorreoElectronico);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:DiaDeDescanso				= (refInp.DiaDeDescanso);
-		SET refOut.ns:novedad.ns3:Estado					= FIELDVALUE(refInp.*:Estado);
-		IF CAST(refInp.novedad.FechaRetiro AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
-			SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:FechaDeRetiro			= (refInp.*:FechaDeRetiro);
-		END IF;
-		
-		IF CAST(refInp.novedad.FechaFinContrato AS CHARACTER FORMAT 'yyyyMMdd-HHmmss')<> '' THEN
-			SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:FechaFinContrato		= (refInp.*:FechaFinContrato);
-		END IF;
-		
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:FechaIngreso			= (refInp.FechaIngreso);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:Ficha					= (refInp.Ficha);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:Genero					= (refInp.Genero);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:Nombre					= (refInp.Nombre);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:NombreCargo			= (refInp.NombreCargo);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:NombreCentroCostos		= (refInp.NombreCentroCostos);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:NombreCiudad			= (refInp.NombreCiudad);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:NombreEmpresa			= (refInp.NombreEmpresa);
-		IF refInp.novedad.Regimen <> '' THEN
-			SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:Regimen			= (refInp.*:Regimen);
-		END IF;
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:Telefono				= (refInp.Telefono);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:TipoDeContrato			= (refInp.TipoDeContrato);
-		SET refOut.XMLNSC.soap:Envelope.soap:Body.ns:novedad.ns3:TipoLiquidacion		= (refInp.TipoLiquidacion);
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:FechaIngreso			= refInp.novedad.FechaIngreso;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Ficha					= refInp.novedad.Ficha;
+        SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Genero					= refInp.novedad.Genero;
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Nombre					= refInp.novedad.Nombre;		    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:NombreCargo				= refInp.novedad.NombreCargo;	    	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:NombreCentroCostos		= refInp.novedad.NombreCentroCostos;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:NombreCiudad			= refInp.novedad.NombreCiudad;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:NombreEmpresa			= refInp.novedad.NombreEmpresa;
+		IF  refInp.novedad.Regimen <> '' THEN
+	    	SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Regimen				= refInp.novedad.Regimen;
+	    END IF;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:Telefono				= refInp.novedad.Telefono;	    	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:TipoDeContrato			= refInp.novedad.TipoDeContrato;	    
+	    SET OutputRoot.XMLNSC.soap:Envelope.soap:Body.tem:RegistrarNovedadEmpleado.tem:novedad.cliq:TipoLiquidacion			= refInp.novedad.TipoLiquidacion;
 	
 		RETURN TRUE;
 	END;	

@@ -1,0 +1,21 @@
+BROKER SCHEMA co.com.caracol.servicefacade
+
+
+CREATE COMPUTE MODULE RegistrarNovedadEmpleado_RQ_RsClient
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--DECLARE soap NAMESPACE 'http://www.w3.org/2001/XMLSchema';
+		DECLARE soap NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/registrarnovedadempleado/';
+		
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);
+		
+		CREATE FIELD OutputRoot.XMLNSC.srv:NovedadEmpleadoResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.srv:NovedadEmpleadoResponse;
+		
+		SET refOut.respuesta = true;			
+		--SET refOut = '';
+		
+		RETURN TRUE;
+	END;
+END MODULE;
