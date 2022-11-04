@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>LDAP-ClaveAdmin</name>
+	<name>Biometricos-NotificarHuellasHuerfanas-SV</name>
 	<comment></comment>
 	<projects>
+		<project>Archivo-ConvierteArchivoABase64</project>
+		<project>Archivo-ConvertFileBase64</project>
 		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>

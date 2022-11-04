@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>LDAP-ClaveAdmin</name>
+	<name>Biometricos-NotificarMarcacionExtemporanea-SV</name>
 	<comment></comment>
 	<projects>
-		<project>CommonsIntegration_LIB</project>
+		<project>Archivo-ConvertFileBase64</project>
+		<project>Caracol-Error-Notificacion</project>
+		<project>csif-commons-exception</project>
+		<project>Indicadores</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
