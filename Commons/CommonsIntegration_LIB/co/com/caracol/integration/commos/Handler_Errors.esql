@@ -111,8 +111,6 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsFcdREST
 	BEGIN
 		--Crear cabeceras de mensaje
 		CREATE FIELD OutputRoot.Properties;
-		CREATE FIELD OutputRoot.MQMD;
-		CREATE FIELD OutputRoot.MQRFH2;
 		
 		--Crear referencias
 		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
