@@ -24,7 +24,7 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="540,134" queueName="SV.XCALIBUR.NOMINA.COMPROBANTENOMINA" validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="SV.XCALIBUR.NOMINA.COMPROBANTENOMINA"/>
       </nodes>
-      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="289,132" outputDirectory="opt/Nomina/ComprobanteNomina" outputFilename="*.xml" validateMaster="none">
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="289,132" outputDirectory="/opt/ace/Nomina/ComprobanteNomina" outputFilename="*.xml" validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="BckRbNomina"/>
         <longDescription xmi:type="utility:ConstantString" string="E:\Nomina\ComprobanteNomina"/>
       </nodes>
