@@ -24,7 +24,7 @@ CREATE COMPUTE MODULE ConsultaProveedores_ResponseService
 			
 				SET refOut.Proveedores.Proveedor[i].NumeroAuxiliar	 = FIELDVALUE(refReqs.*:Auxiliar);
 				SET refOut.Proveedores.Proveedor[i].Nombre	         = FIELDVALUE(refReqs.*:Nombre);
-				SET refOut.Proveedores.Proveedor[i].Nit	         	= FIELDVALUE(refReqs.*:Nit);
+				SET refOut.Proveedores.Proveedor[i].Nit	         	 = FIELDVALUE(refReqs.*:Nit);
 				SET refOut.Proveedores.Proveedor[i].CodigoSap	     = FIELDVALUE(refReqs.*:CodSap);
 				SET refOut.Proveedores.Proveedor[i].CuentaAsociada	 = FIELDVALUE(refReqs.*:CuentaAsociada);
 				SET refOut.Proveedores.Proveedor[i].Telefono	     = FIELDVALUE(refReqs.*:Telefono);

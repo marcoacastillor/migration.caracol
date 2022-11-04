@@ -3,6 +3,7 @@
 	<name>GestionLogistica-RecibirRespuestaMigoPedido-SV</name>
 	<comment></comment>
 	<projects>
+		<project>CommonsIntegration_LIB</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

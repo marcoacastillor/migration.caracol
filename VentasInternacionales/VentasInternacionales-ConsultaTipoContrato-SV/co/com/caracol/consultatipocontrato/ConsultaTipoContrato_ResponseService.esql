@@ -13,16 +13,13 @@ CREATE COMPUTE MODULE ConsultaTipoContrato_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
+	
 		IF EXISTS(refInp.*:ConsultarTipoContratoResult[]) THEN
 			
-		 CREATE FIELD refOut.ns1:ConsultaTipoContratoResponse;
-		 DECLARE refOut REFERENCE TO refOut.ns1:ConsultaTipoContratoResponse;
+		 CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
+		 DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
 			
 		SET refOut.ns1:ConsultaTipoContratoResponse = FIELDVALUE(refInp.*:ConsultarTipoContratoResult);
 	

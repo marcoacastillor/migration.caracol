@@ -3,7 +3,7 @@
     nsURI="co/com/caracol/service/facade/RecibirRespuestaMigoPedido_RQ.msgflow" nsPrefix="co_com_caracol_service_facade_RecibirRespuestaMigoPedido_RQ.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
-    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_SERVICE" name="UDP_SERVICE" lowerBound="1" defaultValueLiteral="CREACION_PEDIDO_COSTOS_ADICIONALES">
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_SERVICE" name="UDP_SERVICE" lowerBound="1" defaultValueLiteral="RECIBIR_RESPUESTA_MIGO">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TRACING" name="UDP_TRACING" lowerBound="1" defaultValueLiteral="true">
@@ -25,7 +25,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="559,168" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RouteMessage"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="785,169" queueName="DYNAMIC.QUEUE" destinationMode="list" request="true" replyToQ="CH.WS.SAP.PEDIDOCOSTOSADICIONALES.02">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="785,169" queueName="DYNAMIC.QUEUE" destinationMode="list" request="true" replyToQ="CH.WS.COMMONS.NOREPLY">
         <translation xmi:type="utility:ConstantString" string="DYNAMIC.QUEUE"/>
       </nodes>
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="1003,172" queueName="SV.TRAZABILITY.REGISTER.01">
