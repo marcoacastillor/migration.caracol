@@ -7,7 +7,7 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-ComprobanteNomina-SV/icons/full/obj16/ComprobantesNomina_1.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Nomina-ComprobanteNomina-SV/icons/full/obj30/ComprobantesNomina_1.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="126,132" inputDirectory="\\betaxcal\xcalibur\RecibosNomina" filenamePattern="*.xml" messageDomainProperty="XMLNSC" messageCodedCharSetIdProperty="850" messageEncodingProperty="546">
+      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="126,132" inputDirectory="\betaxcal\xcalibur\RecibosNomina" filenamePattern="*.xml" messageDomainProperty="XMLNSC" messageCodedCharSetIdProperty="850" messageEncodingProperty="546">
         <translation xmi:type="utility:ConstantString" string="RbNominaFromBetaxcal"/>
         <longDescription xmi:type="utility:ConstantString" string="\\srv_aplicacione\xcalibur\RecibosNomina&#xD;&#xA;&#xD;&#xA;----------------------------------&#xD;&#xA;\\betaxcal\xcalibur\RecibosNomina&#xD;&#xA;&#xD;&#xA;----------------------------------&#xD;&#xA;\\betaxcal\xcalibur\RecibosNomina&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;--------------------------------------&#xD;&#xA;E:\Nomina\ReciboNomina_read\"/>
         <monitorEvents eventSourceDescription="Transaction start" eventSourceName="RbNominaFromBetaxcal.transaction.Start" eventIdentity="Nomina-ComprobanteNomina.File Input.TransactionStart">

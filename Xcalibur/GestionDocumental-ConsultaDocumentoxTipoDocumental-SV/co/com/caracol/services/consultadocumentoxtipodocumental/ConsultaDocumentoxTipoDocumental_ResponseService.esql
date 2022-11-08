@@ -13,7 +13,6 @@ CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 		
 		--Declarar variables
 		DECLARE ComandoRespuesta CHARACTER '';	
@@ -24,21 +23,20 @@ CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_ResponseService
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaDocumentoXTipoDocumentalResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaDocumentoXTipoDocumentalResponse;
 			
-			SET refOut.ns1:IdDocumento			= FIELDVALUE(refInp.*:id);  
-			SET refOut.ns1:Nombre				= FIELDVALUE(refInp.*:name);   
-			SET refOut.ns1:UltimaRevision		= FIELDVALUE(refInp.*:LatestRevision); 
-			SET refOut.ns1:TipoDocumental		= FIELDVALUE(refInp.*:DocumentType);
-			SET refOut.ns1:FechaCreacion		= CAST(SUBSTRING(refInp.*:DateStored FROM 1 FOR 10) AS DATE);
-			
 			DECLARE intDocumento INTEGER CARDINALITY(refInp.Response.Result.*[]);   			
-			IF (intDocumento = 1) THEN 	  
+			IF (intDocumento = 1) THEN
+				SET refOut.IdDocumento			= FIELDVALUE(refInp.Response.Result.Document.id);  
+				SET refOut.Nombre				= FIELDVALUE(refInp.Response.Result.Document.name);   
+				SET refOut.UltimaRevision		= FIELDVALUE(refInp.Response.Result.Document.LatestRevision); 
+				SET refOut.TipoDocumental		= FIELDVALUE(refInp.Response.Result.Document.DocumentType);
+				SET refOut.FechaCreacion		= CAST(SUBSTRING(refInp.Response.Result.Document.DateStored FROM 1 FOR 10) AS DATE); 	  
 											
-				FOR rBodyDocumento AS refInp.Result.Document[] DO  									
+				FOR rBodyDocumento AS refInp.Response.Result.Document[] DO  									
 					DECLARE intPaginas INTEGER CARDINALITY(rBodyDocumento.Pages.*[]);  	
 					IF (intPaginas >= 1) THEN 		
 						SET i = 1;	
 						--Crear concatenación de KeywordFilterName								
-						FOR rBodyPagina AS refInp.Result.Document.Pages.Page[] DO  										
+						FOR rBodyPagina AS rBodyDocumento.Pages.Page[] DO  										
 							SET refOut.Paginas.Pagina[i].Extension=CAST ( rBodyPagina.extension AS CHARACTER) ;   
 							SET refOut.Paginas.Pagina[i].Valor=CAST(rBodyPagina  AS CHARACTER );   												
 							SET i = i +1;				
@@ -51,7 +49,7 @@ CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_ResponseService
 					IF (intKeyword >= 1) THEN		
 						SET i =1;	
 						--Crear concatenación de KeywordFilterName								
-						FOR rBodyKeyWord AS refInp.Document.Keywords.Keyword[] DO 												
+						FOR rBodyKeyWord AS rBodyDocumento.Keywords.Keyword[] DO 												
 							SET refOut.KeyWords.KeyWord[i].Nombre= CAST(rBodyKeyWord.name AS CHARACTER);     
 							SET refOut.KeyWords.KeyWord[i].Valor=CAST( rBodyKeyWord AS CHARACTER);    						 						 						 						
 							SET i = i +1;  				

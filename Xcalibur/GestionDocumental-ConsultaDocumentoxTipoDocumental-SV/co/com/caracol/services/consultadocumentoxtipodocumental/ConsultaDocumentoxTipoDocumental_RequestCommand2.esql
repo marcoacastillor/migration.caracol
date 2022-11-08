@@ -31,13 +31,15 @@ CREATE COMPUTE MODULE ConsultaDocumentoxTipoDocumental_RequestCommand2
 					THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::No se encuentra la estructura KeywordFilterName Respuesta Comando 1');					
 				END IF;																
 				SET Comando2 = Comando2 || '</KeywordsFilter><LoadKeywords>True</LoadKeywords></Query></Request>';
-				SET i = i +1;		
+				SET i = i +1;
+				
+				SET OutputRoot.SOAP.Body.Comando=Comando2;	
+				RETURN TRUE;
+				
 			END FOR;						
 		ELSE			
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::No se encuentra documentHandle para paramettros solicitados');						
 		END IF;
-		
-		SET OutputRoot.SOAP.Body.Comando=Comando2;		
 		
 		RETURN TRUE;
 	END;

@@ -3,15 +3,7 @@
 	<name>LDAP-ConsultaUsuariosDominio-CH</name>
 	<comment></comment>
 	<projects>
-		<project>Caracol-Error-Notificacion</project>
-		<project>csif-commons-exception</project>
-		<project>csif-commons-schema</project>
-		<project>csif-commons-util</project>
-		<project>Indicadores</project>
-<<<<<<< HEAD
-=======
 		<project>CommonsIntegration_LIB</project>
->>>>>>> fa745a9bb7ea3cd209cee800a0c4910293cf12a3
 	</projects>
 	<buildSpec>
 		<buildCommand>

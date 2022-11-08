@@ -1,6 +1,6 @@
 BROKER SCHEMA co.com.caracol.services.crearpdf
 
-DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdfv2/';
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/crearcertificadolaboralpdf/';
 
 CREATE COMPUTE MODULE CrearPDF_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -9,22 +9,17 @@ CREATE COMPUTE MODULE CrearPDF_ResponseService
 		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
 		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
 		
-		--Declarar variable referencia de entrada
+		--Declarar referencia a objeto de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
-		IF EXISTS(refInp.*:AnularSolicitudResult[]) THEN
-			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.ns1:AnularAprobacionVacacionesResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:AnularAprobacionVacacionesResponse;
-			
-			SET refOut.ns1:Estado 	= FIELDVALUE(refInp.*:Estado);
-			SET refOut.ns1:Mensaje 	= FIELDVALUE(refInp.*:Mensaje);	
-		ELSE
-			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
-		END IF;
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns1:CrearCertificadoLaboralPdfResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:CrearCertificadoLaboralPdfResponse;
+		
+		SET refOut.ArchivoPdf 	= BASE64ENCODE(refInp.archivoPdf);
+	
 		RETURN TRUE;
 	END;
 END MODULE;

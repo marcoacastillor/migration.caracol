@@ -8,8 +8,30 @@ CREATE COMPUTE MODULE CrearPDF_RequestBack
 		SET Environment.usr._header.MQMD = InputRoot.MQMD;
 		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
 		
-		--Declarar variable referencia de entrada
-		SET OutputRoot.JSON = InputRoot.JSON;
+		--Declarar referencia a objeto de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		SET refOut.dsNo = refInp.DsNo;
+		SET refOut.nombres = refInp.Nombres;
+		SET refOut.cedula = refInp.Cedula;
+		SET refOut.fechaIngreso = refInp.FechaIngreso;
+		SET refOut.cargo = refInp.Cargo;
+		SET refOut.tipoContrato = refInp.TipoContrato;
+		SET refOut.asignacionMensual = refInp.Asignacion;
+		SET refOut.solicitud = refInp.Solicitud;
+		SET refOut.destino = refInp.Destino;
+		SET refOut.tipoAsignacion = refInp.TipoAsignacion;
+		SET refOut.ficha = refInp.Ficha;
+		SET refOut.empresa = refInp.Empresa;
+		SET refOut.estado = refInp.Estado;
+		SET refOut.visualizarSueldo = refInp.VisualizarSueldo;
 		
 		RETURN TRUE;
 	END;
