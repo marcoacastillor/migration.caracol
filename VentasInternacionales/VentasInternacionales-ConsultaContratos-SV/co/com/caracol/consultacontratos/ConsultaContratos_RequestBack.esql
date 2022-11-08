@@ -1,7 +1,6 @@
 BROKER SCHEMA co.com.caracol.consultacontratos
+
 DECLARE temp NAMESPACE 'http://tempuri.org/';
-
-
 
 CREATE COMPUTE MODULE ConsultaContratos_RequestBack
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -14,7 +13,7 @@ CREATE COMPUTE MODULE ConsultaContratos_RequestBack
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNS.temp:ConsultarContratosServicio;

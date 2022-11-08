@@ -1,0 +1,29 @@
+BROKER SCHEMA co.com.caracol.recibirrespuestamigopedido
+
+DECLARE s1 NAMESPACE 'http://www.caracoltv.com.co/transportes/gestionlogistica/recibirrespuestamigopedido/';
+
+CREATE COMPUTE MODULE RecibirRespuestaMigoPedido_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+	
+			--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.s1.RecibirRespuestaMigoPedidoResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.s1.RecibirRespuestaMigoPedidoResponse;
+				
+		SET refOut.Respuesta	  	= refInp.*:EstadoRecibido;
+
+		RETURN TRUE;
+	END;
+END MODULE;
+

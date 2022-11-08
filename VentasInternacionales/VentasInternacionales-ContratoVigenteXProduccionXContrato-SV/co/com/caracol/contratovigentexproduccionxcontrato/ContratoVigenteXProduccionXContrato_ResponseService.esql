@@ -13,15 +13,13 @@ CREATE COMPUTE MODULE ContratoVigenteXProduccionXContrato_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		--MOVE refInp LASTCHILD;
+	
 
 		IF EXISTS(refInp.*:ConsultarTipoContratoResult[]) THEN
 
-			CREATE FIELD refOut.temp:contratovigentexproduccionidxcontratoidResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaTipoContratoResponse;
+			CREATE FIELD OutputRoot.XMLNSC.temp:contratovigentexproduccionidxcontratoidResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
 
 			SET refOut.ns1:ConsultaTipoContratoResponse.VigenciaContrato = CAST (refInp.*:BuscarProducccionesXContratoResponse.*:BuscarProducccionesXContratoResult AS BOOLEAN);
 

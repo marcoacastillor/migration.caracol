@@ -1,0 +1,38 @@
+BROKER SCHEMA co.com.caracol.recibirrespuestamigopedido
+
+DECLARE ns NAMESPACE 'urn:valorem.com.co:canonicos:mm';
+
+CREATE COMPUTE MODULE RecibirRespuestaMigoPedido_RequestBack
+
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:PedidoCostosAdicionales;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:PedidoCostosAdicionales;
+		
+		SET refOut.Cabecera.IdPaquete			= (refInp.*:IdPaquete);
+		SET refOut.Cabecera.RefPed  			= (refInp.*:RefPed);
+		SET refOut.PosicionGeneral.Cantid	  	= (refInp.*:Cantid);
+		SET refOut.PosicionGeneral.CodMat	  	= (refInp.*:CodMat);
+		SET refOut.PosicionGeneral.FecEnt	  	= (refInp.*:FecEnt);
+		SET refOut.PosicionGeneral.IndAdi	  	= (refInp.*:IndAdi);
+		SET refOut.PosicionGeneral.PreNet	  	= (refInp.*:PreNet);
+		SET refOut.PosicionGeneral.RefPos	  	= (refInp.*:RefPos);
+		SET refOut.PosicionGeneral.TaxCod	  	= (refInp.*:TaxCod);
+		SET refOut.PosicionGeneral.UniMed	  	= (refInp.*:UniMed);
+
+				
+		RETURN TRUE;
+	 END;	
+END MODULE;
+

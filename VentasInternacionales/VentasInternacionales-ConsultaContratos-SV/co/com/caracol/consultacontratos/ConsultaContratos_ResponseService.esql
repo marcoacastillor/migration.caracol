@@ -18,13 +18,11 @@ CREATE COMPUTE MODULE ConsultaContratos_ResponseService
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
-		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
-		
+				
 		IF EXISTS(refInp.*:Contrato[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:ConsultaContratosResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:ConsultaContratosResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaContratosResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaContratosResponse;
 		
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:Contrato.*:ConsultarContratosServicioResult[]  DO
