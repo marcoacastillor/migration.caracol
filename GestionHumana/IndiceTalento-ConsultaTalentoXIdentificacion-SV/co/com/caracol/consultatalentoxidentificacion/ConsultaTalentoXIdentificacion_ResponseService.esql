@@ -13,27 +13,21 @@ CREATE COMPUTE MODULE ConsultaTalentoXIdentificacion_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
-		--DECLARE intSolicitudes INTEGER CARDINALITY(refOut.ns4:Solicitudd[]);	
 		
 		IF EXISTS(refInp.*:DatosTalentoResponse[]) THEN
+			MOVE refInp LASTCHILD;
 			--Crear mensaje de salida
-			CREATE FIELD refOut.ns1:ConsultaTalentoXIdentificacionResponse;
-			DECLARE refOut REFERENCE TO refOut.ns1:onsultaTalentoXIdentificacionResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaTalentoXIdentificacionResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:onsultaTalentoXIdentificacionResponse;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:DatosTalentoResponse.*:BuscarTalentoXIdentificacionResult[]  DO
+			FOR refReqs AS refInp.*:DatosTalentoResponse[]  DO
 					
-				SET refOut.ns1:DatosTalentoResponse.ns1:BuscarTalentoXIdentificacionResult[i].ns1:TalentoCodigo	       	  = FIELDVALUE(refReqs.*:TalentoCodigo);
-				SET refOut.ns1:DatosTalentoResponse.ns1:BuscarTalentoXIdentificacionResult[i].ns1:Foto	       			  = FIELDVALUE(refReqs.*:Foto);
-				SET refOut.ns1:DatosTalentoResponse.ns1:BuscarTalentoXIdentificacionResult[i].ns1:NombreCompleto	      = FIELDVALUE(refReqs.*:NombreCompleto);
-				SET refOut.ns1:DatosTalentoResponse.ns1:BuscarTalentoXIdentificacionResult[i].ns1:RutaPdfUltimoEstudio	  = FIELDVALUE(refReqs.*:RutaPdfUltimoEstudio);
-				SET refOut.ns1:DatosTalentoResponse.ns1:BuscarTalentoXIdentificacionResult[i].ns1:TalentoId	      		  = FIELDVALUE(refReqs.*:TalentoId);
+				SET refOut.DatosTalentoResponse[i].TalentoCodigo	       	= FIELDVALUE(refReqs.*:TalentoCodigo);
+				SET refOut.DatosTalentoResponse[i].Foto	       			  	= FIELDVALUE(refReqs.*:Foto);
+				SET refOut.DatosTalentoResponse[i].NombreCompleto	      	= FIELDVALUE(refReqs.*:NombreCompleto);
+				SET refOut.DatosTalentoResponse[i].RutaPdfUltimoEstudio	  	= FIELDVALUE(refReqs.*:RutaPdfUltimoEstudio);
+				SET refOut.DatosTalentoResponse[i].TalentoId	      		 = FIELDVALUE(refReqs.*:TalentoId);
 			   
 				SET i = i + 1;
 			END FOR;

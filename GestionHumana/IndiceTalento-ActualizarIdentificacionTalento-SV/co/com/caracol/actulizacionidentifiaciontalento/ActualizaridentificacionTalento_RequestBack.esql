@@ -21,8 +21,8 @@ CREATE COMPUTE MODULE ActualizaridentificacionTalento_RequestBack
 		CREATE FIELD OutputRoot.XMLNSC.temp:ActualizarIdentificacionTalento;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ActualizarIdentificacionTalento;
 		
-		SET refOut.temp:RequestDatosTalento.ns:NumeroIdentificacion	= FIELDVALUE(refInp.*:NumeroIdentificacion);
-		SET refOut.temp:RequestDatosTalento.ns:TalentoCodigo		= FIELDVALUE(refInp.*:TalentoCodigo);
+		SET refOut.temp:RequestDatosTalento.ns:NumeroIdentificacion	= FIELDVALUE(refInp.NumeroIdentificacion);
+		SET refOut.temp:RequestDatosTalento.ns:TalentoCodigo		= FIELDVALUE(refInp.TalentoCodigo);
 		
 		RETURN TRUE;
 	 END;	

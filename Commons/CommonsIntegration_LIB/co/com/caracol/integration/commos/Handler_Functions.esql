@@ -273,7 +273,7 @@ CASE PARA GRUPO GESTION HUMANA
 			
 		WHEN 'CONSULTA_ACTORES' THEN
 			CASE operation
-			WHEN 'ConsultarActores' THEN
+			WHEN 'operacionConsultarActores' THEN
 				RETURN 'SV.CASTING.CONSULTARACTORES.01';
 			END CASE;
 			

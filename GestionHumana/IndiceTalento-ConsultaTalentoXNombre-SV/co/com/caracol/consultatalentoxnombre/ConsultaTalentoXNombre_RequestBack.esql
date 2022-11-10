@@ -15,13 +15,13 @@ CREATE COMPUTE MODULE ConsultaTalentoXNombre_RequestBack
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		
 		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC.temp:BuscarTalentoXNombre;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:BuscarTalentoXNombre;
 		
-		SET refOut.temp:DatosTalentoRequest.ns:Nombre		= FIELDVALUE(refInp.*:Nombre);
+		SET refOut.temp:DatosTalentoRequest.ns:Nombre		= FIELDVALUE(refInp.Nombre);
 			
 		RETURN TRUE;
 	 END;	

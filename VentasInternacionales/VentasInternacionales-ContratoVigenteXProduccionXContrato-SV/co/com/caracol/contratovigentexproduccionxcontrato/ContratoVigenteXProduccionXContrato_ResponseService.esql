@@ -1,6 +1,7 @@
 BROKER SCHEMA co.com.caracol.contratovigentexproduccionxcontrato
 
 DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/contratovigentexproduccionidxcontratoid/';
+DECLARE tem NAMESPACE 'http://tempuri.org/';
 
 
 CREATE COMPUTE MODULE ContratoVigenteXProduccionXContrato_ResponseService
@@ -15,13 +16,13 @@ CREATE COMPUTE MODULE ContratoVigenteXProduccionXContrato_ResponseService
 		MOVE refInp LASTCHILD;
 	
 
-		IF EXISTS(refInp.*:ConsultarTipoContratoResult[]) THEN
+		IF EXISTS(refInp.*:BuscarProducccionesXContratoResult[]) THEN
 			MOVE refInp LASTCHILD;
 
 			CREATE FIELD OutputRoot.XMLNSC.ns1:contratovigentexproduccionidxcontratoidResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:contratovigentexproduccionidxcontratoidResponse;
 
-			SET refOut.VigenciaContrato = CAST (refInp.*:BuscarProducccionesXContratoResponse.*:BuscarProducccionesXContratoResult AS BOOLEAN);
+			SET refOut.VigenciaContrato = CAST(refInp.tem:BuscarProducccionesXContratoResponse.tem:BuscarProducccionesXContratoResult AS BOOLEAN);
 
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR: BACKEND');

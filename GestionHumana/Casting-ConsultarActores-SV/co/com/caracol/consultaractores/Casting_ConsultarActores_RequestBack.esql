@@ -13,14 +13,14 @@ CREATE COMPUTE MODULE Casting_ConsultarActores_RequestBack
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultarActores;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultarActores;
 		
-		SET refOut.temp:nombres		= FIELDVALUE(refInp.*:nombres);
-		SET refOut.temp:apellidos	= FIELDVALUE(refInp.*:apellidos);
+		SET refOut.temp:nombres		= FIELDVALUE(refInp.nombres);
+		SET refOut.temp:apellidos	= FIELDVALUE(refInp.apellidos);
 		
 		
 		RETURN TRUE;

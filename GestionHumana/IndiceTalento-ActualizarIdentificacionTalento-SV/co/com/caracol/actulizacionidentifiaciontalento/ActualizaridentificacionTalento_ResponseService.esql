@@ -12,7 +12,7 @@ CREATE COMPUTE MODULE ActualizaridentificacionTalento_ResponseService
 		--Declarar variable referencia de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
 		--MOVE refInp LASTCHILD;
 		
 		IF EXISTS(refInp.*:ActualizarIdentificacionTalentoRequest[]) THEN

@@ -13,17 +13,14 @@ CREATE COMPUTE MODULE Casting_ConsultaHojaVida_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 		
 		IF EXISTS(refInp.*:ArchivoHojaVidaResult[]) THEN
-		 CREATE FIELD refOut.ns1:ArchivoHojaVidaResponse;
-		 DECLARE refOut REFERENCE TO refOut.ns1:ArchivoHojaVidaResponse;
+		 MOVE refInp LASTCHILD;
+		 CREATE FIELD OutputRoot.XMLNSC.temp:ArchivoHojaVidaResponse;
+		 DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaHVResponse;
 			
-		SET refOut.ns1:ConsultaHVResponse.ns1:ArchivoHojaVida  = FIELDVALUE(refInp.*:ArchivoHojaVidaResult);
+		SET refOut.ArchivoHojaVida  = FIELDVALUE(refInp.*:ArchivoHojaVidaResult);
 	
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR: BACKEND');
