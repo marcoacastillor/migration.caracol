@@ -16,7 +16,7 @@ CREATE COMPUTE MODULE ConsultaContratos_RequestBack
 		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNS.temp:ConsultarContratosServicio;
+		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultarContratosServicio;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultarContratosServicio;
 		
 		SET refOut.temp:clienteId		= FIELDVALUE(refInp.*:ClienteId);

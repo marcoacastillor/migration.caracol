@@ -1,4 +1,5 @@
 BROKER SCHEMA co.com.caracol.consultaclientes
+
 DECLARE temp NAMESPACE 'http://tempuri.org/';
 
 

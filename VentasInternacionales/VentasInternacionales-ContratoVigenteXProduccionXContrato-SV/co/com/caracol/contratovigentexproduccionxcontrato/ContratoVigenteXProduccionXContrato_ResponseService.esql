@@ -13,15 +13,15 @@ CREATE COMPUTE MODULE ContratoVigenteXProduccionXContrato_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 	
 
 		IF EXISTS(refInp.*:ConsultarTipoContratoResult[]) THEN
+			MOVE refInp LASTCHILD;
 
-			CREATE FIELD OutputRoot.XMLNSC.temp:contratovigentexproduccionidxcontratoidResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:contratovigentexproduccionidxcontratoidResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:contratovigentexproduccionidxcontratoidResponse;
 
-			SET refOut.ns1:ConsultaTipoContratoResponse.VigenciaContrato = CAST (refInp.*:BuscarProducccionesXContratoResponse.*:BuscarProducccionesXContratoResult AS BOOLEAN);
+			SET refOut.VigenciaContrato = CAST (refInp.*:BuscarProducccionesXContratoResponse.*:BuscarProducccionesXContratoResult AS BOOLEAN);
 
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR: BACKEND');

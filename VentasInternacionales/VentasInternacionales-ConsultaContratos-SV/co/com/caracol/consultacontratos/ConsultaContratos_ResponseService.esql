@@ -1,6 +1,6 @@
 BROKER SCHEMA co.com.caracol.consultacontratos
 
-DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratos';
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratos/';
 
 CREATE COMPUTE MODULE ConsultaContratos_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -13,30 +13,26 @@ CREATE COMPUTE MODULE ConsultaContratos_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 				
-		IF EXISTS(refInp.*:Contrato[]) THEN
+		IF EXISTS(refInp.*:ConsultarContratosServicioResult[]) THEN
+			MOVE refInp LASTCHILD;
+		
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaContratosResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaContratosResponse;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:Contrato.*:ConsultarContratosServicioResult[]  DO
+			FOR refReqs AS refInp.*:Contratos[]  DO
 				
-				SET refOut.ns1:Contrato.ns1:ConsultarContratosServicioResult[i].ns1:ContratoProduccionFinCesion		= FIELDVALUE(refReqs.*:_conProduccionFinCesion);
-				SET refOut.ns1:Contrato.ns1:ConsultarContratosServicioResult[i].ns1:ContratoProduccionInicioCesion	= FIELDVALUE(refReqs.*:_conProduccionInicioCesion);
-				SET refOut.ns1:Contrato.ns1:ConsultarContratosServicioResult[i].ns1:ContratoId						= FIELDVALUE(refReqs.*:_contratoId);
-				SET refOut.ns1:Contrato.ns1:ConsultarContratosServicioResult[i].ns1:ContratoNumero					= FIELDVALUE(refReqs.*:_contratoNumero);
-				SET refOut.ns1:Contrato.ns1:ConsultarContratosServicioResult[i].ns1:ContratoTipo					= FIELDVALUE(refReqs.*:_contratoTipo);
-				SET refOut.ns1:Contrato.ns1:ConsultarContratosServicioResult[i].ns1:ContratoVigencia				= FIELDVALUE(refReqs.*:_contratoVigencia);
-				SET refOut.ns1:Contrato.ns1:ConsultarContratosServicioResult[i].ns1:FechaSistema					= FIELDVALUE(refReqs.*:_fechaSistema);
-				SET refOut.ns1:Contrato.ns1:ConsultarContratosServicioResult[i].ns1:ProduccionNombre				= FIELDVALUE(refReqs.*:_produccionNombre);
-				
-				
+				SET refOut.Contrato[i].ContratoProduccionFinCesion		= FIELDVALUE(refReqs.*:_conProduccionFinCesion);
+				SET refOut.Contrato[i].ContratoProduccionInicioCesion	= FIELDVALUE(refReqs.*:_conProduccionInicioCesion);
+				SET refOut.Contrato[i].ContratoId						= FIELDVALUE(refReqs.*:_contratoId);
+				SET refOut.Contrato[i].ContratoNumero					= FIELDVALUE(refReqs.*:_contratoNumero);
+				SET refOut.Contrato[i].ContratoTipo						= FIELDVALUE(refReqs.*:_contratoTipo);
+				SET refOut.Contrato[i].ContratoVigencia					= FIELDVALUE(refReqs.*:_contratoVigencia);
+				SET refOut.Contrato[i].FechaSistema						= (refReqs.*:_fechaSistema);
+				SET refOut.Contrato[i].ProduccionNombre					= FIELDVALUE(refReqs.*:_produccionNombre);
+							
 				SET i = i + 1;
 			END FOR;
 		ELSE

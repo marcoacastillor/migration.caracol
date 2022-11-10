@@ -16,6 +16,7 @@ CREATE COMPUTE MODULE ContratoVigenteXProduccionXContrato_RequestBack
 		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
+		
 		CREATE FIELD OutputRoot.XMLNSC.temp:BuscarProducccionesXContrato;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:BuscarProducccionesXContrato;
 		
