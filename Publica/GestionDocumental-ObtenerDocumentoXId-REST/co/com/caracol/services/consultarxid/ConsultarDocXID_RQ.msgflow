@@ -13,7 +13,7 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="1214,182" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01_1"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="1003,179" queueName="SV.GD.OBTENERDOCUMENTOXID.01" destinationMode="list" request="true" replyToQ="CH.WS.GD.OBTENERDOCUMENTOXID.02">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="1003,179" queueName="SV.GD.OBTENERDOCUMENTOXID.01" request="true" replyToQ="CH.WS.GD.OBTENERDOCUMENTOXID.02">
         <translation xmi:type="utility:ConstantString" string="SV.GD.OBTENERDOCUMENTOXID.01"/>
       </nodes>
       <nodes xmi:type="Seguridad_ValidarToken_Seguridad_ValidarToken.subflow:FCMComposite_1" xmi:id="FCMComposite_1_5" location="349,180">

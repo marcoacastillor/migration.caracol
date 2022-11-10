@@ -14,7 +14,7 @@ CREATE COMPUTE MODULE HandlerModules_RouteFcdREST
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		
-		IF CONTAINS(InputRoot.HTTPInputHeader."X-Original-HTTP-Command", 'POST') THEN
+		IF CONTAINS(Environment.usr.method, 'POST') THEN
 			--Crear cabeceras de mensaje
 			CREATE FIELD OutputRoot.Properties;
 			CREATE FIELD OutputRoot.MQMD;

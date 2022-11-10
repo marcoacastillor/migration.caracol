@@ -16,45 +16,45 @@ CREATE COMPUTE MODULE CargarUsuario_ResponseService
 		
 		IF EXISTS(refInp.*:UsuarioCargarResult[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.ns1:UsuarioCargarResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:UsuarioCargarResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:CargarUsuarioResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:CargarUsuarioResponse;
 			
 			--Carga usuario
-			SET refOut.ns1:Usuario.ns1:Estado 							= FIELDVALUE(refInp.*:UsuarioCargarResult.*:Estado);
-			SET refOut.ns1:Usuario.ns1:FechaCreacion 					= FIELDVALUE(refInp.*:UsuarioCargarResult.*:FechaCreacion);
-			SET refOut.ns1:Usuario.ns1:TipoAutenticacion 				= FIELDVALUE(refInp.*:UsuarioCargarResult.*:TipoAutenticacion);
-			SET refOut.ns1:Usuario.ns1:UsuarioId 						= FIELDVALUE(refInp.*:UsuarioCargarResult.*:UsuarioId);
+			SET refOut.Usuario.Estado 							= FIELDVALUE(refInp.*:UsuarioCargarResult.*:Estado);
+			SET refOut.Usuario.FechaCreacion 					= FIELDVALUE(refInp.*:UsuarioCargarResult.*:FechaCreacion);
+			SET refOut.Usuario.TipoAutenticacion 				= FIELDVALUE(refInp.*:UsuarioCargarResult.*:TipoAutenticacion);
+			SET refOut.Usuario.UsuarioId 						= FIELDVALUE(refInp.*:UsuarioCargarResult.*:UsuarioId);
 			
 			--Carga persona			
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:Direccion                 = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Direccion);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:EmailEmpresa              = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:EmailEmpresa);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:Extension                 = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Extension);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:FechaActualizacion        = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:FechaActualizacion);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:FechaCreacion             = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:FechaCreacion);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:Foto                      = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Foto);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:Id                        = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Id);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:Identificacion            = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Identificacion);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:PrimerApellido            = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:PrimerApellido);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:SegundoApellido           = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:SegundoApellido);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:PrimerNombre              = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:PrimerNombre);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:SegundoNombre             = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:SegundoNombre);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:TelefonoCasa              = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:TelefonoCasa);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:TelefonoCelular           = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:TelefonoCelular);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:TelefonoEmpresa           = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:TelefonoEmpresa);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:TipoIdentificacion        = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:TipoIdentificacion);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:UsuarioActualizacionId    = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:UsuarioActualizacionId);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:UsuarioCreacionId         = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:UsuarioCreacionId);
+			SET refOut.Usuario.Persona.Direccion                 = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Direccion);
+			SET refOut.Usuario.Persona.EmailEmpresa              = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:EmailEmpresa);
+			SET refOut.Usuario.Persona.Extension                 = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Extension);
+			SET refOut.Usuario.Persona.FechaActualizacion        = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:FechaActualizacion);
+			SET refOut.Usuario.Persona.FechaCreacion             = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:FechaCreacion);
+			SET refOut.Usuario.Persona.Foto                      = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Foto);
+			SET refOut.Usuario.Persona.Id                        = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Id);
+			SET refOut.Usuario.Persona.Identificacion            = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Identificacion);
+			SET refOut.Usuario.Persona.PrimerApellido            = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:PrimerApellido);
+			SET refOut.Usuario.Persona.SegundoApellido           = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:SegundoApellido);
+			SET refOut.Usuario.Persona.PrimerNombre              = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:PrimerNombre);
+			SET refOut.Usuario.Persona.SegundoNombre             = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:SegundoNombre);
+			SET refOut.Usuario.Persona.TelefonoCasa              = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:TelefonoCasa);
+			SET refOut.Usuario.Persona.TelefonoCelular           = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:TelefonoCelular);
+			SET refOut.Usuario.Persona.TelefonoEmpresa           = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:TelefonoEmpresa);
+			SET refOut.Usuario.Persona.TipoIdentificacion        = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:TipoIdentificacion);
+			SET refOut.Usuario.Persona.UsuarioActualizacionId    = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:UsuarioActualizacionId);
+			SET refOut.Usuario.Persona.UsuarioCreacionId         = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:UsuarioCreacionId);
 			
 			--Cargar Area			
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:Area.ns1:Descripcion     = (refInp.*:UsuarioCargarResult.*:Persona.*:Area.*:Descripcion);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:Area.ns1:Id          	= (refInp.*:UsuarioCargarResult.*:Persona.*:Area.*:Id);
-			SET refOut.ns1.Usuario.ns1:Persona.ns1:Area.ns1:Nombre      	= (refInp.*:UsuarioCargarResult.*:Persona.*:Area.*:Nombre);
+			SET refOut.Usuario.Persona.Area.Descripcion     = (refInp.*:UsuarioCargarResult.*:Persona.*:Area.*:Descripcion);
+			SET refOut.Usuario.Persona.Area.Id          	= (refInp.*:UsuarioCargarResult.*:Persona.*:Area.*:Id);
+			SET refOut.Usuario.Persona.Area.Nombre      	= (refInp.*:UsuarioCargarResult.*:Persona.*:Area.*:Nombre);
 			
 			--Validación padre
 			IF FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Area.*:PadreId) IS NULL THEN
-				SET refOut.ns1.Usuario.ns1:Persona.ns1:Area.ns1:PadreId         = 0;
+				SET refOut.Usuario.Persona.Area.PadreId         = 0;
 			ELSE
-				SET refOut.ns1.Usuario.ns1:Persona.ns1:Area.ns1:PadreId         = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Area.*:PadreId);	
+				SET refOut.Usuario.Persona.Area.PadreId         = FIELDVALUE(refInp.*:UsuarioCargarResult.*:Persona.*:Area.*:PadreId);	
 			END IF;
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');

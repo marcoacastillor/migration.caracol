@@ -21,7 +21,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="310,329" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdRsWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMessage"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="312,252" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="312,252" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdREST.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseClient"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_1" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_7" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>

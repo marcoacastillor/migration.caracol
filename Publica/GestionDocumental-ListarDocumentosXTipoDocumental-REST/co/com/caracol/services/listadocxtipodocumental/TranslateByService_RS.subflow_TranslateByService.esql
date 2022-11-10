@@ -18,18 +18,18 @@ CREATE COMPUTE MODULE TranslateByService_RS_subflow_TranslateByService
 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
 		DECLARE i,j INTEGER 1;
-		FOR refDocument AS refInp.Documento[]  DO
-			SET refOut.(JSON.Array)Documento.d[j].IdDocumento 		= refDocument.IdDocumento;
-			SET refOut.(JSON.Array)Documento.d[j].Nombre 			= CAST(refDocument.Nombre AS CHARACTER);
-			SET refOut.(JSON.Array)Documento.d[j].UltimaRevision 	= refDocument.UltimaRevision;
-			SET refOut.(JSON.Array)Documento.d[j].TipoDocumental 	= refDocument.TipoDocumental;
-			SET refOut.(JSON.Array)Documento.d[j].FechaCreacion 	= refDocument.FechaCreacion; 																							
+		FOR refDocument AS refInp.Documento.*[]  DO
+			SET refOut.Document[j].IdDocumento 		= refDocument.IdDocumento;
+			SET refOut.Document[j].Nombre 			= CAST(refDocument.Nombre AS CHARACTER);
+			SET refOut.Document[j].UltimaRevision 	= refDocument.UltimaRevision;
+			SET refOut.Document[j].TipoDocumental 	= refDocument.TipoDocumental;
+			SET refOut.Document[j].FechaCreacion 	= refDocument.FechaCreacion; 																							
 			SET j = j+1; 
 			
 			--Crear KeyWord 							
-			FOR rBodyKeyWord AS refInp.Documentos.Documento[j].KeyWords.*[] DO   												
-				SET refOut.(JSON.Array)Documento.d[j].KeyWord[i].Nombre= CAST(rBodyKeyWord.Nombre AS CHARACTER);     
-				SET refOut.(JSON.Array)Documento.d[j].KeyWord[i].Valor=CAST( rBodyKeyWord.Valor AS CHARACTER);      						 						 						 						
+			FOR rBodyKeyWord AS refDocument.KeyWords[] DO   												
+				SET refOut.Document[j].KeyWord[i].Nombre= CAST(rBodyKeyWord.Nombre AS CHARACTER);     
+				SET refOut.Document[j].KeyWord[i].Valor=CAST( rBodyKeyWord.Valor AS CHARACTER);      						 						 						 						
 				
 				SET i = i + 1;  	 			
 			END FOR; 							

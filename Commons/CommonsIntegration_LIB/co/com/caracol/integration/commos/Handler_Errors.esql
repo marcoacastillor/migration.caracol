@@ -167,7 +167,7 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsFcdWS
 		--Guardar datos para auditoria
 		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
 		SET refMQRFH2.usr.transaction.operation 		= operation;
-		SET refMQRFH2.usr.transaction.traceId 			= FACADE_RESP;
+		SET refMQRFH2.usr.transaction.traceId 			= SPECIFIC_RESP;
 		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
 		
 		--Crear mensaje de salida
@@ -198,7 +198,7 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsFcdRsWS
 		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
 		
 		--Auditoria
-		SET refMQRFH2.usr.transaction.traceId 	= FACADE_RESP;
+		SET refMQRFH2.usr.transaction.traceId 	= SPECIFIC_RESP;
 		
 		--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC;

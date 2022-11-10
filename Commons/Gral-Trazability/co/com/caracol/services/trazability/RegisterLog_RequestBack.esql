@@ -33,7 +33,7 @@ CREATE COMPUTE MODULE RegisterLog_RequestBack
 		SET refOut.TraceID 			= refMQRFH2.usr.transaction.traceId;
 		SET refOut.Message			= co.com.caracol.integration.commos.getMessageFromBody(refInp);
 		
-		IF refMQRFH2.usr.transaction.toNotification AND refMQRFH2.usr.transaction.traceId = 'RESP_ERROR' THEN
+		IF (refMQRFH2.usr.transaction.emailNotification = TRUE) AND (refMQRFH2.usr.transaction.traceId = 'RESP_ERROR') THEN
 			PROPAGATE TO TERMINAL 'out1' DELETE NONE;
 		END IF;
 		

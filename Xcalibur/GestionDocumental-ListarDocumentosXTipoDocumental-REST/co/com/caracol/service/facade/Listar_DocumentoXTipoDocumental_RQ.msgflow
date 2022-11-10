@@ -15,7 +15,7 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="775,270" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="558,188" queueName="SV.GD.LISTARDOCUMENTOSXTIPODOC.01" request="true" replyToQ="CH.WS.GD.LISTARDOCUMENTOSXTIPODOC.02">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="558,188" queueName="SV.GD.LISTARDOCUMENTOSXTIPODOC.01" request="true" replyToQ="CH.WS.GD.LISTARDOCUMENTOSXTIPODOC.03">
         <translation xmi:type="utility:ConstantString" string="SV.GD.LISTARDOCUMENTOSXTIPODOC.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="332,187" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdREST.Main" computeMode="destinationAndMessage">

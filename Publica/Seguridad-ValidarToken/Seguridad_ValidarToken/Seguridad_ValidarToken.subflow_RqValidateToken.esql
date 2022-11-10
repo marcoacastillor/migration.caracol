@@ -5,10 +5,11 @@ CREATE COMPUTE MODULE "Seguridad_ValidarToken.subflow_RqValidateToken"
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
 		-- Enviar datos de autenticación
-		SET OutputRoot.HTTPRequestHeader."Token" 	= InputRoot.HTTPRequestHeader."Token";
+		SET OutputRoot.HTTPRequestHeader."token" 	= InputRoot.HTTPInputHeader."Token";
 		
 		--Guardar mensaje original
 		SET Environment.usr.originalMessage = InputRoot.JSON.Data;
+		SET Environment.usr.method = InputRoot.HTTPInputHeader."X-Original-HTTP-Command";
 		
 		RETURN TRUE;
 	END;

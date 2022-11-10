@@ -7,34 +7,34 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-Autentica-CH-REST/icons/full/obj16/Auntentica_RQ.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-Autentica-CH-REST/icons/full/obj30/Auntentica_RQ.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="439,331" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdREST.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="219,379" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdREST.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMessage"/>
       </nodes>
-      <nodes xmi:type="Seguridad_ValidarToken_Seguridad_ValidarToken.subflow:FCMComposite_1" xmi:id="FCMComposite_1_2" location="495,183">
+      <nodes xmi:type="Seguridad_ValidarToken_Seguridad_ValidarToken.subflow:FCMComposite_1" xmi:id="FCMComposite_1_2" location="275,231">
         <translation xmi:type="utility:ConstantString" string="Seguridad_ValidarToken"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="721,180" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdREST.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="501,228" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdREST.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RouteMessage"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="665,333">
+      <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="445,381">
         <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="1360,185" queueName="SV.TRAZABILITY.REGISTER.01">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="1140,233" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01_1"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="1149,182" queueName="SV.SEGURIDAD.AUTENTICA.01" destinationMode="list" request="true" replyToQ="CH.WS.SEGURIDAD.02.REST">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="929,230" queueName="SV.SEGURIDAD.AUTENTICA.01" request="true" replyToQ="CH.WS.SEGURIDAD.02.REST">
         <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.AUTENTICA.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="720,256" messageCatalog="700" messageText="CUST::Token no válido">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="500,304" messageCatalog="700" messageText="CUST::Token no válido">
         <translation xmi:type="utility:ConstantString" string="Throw"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="877,338" queueName="SV.TRAZABILITY.REGISTER.01">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="657,386" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="279,188" URLSpecifier="/Publicos/Seguridad/Autenticar" messageDomainProperty="JSON">
+      <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="59,236" URLSpecifier="/Publicos/Seguridad/Autenticar" messageDomainProperty="JSON">
         <translation xmi:type="utility:ConstantString" string="HTTP Input"/>
       </nodes>
-      <nodes xmi:type="co_com_caracol_services_autentica_TranslateByService_RQ.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="933,180">
+      <nodes xmi:type="co_com_caracol_services_autentica_TranslateByService_RQ.subflow:FCMComposite_1" xmi:id="FCMComposite_1_8" location="713,228">
         <translation xmi:type="utility:ConstantString" string="TranslateByService_RQ"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_5" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>

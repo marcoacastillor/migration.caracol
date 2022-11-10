@@ -18,7 +18,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="181,166" computeExpression="esql://routine/Seguridad_ValidarToken#&quot;Seguridad_ValidarToken.subflow_RqValidateToken&quot;.Main">
         <translation xmi:type="utility:ConstantString" string="RqValidateToken"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="293,168" URLSpecifier="http://kappaprpi:89/api/services/validate/token?servicio=2056" httpVersion="1.1" protocol="TLS">
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="293,168" URLSpecifier="http://kappaprpi:89/api/services/validate/token?servicio=2056" httpMethod="GET" httpVersion="1.1" protocol="TLS">
         <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="435,172" computeExpression="esql://routine/Seguridad_ValidarToken#&quot;Seguridad_ValidarToken.subflow_RsValidateToken&quot;.Main">

@@ -10,7 +10,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="392,278" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdRsWS.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMessage"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="589,199" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="589,199" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdREST.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseClient"/>
       </nodes>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="184,200" queueName="CH.WS.CONSULTALISTADISTRIBUCION.02" messageDomainProperty="XMLNSC">

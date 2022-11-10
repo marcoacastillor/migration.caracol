@@ -19,19 +19,19 @@ CREATE COMPUTE MODULE ConsultaFuncionalidad_ResponseService
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaFuncionalidadResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaFuncionalidadResponse;
 			
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadContenido         = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Contenido);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadDescripcion       = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Descripcion);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadEstado        	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Estado);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadFechaPublicacion  = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:FechaPublicacion);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadFechaValidez      = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:FechaValidez);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadId            	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Id);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadImagen        	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Imagen);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadMapa          	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Mapa);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadNombre        	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Nombre);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadPosicion          = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Posicion);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadSubtitulo         = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Subtitulo);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadTipoCategoriaId   = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:TipoCategoriaId);
-			SET refOut.ns1:Funcionalidad.ns1:FuncionalidadToolTip       	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:ToolTip);
+			SET refOut.Funcionalidad.FuncionalidadContenido         = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Contenido);
+			SET refOut.Funcionalidad.FuncionalidadDescripcion       = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Descripcion);
+			SET refOut.Funcionalidad.FuncionalidadEstado        	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Estado);
+			SET refOut.Funcionalidad.FuncionalidadFechaPublicacion  = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:FechaPublicacion);
+			SET refOut.Funcionalidad.FuncionalidadFechaValidez      = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:FechaValidez);
+			SET refOut.Funcionalidad.FuncionalidadId            	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Id);
+			SET refOut.Funcionalidad.FuncionalidadImagen        	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Imagen);
+			SET refOut.Funcionalidad.FuncionalidadMapa          	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Mapa);
+			SET refOut.Funcionalidad.FuncionalidadNombre        	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Nombre);
+			SET refOut.Funcionalidad.FuncionalidadPosicion          = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Posicion);
+			SET refOut.Funcionalidad.FuncionalidadSubtitulo         = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:Subtitulo);
+			SET refOut.Funcionalidad.FuncionalidadTipoCategoriaId   = FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:TipoCategoriaId);
+			SET refOut.Funcionalidad.FuncionalidadToolTip       	= FIELDVALUE(refInp.*:ConsultarFuncionalidadResult.*:ToolTip);
 						
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');

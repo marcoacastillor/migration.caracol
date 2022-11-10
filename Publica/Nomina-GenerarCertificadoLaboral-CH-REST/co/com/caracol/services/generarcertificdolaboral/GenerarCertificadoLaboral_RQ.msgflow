@@ -28,7 +28,7 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="1305,185" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01_1"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="1094,182" queueName="SV.NOMINA.GENERARCERTIFICADOLABORALVER2.01" destinationMode="list" request="true" replyToQ="CH.WS.GENERARCERTIFICADOLABORAL_REST.021">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="1094,182" queueName="SV.NOMINA.GENERARCERTIFICADOLABORALVER2.01" request="true" replyToQ="CH.WS.GENERARCERTIFICADOLABORAL_REST.021">
         <translation xmi:type="utility:ConstantString" string="SV.NOMINA.GENERARCERTIFICADOLABORALVER2.01"/>
       </nodes>
       <nodes xmi:type="ComIbmWSInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="226,186" URLSpecifier="/Publicos/Nomina/CertificadoLaboral/GenerarCertificadoLaboralV3" messageDomainProperty="JSON" timeoutForClient="60">

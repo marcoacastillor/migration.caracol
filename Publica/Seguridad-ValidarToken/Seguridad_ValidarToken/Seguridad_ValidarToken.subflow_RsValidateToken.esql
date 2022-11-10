@@ -11,7 +11,7 @@ CREATE COMPUTE MODULE "Seguridad_ValidarToken.subflow_RsValidateToken"
 		-- TODO: Validar en tiempo de ejecución, debug
 		SET refOut.status.code =	InputRoot.HTTPResponseHeader."X-Original-HTTP-Status-Code";
 		
-		IF refOut.status.code > 199 OR refOut.status.code < 300 THEN
+		IF refOut.status.code > 199 AND refOut.status.code < 300 THEN
 			SET refOut = Environment.usr.originalMessage;
 			PROPAGATE TO TERMINAL 'out' DELETE NONE;
 		ELSE

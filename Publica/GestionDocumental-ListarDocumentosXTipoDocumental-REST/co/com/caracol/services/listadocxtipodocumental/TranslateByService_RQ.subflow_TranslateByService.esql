@@ -6,7 +6,7 @@ CREATE COMPUTE MODULE TranslateByService_RQ_subflow_TranslateByService
 	BEGIN
 		-- Copiar cabeceras
 		SET OutputRoot.MQMD 	= InputRoot.MQMD;
-		SET OutputRoot.MQRFH2C 	= InputRoot.MQRFH2C;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
 		
 		-- Referencia a objeto de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
@@ -21,13 +21,13 @@ CREATE COMPUTE MODULE TranslateByService_RQ_subflow_TranslateByService
 		
 		DECLARE j INTEGER 1;
 		FOR rBodyKeyWord  AS refInp.KeyWords.*[] DO 
-				--usuario
-			    SET refOut.KeyWords.KeyWord[j].Nombre		= rBodyKeyWord.Nombre; 
-			    SET refOut.KeyWords.KeyWord[j].Valor		= rBodyKeyWord.Valor; 				 		
-			    SET refOut.KeyWords.KeyWord[j].Operador		= rBodyKeyWord.Operador;
-			    SET refOut.KeyWords.KeyWord[j].Condicion	= rBodyKeyWord.Condicion;
-			    
-				SET j = j+1;
+			--usuario
+		    SET refOut.KeyWords.KeyWord[j].Nombre		= rBodyKeyWord.Nombre; 
+		    SET refOut.KeyWords.KeyWord[j].Valor		= rBodyKeyWord.Valor; 				 		
+		    SET refOut.KeyWords.KeyWord[j].Operador		= rBodyKeyWord.Operador;
+		    SET refOut.KeyWords.KeyWord[j].Condicion	= rBodyKeyWord.Condicion;
+		    
+			SET j = j+1;
 		END FOR;
 		
 		SET j=1; 

@@ -32,7 +32,7 @@ CREATE COMPUTE MODULE ListarDocumentoXTipoDocumental_RsponseCommand
 				SET j = 1;
 				FOR rBodyKeyWord AS rBodyDocumento.Keywords.*[] DO
 					SET refOut.(JSON.Array).d[i].KeyWord[j].Nombre	= CAST(rBodyKeyWord.name AS CHARACTER);     
-					SET refOut.(JSON.Array).d[i].KeyWord[j].Valor	= CAST( rBodyKeyWord AS CHARACTER);     						 						 						 						
+					SET refOut.(JSON.Array).d[i].KeyWord[j].Valor	= CAST(rBodyKeyWord AS CHARACTER);     						 						 						 						
 					SET j = j +1;  				
 				END FOR; 	
 									

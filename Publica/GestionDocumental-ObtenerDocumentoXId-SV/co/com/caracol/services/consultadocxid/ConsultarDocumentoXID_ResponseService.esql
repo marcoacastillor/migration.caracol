@@ -18,17 +18,14 @@ CREATE COMPUTE MODULE ConsultarDocumentoXID_ResponseService
 		DECLARE i,j,k INTEGER 1;
 		
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		
-		
 		IF EXISTS(refInp.*:Response[]) THEN
-			--Crear mensaje de salida
-			CREATE FIELD refOut.Documentos;
-			DECLARE refOut REFERENCE TO refOut.Documentos;
+			MOVE refInp LASTCHILD;
 			
-			DECLARE intDocumento INTEGER CARDINALITY(refInp.Response.Result.*[]);   			
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.Documentos;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.Documentos;
+			
+			DECLARE intDocumento INTEGER CARDINALITY(refInp.Result.*[]);   			
 			IF (intDocumento = 1) THEN 	  
 											
 				FOR rBodyDocumento AS refInp.Result.Document[] DO  									
@@ -39,14 +36,14 @@ CREATE COMPUTE MODULE ConsultarDocumentoXID_ResponseService
 					SET refOut.Documento[i].FechaCreacion	= CAST( SUBSTRING(rBodyDocumento.DateStored FROM 1 FOR 10) AS DATE);
 					
 					--Crear KeyWord 							
-					FOR rBodyKeyWord AS refInp.Result.Document.Keywords.Keyword[] DO 												
+					FOR rBodyKeyWord AS rBodyDocumento.Keywords.Keyword[] DO 												
 						SET refOut.Documento[i].KeyWords.KeyWord[j].Nombre	= CAST(rBodyKeyWord.name AS CHARACTER);     
 						SET refOut.Documento[i].KeyWords.KeyWord[j].Valor	= CAST(rBodyKeyWord AS CHARACTER);     						 						 						 						
 						SET j = j +1;  				
 					END FOR;
 					
 					--Crear KeyWord 							
-					FOR rBodyPages AS refInp.Result.Document.Pages.Page[] DO  												
+					FOR rBodyPages AS rBodyDocumento.Pages.Page[] DO  												
 						SET refOut.Documento[i].Pages.Page[k].Extension	= CAST(rBodyPages.extension AS CHARACTER);       
 						SET refOut.Documento[i].Pages.Page[k].Valor		= CAST( rBodyPages AS CHARACTER);          						 						 						 						
 						SET k = k +1;    				

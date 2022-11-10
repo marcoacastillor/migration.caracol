@@ -2,8 +2,7 @@ BROKER SCHEMA OnBase_EjecutarComandoDECLARE ns NAMESPACE 'http://tempuri.org/'
 
 CREATE COMPUTE MODULE EjecutaComandoECM_Request
 	CREATE FUNCTION Main() RETURNS BOOLEAN
-	BEGIN		--Copiar cabeceras		SET Environment.usr._header.MQMD = InputRoot.MQMD;		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;		
-		--Referencia a objeto de entrada
+	BEGIN		--Referencia a objeto de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;

@@ -17,14 +17,14 @@ CREATE COMPUTE MODULE PermisosFuncionalidadXUsuario_ResponseService
 		--Crear mensaje de salida
 		IF EXISTS(refInp.*:PermisosDeFuncionalidadXUsuarioResult[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.ns1:PermisosDeFuncionalidadXUsuarioResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:PermisosDeFuncionalidadXUsuarioResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:PermisosFuncionalidadXUsuarioResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:PermisosFuncionalidadXUsuarioResponse;
 			
 			DECLARE i INTEGER 1;
 			FOR refUser AS refInp.*:PermisosDeFuncionalidadXUsuarioResult.*:Permiso[] DO
 				--usuario
-				SET refOut.ns1:Permiso[i].Id									= refUser.*:Id;
-				SET refOut.ns1:Permiso[i].Nombre								= refUser.*:Nombre;							
+				SET refOut.Permiso[i].Id									= refUser.*:Id;
+				SET refOut.Permiso[i].Nombre								= refUser.*:Nombre;							
 						
 				SET i = i+1;
 				IF (i>1000) THEN

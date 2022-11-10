@@ -16,13 +16,13 @@
       <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="832,200">
         <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="622,199" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="622,199" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdREST.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseClient"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="698,282" queueName="SV.TRAZABILITY.REGISTER.01">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="796,281" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="216,198" queueName="CH.WS.GD.LISTARDOCUMENTOSXTIPODOC.02" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="216,198" queueName="CH.WS.GD.LISTARDOCUMENTOSXTIPODOC.02" messageDomainProperty="JSON">
         <translation xmi:type="utility:ConstantString" string="CH.WS.GD.LISTARDOCUMENTOSXTIPODOC.02"/>
       </nodes>
       <nodes xmi:type="co_com_caracol_services_listadocxtipodocumental_TranslateByService_RS.subflow:FCMComposite_1" xmi:id="FCMComposite_1_1" location="424,197">

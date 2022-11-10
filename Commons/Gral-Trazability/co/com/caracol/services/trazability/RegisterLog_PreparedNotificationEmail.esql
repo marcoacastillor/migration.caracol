@@ -1,5 +1,7 @@
 BROKER SCHEMA co.com.caracol.services.trazability
 
+DECLARE UDP_EMAILNOTIFICATION EXTERNAL CHARACTER '';
+
 DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/TI/correo/cargaplantilla4/';
 
 CREATE COMPUTE MODULE RegisterLog_PreparedNotificationEmail
@@ -13,8 +15,6 @@ CREATE COMPUTE MODULE RegisterLog_PreparedNotificationEmail
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
 		
 		-- Referencia a datos de configuración
 		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
@@ -24,7 +24,7 @@ CREATE COMPUTE MODULE RegisterLog_PreparedNotificationEmail
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.srv:CargaPlantillaRequest;
 		
 		SET refOut.De				= 'busintegracion@caracoltv.com.co';					
-		SET refOut.Para				= refMQRFH2.usr.transaction.toNotification;										
+		SET refOut.Para				= COALESCE(refMQRFH2.usr.transaction.toNotification,UDP_EMAILNOTIFICATION);										
 		SET refOut.Copia			= '';
 		SET refOut.Asunto			= 'Notificación Error ESB';		
 		SET refOut.Titulo			= 'Notificación Error ESB';		
@@ -33,9 +33,6 @@ CREATE COMPUTE MODULE RegisterLog_PreparedNotificationEmail
 		SET refOut.TextoLink		= 'Caracol Televisión';
 		SET refOut.Link				= 'https://www.caracoltv.com/';		
 		SET refOut.Prioridad		= '1';
-		
-		-- SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje1= rBodyI.soap:Envelope.soap:Body.soap:Fault.soap:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:Mensaje;			
-		-- SET OutputRoot.SOAP.Body.srv:CargaPlantillaRequest.Mensaje2=rBodyI.soap:Envelope.soap:Body.soap:Fault.soap:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:MensajeError;
 		
 		RETURN FALSE;
 	END;

@@ -21,11 +21,11 @@ CREATE COMPUTE MODULE ConsultaFuncionalidadHijas_ResponseService
 			
 			DECLARE i INTEGER 1;
 			FOR refFunction AS refInp.*:FuncionalidadesHijasResult.*:Funcionalidad[] DO
-				SET refOut.ns1:Funcionalidad[i].ns1:Acceso     = FIELDVALUE(refFunction.*:Acceso);
-				SET refOut.ns1:Funcionalidad[i].ns1:Contenido  = FIELDVALUE(refFunction.*:Contenido);
-				SET refOut.ns1:Funcionalidad[i].ns1:Id         = FIELDVALUE(refFunction.*:Id);
-				SET refOut.ns1:Funcionalidad[i].ns1:Imagen     = FIELDVALUE(refFunction.*:Imagen);
-				SET refOut.ns1:Funcionalidad[i].ns1:Nombre     = FIELDVALUE(refFunction.*:Nombre);
+				SET refOut.Funcionalidad[i].Acceso     = FIELDVALUE(refFunction.*:Acceso);
+				SET refOut.Funcionalidad[i].Contenido  = FIELDVALUE(refFunction.*:Contenido);
+				SET refOut.Funcionalidad[i].Id         = FIELDVALUE(refFunction.*:Id);
+				SET refOut.Funcionalidad[i].Imagen     = FIELDVALUE(refFunction.*:Imagen);
+				SET refOut.Funcionalidad[i].Nombre     = FIELDVALUE(refFunction.*:Nombre);
 				SET i = i + 1; 	
 			END FOR;
 		ELSE

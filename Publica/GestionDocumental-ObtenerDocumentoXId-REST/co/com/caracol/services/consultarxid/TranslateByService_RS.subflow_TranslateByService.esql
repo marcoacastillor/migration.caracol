@@ -17,6 +17,8 @@ CREATE COMPUTE MODULE TranslateByService_RS_subflow_TranslateByService
 		CREATE FIELD OutputRoot.JSON.Data;
 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
+		--SET refOut = refInp;
+		
 		DECLARE i,j INTEGER 1;
 		FOR refDocument AS refInp.Documento[]  DO
 			SET refOut.(JSON.Array)Documento.d[j].IdDocumento 		= refDocument.IdDocumento;
@@ -27,7 +29,7 @@ CREATE COMPUTE MODULE TranslateByService_RS_subflow_TranslateByService
 			SET j = j+1; 
 			
 			--Crear KeyWord 							
-			FOR rBodyKeyWord AS refInp.Documentos.Documento[j].KeyWords.*[] DO   												
+			FOR rBodyKeyWord AS refDocument.KeyWords.*[] DO   												
 				SET refOut.(JSON.Array)Documento.d[j].KeyWord[i].Nombre	= CAST(rBodyKeyWord.Nombre AS CHARACTER);     
 				SET refOut.(JSON.Array)Documento.d[j].KeyWord[i].Valor	= CAST( rBodyKeyWord.Valor AS CHARACTER);      						 						 						 						
 				

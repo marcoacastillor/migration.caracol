@@ -6,7 +6,7 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-GenerarToken-CH/icons/full/obj16/GeneraToken_RQ.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Seguridad-GenerarToken-CH/icons/full/obj30/GeneraToken_RQ.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="574,193" queueName="SV.SEGURIDAD.GENERARTOKEN.01" destinationMode="list" request="true" replyToQ="CH.WS.SEGURIDAD.GENERARTOKEN.02">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="574,193" queueName="SV.SEGURIDAD.GENERARTOKEN.01" request="true" replyToQ="CH.WS.SEGURIDAD.GENERARTOKEN.02">
         <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.GENERARTOKEN.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="279,343" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdREST.Main" computeMode="destinationAndMessage">

@@ -9,6 +9,9 @@
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_PASSWORD" name="UDP_PASSWORD" lowerBound="1" defaultValueLiteral="psw">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_EMAILNOTIFICATION" name="UDP_EMAILNOTIFICATION" lowerBound="1" defaultValueLiteral="mcastillo@assist.com.co">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
     <translation xmi:type="utility:TranslatableString" key="RegisterLog" bundleName="co/com/caracol/services/trazability/RegisterLog" pluginId="Gral-Trazability"/>
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Gral-Trazability/icons/full/obj16/RegisterLog.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Gral-Trazability/icons/full/obj30/RegisterLog.gif"/>
@@ -19,7 +22,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="364,369" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSendToExternalLog.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="205,199" queueName="SV.TRAZABILITY.REGISTER.01" messageDomainProperty="XMLNSC">
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="189,198" queueName="SV.TRAZABILITY.REGISTER.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="418,199" computeExpression="esql://routine/co.com.caracol.services.trazability#RegisterLog_RequestBack.Main" computeMode="destinationAndMessage">
@@ -37,8 +40,8 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="588,292" computeExpression="esql://routine/co.com.caracol.services.trazability#RegisterLog_PreparedNotificationEmail.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="PreparedNotificationEmail"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="799,293" queueName="CH.WS.COMMONS.ENDPROCESS" request="true" replyToQ="CH.WS.COMMONS.ENDPROCESS">
-        <translation xmi:type="utility:ConstantString" string="CH.WS.COMMONS.ENDPROCESS"/>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="799,293" queueName="SV.CORREO.CARGAPLANTILLAAPPV4.01" request="true" replyToQ="CH.WS.COMMONS.ENDPROCESS">
+        <translation xmi:type="utility:ConstantString" string="SV.CORREO.CARGAPLANTILLAAPPV4.01"/>
       </nodes>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_5" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
       <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_4" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
@@ -55,6 +58,9 @@
         <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_USERNAME" bundleName="co/com/caracol/services/trazability/RegisterLog" pluginId="Gral-Trazability"/>
         <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_PASSWORD">
           <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_PASSWORD" bundleName="co/com/caracol/services/trazability/RegisterLog" pluginId="Gral-Trazability"/>
+          <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_EMAILNOTIFICATION">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_EMAILNOTIFICATION" bundleName="co/com/caracol/services/trazability/RegisterLog" pluginId="Gral-Trazability"/>
+          </propertyDescriptor>
         </propertyDescriptor>
       </propertyDescriptor>
     </propertyOrganizer>
