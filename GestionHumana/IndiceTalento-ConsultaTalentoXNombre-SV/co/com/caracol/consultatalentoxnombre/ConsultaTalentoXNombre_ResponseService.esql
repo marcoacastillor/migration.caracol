@@ -21,13 +21,13 @@ CREATE COMPUTE MODULE ConsultaTalentoXNombre_ResponseService
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:BuscarTalentoXNombreResponse;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:Actor[]  DO
+			FOR refReqs AS refInp.*:Talentos.Talento[]  DO
 				
-				SET refOut.Actor[i].TalentoCodigo	        	= FIELDVALUE(refReqs.*:TalentoCodigo);
-				SET refOut.Actor[i].Foto	        			= FIELDVALUE(refReqs.*:Foto);
-				SET refOut.Actor[i].NombreCompleto	        	= FIELDVALUE(refReqs.*:NombreCompleto);
-				SET refOut.Actor[i].RutaPdfUltimoEstudio	    = FIELDVALUE(refReqs.*:RutaPdfUltimoEstudio);
-				SET refOut.Actor[i].TalentoId	       			= FIELDVALUE(refReqs.*:TalentoId);
+				SET refOut.Talentos.Talento[i].TalentoCodigo	        	= FIELDVALUE(refReqs.*:TalentoCodigo);
+				SET refOut.Talentos.Talento[i].Foto	        				= FIELDVALUE(refReqs.*:Foto);
+				SET refOut.Talentos.Talento[i].NombreCompleto	        	= FIELDVALUE(refReqs.*:NombreCompleto);
+				SET refOut.Talentos.Talento[i].RutaPdfUltimoEstudio	    	= FIELDVALUE(refReqs.*:RutaPdfUltimoEstudio);
+				SET refOut.Talentos.Talento[i].TalentoId	       			= FIELDVALUE(refReqs.*:TalentoId);
 				
 				SET i = i + 1;
 			END FOR;

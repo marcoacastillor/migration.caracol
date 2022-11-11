@@ -20,7 +20,7 @@ CREATE COMPUTE MODULE ConsultaTalentoXIdentificacion_RequestBack
 		CREATE FIELD OutputRoot.XMLNSC.ns:BuscarTalentoXIdentificacion;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:BuscarTalentoXIdentificacion;
 		
-		SET refOut.ns:DatosTalentoRequest.ns15:NumeroIdentificacion	= FIELDVALUE(refInp.*:NumeroIdentificacion);
+		SET refOut.ns:DatosTalentoRequest.ns15:NumeroIdentificacion	= FIELDVALUE(refInp.NumeroIdentificacion);
 		
 		RETURN TRUE;
 	 END;	

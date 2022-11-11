@@ -19,7 +19,7 @@
         <translation xmi:type="utility:ConstantString" string="ResponseClient"/>
       </nodes>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="49,126" queueName="CH.WS.IT.CONSULTATALENTOXIDENTIFI.02" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="CH.WS.CASTING.CONSULTAHOJAVIDA.02"/>
+        <translation xmi:type="utility:ConstantString" string="CH.WS.IT.CONSULTATALENTOXIDENTIFI.02"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="526,126">
         <translation xmi:type="utility:ConstantString" string="SOAP Reply"/>

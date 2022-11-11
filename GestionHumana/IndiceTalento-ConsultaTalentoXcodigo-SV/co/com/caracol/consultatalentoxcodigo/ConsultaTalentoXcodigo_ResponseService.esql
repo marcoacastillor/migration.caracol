@@ -1,6 +1,7 @@
 BROKER SCHEMA co.com.caracol.consultatalentoxcodigo
 
 DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/mercadeo/indicetalento/consultatalentoxcodigo/';
+DECLARE car NAMESPACE 'http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento';
 
 CREATE COMPUTE MODULE ConsultaTalentoXcodigo_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -15,19 +16,17 @@ CREATE COMPUTE MODULE ConsultaTalentoXcodigo_ResponseService
 		MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
-		 MOVE refInp LASTCHILD;
-		
+	
 		 IF EXISTS(refInp.*:BuscarTalentoXCodigoResult[]) THEN
-		 CREATE FIELD refOut.ns1:BuscarTalentoXCodigoResponse;
-		 DECLARE refOut REFERENCE TO refOut.ns1:BuscarTalentoXCodigoResponse;
+		 CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaTalentoXCodigoResponse;
+		 DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaTalentoXCodigoResponse;
 			
-		 SET refOut.TalentoCodigo 		   = FIELDVALUE(refInp.TalentoCodigo);
-		 SET refOut.Foto  				   = FIELDVALUE(refInp.Foto);
-		 SET refOut.NombreCompleto  	   = FIELDVALUE(refInp.NombreCompleto);
-		 SET refOut.RutaPdfUltimoEstudio   = FIELDVALUE(refInp.RutaPdfUltimoEstudio);
-		 SET refOut.	TalentoId  		   = FIELDVALUE(refInp.TalentoId);
+		 SET refOut.TalentoCodigo 		   = FIELDVALUE(refInp.car:TalentoCodigo);
+		 SET refOut.Foto  				   = (refInp.car:Foto);
+		 SET refOut.NombreCompleto  	   = FIELDVALUE(refInp.car:NombreCompleto);
+		 SET refOut.RutaPdfUltimoEstudio   = FIELDVALUE(refInp.car:RutaPdfUltimoEstudio);
+		 SET refOut.TalentoId   		   = FIELDVALUE(refInp.car:TalentoId);
+		
 		 
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR: BACKEND');

@@ -1,6 +1,7 @@
 BROKER SCHEMA co.com.caracol.consultatalentoxidentificacion
 
 DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/mercadeo/indicetalento/consultatalentoxidentificacion/';
+DECLARE car NAMESPACE 'http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento';
 
 CREATE COMPUTE MODULE ConsultaTalentoXIdentificacion_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -14,20 +15,20 @@ CREATE COMPUTE MODULE ConsultaTalentoXIdentificacion_ResponseService
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
 		
-		IF EXISTS(refInp.*:DatosTalentoResponse[]) THEN
+		IF EXISTS(refInp.*:BuscarTalentoXIdentificacionResult[]) THEN
 			MOVE refInp LASTCHILD;
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaTalentoXIdentificacionResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:onsultaTalentoXIdentificacionResponse;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:DatosTalentoResponse[]  DO
+			FOR refReqs AS refInp.*:Talentos.Talento[]  DO
 					
-				SET refOut.DatosTalentoResponse[i].TalentoCodigo	       	= FIELDVALUE(refReqs.*:TalentoCodigo);
-				SET refOut.DatosTalentoResponse[i].Foto	       			  	= FIELDVALUE(refReqs.*:Foto);
-				SET refOut.DatosTalentoResponse[i].NombreCompleto	      	= FIELDVALUE(refReqs.*:NombreCompleto);
-				SET refOut.DatosTalentoResponse[i].RutaPdfUltimoEstudio	  	= FIELDVALUE(refReqs.*:RutaPdfUltimoEstudio);
-				SET refOut.DatosTalentoResponse[i].TalentoId	      		 = FIELDVALUE(refReqs.*:TalentoId);
+				SET refOut.Talentos.Talento[i].TalentoCodigo	       	= FIELDVALUE(refReqs.car:TalentoCodigo);
+				SET refOut.Talentos.Talento[i].Foto	       			  	= (refReqs.car:Foto);
+				SET refOut.Talentos.Talento[i].NombreCompleto	      	= FIELDVALUE(refReqs.car:NombreCompleto);
+				SET refOut.Talentos.Talento[i].RutaPdfUltimoEstudio	  	= FIELDVALUE(refReqs.car:RutaPdfUltimoEstudio);
+				SET refOut.Talentos.Talento[i].TalentoId	      		 = FIELDVALUE(refReqs.car:TalentoId);
 			   
 				SET i = i + 1;
 			END FOR;

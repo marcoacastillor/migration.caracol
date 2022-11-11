@@ -3,11 +3,17 @@
     nsURI="co/com/caracol/actualizaridentificaciontalento/ActualizarIdentificacionTalento_RQ.msgflow" nsPrefix="co_com_caracol_actualizaridentificaciontalento_ActualizarIdentificacionTalento_RQ.msgflow">
   <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1" nodeLayoutStyle="RECTANGLE">
     <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
-    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_SERVICE" name="UDP_SERVICE" lowerBound="1" defaultValueLiteral="CONSULTA_HOJA_VIDA">
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_SERVICE" name="UDP_SERVICE" lowerBound="1" defaultValueLiteral="ACTUALIZAR_IDENTIFICACION_TALENTO">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TRACING" name="UDP_TRACING" lowerBound="1" defaultValueLiteral="true">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_OPERATION" name="UDP_OPERATION" lowerBound="1" defaultValueLiteral="ActualizarIdentificacionTalento">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TONOTIFICATION" name="UDP_TONOTIFICATION" lowerBound="1" defaultValueLiteral="mcastillo@assist.com.co">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <translation xmi:type="utility:TranslatableString" key="ActualizarIdentificacionTalento_RQ" bundleName="co/com/caracol/actualizaridentificaciontalento/ActualizarIdentificacionTalento_RQ" pluginId="IndiceTalento-ActualizarIdentificacionTalento-CH"/>
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/IndiceTalento-ActualizarIdentificacionTalento-CH/icons/full/obj16/ActualizarIdentificacionTalento_RQ.gif"/>
@@ -52,6 +58,12 @@
         <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_SERVICE" bundleName="co/com/caracol/actualizaridentificaciontalento/ActualizarIdentificacionTalento_RQ" pluginId="IndiceTalento-ActualizarIdentificacionTalento-CH"/>
         <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TRACING">
           <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TRACING" bundleName="co/com/caracol/actualizaridentificaciontalento/ActualizarIdentificacionTalento_RQ" pluginId="IndiceTalento-ActualizarIdentificacionTalento-CH"/>
+          <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_OPERATION">
+            <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_OPERATION" bundleName="co/com/caracol/actualizaridentificaciontalento/ActualizarIdentificacionTalento_RQ" pluginId="IndiceTalento-ActualizarIdentificacionTalento-CH"/>
+            <propertyDescriptor groupName="Group.Basic" configurable="true" userDefined="true" describedAttribute="Property.UDP_TONOTIFICATION">
+              <propertyName xmi:type="utility:TranslatableString" key="Property.UDP_TONOTIFICATION" bundleName="co/com/caracol/actualizaridentificaciontalento/ActualizarIdentificacionTalento_RQ" pluginId="IndiceTalento-ActualizarIdentificacionTalento-CH"/>
+            </propertyDescriptor>
+          </propertyDescriptor>
         </propertyDescriptor>
       </propertyDescriptor>
     </propertyOrganizer>

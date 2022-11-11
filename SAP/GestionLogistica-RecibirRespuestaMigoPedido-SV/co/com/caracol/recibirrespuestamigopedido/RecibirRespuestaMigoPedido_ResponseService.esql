@@ -14,9 +14,7 @@ CREATE COMPUTE MODULE RecibirRespuestaMigoPedido_ResponseService
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
 		--MOVE refInp LASTCHILD;
-		
-		--Crear mensaje de salida
-	
+
 			--Crear mensaje de salida
 		CREATE FIELD OutputRoot.XMLNSC.s1.RecibirRespuestaMigoPedidoResponse;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.s1.RecibirRespuestaMigoPedidoResponse;

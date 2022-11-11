@@ -13,11 +13,12 @@ CREATE COMPUTE MODULE CreacionPedidoCostosAdicionales_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
+		
 		
 		--Crear mensaje de salida
 		
 		IF EXISTS(refInp.*:PosicionGeneral[]) THEN
+			MOVE refInp LASTCHILD;
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.XMLNSC.s1:CreacionPedidoCostosAdicionalesResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.s1:CreacionPedidoCostosAdicionalesResponse;

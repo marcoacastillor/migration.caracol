@@ -1,7 +1,7 @@
 BROKER SCHEMA co.com.caracol.consultatalentoxcodigo
 
-DECLARE ns NAMESPACE 'http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento';
 DECLARE temp NAMESPACE 'http://tempuri.org/';
+DECLARE ns NAMESPACE 'http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento';
 
 CREATE COMPUTE MODULE ConsultaTalentoXcodigo_RequestBack
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -20,7 +20,7 @@ CREATE COMPUTE MODULE ConsultaTalentoXcodigo_RequestBack
 		CREATE FIELD OutputRoot.XMLNSC.temp:BuscarTalentoXCodigo;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:BuscarTalentoXCodigo;
 		
-		SET refOut.temp:DatosTalentoRequest.ns:TalentoCodigo	= FIELDVALUE(refInp.NumeroIdentificacion);
+		SET refOut.temp:DatosTalentoRequest.ns:TalentoCodigo	= FIELDVALUE(refInp.TalentoCodigo);
 		
 		RETURN TRUE;
 	 END;	

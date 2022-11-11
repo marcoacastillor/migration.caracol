@@ -24,7 +24,7 @@ CREATE COMPUTE MODULE Casting_ConsultarActores_ResponseService
 			FOR refReqs AS refInp.*:Actor[]  DO
 					--Funcionalidad
 			    SET refOut.Actor[i].cedula	        = FIELDVALUE(refReqs.*:cedula);
-				SET refOut.Actor[i].foto	        = FIELDVALUE(refReqs.*:foto);
+				SET refOut.Actor[i].foto	        = (refReqs.*:foto);
 				SET refOut.Actor[i].nombres	  		= FIELDVALUE(refReqs.*:nombres);
 				SET refOut.Actor[i].tienehojavida	= FIELDVALUE(refReqs.*:tienehojavida);			
 			   
