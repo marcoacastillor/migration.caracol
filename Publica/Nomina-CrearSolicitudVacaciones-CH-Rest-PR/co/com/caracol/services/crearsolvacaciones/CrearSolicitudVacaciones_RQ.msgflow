@@ -22,8 +22,8 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="767,338" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="1039,182" queueName="SV.NOMINA.CONSULTALISTADISTRIBUCION.01" request="true" replyToQ="CH.WS.CREARSOLICITUDVACACIONES.02">
-        <translation xmi:type="utility:ConstantString" string="SV.NOMINA.CONSULTALISTADISTRIBUCION.01"/>
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="1039,182" queueName="SV.NOMINA.CREARSOLICITUDVACACIONES.01" request="true" replyToQ="CH.WS.CREARSOLICITUDVACACIONES.02">
+        <translation xmi:type="utility:ConstantString" string="SV.NOMINA.CREARSOLICITUDVACACIONES.01"/>
       </nodes>
       <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="555,333">
         <translation xmi:type="utility:ConstantString" string="HTTP Reply"/>

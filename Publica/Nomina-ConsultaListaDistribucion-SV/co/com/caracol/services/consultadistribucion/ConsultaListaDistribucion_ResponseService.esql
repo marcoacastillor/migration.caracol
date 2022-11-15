@@ -21,7 +21,7 @@ CREATE COMPUTE MODULE ConsultaListaDistribucion_ResponseService
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultarListaDistribucionResponse;
 			
 			DECLARE j INTEGER 1;
-			FOR rBodyAprobador AS refInp.*:ConsultarListaAprobadoresResult.*:Usuario[] DO				
+			FOR rBodyAprobador AS refInp.*:ConsultarListaDistribucionResult.*:Usuario[] DO				
 				SET refOut.Usuario[j].Correo 	= rBodyAprobador.*:Correo;
 				SET refOut.Usuario[j].Nombre 	= rBodyAprobador.*:Nombre;
 				SET refOut.Usuario[j].UsuarioId = rBodyAprobador.*:UsuarioId;											

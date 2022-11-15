@@ -16,7 +16,7 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="1195,185" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01_1"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="556,180" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdREST.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="556,180" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdREST_MGET.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RouteMessage"/>
       </nodes>
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="712,338" queueName="SV.TRAZABILITY.REGISTER.01">

@@ -19,10 +19,10 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="657,338" queueName="SV.TRAZABILITY.REGISTER.01">
         <translation xmi:type="utility:ConstantString" string="SV.TRAZABILITY.REGISTER.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="929,182" queueName="SV.NOMINA.CONSULTAAPROBADORESVACACIONES.01" destinationMode="list" request="true" replyToQ="CH.WS.CONSULTAAPROBADORESVACACIONES.02">
+      <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="929,182" queueName="SV.NOMINA.CONSULTAAPROBADORESVACACIONES.01" request="true" replyToQ="CH.WS.CONSULTAAPROBADORESVACACIONES.02">
         <translation xmi:type="utility:ConstantString" string="SV.NOMINA.CONSULTAAPROBADORESVACACIONES.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="501,180" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdREST.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="501,180" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_RouteFcdREST_MGET.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RouteMessage"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="219,331" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdREST.Main" computeMode="destinationAndMessage">

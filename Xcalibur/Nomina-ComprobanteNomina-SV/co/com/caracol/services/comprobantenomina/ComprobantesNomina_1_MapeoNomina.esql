@@ -9,42 +9,42 @@ CREATE COMPUTE MODULE ComprobantesNomina_1_MapeoNomina
 		SET OutputRoot.Properties.CodedCharSetId	= 850;
 		SET OutputRoot.Properties.Encoding			= 546;
 		
-		DECLARE refInp REFERENCE TO InputRoot.XMLNSC;
+		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.JSON.Data.dsRecibos;
-		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data.dsRecibos;
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
-		SET refOut.ttReciboCabecera.Cia 			= refInp.ttReciboCabecera.Cia;
-		SET refOut.ttReciboCabecera.NombreArchivo 	= CAST(refInp.ttReciboCabecera.NomArchivo AS CHAR CCSID 1208);					
-		SET refOut.ttReciboCabecera.Ficha 			= refInp.ttReciboCabecera.Ficha;
-		SET refOut.ttReciboCabecera.Correo 			= refInp.ttReciboCabecera.Correo;
-		SET refOut.ttReciboCabecera.Asunto 			= TILDES(CAST(refInp.ttReciboCabecera.Asunto  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
-		SET refOut.ttReciboCabecera.Titulo 			= TILDES(CAST(refInp.ttReciboCabecera.Titulo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
-		SET refOut.ttReciboCabecera.Mensaje1 		= TILDES(CAST(refInp.ttReciboCabecera.Mensaje1  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
-		SET refOut.ttReciboCabecera.Mensaje2 		= TILDES(CAST(refInp.ttReciboCabecera.Mensaje2  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
-		SET refOut.ttReciboCabecera.Nombre 			= TILDES(CAST(refInp.ttReciboCabecera.Nombre  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;				
-		SET refOut.ttReciboCabecera.Periodo 		= TILDES(CAST(refInp.ttReciboCabecera.Periodo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
-		SET refOut.ttReciboCabecera.Ubicacion 		= refInp.ttReciboCabecera.Ubicacion;					
-		SET refOut.ttReciboCabecera.NotaVacaciones 	= TILDES(CAST(refInp.ttReciboCabecera.NotaVac  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
-		SET refOut.ttReciboCabecera.Observaciones 	= TILDES(CAST(refInp.ttReciboCabecera.Observaciones  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
-		SET refOut.ttReciboCabecera.TotalPagos 		= refInp.ttReciboCabecera.TotPagos;
-		SET refOut.ttReciboCabecera.TotalDecuentos 	= refInp.ttReciboCabecera.TotDecuentos;
-		SET refOut.ttReciboCabecera.TotalRecibido 	= refInp.ttReciboCabecera.TotRecibido;
+		SET refOut.cia 				= refInp.ttReciboCabecera.Cia;
+		SET refOut.nombreArchivo 	= CAST(refInp.ttReciboCabecera.NomArchivo AS CHAR CCSID 1208);					
+		SET refOut.ficha 			= refInp.ttReciboCabecera.Ficha;
+		SET refOut.correo 			= refInp.ttReciboCabecera.Correo;
+		SET refOut.asunto 			= TILDES(CAST(refInp.ttReciboCabecera.Asunto  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
+		SET refOut.titulo 			= TILDES(CAST(refInp.ttReciboCabecera.Titulo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
+		SET refOut.mensaje1 		= TILDES(CAST(refInp.ttReciboCabecera.Mensaje1  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
+		SET refOut.mensaje2 		= TILDES(CAST(refInp.ttReciboCabecera.Mensaje2  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
+		SET refOut.nombreEmpleado	= TILDES(CAST(refInp.ttReciboCabecera.Nombre  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;				
+		SET refOut.periodo 			= TILDES(CAST(refInp.ttReciboCabecera.Periodo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
+		SET refOut.ubicacion 		= refInp.ttReciboCabecera.Ubicacion;					
+		SET refOut.notaVacaciones 	= TILDES(CAST(refInp.ttReciboCabecera.NotaVac  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
+		SET refOut.observaciones 	= TILDES(CAST(refInp.ttReciboCabecera.Observaciones  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
+		SET refOut.totalPagos 		= refInp.ttReciboCabecera.TotPagos;
+		SET refOut.totalDecuentos 	= refInp.ttReciboCabecera.TotDecuentos;
+		SET refOut.totalRecibido 	= refInp.ttReciboCabecera.TotRecibido;
 		
-		DECLARE intDetalles INTEGER CARDINALITY(refInp.ttReciboDetalle[]);		
+		DECLARE intDetalles INTEGER CARDINALITY(refInp.ttReciboCabecera.ttReciboDetalles.*[]);		
 		IF (intDetalles >= 1) THEN			
 			SET j = 1;
-			FOR rBodyDetalle AS refInp.ttReciboDetalle[] DO
-				SET refOut.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Ficha			=	rBodyDetalle.*:Ficha;
-				SET refOut.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].NombreConcepto	=	rBodyDetalle.*:NombreCpto;
-				SET refOut.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Cantidad		=	rBodyDetalle.*:Cantidad;
-				SET refOut.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Pago			=	rBodyDetalle.*:Pago;									
-				SET refOut.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Descuento		=	rBodyDetalle.*:Descuento;
-				SET refOut.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[j].Saldo			=	rBodyDetalle.*:Saldo;				
+			FOR rBodyDetalle AS refInp.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[] DO
+				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].ficha			=	rBodyDetalle.*:Ficha;
+				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].nombreConcepto	=	rBodyDetalle.*:NombreCpto;
+				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].cantidad		=	rBodyDetalle.*:Cantidad;
+				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].pago			=	rBodyDetalle.*:Pago;									
+				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].descuento		=	rBodyDetalle.*:Descuento;
+				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].saldo			=	rBodyDetalle.*:Saldo;				
 				SET j =j+1;								
 			END FOR;		
 		END IF;

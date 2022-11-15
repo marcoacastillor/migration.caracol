@@ -17,26 +17,32 @@ CREATE COMPUTE MODULE TranslateByService_RS_subflow_TranslateByService
 		CREATE FIELD OutputRoot.JSON.Data;
 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
-		--SET refOut = refInp;
-		
-		DECLARE i,j INTEGER 1;
-		FOR refDocument AS refInp.Documento[]  DO
-			SET refOut.(JSON.Array)Documento.d[j].IdDocumento 		= refDocument.IdDocumento;
-			SET refOut.(JSON.Array)Documento.d[j].Nombre 			= CAST(refDocument.Nombre AS CHARACTER);
-			SET refOut.(JSON.Array)Documento.d[j].UltimaRevision 	= refDocument.UltimaRevision;
-			SET refOut.(JSON.Array)Documento.d[j].TipoDocumental 	= refDocument.TipoDocumental;
-			SET refOut.(JSON.Array)Documento.d[j].FechaCreacion 	= refDocument.FechaCreacion; 																							
-			SET j = j+1; 
+		IF CONTAINS(FIELDNAME(refInp),'Envelope') THEN
+			MOVE refInp LASTCHILD;
+			MOVE refInp LASTCHILD;
 			
-			--Crear KeyWord 							
-			FOR rBodyKeyWord AS refDocument.KeyWords.*[] DO   												
-				SET refOut.(JSON.Array)Documento.d[j].KeyWord[i].Nombre	= CAST(rBodyKeyWord.Nombre AS CHARACTER);     
-				SET refOut.(JSON.Array)Documento.d[j].KeyWord[i].Valor	= CAST( rBodyKeyWord.Valor AS CHARACTER);      						 						 						 						
+			SET refOut.Error = refInp.faultstring;	
+		ELSE
+			DECLARE i,j INTEGER 1;
+			FOR refDocument AS refInp.Documento[]  DO
+				SET refOut.(JSON.Array)Documento.d[j].IdDocumento 		= refDocument.IdDocumento;
+				SET refOut.(JSON.Array)Documento.d[j].Nombre 			= CAST(refDocument.Nombre AS CHARACTER);
+				SET refOut.(JSON.Array)Documento.d[j].UltimaRevision 	= refDocument.UltimaRevision;
+				SET refOut.(JSON.Array)Documento.d[j].TipoDocumental 	= refDocument.TipoDocumental;
+				SET refOut.(JSON.Array)Documento.d[j].FechaCreacion 	= refDocument.FechaCreacion; 																							
+				SET j = j+1; 
 				
-				SET i = i + 1;  	 			
-			END FOR; 							
-		END FOR;
-		
+				--Crear KeyWord 							
+				FOR rBodyKeyWord AS refDocument.KeyWords.*[] DO   												
+					SET refOut.(JSON.Array)Documento.d[j].KeyWord[i].Nombre	= CAST(rBodyKeyWord.Nombre AS CHARACTER);     
+					SET refOut.(JSON.Array)Documento.d[j].KeyWord[i].Valor	= CAST( rBodyKeyWord.Valor AS CHARACTER);      						 						 						 						
+					
+					SET i = i + 1;  	 			
+				END FOR; 							
+			END FOR;
+						
+		END IF;
+				
 		RETURN TRUE;
 	END;
 END MODULE;

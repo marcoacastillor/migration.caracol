@@ -6,7 +6,7 @@ CREATE COMPUTE MODULE TranslateByService_subflow_TranslateByService
 	BEGIN
 		-- Copiar cabeceras
 		SET OutputRoot.MQMD 	= InputRoot.MQMD;
-		SET OutputRoot.MQRFH2C 	= InputRoot.MQRFH2C;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
 		
 		-- Referencia a objeto de entrada
 		DECLARE refInp REFERENCE TO InputRoot;

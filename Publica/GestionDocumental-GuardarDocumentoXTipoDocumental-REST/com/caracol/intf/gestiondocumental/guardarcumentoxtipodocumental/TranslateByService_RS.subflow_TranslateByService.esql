@@ -17,9 +17,16 @@ CREATE COMPUTE MODULE TranslateByService_RS_subflow_TranslateByService
 		CREATE FIELD OutputRoot.JSON.Data;
 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
-		SET refOut.IdDocumento 	= refInp.*:IdDocumento;
-		SET refOut.Codigo 		= refInp.*:Codigo;
-		SET refOut.Descripcion 	= refInp.*:Descripcion;
+		IF CONTAINS(FIELDNAME(refInp),'Envelope') THEN
+			MOVE refInp LASTCHILD;
+			MOVE refInp LASTCHILD;
+			
+			SET refOut.Error = refInp.faultstring;	
+		ELSE
+			SET refOut.IdDocumento 	= refInp.*:IdDocumento;
+			SET refOut.Codigo 		= refInp.*:Codigo;
+			SET refOut.Descripcion 	= refInp.*:Descripcion;
+		END IF;
 		
 		RETURN TRUE;
 	END;

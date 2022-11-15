@@ -8,28 +8,29 @@ CREATE COMPUTE MODULE ComprobantesNomina_2_RequestBack
 		SET Environment.usr._header.MQMD = InputRoot.MQMD;
 		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
 		
+		
+		--Crear mensaje de salida
+		SET OutputRoot.JSON = InputRoot.JSON;
+		
 		--Declarar variable referencia de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
 		
-		--Crear mensaje de salida
-		SET OutputRoot.JSON = InputRoot.JSON;
-		
 		--Guardar mensajes para envío de correo
-		SET Environment.Variables.CorreoElectronico[] =LIST{refInp.Correo};			
+		SET Environment.Variables.CorreoElectronico[] =LIST{refInp.correo};			
 		IF refInp.Ficha IS NULL OR refInp.Ficha ='' THEN
 			SET Environment.Variables.Ficha[]		=  LIST{'SIN FICHA'};
 		ELSE
-			SET Environment.Variables.Ficha[] 		= LIST{refInp.Ficha};
+			SET Environment.Variables.Ficha[] 		= LIST{refInp.ficha};
 		END IF;
 		
-		SET Environment.Variables.Compania[] 		=LIST{refInp.Cia};		
-		SET Environment.Variables.Asunto[] 			=LIST{refInp.Asunto};
-		SET Environment.Variables.Titulo[] 			=LIST{refInp.Titulo};
-		SET Environment.Variables.Mensaje1[] 		=LIST{refInp.Mensaje1};
-		SET Environment.Variables.Mensaje2[] 		=LIST{refInp.Mensaje2};		
-		SET Environment.Variables.NombreArchivo[] 	=LIST{refInp.NombreArchivo};
+		SET Environment.Variables.Compania[] 		=LIST{refInp.cia};		
+		SET Environment.Variables.Asunto[] 			=LIST{refInp.asunto};
+		SET Environment.Variables.Titulo[] 			=LIST{refInp.titulo};
+		SET Environment.Variables.Mensaje1[] 		=LIST{refInp.mensaje1};
+		SET Environment.Variables.Mensaje2[] 		=LIST{refInp.mensaje2};		
+		SET Environment.Variables.NombreArchivo[] 	=LIST{refInp.nombreArchivo};
 		
 		RETURN TRUE;
 	END;

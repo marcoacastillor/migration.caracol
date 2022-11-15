@@ -9,8 +9,7 @@ CREATE COMPUTE MODULE ComprobanteVacaciones_1_MapeoVacaciones
 		SET OutputRoot.Properties.CodedCharSetId	= 850;
 		SET OutputRoot.Properties.Encoding			= 546;
 		
-		DECLARE refInp REFERENCE TO InputRoot.XMLNSC;
-		MOVE refInp LASTCHILD;
+		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
 		

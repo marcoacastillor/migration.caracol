@@ -17,14 +17,21 @@ CREATE COMPUTE MODULE TranslateByService_RS_subflow_TranslateByService
 		CREATE FIELD OutputRoot.JSON.Data;
 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
-		DECLARE i,j INTEGER 1;
-		FOR refUser AS refInp.Usuario[]  DO
-			SET refOut.(JSON.Array)Usuarios.d[j].Correo 	= refUser.Correo;
-			SET refOut.(JSON.Array)Usuarios.d[j].Nombre 	= CAST(refUser.Nombre AS CHARACTER);
-			SET refOut.(JSON.Array)Usuarios.d[j].UsuarioId 	= refUser.UsuarioId;
-			 																							
-			SET j = j+1; 
-		END FOR;
+		IF CONTAINS(FIELDNAME(refInp),'Envelope') THEN
+			MOVE refInp LASTCHILD;
+			MOVE refInp LASTCHILD;
+			
+			SET refOut.Error = refInp.faultstring;	
+		ELSE
+			DECLARE i,j INTEGER 1;
+			FOR refUser AS refInp.Usuario[]  DO
+				SET refOut.(JSON.Array)Usuarios.d[j].Correo 	= refUser.Correo;
+				SET refOut.(JSON.Array)Usuarios.d[j].Nombre 	= CAST(refUser.Nombre AS CHARACTER);
+				SET refOut.(JSON.Array)Usuarios.d[j].UsuarioId 	= refUser.UsuarioId;
+				 																							
+				SET j = j+1; 
+			END FOR;	
+		END IF;
 		
 		RETURN TRUE;
 	END;

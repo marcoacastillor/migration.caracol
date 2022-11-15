@@ -16,7 +16,7 @@
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="129,200" queueName="CH.WS.CONSULTAAPROBADORESVACACIONES.02" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="CH.WS.CONSULTAAPROBADORESVACACIONES.02"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="534,199" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="534,199" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ResponseFcdREST.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseClient"/>
       </nodes>
       <nodes xmi:type="ComIbmWSReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="744,200">
