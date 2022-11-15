@@ -12,15 +12,14 @@ CREATE COMPUTE MODULE ActualizaridentificacionTalento_ResponseService
 		--Declarar variable referencia de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
-		IF EXISTS(refInp.*:ActualizarIdentificacionTalentoRequest[]) THEN
-		 CREATE FIELD OutputRoot.XMLNSC.ns1:ActualizarIdentificacionTalentoResponse;
-		 DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ActualizarIdentificacionTalentoResponse;
+		IF EXISTS(refInp.*:ActualizarIdentificacionTalentoResponse[]) THEN
+			MOVE refInp LASTCHILD;
 			
-		SET refOut.ns1:ActualizarIdentificacionTalentoResponse  = FIELDVALUE(refInp.*:ActualizarIdentificacionTalentoRequest);
-	
+		 	CREATE FIELD OutputRoot.XMLNSC.ns1:ActualizarIdentificacionTalentoResponse;
+		 	DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ActualizarIdentificacionTalentoResponse;
+			
+			SET refOut  = refInp;
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR: BACKEND');
 		END IF;
