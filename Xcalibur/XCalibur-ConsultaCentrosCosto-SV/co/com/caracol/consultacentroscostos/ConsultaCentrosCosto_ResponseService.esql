@@ -13,7 +13,6 @@ CREATE COMPUTE MODULE ConsultaCentrosCosto_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 	
 		IF EXISTS(refInp.*:CentroCosto[]) THEN
 		--Crear mensaje de salida
@@ -23,11 +22,11 @@ CREATE COMPUTE MODULE ConsultaCentrosCosto_ResponseService
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:CentroCosto.*:CentroCostoRow[]  DO
 				
-				SET refOut.ns1:CentrosCosto[i].ns1:Ubicacion	        = FIELDVALUE(refReqs.*:Ubicacion);
-				SET refOut.ns1:CentrosCosto[i].ns1:Nombre	        	= FIELDVALUE(refReqs.*:Nombre);
-				SET refOut.ns1:CentrosCosto[i].ns1:CodigoSap	        = FIELDVALUE(refReqs.*:UCentroCosto);
-				SET refOut.ns1:CentrosCosto[i].ns1:CodigoClaseSap	    = FIELDVALUE(refReqs.*:Clase);
-				SET refOut.ns1:CentrosCosto[i].ns1:RangoCuentasClase	= FIELDVALUE(refReqs.*:Rango);				
+				SET refOut.CentrosCosto.CentroCosto[i].Ubicacion	        = FIELDVALUE(refReqs.*:Ubicacion);
+				SET refOut.CentrosCosto.CentroCosto[i].Nombre	        	= FIELDVALUE(refReqs.*:Nombre);
+				SET refOut.CentrosCosto.CentroCosto[i].CodigoSap	        = FIELDVALUE(refReqs.*:CentroCosto);
+				SET refOut.CentrosCosto.CentroCosto[i].CodigoClaseSap	    = FIELDVALUE(refReqs.*:Clase);
+				SET refOut.CentrosCosto.CentroCosto[i].RangoCuentasClase	= FIELDVALUE(refReqs.*:Rango);				
 							
 				SET i = i + 1;
 			END FOR;

@@ -17,21 +17,19 @@ CREATE COMPUTE MODULE ConsultaCertificadoLaboral_ResponseService
 			MOVE refInp LASTCHILD;
 			
 			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultarDatosCertificadoResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultarDatosCertificadoResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaCertificadoLaboralResponse.CertificadoLaboral;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaCertificadoLaboralResponse.CertificadoLaboral;
 			
-			SET refOut.ns1:Nombres				= FIELDVALUE(refInp.*:Nombres);
-			SET refOut.ns1:FechaIngreso			= FIELDVALUE(refInp.*:FechaIngreso);
-			SET refOut.ns1:Cargo				= FIELDVALUE(refInp.*:Cargo);
-			SET refOut.ns1:TipoContrato			= FIELDVALUE(refInp.*:TipoContrato);
-			SET refOut.ns1:Asignacion			= FIELDVALUE(refInp.*:Asignacion);
-			SET refOut.ns1:CorreoElectronico	= FIELDVALUE(refInp.*:CorreoElectronico);
-			SET refOut.ns1:TipoAsignacion		= FIELDVALUE(refInp.*:TipoAsignacion);
-			SET refOut.ns1:Ficha				= FIELDVALUE(refInp.*:Ficha);
-			SET refOut.ns1:Empresa				= FIELDVALUE(refInp.*:NombreCia);
-			SET refOut.ns1:Estado				= FIELDVALUE(refInp.*:Estado);
-			
-			
+			SET refOut.Nombres				= FIELDVALUE(refInp.*:Nombres);
+			SET refOut.FechaIngreso			= FIELDVALUE(refInp.*:FechaIngreso);
+			SET refOut.Cargo				= FIELDVALUE(refInp.*:Cargo);
+			SET refOut.TipoContrato			= FIELDVALUE(refInp.*:TipoContrato);
+			SET refOut.Asignacion			= FIELDVALUE(refInp.*:Asignacion);
+			SET refOut.CorreoElectronico	= FIELDVALUE(refInp.*:CorreoElectronico);
+			SET refOut.TipoAsignacion		= FIELDVALUE(refInp.*:TipoAsignacion);
+			SET refOut.Ficha				= FIELDVALUE(refInp.*:Ficha);
+			SET refOut.Empresa				= FIELDVALUE(refInp.*:NombreCia);
+			SET refOut.Estado				= FIELDVALUE(refInp.*:Estado);
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
 		END IF;

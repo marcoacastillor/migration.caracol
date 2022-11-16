@@ -34,7 +34,7 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 				SET refOut.Solicitudes.Solicitud[i].Cargo              		= FIELDVALUE(refReqs.*:solicitudCargo);	
 				SET refOut.Solicitudes.Solicitud[i].FechaAusencia	        = FIELDVALUE(refReqs.*:solicitudFechaAusencia);	
 				SET refOut.Solicitudes.Solicitud[i].Duracion	            = FIELDVALUE(refReqs.*:solicitudDuracion);	
-				SET refOut.Solicitudes.Solicitud[i].FechaAprobacion	    	= FIELDVALUE(refReqs.*:solicitudFechaAprobacion);	
+				SET refOut.Solicitudes.Solicitud[i].FechaAprobacion	    	= (refReqs.*:solicitudFechaAprobacion);	
 				SET refOut.Solicitudes.Solicitud[i].FechaFin	            = (refReqs.*:solicitudFechaFin);
 				SET refOut.Solicitudes.Solicitud[i].FechaReintegro      	= (refReqs.*:solicitudFechaReintegro);
 				SET refOut.Solicitudes.Solicitud[i].Comentarios	        	= FIELDVALUE(refReqs.*:solicitudComentarios);
