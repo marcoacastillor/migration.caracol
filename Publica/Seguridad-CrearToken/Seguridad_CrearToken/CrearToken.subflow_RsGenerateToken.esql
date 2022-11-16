@@ -12,11 +12,12 @@ CREATE COMPUTE MODULE "CrearToken.subflow_RsGenerateToken"
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
 		
-		-- TODO: Validar en tiempo de ejecución, debug
-		SET refOut.status.code =	InputRoot.HTTPResponseHeader."X-Original-HTTP-Status-Code";
-		
-		IF refOut.status.code > 199 OR refOut.status.code < 300 THEN
-			SET refOut.token = refInp.token;
+		IF InputRoot.HTTPResponseHeader."X-Original-HTTP-Status-Code" > 199 OR InputRoot.HTTPResponseHeader."X-Original-HTTP-Status-Code" < 300 THEN
+			IF EXISTS(refInp.token[]) THEN
+				SET refOut.token = refInp.token;
+			ELSE
+				SET refOut.Error = 'No se puede generar token.';
+			END IF;
 		ELSE
 			SET refOut.Error = refInp.Error;
 		END IF;

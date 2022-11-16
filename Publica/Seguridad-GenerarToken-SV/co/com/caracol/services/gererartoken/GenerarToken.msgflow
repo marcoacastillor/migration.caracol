@@ -10,13 +10,13 @@
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="229,127" queueName="SV.SEGURIDAD.GENERARTOKEN.01" messageDomainProperty="XMLNSC">
         <translation xmi:type="utility:ConstantString" string="SV.SEGURIDAD.GENERARTOKEN.01"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="444,202" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsFcdREST.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="444,202" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificREST.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="434,126" computeExpression="esql://routine/co.com.caracol.services.gererartoken#GenerarToken_RqProfileXUserAndSystem.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RqProfileXUserAndSystem"/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="814,42" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="814,42" messageCatalog="700" messageText="CUST::Error comunicación con backend, validando credenciales">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_11" location="847,134" computeExpression="esql://routine/co.com.caracol.services.gererartoken#GenerarToken_RqAuthentica.Main" computeMode="destinationAndMessage">
@@ -25,7 +25,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_12" location="1293,135" computeExpression="esql://routine/co.com.caracol.services.gererartoken#GenerarToken_RqFunctionsByUser.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RqFunctionsByUser"/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="1237,46" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_13" location="1237,46" messageCatalog="700" messageText="CUST::Error comunicación con backend, autenticando">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint1"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_18" location="2147,137" computeExpression="esql://routine/co.com.caracol.services.gererartoken#GenerarToken_RsService.Main" computeMode="destinationAndMessage">
@@ -55,7 +55,7 @@
         <shortDescription xmi:type="utility:ConstantString" string="Invokes WSDL operation and extracts the response from SOAP message."/>
         <longDescription xmi:type="utility:ConstantString" string="This subflow invokes the WSDL operation and extracts message body from the response message."/>
       </nodes>
-      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="1686,46" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
+      <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="1686,46" messageCatalog="700" messageText="Error comunicación con backend, funcionalidades hijas">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint2"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_14" location="1715,136" computeExpression="esql://routine/co.com.caracol.services.gererartoken#GenerarToken_RqGenerateToken.Main" computeMode="destinationAndMessage">

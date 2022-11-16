@@ -12,7 +12,7 @@
       <nodes xmi:type="eflow:FCMSink" xmi:id="OutTerminal.Output" location="622,121">
         <translation xmi:type="utility:TranslatableString" key="OutTerminal.Output" bundleName="Seguridad_CrearToken/CrearToken" pluginId="Seguridad-CrearToken"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="343,117" URLSpecifier="http://kappaprpi:89/api/services/generate/token" httpVersion="1.1" protocol="TLS">
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="343,117" URLSpecifier="http://kappaprpi:89/api/services/generate/token" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON">
         <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="485,121" computeExpression="esql://routine/Seguridad_CrearToken#&quot;CrearToken.subflow_RsGenerateToken&quot;.Main">

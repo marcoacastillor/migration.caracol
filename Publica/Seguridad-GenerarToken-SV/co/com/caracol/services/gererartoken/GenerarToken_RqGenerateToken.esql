@@ -10,15 +10,19 @@ CREATE COMPUTE MODULE GenerarToken_RqGenerateToken
 		MOVE refInp LASTCHILD;
 		
 		--Validación de perfil
-		IF EXISTS(refInp.srvFuncionalidades[]) THEN
+		IF EXISTS(refInp.Funcionalidad[]) THEN
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.JSON.Data;
 			DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 			
 			SET refOut.Usuario 		= Environment.Variables.usuarioId;			
     		SET refOut.HorasExpira	= '2';
-    		SET refOut.Servicios	= refInp.FuncionalidadesHijasResponse;
-			 		    		   
+    		
+    		DECLARE idsFunctions CHARACTER '';
+    		FOR refFunctions AS refInp.Funcionalidad[] DO
+    			SET idsFunctions = idsFunctions || CAST(refFunctions.Id AS CHARACTER) || ',';
+    		END FOR;
+    		SET refOut.(JSON.Array)Servicios	= idsFunctions;
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::No se encuentran funcionalidades asociadas');
 		END IF;

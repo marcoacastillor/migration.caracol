@@ -23,7 +23,7 @@ CREATE COMPUTE MODULE TranslateByService_RS_subflow_TranslateByService
 			
 			SET refOut.Error = refInp.faultstring;	
 		ELSE
-			IF  FIELDTYPE(refInp.ArchivoPdf) IS NULL THEN
+			IF  FIELDVALUE(refInp.*:ArchivoPdf) IS NULL THEN
 				SET OutputLocalEnvironment.Destination.HTTP."X-Original-HTTP-Status-Code"=401;	
 				SET refOut.Error = 'La información enviada no genera resultados';				 
 			ELSE

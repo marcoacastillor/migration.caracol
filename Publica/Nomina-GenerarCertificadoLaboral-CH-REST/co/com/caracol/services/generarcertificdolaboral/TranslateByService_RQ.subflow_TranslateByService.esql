@@ -19,20 +19,7 @@ CREATE COMPUTE MODULE TranslateByService_RQ_subflow_TranslateByService
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.srvGenerarCertificadoLaboralRequest;
 		
 		--Copiar todo el mensaje
-		--TODO: Probar en debug
 		SET refOut = refInp;
-		
-		/*
-		SET refOut.Cia				= refInp.Cia;		
-		SET refOut.DsNo				= refInp.DsNo;
-		SET refOut.Cedula		 	= refInp.Cedula;
-		SET refOut.FechaNacimiento  = refInp.FechaNacimiento;
-		SET refOut.Solicitud		= refInp.Solicitud;
-		SET refOut.Destino			= refInp.Destino;		
-		SET refOut.De				= refInp.De;
-		SET refOut.Destinatarios	= refInp.Destinatarios;						
-		SET refOut.VisualizarSueldo	= refInp.VisualizarSueldo;
-		*/
 		
 		RETURN TRUE;
 	END;
