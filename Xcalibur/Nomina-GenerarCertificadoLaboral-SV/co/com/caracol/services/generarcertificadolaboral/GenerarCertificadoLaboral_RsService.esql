@@ -1,5 +1,6 @@
 BROKER SCHEMA co.com.caracol.services.generarcertificadolaboral
 
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/nomina/nomina/generarcertificadolaboralv2/';
 
 CREATE COMPUTE MODULE GenerarCertificadoLaboral_RsService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -9,8 +10,8 @@ CREATE COMPUTE MODULE GenerarCertificadoLaboral_RsService
 		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		CREATE FIELD OutputRoot.XMLNSC.ns1:GenerarCertificadoLaboralResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:GenerarCertificadoLaboralResponse;
 		
 		SET refOut.ArchivoPdf	=	Environment.Variables.PDF[1];
 		
