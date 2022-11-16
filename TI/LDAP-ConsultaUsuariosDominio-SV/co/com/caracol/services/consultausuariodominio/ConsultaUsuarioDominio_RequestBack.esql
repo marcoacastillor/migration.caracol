@@ -9,9 +9,9 @@ CREATE COMPUTE MODULE ConsultaUsuarioDominio_RequestBack
 		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
 		
 		--Declarar variable referencia de entrada
-		DECLARE refInp REFERENCE TO InputRoot;
-		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
+		--DECLARE refInp REFERENCE TO InputRoot;
+		--MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
 		--MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida

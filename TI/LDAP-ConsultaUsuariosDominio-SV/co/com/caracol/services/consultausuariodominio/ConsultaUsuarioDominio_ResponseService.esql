@@ -19,7 +19,7 @@ CREATE COMPUTE MODULE ConsultaUsuarioDominio_ResponseService
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaUsuariosDominioResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaUsuariosDominioResponse;
-			MOVE refInp LASTCHILD;
+			--MOVE refInp LASTCHILD;
 			
 			DECLARE i INTEGER 1;
 			FOR refUser AS refInp.Item[] DO

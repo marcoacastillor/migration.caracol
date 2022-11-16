@@ -19,11 +19,7 @@ CREATE COMPUTE MODULE CrearPDF_ResponseService
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:CrearCertificadoLaboralPdfResponse;
 		
 		SET refOut.ArchivoPdf 	= BASE64ENCODE(refInp.archivoPdf);
-<<<<<<< HEAD
-		SET refOut.ArchivoCSV 	= BASE64ENCODE(refInp.ArchivoCSV);
-=======
 		SET refOut.ArchivoCSV 	= BASE64ENCODE(refInp.archivoCSV);
->>>>>>> e067c4d81f6e47f467e1c184bd25e4af8ebd4b21
 	
 		RETURN TRUE;
 	END;
