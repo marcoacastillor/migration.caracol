@@ -3,7 +3,7 @@ BROKER SCHEMA co.com.caracol.servicio.consultarsolicitudvacaciones
 DECLARE temp NAMESPACE 'http://tempuri.org/';
 DECLARE ns4 NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones';
 DECLARE ns NAMESPACE 'http://schemas.microsoft.com/2003/10/Serialization/Arrays';
-DECLARE ns2 NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones';
+DECLARE ns1 NAMESPACE 'http://schemas.datacontract.org/2004/07/ServicioConsultaVacaciones';
 
 CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_RequestBack
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -28,7 +28,7 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_RequestBack
 		
 		FOR refReqs AS refInp.Ubicaciones.*[] DO					
 			--asigna valores recibidos de xcalibur al response del servicio del ESB									 		
-	 		SET refOut.temp:ConsultaRequest.ns2:Ubicaciones.ns:string[i]= refReqs.UbicacionId;		 				 
+	 		SET refOut.temp:ConsultaRequest.ns1:Ubicaciones.ns:string[i]= refReqs.UbicacionId;		 				 
 			SET i = i +1;							
 			IF (i > 1000) THEN
 				RETURN TRUE;

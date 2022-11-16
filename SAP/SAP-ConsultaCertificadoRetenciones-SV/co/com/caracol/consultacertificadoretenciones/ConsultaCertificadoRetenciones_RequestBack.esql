@@ -1,0 +1,33 @@
+BROKER SCHEMA co.com.caracol.consultacertificadoretenciones
+
+DECLARE ns NAMESPACE 'urn:valorem.com.co:canonicos:fi';
+
+CREATE COMPUTE MODULE ConsultaCertificadoRetenciones_RequestBack
+
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:RequestCertificadoProveedor;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:RequestCertificadoProveedor;
+		
+		SET refOut.Sociedad					= (refInp.*:Sociedad);
+		SET refOut.FechaInicialConsulta  	= (refInp.*:FechaInicialConsulta);
+		SET refOut.FechaFinalConsulta	  	= (refInp.*:FechaFinalConsulta);
+		SET refOut.IdentificadorFiscal	  	= (refInp.*:IdentificadorFiscal);
+		SET refOut.TipoCertificado	  		= (refInp.*:TipoCertificado);
+	
+
+				
+		RETURN TRUE;
+	 END;	
+END MODULE;

@@ -14,21 +14,20 @@ CREATE COMPUTE MODULE ConsultaTalentoXIdentificacion_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		
+		--Crear mensaje de salida
 		IF EXISTS(refInp.*:BuscarTalentoXIdentificacionResult[]) THEN
-			MOVE refInp LASTCHILD;
-			--Crear mensaje de salida
+		
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaTalentoXIdentificacionResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:onsultaTalentoXIdentificacionResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaTalentoXIdentificacionResponse;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:Talentos.Talento[]  DO
+			FOR refReqs AS refInp.*:Talentos.*:Talento[]  DO
 					
-				SET refOut.Talentos.Talento[i].TalentoCodigo	       	= FIELDVALUE(refReqs.car:TalentoCodigo);
-				SET refOut.Talentos.Talento[i].Foto	       			  	= (refReqs.car:Foto);
-				SET refOut.Talentos.Talento[i].NombreCompleto	      	= FIELDVALUE(refReqs.car:NombreCompleto);
-				SET refOut.Talentos.Talento[i].RutaPdfUltimoEstudio	  	= FIELDVALUE(refReqs.car:RutaPdfUltimoEstudio);
-				SET refOut.Talentos.Talento[i].TalentoId	      		 = FIELDVALUE(refReqs.car:TalentoId);
+				SET refOut.Talentos.Talento[i].TalentoCodigo	       		= FIELDVALUE(refReqs.*:DatosTalentoResponse.*:TalentoCodigo);
+				SET refOut.Talentos.Talento[i].Foto	       			  	= (refReqs.*:DatosTalentoResponse.*:Foto);
+				SET refOut.Talentos.Talento[i].NombreCompleto	      	= FIELDVALUE(refReqs.*:DatosTalentoResponse.*:NombreCompleto);
+				SET refOut.Talentos.Talento[i].RutaPdfUltimoEstudio	  	= FIELDVALUE(refReqs.*:DatosTalentoResponse.*:RutaPdfUltimoEstudio);
+				SET refOut.Talentos.Talento[i].TalentoId	      			= FIELDVALUE(refReqs.*:DatosTalentoResponse.*:TalentoId);
 			   
 				SET i = i + 1;
 			END FOR;

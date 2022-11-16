@@ -1,6 +1,6 @@
 BROKER SCHEMA co.com.caracol.servicio.consultarsolicitudvacaciones
 
-DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/';
+DECLARE ns2 NAMESPACE 'http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/';
 
 CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -19,8 +19,8 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 		
 		IF EXISTS(refInp.*:Solicitudes[]) THEN
 			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultarSolicitudVacacionesResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultarSolicitudVacacionesResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns2:ConsultarSolicitudVacacionesResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:ConsultarSolicitudVacacionesResponse;
 		
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:Solicitudes.*:Solicitud[]  DO
