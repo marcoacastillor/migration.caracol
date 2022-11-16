@@ -1,7 +1,7 @@
 BROKER SCHEMA co.com.caracol.consultatalentoxidentificacion
 
 DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/mercadeo/indicetalento/consultatalentoxidentificacion/';
-DECLARE car NAMESPACE 'http://schemas.datacontract.org/2004/07/Caracol.Reglas.IndiceTalento';
+
 
 CREATE COMPUTE MODULE ConsultaTalentoXIdentificacion_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -16,18 +16,17 @@ CREATE COMPUTE MODULE ConsultaTalentoXIdentificacion_ResponseService
 		MOVE refInp LASTCHILD;
 		--Crear mensaje de salida
 		IF EXISTS(refInp.*:BuscarTalentoXIdentificacionResult[]) THEN
-		
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaTalentoXIdentificacionResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaTalentoXIdentificacionResponse;
 		
 			DECLARE i INTEGER 1;
-			FOR refReqs AS refInp.*:Talentos.*:Talento[]  DO
+			FOR refReqs AS refInp.*:BuscarTalentoXIdentificacionResult.*:DatosTalentoResponse[]  DO
 					
-				SET refOut.Talentos.Talento[i].TalentoCodigo	       		= FIELDVALUE(refReqs.*:DatosTalentoResponse.*:TalentoCodigo);
-				SET refOut.Talentos.Talento[i].Foto	       			  	= (refReqs.*:DatosTalentoResponse.*:Foto);
-				SET refOut.Talentos.Talento[i].NombreCompleto	      	= FIELDVALUE(refReqs.*:DatosTalentoResponse.*:NombreCompleto);
-				SET refOut.Talentos.Talento[i].RutaPdfUltimoEstudio	  	= FIELDVALUE(refReqs.*:DatosTalentoResponse.*:RutaPdfUltimoEstudio);
-				SET refOut.Talentos.Talento[i].TalentoId	      			= FIELDVALUE(refReqs.*:DatosTalentoResponse.*:TalentoId);
+				SET refOut.Talentos.Talento[i].TalentoCodigo	       	= FIELDVALUE(refReqs.*:TalentoCodigo);
+				SET refOut.Talentos.Talento[i].Foto	       			  	= (refReqs.*:Foto);
+				SET refOut.Talentos.Talento[i].NombreCompleto	      	= FIELDVALUE(refReqs.*:NombreCompleto);
+				SET refOut.Talentos.Talento[i].RutaPdfUltimoEstudio	  	= FIELDVALUE(refReqs.*:RutaPdfUltimoEstudio);
+				SET refOut.Talentos.Talento[i].TalentoId	      		= FIELDVALUE(refReqs.*:TalentoId);
 			   
 				SET i = i + 1;
 			END FOR;
