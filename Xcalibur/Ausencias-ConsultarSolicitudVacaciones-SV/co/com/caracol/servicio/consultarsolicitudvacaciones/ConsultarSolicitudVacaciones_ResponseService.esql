@@ -18,6 +18,7 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 		--Crear mensaje de salida
 		
 		IF EXISTS(refInp.*:Solicitudes[]) THEN
+			
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.XMLNSC.ns2:ConsultarSolicitudVacacionesResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:ConsultarSolicitudVacacionesResponse;
@@ -40,7 +41,8 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 				SET refOut.Solicitudes.Solicitud[i].Comentarios	        	= FIELDVALUE(refReqs.*:solicitudComentarios);
 				SET refOut.Solicitudes.Solicitud[i].Aprobador	            = FIELDVALUE(refReqs.*:solicitudAprobador);
 				SET refOut.Solicitudes.Solicitud[i].AprobadorComentarios	= FIELDVALUE(refReqs.*:solicitudAprobadorComentarios);
-				SET refOut.Solicitudes.Solicitud[i].Ubicacion	            = FIELDVALUE(refReqs.*:solicitudUbicacion);											
+				SET refOut.Solicitudes.Solicitud[i].Ubicacion	            = FIELDVALUE(refReqs.*:solicitudUbicacion);
+				SET refOut.Solicitudes.Solicitud[i].TipoSolicitud	        = FIELDVALUE(refReqs.*:TipoSolicitud);											
 							
 				SET i = i + 1;
 			END FOR;
