@@ -13,12 +13,11 @@ CREATE COMPUTE MODULE ConsultaTipoContrato_ResponseServiceV2
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-			
-		CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
 		
+		IF EXISTS(refInp.*:ConsultarTipoContratoResult[]) THEN
 		
-		IF EXISTS(refOut.ConsultarTipoContratoResult[]) THEN
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
 			SET refOut.TipoContratoId = FIELDVALUE(refInp.*:ConsultarTipoContratoResult);
 		ELSE
 			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');		
