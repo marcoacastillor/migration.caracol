@@ -12,7 +12,7 @@
     <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_TONOTIFICATION" name="UDP_TONOTIFICATION" lowerBound="1" defaultValueLiteral="mcastillo@assist.com.co">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
-    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_OPERATION" name="UDP_OPERATION">
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.UDP_OPERATION" name="UDP_OPERATION" lowerBound="1" defaultValueLiteral="ConsultaEventoNegocio">
       <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eStructuralFeatures>
     <translation xmi:type="utility:TranslatableString" key="ConsultaEventoNegocio_RQ" bundleName="co/com/caracol/services/consultaeventonegocio/ConsultaEventoNegocio_RQ" pluginId="Registro-ConsultaEventoNegocio-CH"/>
