@@ -29,7 +29,7 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="243,241" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
-      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="84,132" inputDirectory="\\betaxcal\xcalibur\ComprobanteVacaciones" filenamePattern="*.xml" messageDomainProperty="XMLNSC" messageCodedCharSetIdProperty="850" messageEncodingProperty="546">
+      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="84,132" inputDirectory="/opt/dll/xcalibur/ComprobanteVacaciones" filenamePattern="*.xml" messageDomainProperty="XMLNSC" messageCodedCharSetIdProperty="850" messageEncodingProperty="546">
         <translation xmi:type="utility:ConstantString" string="RbVacacionesFromBetaxcal"/>
         <longDescription xmi:type="utility:ConstantString" string="\\srv_aplicacione\xcalibur\RecibosNomina&#xD;&#xA;&#xD;&#xA;----------------------------------&#xD;&#xA;\\betaxcal\xcalibur\RecibosNomina&#xD;&#xA;&#xD;&#xA;----------------------------------&#xD;&#xA;\\betaxcal\xcalibur\RecibosNomina&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;--------------------------------------&#xD;&#xA;E:\Nomina\ReciboNomina_read\"/>
         <monitorEvents eventSourceDescription="Transaction start" eventSourceName="RbVacacionesFromBetaxcal.transaction.Start" eventIdentity="Nomina-ComprobanteNomina.File Input.TransactionStart">
@@ -43,7 +43,7 @@
           </eventXMLDoc>
         </monitorEvents>
       </nodes>
-      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="276,131" outputDirectory="opt/Nomina/ComprobanteVacaciones" outputFilename="*.xml" validateMaster="none">
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="276,131" outputDirectory="/opt/nomina/ComprobanteVacaciones/" outputFilename="*.xml" validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="BckRbVacaciones"/>
         <longDescription xmi:type="utility:ConstantString" string="E:\Nomina\ComprobanteNomina"/>
       </nodes>

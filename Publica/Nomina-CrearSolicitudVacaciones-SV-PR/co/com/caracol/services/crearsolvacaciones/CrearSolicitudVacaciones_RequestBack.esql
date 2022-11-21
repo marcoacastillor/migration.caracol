@@ -16,8 +16,11 @@ CREATE COMPUTE MODULE CrearSolicitudVacaciones_RequestBack
 		MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC.ns:GenerarSolicitud;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:GenerarSolicitud;
+		CREATE FIELD OutputRoot.SOAP.Body.ns:GenerarSolicitud;
+		DECLARE refOut REFERENCE TO OutputRoot.SOAP.Body.ns:GenerarSolicitud;
+		
+		--SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/';
+	    --SET OutputRoot.SOAP.Body.(XMLNSC.NamespaceDecl)xmlns:tem='http://tempuri.org/';
 		
 		SET refOut.ns:objSolicitudVacaciones.car1:Apellidos				= refInp.Apellidos;
 	    SET refOut.ns:objSolicitudVacaciones.car1:Cargo					= refInp.Cargo;

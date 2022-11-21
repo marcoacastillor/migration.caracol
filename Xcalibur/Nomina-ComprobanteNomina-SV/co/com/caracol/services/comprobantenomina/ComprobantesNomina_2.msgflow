@@ -25,7 +25,7 @@
       <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="667,39" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
         <translation xmi:type="utility:ConstantString" string="ThrowEndpoint"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="498,127" URLSpecifier="http://kappaprpi:89/api/services/generate/voucher/nomina" timeoutForServer="10" httpVersion="1.1" protocol="TLS">
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="498,127" URLSpecifier="http://kappaprpi:89/api/services/generate/voucher/nomina" timeoutForServer="10" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON">
         <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
       </nodes>
       <nodes xmi:type="ComIbmSOAPRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="924,127" wsdlFileName="cargaplantillav4.wsdl" selectedPortType="ptCargaPlantillav4" selectedBinding="bdCargaPlantillaSOAP12Http2" selectedOperation="CargaPlantillav4" selectedPort="ptCargaPlantilla12" targetNamespace="http://www.caracoltv.com.co/TI/correo/cargaplantilla4/" useHTTPTransport="true" webServiceURL="http://127.0.0.1:7805/services/s12/correo/cargaplantillav4" sslProtocol="TLS">

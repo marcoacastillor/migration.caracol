@@ -35,19 +35,17 @@ CREATE COMPUTE MODULE ComprobantesNomina_1_MapeoNomina
 		SET refOut.totalDecuentos 	= refInp.ttReciboCabecera.TotDecuentos;
 		SET refOut.totalRecibido 	= refInp.ttReciboCabecera.TotRecibido;
 		
-		DECLARE intDetalles INTEGER CARDINALITY(refInp.ttReciboCabecera.ttReciboDetalles.*[]);		
-		IF (intDetalles >= 1) THEN			
-			SET j = 1;
-			FOR rBodyDetalle AS refInp.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[] DO
-				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].ficha			=	rBodyDetalle.*:Ficha;
-				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].nombreConcepto	=	rBodyDetalle.*:NombreCpto;
-				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].cantidad		=	rBodyDetalle.*:Cantidad;
-				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].pago			=	rBodyDetalle.*:Pago;									
-				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].descuento		=	rBodyDetalle.*:Descuento;
-				SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].saldo			=	rBodyDetalle.*:Saldo;				
-				SET j =j+1;								
-			END FOR;		
-		END IF;
+		SET j = 1;
+		FOR rBodyDetalle AS refInp.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[] DO
+			SET refOut.lstReciboPagoDetalle.d[j].ficha			=	rBodyDetalle.*:Ficha;
+			SET refOut.lstReciboPagoDetalle.d[j].nombreConcepto	=	rBodyDetalle.*:NombreCpto;
+			SET refOut.lstReciboPagoDetalle.d[j].cantidad		=	COALESCE(rBodyDetalle.*:Cantidad,0);
+			SET refOut.lstReciboPagoDetalle.d[j].pago			=	COALESCE(rBodyDetalle.*:Pago,0);									
+			SET refOut.lstReciboPagoDetalle.d[j].descuento		=	COALESCE(rBodyDetalle.*:Descuento,0);
+			SET refOut.lstReciboPagoDetalle.d[j].saldo			=	COALESCE(rBodyDetalle.*:Saldo,0);
+			
+			SET j =j+1;
+		END FOR;
 		RETURN TRUE;
 	END;
 	
