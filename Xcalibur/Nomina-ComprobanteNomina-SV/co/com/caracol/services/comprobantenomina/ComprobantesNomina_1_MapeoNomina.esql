@@ -18,35 +18,44 @@ CREATE COMPUTE MODULE ComprobantesNomina_1_MapeoNomina
 		CREATE FIELD OutputRoot.JSON.Data;
 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
-		SET refOut.cia 				= refInp.ttReciboCabecera.Cia;
-		SET refOut.nombreArchivo 	= CAST(refInp.ttReciboCabecera.NomArchivo AS CHAR CCSID 1208);					
-		SET refOut.ficha 			= refInp.ttReciboCabecera.Ficha;
-		SET refOut.correo 			= refInp.ttReciboCabecera.Correo;
-		SET refOut.asunto 			= TILDES(CAST(refInp.ttReciboCabecera.Asunto  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
-		SET refOut.titulo 			= TILDES(CAST(refInp.ttReciboCabecera.Titulo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
-		SET refOut.mensaje1 		= TILDES(CAST(refInp.ttReciboCabecera.Mensaje1  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
-		SET refOut.mensaje2 		= TILDES(CAST(refInp.ttReciboCabecera.Mensaje2  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
-		SET refOut.nombreEmpleado	= TILDES(CAST(refInp.ttReciboCabecera.Nombre  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;				
-		SET refOut.periodo 			= TILDES(CAST(refInp.ttReciboCabecera.Periodo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
+		SET refOut.cia 				= validateNull(COALESCE(refInp.ttReciboCabecera.Cia,''));
+		SET refOut.nombreArchivo 	= validateNull(COALESCE(CAST(refInp.ttReciboCabecera.NomArchivo AS CHAR CCSID 1208),''));					
+		SET refOut.ficha 			= validateNull(COALESCE(refInp.ttReciboCabecera.Ficha,''));
+		SET refOut.correo 			= validateNull(COALESCE(refInp.ttReciboCabecera.Correo,''));
+		SET refOut.asunto 			= validateNull(COALESCE(TILDES(CAST(refInp.ttReciboCabecera.Asunto  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)),''));
+		SET refOut.titulo 			= validateNull(COALESCE(TILDES(CAST(refInp.ttReciboCabecera.Titulo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)),''));		
+		SET refOut.mensaje1 		= validateNull(COALESCE(TILDES(CAST(refInp.ttReciboCabecera.Mensaje1  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)),''));		
+		SET refOut.mensaje2 		= validateNull(COALESCE(TILDES(CAST(refInp.ttReciboCabecera.Mensaje2  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)),''));
+		SET refOut.nombreEmpleado	= validateNull(COALESCE(TILDES(CAST(refInp.ttReciboCabecera.Nombre  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)),''));				
+		SET refOut.periodo 			= validateNull(COALESCE(TILDES(CAST(refInp.ttReciboCabecera.Periodo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)),''));		
 		SET refOut.ubicacion 		= refInp.ttReciboCabecera.Ubicacion;					
-		SET refOut.notaVacaciones 	= TILDES(CAST(refInp.ttReciboCabecera.NotaVac  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
-		SET refOut.observaciones 	= TILDES(CAST(refInp.ttReciboCabecera.Observaciones  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
-		SET refOut.totalPagos 		= refInp.ttReciboCabecera.TotPagos;
-		SET refOut.totalDecuentos 	= refInp.ttReciboCabecera.TotDecuentos;
-		SET refOut.totalRecibido 	= refInp.ttReciboCabecera.TotRecibido;
+		SET refOut.notaVacaciones 	= validateNull(COALESCE(TILDES(CAST(refInp.ttReciboCabecera.NotaVac  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)),''));
+		SET refOut.observaciones 	= validateNull(COALESCE(TILDES(CAST(refInp.ttReciboCabecera.Observaciones  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)),''));		
+		SET refOut.totalPagos 		= validateNull(COALESCE(refInp.ttReciboCabecera.TotPagos,''));
+		SET refOut.totalDescuentos 	= validateNull(COALESCE(refInp.ttReciboCabecera.TotDecuentos,''));
+		SET refOut.totalRecibido 	= validateNull(COALESCE(refInp.ttReciboCabecera.TotRecibido,''));
 		
 		SET j = 1;
 		FOR rBodyDetalle AS refInp.ttReciboCabecera.ttReciboDetalles.ttReciboDetalle[] DO
-			SET refOut.lstReciboPagoDetalle.d[j].ficha			=	rBodyDetalle.*:Ficha;
-			SET refOut.lstReciboPagoDetalle.d[j].nombreConcepto	=	rBodyDetalle.*:NombreCpto;
-			SET refOut.lstReciboPagoDetalle.d[j].cantidad		=	COALESCE(rBodyDetalle.*:Cantidad,0);
-			SET refOut.lstReciboPagoDetalle.d[j].pago			=	COALESCE(rBodyDetalle.*:Pago,0);									
-			SET refOut.lstReciboPagoDetalle.d[j].descuento		=	COALESCE(rBodyDetalle.*:Descuento,0);
-			SET refOut.lstReciboPagoDetalle.d[j].saldo			=	COALESCE(rBodyDetalle.*:Saldo,0);
+			SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].ficha			=	validateNull(COALESCE(rBodyDetalle.*:Ficha,''));
+			SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].nombreConcepto	=	validateNull(COALESCE(rBodyDetalle.*:NombreCpto,''));
+			SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].cantidad		=	validateNull(COALESCE(rBodyDetalle.*:Cantidad,''));
+			SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].pago			=	validateNull(COALESCE(rBodyDetalle.*:Pago,''));									
+			SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].descuento		=	validateNull(COALESCE(rBodyDetalle.*:Descuento,''));
+			SET refOut.(JSON.Array)lstReciboPagoDetalle.d[j].saldo			=	validateNull(COALESCE(rBodyDetalle.*:Saldo,''));
 			
 			SET j =j+1;
 		END FOR;
 		RETURN TRUE;
+	END;
+	
+	CREATE FUNCTION validateNull(IN CadenaIn CHARACTER) returns CHARACTER
+	BEGIN
+	    IF LENGTH(CadenaIn) > 0 THEN
+	    	RETURN CadenaIn;
+	    ELSE
+	    	RETURN '';
+	    END IF;
 	END;
 	
 	CREATE FUNCTION TILDES(IN CadenaIn CHAR, InCCSID integer) returns CHARACTER

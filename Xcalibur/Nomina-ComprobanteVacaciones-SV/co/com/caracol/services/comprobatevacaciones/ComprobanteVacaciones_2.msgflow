@@ -10,10 +10,10 @@
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="554,203">
         <translation xmi:type="utility:ConstantString" string="MQ Reply1"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="334,202" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificWS.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="334,202" computeExpression="esql://routine/co.com.caracol.integration.commos#HandlerModules_ErrorsSpecificREST.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="CreateErrorMsgFault"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="553,127" URLSpecifier="http://kappaprpi:89/api/services/generate/voucher/vacaciones" timeoutForServer="10" httpVersion="1.1" protocol="TLS">
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="553,127" URLSpecifier="http://kappaprpi:89/api/services/generate/voucher/vacaciones" timeoutForServer="10" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON">
         <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
       </nodes>
       <nodes xmi:type="ComIbmThrow.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="722,39" messageCatalog="700" messageText="Error comunicación con backend, convierte en pdf">
@@ -25,8 +25,8 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="769,127" computeExpression="esql://routine/co.com.caracol.services.comprobatevacaciones#ComprobanteVacaciones_2_ResponseService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="119,127" queueName="SV.AUSENCIAS.ANULARAPROBARVACACIONES.01" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="SV.AUSENCIAS.ANULARAPROBARVACACIONES.01"/>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="119,127" queueName="SV.XCALIBUR.NOMINA.COMPROBANTEVACACIONES" messageDomainProperty="JSON">
+        <translation xmi:type="utility:ConstantString" string="SV.XCALIBUR.NOMINA.COMPROBANTEVACACIONES"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="324,126" computeExpression="esql://routine/co.com.caracol.services.comprobatevacaciones#ComprobanteVacaciones_2_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>

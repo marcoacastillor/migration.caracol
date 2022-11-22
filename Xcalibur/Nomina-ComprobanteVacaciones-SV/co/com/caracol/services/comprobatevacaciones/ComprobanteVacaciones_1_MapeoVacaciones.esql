@@ -14,41 +14,41 @@ CREATE COMPUTE MODULE ComprobanteVacaciones_1_MapeoVacaciones
 		MOVE refInp LASTCHILD;
 		
 		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.JSON.Data.dsRecibosVac;
-		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data.dsRecibosVac;
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
-		SET refOut.ttVacaciones.Cia 			= refInp.ttVacaciones.Cia;
-		SET refOut.ttVacaciones.NombreArchivo 	= CAST(refInp.ttVacaciones.NomArchivo AS CHAR CCSID 1208);					
-		SET refOut.ttVacaciones.Ficha 			= refInp.ttVacaciones.Ficha;
-		SET refOut.ttVacaciones.Correo 			= refInp.ttVacaciones.Correo;
-		SET refOut.ttVacaciones.Asunto 			= TILDES(CAST(refInp.ttVacaciones.Asunto  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
-		SET refOut.ttVacaciones.Titulo 			= TILDES(CAST(refInp.ttVacaciones.Titulo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
-		SET refOut.ttVacaciones.Mensaje1 		= TILDES(CAST(refInp.ttVacaciones.Mensaje1  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
-		SET refOut.ttVacaciones.Mensaje2 		= TILDES(CAST(refInp.ttVacaciones.Mensaje2  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
-		SET refOut.ttVacaciones.Nombre 			= TILDES(CAST(refInp.ttVacaciones.Nombre  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;				
-		SET refOut.ttVacaciones.Cargo 			= TILDES(CAST(refInp.ttVacaciones.Cargo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
-		SET refOut.ttVacaciones.NombreUbicacion = refInp.ttVacaciones.NombreUbicacion;					
+		SET refOut.cia 			= refInp.ttVacaciones.Cia;
+		SET refOut.nombreArchivo 	= CAST(refInp.ttVacaciones.NomArchivo AS CHAR CCSID 1208);					
+		SET refOut.ficha 			= refInp.ttVacaciones.Ficha;
+		SET refOut.correo 			= refInp.ttVacaciones.Correo;
+		SET refOut.asunto 			= TILDES(CAST(refInp.ttVacaciones.Asunto  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
+		SET refOut.titulo 			= TILDES(CAST(refInp.ttVacaciones.Titulo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
+		SET refOut.mensaje1 		= TILDES(CAST(refInp.ttVacaciones.Mensaje1  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
+		SET refOut.mensaje2 		= TILDES(CAST(refInp.ttVacaciones.Mensaje2  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
+		SET refOut.nombre 			= TILDES(CAST(refInp.ttVacaciones.Nombre  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;				
+		SET refOut.cargo 			= TILDES(CAST(refInp.ttVacaciones.Cargo  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
+		SET refOut.nombreUbicacion = refInp.ttVacaciones.NombreUbicacion;					
 		
-		SET refOut.ttVacaciones.FechaIngreso 		= refInp.ttVacaciones.FechaIngreso;
-		SET refOut.ttVacaciones.SalarioBasicoMes 	= refInp.ttVacaciones.SalarioBasicoMes;
-		SET refOut.ttVacaciones.SalarioBasicoDia 	= refInp.ttVacaciones.SalarioBasicoDia;
-		SET refOut.ttVacaciones.SalarioPromedio 	= refInp.ttVacaciones.SalarioPromedio;
-		SET refOut.ttVacaciones.InicioVacaciones 	= refInp.ttVacaciones.InicioVacaciones;		
-		SET refOut.ttVacaciones.FinVacaciones 		= refInp.ttVacaciones.FinVacaciones;
-		SET refOut.ttVacaciones.FechaReintegro 		= refInp.ttVacaciones.FechaReintegro;
-		SET refOut.ttVacaciones.DiasVacaciones 		= refInp.ttVacaciones.DiasVacaciones;
-		SET refOut.ttVacaciones.DiasDisfrute 		= refInp.ttVacaciones.DiasDisfrute;		
-		SET refOut.ttVacaciones.Observaciones 		= TILDES(CAST(refInp.ttVacaciones.Observaciones  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
-		SET refOut.ttVacaciones.NotaDiasPendientes  = TILDES(CAST(refInp.ttVacaciones.NotaDiasPendientes  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
-		SET refOut.ttVacaciones.lblSueldoDia  		= TILDES(CAST(refInp.ttVacaciones.lblSueldoDia  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
+		SET refOut.fechaIngreso 		= refInp.ttVacaciones.FechaIngreso;
+		SET refOut.salarioBasicoMes 	= refInp.ttVacaciones.SalarioBasicoMes;
+		SET refOut.salarioBasicoDia 	= refInp.ttVacaciones.SalarioBasicoDia;
+		SET refOut.salarioPromedio 		= refInp.ttVacaciones.SalarioPromedio;
+		SET refOut.inicioVacaciones 	= refInp.ttVacaciones.InicioVacaciones;		
+		SET refOut.finVacaciones 		= refInp.ttVacaciones.FinVacaciones;
+		SET refOut.fechaReintegro 		= refInp.ttVacaciones.FechaReintegro;
+		SET refOut.diasVacaciones 		= refInp.ttVacaciones.DiasVacaciones;
+		SET refOut.diasDisfrute 		= refInp.ttVacaciones.DiasDisfrute;		
+		SET refOut.observaciones 		= TILDES(CAST(refInp.ttVacaciones.Observaciones  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;		
+		SET refOut.notaDiasPendientes  = TILDES(CAST(refInp.ttVacaciones.NotaDiasPendientes  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER)) ;
+		SET refOut.lblSueldoDia  		= TILDES(CAST(refInp.ttVacaciones.lblSueldoDia  AS CHAR  CCSID 1208 ENCODING 1208),CAST(InputRoot.Properties.CodedCharSetId AS INTEGER));		
 		DECLARE intDetalles INTEGER CARDINALITY(refInp.ttVacaciones.ttPeriodos.ttPeriodo[]);
 		IF (intDetalles >= 1) THEN			
 			SET j = 1;
 			FOR rBodyDetalle AS refInp.ttVacaciones.ttPeriodos.ttPeriodo[] DO
-				SET refOut.ttVacaciones.ttPeriodos.ttPeriodo[j].Ficha				=	rBodyDetalle.Ficha;
-				SET refOut.ttVacaciones.ttPeriodos.ttPeriodo[j].FechaPeriodoDesde	=	rBodyDetalle.FechaPeriodoDesde;
-				SET refOut.ttVacaciones.ttPeriodos.ttPeriodo[j].FechaPeriodoHasta	=	rBodyDetalle.FechaPeriodoHasta;
-				SET refOut.ttVacaciones.ttPeriodos.ttPeriodo[j].DiasPeriodo			=	rBodyDetalle.DiasPeriodo;
+				SET refOut.(JSON.Array)lstPeriodos.d[j].ficha				=	validateNull(rBodyDetalle.Ficha);
+				SET refOut.(JSON.Array)lstPeriodos.d[j].fechaPeriodoDesde	=	validateNull(rBodyDetalle.FechaPeriodoDesde);
+				SET refOut.(JSON.Array)lstPeriodos.d[j].fechaPeriodoHasta	=	validateNull(rBodyDetalle.FechaPeriodoHasta);
+				SET refOut.(JSON.Array)lstPeriodos.d[j].diasPeriodo		=	validateNull(rBodyDetalle.DiasPeriodo);
 				SET j=j+1;									
 			END FOR;		
 		END IF;
@@ -56,6 +56,14 @@ CREATE COMPUTE MODULE ComprobanteVacaciones_1_MapeoVacaciones
 		RETURN TRUE;
 	END;
 	
+	CREATE FUNCTION validateNull(IN CadenaIn CHARACTER) returns CHARACTER
+	BEGIN
+	    IF LENGTH(CadenaIn) > 0 THEN
+	    	RETURN CadenaIn;
+	    ELSE
+	    	RETURN '';
+	    END IF;
+	END;
 	
 	CREATE FUNCTION TILDES(IN CadenaIn CHAR, InCCSID integer) returns CHARACTER
 	BEGIN
@@ -116,4 +124,5 @@ CREATE COMPUTE MODULE ComprobanteVacaciones_1_MapeoVacaciones
 	            
 	    RETURN CadenaOut;     
 	END;
+	
 END MODULE;

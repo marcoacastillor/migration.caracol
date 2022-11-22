@@ -46,7 +46,7 @@ CREATE COMPUTE MODULE ComprobanteVacaciones_2_ResponseService
         	SET refOut.Plantilla='Caracol.html';	                   
         END IF;   
         SET refOut.AAdjuntos.Adjunto[i].Nombre= Environment.Variables.NombreArchivo[1];              	          	            
-        SET refOut.AAdjuntos.Adjunto[i].Data =refInp.ArchivoPdf;
+        SET refOut.AAdjuntos.Adjunto[i].Data =refInp.archivoPDFBase64;
         
         RETURN TRUE;
 	END;

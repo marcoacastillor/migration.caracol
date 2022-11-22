@@ -57,7 +57,7 @@ CREATE COMPUTE MODULE ComprobantesNomina_2_ResponseService
         END IF;                                                    
         
         --Archivo Comprobante de Nomina                                   
-        SET refOut.AAdjuntos.Adjunto[i].Data =refInp.ArchivoPdf;
+        SET refOut.AAdjuntos.Adjunto[i].Data =refInp.archivoPDFBase64;
         
         RETURN TRUE;
 	END;
