@@ -26,9 +26,9 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_RequestBack
 		SET refOut.temp:ConsultaRequest.ns4:FechaInicio 	= FIELDVALUE(refInp.*:FechaInicio);
 		SET refOut.temp:ConsultaRequest.ns4:FechaFin	    = FIELDVALUE(refInp.*:FechaFin);
 		
-		FOR refReqs AS refInp.Ubicaciones.*[] DO					
+		FOR refReqs AS refInp.Ubicaciones.Ubicacion[] DO					
 			--asigna valores recibidos de xcalibur al response del servicio del ESB									 		
-	 		SET refOut.temp:ConsultaRequest.ns1:Ubicaciones.ns:string[i]= refReqs.UbicacionId;		 				 
+	 		SET refOut.temp:ConsultaRequest.ns1:Ubicaciones.ns:string[i]= FIELDVALUE(refReqs.*:UbicacionId);		 				 
 			SET i = i +1;							
 			IF (i > 1000) THEN
 				RETURN TRUE;

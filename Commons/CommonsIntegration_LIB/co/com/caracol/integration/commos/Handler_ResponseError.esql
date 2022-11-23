@@ -1,7 +1,8 @@
 BROKER SCHEMA co.com.caracol.integration.commos
 
-CREATE PROCEDURE createMessageErrorSOAP(INOUT refOut REFERENCE, IN transactionId CHARACTER, IN code CHARACTER, IN faultstring CHARACTER)
+CREATE PROCEDURE createMessageErrorSOAP(INOUT refOut REFERENCE, IN transactionId CHARACTER, IN code CHARACTER, IN faultstring CHARACTER, IN description CHARACTER)
 BEGIN
+	/*
 	DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
 	DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
 	DECLARE ns NAMESPACE 'http://www.w3.org/XML/1998/namespace';
@@ -39,4 +40,22 @@ BEGIN
 	
 	SET rMessageDetail.faultcode 	= code;
 	SET rMessageDetail.faultstring 	= faultstring;
+	*/
+	
+	
+	DECLARE ns NAMESPACE 'http://www.w3.org/XML/1998/namespace';
+	DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+	DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+			
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Code.s12:Value 																	= 1;		
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Reason.s12:Text 																	= description;
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Reason.s12:Text.(XMLNSC.Attribute)ns:lang 										= description;
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)origin 				= 'esb';
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)category 				= 'Validacion';
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)errorCode 			= code;
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)severity 				= '';
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)refToMessageInError 	= '';
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.(XMLNSC.Attribute)shortDescription		= faultstring;
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:Description 							= description;
+	SET refOut.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:ErrorDetail 							= description;
 END;

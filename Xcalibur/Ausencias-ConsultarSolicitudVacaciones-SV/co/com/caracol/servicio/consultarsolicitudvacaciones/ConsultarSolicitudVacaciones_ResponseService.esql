@@ -1,6 +1,8 @@
 BROKER SCHEMA co.com.caracol.servicio.consultarsolicitudvacaciones
 
+DECLARE ns3 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
 DECLARE ns2 NAMESPACE 'http://www.caracoltv.com.co/nomina/consultarsolicitudes/consultasolicitudvacaciones/';
+
 
 CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -12,10 +14,7 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 		--Declarar variable referencia de entrada
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
-		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
-		
-		--Crear mensaje de salida
+		MOVE refInp LASTCHILD;		
 		
 		IF EXISTS(refInp.*:Solicitudes[]) THEN
 			
@@ -26,23 +25,23 @@ CREATE COMPUTE MODULE ConsultarSolicitudVacaciones_ResponseService
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:Solicitudes.*:Solicitud[]  DO
 				
-				SET refOut.Solicitudes.Solicitud[i].SolicitudId	        	= FIELDVALUE(refReqs.*:solicitudId);
-				SET refOut.Solicitudes.Solicitud[i].FechaSolicitud	    	= FIELDVALUE(refReqs.*:solicitudFechaSolicitud);	
-				SET refOut.Solicitudes.Solicitud[i].Estado	            	= FIELDVALUE(refReqs.*:solicitudEstado);	
-				SET refOut.Solicitudes.Solicitud[i].Nombre	            	= FIELDVALUE(refReqs.*:solicitudNombre);	
-				SET refOut.Solicitudes.Solicitud[i].NumeroIdentificacion	= FIELDVALUE(refReqs.*:solicitudIdentificacion);	
-				SET refOut.Solicitudes.Solicitud[i].TipoContrato	        = FIELDVALUE(refReqs.*:solicitudTipoContrato);	
-				SET refOut.Solicitudes.Solicitud[i].Cargo              		= FIELDVALUE(refReqs.*:solicitudCargo);	
-				SET refOut.Solicitudes.Solicitud[i].FechaAusencia	        = FIELDVALUE(refReqs.*:solicitudFechaAusencia);	
-				SET refOut.Solicitudes.Solicitud[i].Duracion	            = FIELDVALUE(refReqs.*:solicitudDuracion);	
+				SET refOut.Solicitudes.Solicitud[i].SolicitudId	        	= CAST(refReqs.*:solicitudId AS CHARACTER);
+				SET refOut.Solicitudes.Solicitud[i].FechaSolicitud	    	= (refReqs.*:solicitudFechaSolicitud);	
+				SET refOut.Solicitudes.Solicitud[i].Estado	            	= (refReqs.*:solicitudEstado);	
+				SET refOut.Solicitudes.Solicitud[i].Nombre	            	= (refReqs.*:solicitudNombre);	
+				SET refOut.Solicitudes.Solicitud[i].NumeroIdentificacion	= (refReqs.*:solicitudIdentificacion);	
+				SET refOut.Solicitudes.Solicitud[i].TipoContrato	        = UCASE((refReqs.*:solicitudTipoContrato));	
+				SET refOut.Solicitudes.Solicitud[i].Cargo              		= (refReqs.*:solicitudCargo);	
+				SET refOut.Solicitudes.Solicitud[i].FechaAusencia	        = (refReqs.*:solicitudFechaAusencia);	
+				SET refOut.Solicitudes.Solicitud[i].Duracion	            = (refReqs.*:solicitudDuracion);	
 				SET refOut.Solicitudes.Solicitud[i].FechaAprobacion	    	= (refReqs.*:solicitudFechaAprobacion);	
 				SET refOut.Solicitudes.Solicitud[i].FechaFin	            = (refReqs.*:solicitudFechaFin);
 				SET refOut.Solicitudes.Solicitud[i].FechaReintegro      	= (refReqs.*:solicitudFechaReintegro);
-				SET refOut.Solicitudes.Solicitud[i].Comentarios	        	= FIELDVALUE(refReqs.*:solicitudComentarios);
-				SET refOut.Solicitudes.Solicitud[i].Aprobador	            = FIELDVALUE(refReqs.*:solicitudAprobador);
-				SET refOut.Solicitudes.Solicitud[i].AprobadorComentarios	= FIELDVALUE(refReqs.*:solicitudAprobadorComentarios);
-				SET refOut.Solicitudes.Solicitud[i].Ubicacion	            = FIELDVALUE(refReqs.*:solicitudUbicacion);
-				SET refOut.Solicitudes.Solicitud[i].TipoSolicitud	        = FIELDVALUE(refReqs.*:TipoSolicitud);											
+				SET refOut.Solicitudes.Solicitud[i].Comentarios	        	= (refReqs.*:solicitudComentarios);
+				SET refOut.Solicitudes.Solicitud[i].Aprobador	            = (refReqs.*:solicitudAprobador);
+				SET refOut.Solicitudes.Solicitud[i].AprobadorComentarios	= (refReqs.*:solicitudAprobadorComentarios);
+				SET refOut.Solicitudes.Solicitud[i].Ubicacion	            = (refReqs.*:solicitudUbicacion);
+				--SET refOut.Solicitudes.Solicitud[i].TipoSolicitud	        = (refReqs.*:SolicitudTipoSolicitud);											
 							
 				SET i = i + 1;
 			END FOR;

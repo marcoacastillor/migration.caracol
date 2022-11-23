@@ -1,5 +1,6 @@
 BROKER SCHEMA co.com.caracol.nominaaprovacionvacaciones
 
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/nomina/xcalibur/aprobacionvacaciones/';
 
 CREATE COMPUTE MODULE NominaAprovacionVacaciones_ResponseService
 	CREATE FUNCTION Main() RETURNS BOOLEAN
@@ -12,18 +13,17 @@ CREATE COMPUTE MODULE NominaAprovacionVacaciones_ResponseService
 		DECLARE refInp REFERENCE TO InputRoot;
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
-		--MOVE refInp LASTCHILD;
 		
-		--Crear mensaje de salida
-		CREATE FIELD OutputRoot.XMLNSC.ns:AprobacionVacacionesResponse;
-		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:AprobacionVacacionesResponse;
-		
-		IF refInp.*:grabado=FALSE THEN	
-			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 20000 VALUES('CUST::Falla por validacion Xcalibur Servicio Aprobar Vacaciones');
+		CREATE FIELD OutputRoot.XMLNSC.ns1:AprobacionVacacionesResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:AprobacionVacacionesResponse;
+			
+		IF refInp.*:grabado=FALSE THEN
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 20000 VALUES('CUST::Falla por validacion Xcalibur Servicio Aprobar Vacaciones::'||refInp.*:descerror);
 		ELSEIF refInp.*:grabado=TRUE THEN
+			--Crear mensaje de salida
 			SET refOut.RespuestaSolicitud= refInp.*:grabado;
 		ELSE
-			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND::Recibiendo respuesta');
 		END IF;
 		RETURN TRUE;
 	END;

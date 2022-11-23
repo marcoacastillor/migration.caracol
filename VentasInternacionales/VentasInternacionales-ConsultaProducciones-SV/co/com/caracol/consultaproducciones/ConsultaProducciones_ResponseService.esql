@@ -17,48 +17,52 @@ CREATE COMPUTE MODULE ConsultaProducciones_ResponseService
 		IF EXISTS(refInp.*:ConsultarProducionesServicioResult[]) THEN
 			MOVE refInp LASTCHILD;
 			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultarProducionesServicioResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultarProducionesServicioResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaProduccionesResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaProduccionesResponse;
 		
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:Produccion[]  DO
 				
-			SET refOut.Produccion[i].FormatoId								= FIELDVALUE(refReqs.*:_formatoId);
-			SET refOut.Produccion[i].GeneroId								= FIELDVALUE(refReqs.*:_generoId);
-			SET refOut.Produccion[i].ProduccionAnno							= (refReqs.*:_produccionAnno);
-			SET refOut.Produccion[i].ProduccionCapMinutos					= (refReqs.*:_produccionCapMinutos);
-			SET refOut.Produccion[i].ProduccionCentroCosto					= (refReqs.*:_produccionCentroCosto);
-			SET refOut.Produccion[i].ProduccionCueSheets					= (refReqs.*:_produccionCueSheets);
-			SET refOut.Produccion[i].ProduccionCueSheetsDetalles			= (refReqs.*:_produccionCueSheetsDetalles);
-			SET refOut.Produccion[i].ProduccionFechaCreacion				= (refReqs.*:_produccionFechaCreacion);
-			SET refOut.Produccion[i].ProduccionFechaModificacion			= (refReqs.*:_produccionFechaModificacion);
-			SET refOut.Produccion[i].ProduccionGeneroNombre					= FIELDVALUE(refReqs.*:_produccionGeneroNombre);
-			SET refOut.Produccion[i].ProduccionId							= FIELDVALUE(refReqs.*:_produccionId);
-			SET refOut.Produccion[i].ProduccionIdioma						= (refReqs.*:_produccionIdioma);
-			SET refOut.Produccion[i].ProduccionIdiomaDoblajes				= (refReqs.*:_produccionIdiomaDoblajes);
-			SET refOut.Produccion[i].ClienteCProduccionIdiomaDoblajes		= (refReqs.*:_produccionIdiomaSubtitulajes);
-			SET refOut.Produccion[i].ProduccionLibretos						= (refReqs.*:_produccionLibretos);
-			SET refOut.Produccion[i].ClieProduccionLibretosIdiomasnteCampo1	= (refReqs.*:_produccionLibretosIdiomas);
-			SET refOut.Produccion[i].ProduccionMasterBI						= (refReqs.*:_produccionMasterBI);
-			SET refOut.Produccion[i].ProduccionMasterME						= (refReqs.*:_produccionMasterME);
-			SET refOut.Produccion[i].ProduccionNombre						= FIELDVALUE(refReqs.*:_produccionNombre);
-			SET refOut.Produccion[i].ProduccionNrCapitulos					= (refReqs.*:_produccionNrCapitulos);
-			SET refOut.Produccion[i].ProduccionObservaciones				= (refReqs.*:_produccionObservaciones);
-			SET refOut.Produccion[i].ProduccionPromocionesImpresos			= (refReqs.*:_produccionPromocionesImpresos);
-			SET refOut.Produccion[i].ProduccionPromocionesOtros				= (refReqs.*:_produccionPromocionesOtros);
-			SET refOut.Produccion[i].ProduccionPromocionesVideo				= (refReqs.*:_produccionPromocionesVideo);
-			SET refOut.Produccion[i].ProduccionReparto						= (refReqs.*:_produccionReparto);
-			SET refOut.Produccion[i].ProduccionSinopsis						= (refReqs.*:_produccionSinopsis);
-			SET refOut.Produccion[i].ProduccionUsuarioCreacion				= (refReqs.*:_produccionUsuarioCreacion);
-			SET refOut.Produccion[i].ProduccionUsuarioModificacion			= (refReqs.*:_produccionUsuarioModificacion);
-			SET refOut.Produccion[i].ProduccionVencimientoDerechos			= (refReqs.*:_produccionVencimientoDerechos);
-			SET refOut.Produccion[i].SistemaId								= (refReqs.*:_sistemaId);
+				SET refOut.Produccion[i].FormatoId								= (refReqs.*:_formatoId);
+				SET refOut.Produccion[i].GeneroId								= (refReqs.*:_generoId);
+				SET refOut.Produccion[i].ProduccionAnno							= (refReqs.*:_produccionAnno);
+				SET refOut.Produccion[i].ProduccionCapMinutos					= (refReqs.*:_produccionCapMinutos);
+				SET refOut.Produccion[i].ProduccionCentroCosto					= (refReqs.*:_produccionCentroCosto);
+				SET refOut.Produccion[i].ProduccionCueSheets					= (refReqs.*:_produccionCueSheets);
+				SET refOut.Produccion[i].ProduccionCueSheetsDetalles			= (refReqs.*:_produccionCueSheetsDetalles);
+				SET refOut.Produccion[i].ProduccionFechaCreacion				= (refReqs.*:_produccionFechaCreacion);
+				SET refOut.Produccion[i].ProduccionFechaModificacion			= (refReqs.*:_produccionFechaModificacion);
+				SET refOut.Produccion[i].ProduccionGeneroNombre					= (refReqs.*:_produccionGeneroNombre);
+				SET refOut.Produccion[i].ProduccionId							= (refReqs.*:_produccionId);
+				SET refOut.Produccion[i].ProduccionIdioma						= (refReqs.*:_produccionIdioma);
+				SET refOut.Produccion[i].ProduccionIdiomaDoblajes				= (refReqs.*:_produccionIdiomaDoblajes);
+				SET refOut.Produccion[i].ProduccionIdiomaSubtitulajes			= (refReqs.*:_produccionIdiomaSubtitulajes);
+				SET refOut.Produccion[i].ProduccionLibretos						= (refReqs.*:_produccionLibretos);
+				SET refOut.Produccion[i].ProduccionLibretosIdiomas				= (refReqs.*:_produccionLibretosIdiomas);
+				SET refOut.Produccion[i].ProduccionMasterBI						= (refReqs.*:_produccionMasterBI);
+				SET refOut.Produccion[i].ProduccionMasterME						= (refReqs.*:_produccionMasterME);
+				SET refOut.Produccion[i].ProduccionNombre						= (refReqs.*:_produccionNombre);
+				SET refOut.Produccion[i].ProduccionNrCapitulos					= (refReqs.*:_produccionNrCapitulos);
+				SET refOut.Produccion[i].ProduccionObservaciones				= (refReqs.*:_produccionObservaciones);
+				SET refOut.Produccion[i].ProduccionPromocionesImpresos			= (refReqs.*:_produccionPromocionesImpresos);
+				SET refOut.Produccion[i].ProduccionPromocionesOtros				= (refReqs.*:_produccionPromocionesOtros);
+				SET refOut.Produccion[i].ProduccionPromocionesVideo				= (refReqs.*:_produccionPromocionesVideo);
+				SET refOut.Produccion[i].ProduccionReparto						= (refReqs.*:_produccionReparto);
+				SET refOut.Produccion[i].ProduccionSinopsis						= (refReqs.*:_produccionSinopsis);
+				SET refOut.Produccion[i].ProduccionUsuarioCreacion				= (refReqs.*:_produccionUsuarioCreacion);
+				SET refOut.Produccion[i].ProduccionUsuarioModificacion			= (refReqs.*:_produccionUsuarioModificacion);
+				SET refOut.Produccion[i].ProduccionVencimientoDerechos			= (refReqs.*:_produccionVencimientoDerechos);
+				SET refOut.Produccion[i].SistemaId								= (refReqs.*:_sistemaId);
+				
+				--SET refOut.Produccion[i].ClienteCProduccionIdiomaDoblajes		= (refReqs.*:_produccionIdiomaSubtitulajes);
+				--SET refOut.Produccion[i].ClieProduccionLibretosIdiomasnteCampo1	= (refReqs.*:_produccionLibretosIdiomas);
+				
 				
 				
 				SET i = i + 1;
 			END FOR;
 		ELSE
-			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND::Error recibiendo mensaje');
 		END IF;
 		RETURN TRUE;
 	END;

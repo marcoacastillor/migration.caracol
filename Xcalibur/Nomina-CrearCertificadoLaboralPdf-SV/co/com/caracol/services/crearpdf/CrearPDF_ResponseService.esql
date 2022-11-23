@@ -18,8 +18,12 @@ CREATE COMPUTE MODULE CrearPDF_ResponseService
 		CREATE FIELD OutputRoot.XMLNSC.ns1:CrearCertificadoLaboralPdfResponse;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:CrearCertificadoLaboralPdfResponse;
 		
-		SET refOut.ArchivoPdf 	= BASE64ENCODE(refInp.archivoPdf);
-		SET refOut.ArchivoCSV 	= BASE64ENCODE(refInp.archivoCSV);
+		IF EXISTS(refInp.archivoPdf[]) THEN
+			SET refOut.ArchivoPdf 	= BASE64ENCODE(refInp.archivoPdf);
+			SET refOut.ArchivoCSV 	= BASE64ENCODE(refInp.archivoCSV);	
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND::No se recibe archivos desde backend.');
+		END IF;
 	
 		RETURN TRUE;
 	END;

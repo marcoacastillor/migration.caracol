@@ -55,20 +55,24 @@ xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   	</wsdl:portType>
 	
     <!-- Service -->
-    <wsdl:binding name="bdconsultacontratoxcontratoidxproduccionidHttp" type="srv:ptconsultacontratoxcontratoidxproduccionids12">
+    <wsdl:binding name="bdconsultacontratoxcontratoidxproduccionidHttp"
+    	type="srv:ptconsultacontratoxcontratoidxproduccionids12">
     	<S12:binding style="document"
     		transport="http://schemas.xmlsoap.org/soap/http" />
-        <wsdl:operation name="ConsultaContrato">
-	      	<S12:operation soapAction="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratoxcontratoidxproduccionid/"/>
-	      	<wsdl:input name="consultacontratoxcontratoidxproduccionids_Input">
-	        	<S12:body parts="consultacontratoxcontratoidxproduccionidsRequest" use="literal"/>
-	      	</wsdl:input>
-	      	<wsdl:output name="consultacontratoxcontratoidxproduccionids_Output">
-	        	<S12:body parts="consultacontratoxcontratoidxproduccionidsResponse" use="literal"/>
-	      	</wsdl:output>
-	      	<wsdl:fault name="fault">
-	      		<S12:fault name="fault" use="literal"/>
-	      	</wsdl:fault>		
+    	<wsdl:operation name="ConsultaContrato">
+    		<S12:operation
+    			soapAction="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratoxcontratoidxproduccionid/ConsultaContrato" />
+    		<wsdl:input
+    			name="consultacontratoxcontratoidxproduccionids_Input">
+    			<S12:body use="literal" />
+    		</wsdl:input>
+    		<wsdl:output
+    			name="consultacontratoxcontratoidxproduccionids_Output">
+    			<S12:body use="literal" />
+    		</wsdl:output>
+    		<wsdl:fault name="fault">
+    			<S12:fault use="literal" name="fault" />
+    		</wsdl:fault>
     	</wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="consultacontratoxcontratoidxproduccionid">    	    	

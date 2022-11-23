@@ -18,8 +18,8 @@ CREATE COMPUTE MODULE ConsultaContratoXProduccionXContratoId_ResponseService
 		IF EXISTS(refInp.*:ConsultarDatosContratoResult[]) THEN
 			MOVE refInp LASTCHILD;
 			--Crear mensaje de salida
-			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultarDatosContratoResponse;
-			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultarDatosContratoResponse;
+			CREATE FIELD OutputRoot.XMLNSC.ns1:consultacontratoxcontratoidxproduccionidResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:consultacontratoxcontratoidxproduccionidResponse;
 		
 			DECLARE i INTEGER 1;
 			FOR refReqs AS refInp.*:Contratos[]  DO
@@ -36,7 +36,11 @@ CREATE COMPUTE MODULE ConsultaContratoXProduccionXContratoId_ResponseService
 				SET i = i + 1;
 			END FOR;
 		ELSE
-			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+			MOVE refInp LASTCHILD;
+			MOVE refInp LASTCHILD;
+			MOVE refInp LASTCHILD;
+			
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND::'|| COALESCE(refInp.Message,'Error recibiendo mensaje'));
 		END IF;
 		RETURN TRUE;
 	END;

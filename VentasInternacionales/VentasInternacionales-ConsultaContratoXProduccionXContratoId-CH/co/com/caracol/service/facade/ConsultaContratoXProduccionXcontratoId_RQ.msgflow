@@ -37,7 +37,8 @@
       <nodes xmi:type="ComIbmMQOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_8" location="785,169" queueName="DYNAMIC.QUEUE" destinationMode="list" request="true" replyToQ="CH.WS.VI.CONSULTACONTRATOXPRODYCONTRATO.02">
         <translation xmi:type="utility:ConstantString" string="DYNAMIC.QUEUE"/>
       </nodes>
-      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="42,167" wsdlFileName="ConsultaContrato.wsdl" selectedPortType="ptconsultacontratoxcontratoidxproduccionids12" selectedBinding="bdconsultacontratoxcontratoidxproduccionidHttp" selectedPort="consultacontratoxcontratoidxproduccionid" targetNamespace="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratoxcontratoidxproduccionid/" useHTTPTransport="true" urlSelector="/services/s12/ventasinternacionales/consultacontratoxcontratoidxproduccionid">
+      <nodes xmi:type="ComIbmSOAPInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="42,167" wsdlFileName="ConsultaContrato.wsdl" selectedPortType="ptconsultacontratoxcontratoidxproduccionids12" selectedBinding="bdconsultacontratoxcontratoidxproduccionidHttp" selectedPort="consultacontratoxcontratoidxproduccionid" targetNamespace="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratoxcontratoidxproduccionid/" useHTTPTransport="true" urlSelector="/services/s12/ventasinternacionales/consultacontratoxcontratoidxproduccionid"
+          allowQueryWSDL="true" parserXmlnscBuildTreeUsingXMLSchema="false" validateMaster="none">
         <translation xmi:type="utility:ConstantString" string="SOAP Input"/>
       </nodes>
       <nodes xmi:type="gen_ConsultaContratoXProduccionXcontratoId_RQ.subflow:FCMComposite_1" xmi:id="FCMComposite_1_10" location="326,163">
