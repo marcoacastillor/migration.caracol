@@ -53,17 +53,17 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificWithowFacade
 		CREATE FIELD OutputRoot.XMLNSC;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 		
-		DECLARE codeError, nameError, descError CHARACTER '';
+		DECLARE codeError, nameError, descError, nameErrorTmp CHARACTER '';
 		
 		--Si existe ExceptionList
 		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
 		IF CONTAINS(nameError,'User') THEN
-			SET nameError = SUBSTRING(descError AFTER '- CUST::');
-			IF LENGTH(nameError) > 0 THEN
-				SET nameError = SUBSTRING(descError BEFORE '::');
-				SET descError = SUBSTRING(descError AFTER '::');
+			SET nameErrorTmp = SUBSTRING(descError AFTER '- CUST::');
+			IF LENGTH(nameErrorTmp) > 0 THEN
+				SET nameError = SUBSTRING(nameErrorTmp BEFORE '::');
+				SET descError = SUBSTRING(nameErrorTmp AFTER '::');
 			ELSE
-				SET descError = nameError;
+				SET descError = nameErrorTmp;
 			END IF;
 		END IF;
 		
@@ -91,17 +91,17 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificWS
 		CREATE FIELD OutputRoot.XMLNSC;
 		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
 		
-		DECLARE codeError, nameError, descError CHARACTER '';
+		DECLARE codeError, nameError, descError, nameErrorTmp CHARACTER '';
 		
 		--Si existe ExceptionList
 		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
 		IF CONTAINS(nameError,'User') THEN
-			SET nameError = SUBSTRING(descError AFTER '- CUST::');
-			IF LENGTH(nameError) > 0 THEN
-				SET nameError = SUBSTRING(descError BEFORE '::');
-				SET descError = SUBSTRING(descError AFTER '::');
+			SET nameErrorTmp = SUBSTRING(descError AFTER '- CUST::');
+			IF LENGTH(nameErrorTmp) > 0 THEN
+				SET nameError = SUBSTRING(nameErrorTmp BEFORE '::');
+				SET descError = SUBSTRING(nameErrorTmp AFTER '::');
 			ELSE
-				SET descError = nameError;
+				SET descError = nameErrorTmp;
 			END IF;
 		END IF;
 		
@@ -179,9 +179,16 @@ CREATE COMPUTE MODULE HandlerModules_ErrorsFcdREST
 		
 		--Si existe ExceptionList
 		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
-		SET descError = SUBSTRING(descError AFTER '- CUST::');
+		IF CONTAINS(nameError,'User') THEN
+			SET nameError = SUBSTRING(descError AFTER '- CUST::');
+			IF LENGTH(nameError) > 0 THEN
+				SET nameError = SUBSTRING(descError BEFORE '::');
+				SET descError = SUBSTRING(descError AFTER '::');
+			ELSE
+				SET descError = nameError;
+			END IF;
+		END IF;
 		
-		--TODO: Validar respuesta error.
 		SET refOut.Error = descError;
 		
 		RETURN TRUE;

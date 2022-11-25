@@ -12,10 +12,10 @@
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="544,204" computeExpression="esql://routine/com.caracol.sv.registro.creareventonegocio#SV_CrearEventoNegocio_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>
       </nodes>
-      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="973,204" computeExpression="esql://routine/com.caracol.sv.registro.creareventonegocio#SV_CrearEventoNegocio_ResponseService.Main" computeMode="destinationAndMessage">
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="898,202" computeExpression="esql://routine/com.caracol.sv.registro.creareventonegocio#SV_CrearEventoNegocio_ResponseService.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="ResponseService"/>
       </nodes>
-      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="740,205" URLSpecifier="http://kappaprpi:90/api/services/createbusiness" httpVersion="1.1" protocol="TLS">
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="740,205" URLSpecifier="http://kappaprpi:68/api/services/createbusiness" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON">
         <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
       </nodes>
       <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_7" location="283,205" queueName="SV.REGISTRO.CREAREVENTONEGOCIO.01" messageDomainProperty="XMLNSC">

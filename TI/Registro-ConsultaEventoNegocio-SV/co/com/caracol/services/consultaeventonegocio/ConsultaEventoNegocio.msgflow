@@ -6,7 +6,7 @@
     <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Registro-ConsultaEventoNegocio-SV/icons/full/obj16/ConsultaEventoNegocio.gif"/>
     <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/Registro-ConsultaEventoNegocio-SV/icons/full/obj30/ConsultaEventoNegocio.gif"/>
     <composition>
-      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="575,205" URLSpecifier="http://kappaprpi:90/api/services/consulbusiness" httpMethod="GET" httpVersion="1.1" protocol="TLS">
+      <nodes xmi:type="ComIbmWSRequest.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="575,205" URLSpecifier="http://kappaprpi:68/api/services/consulbusiness" httpMethod="GET" httpVersion="1.1" protocol="TLS" messageDomainProperty="JSON">
         <translation xmi:type="utility:ConstantString" string="HTTP Request"/>
       </nodes>
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="601,280">
@@ -15,8 +15,8 @@
       <nodes xmi:type="ComIbmMQReply.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="1027,205">
         <translation xmi:type="utility:ConstantString" string="MQ Reply"/>
       </nodes>
-      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="166,204" queueName="SV.USUARIOS.GETDIRECTORIOACTIVO.01" messageDomainProperty="XMLNSC">
-        <translation xmi:type="utility:ConstantString" string="SV.USUARIOS.GETDIRECTORIOACTIVO.01"/>
+      <nodes xmi:type="ComIbmMQInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="166,204" queueName="SV.REGISTRO.CONSULTAEVENTONEGOCIO.01" messageDomainProperty="XMLNSC">
+        <translation xmi:type="utility:ConstantString" string="SV.REGISTRO.CONSULTAEVENTONEGOCIO.01"/>
       </nodes>
       <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_5" location="379,204" computeExpression="esql://routine/co.com.caracol.services.consultaeventonegocio#ConsultaEventoNegocio_RequestBack.Main" computeMode="destinationAndMessage">
         <translation xmi:type="utility:ConstantString" string="RequestBack"/>

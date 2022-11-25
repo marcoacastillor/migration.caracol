@@ -22,10 +22,11 @@ CREATE COMPUTE MODULE ConsultaEventoNegocio_RequestBack
 		CREATE FIELD OutputRoot.JSON.Data;
 		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
 		
+		/*
 		--Setear parámetros
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.FechaInicial 			= refInp.FechaInicial;
-		SET OutputLocalEnvironment.Destination.HTTP.QueryString.FechaFinall 			= refInp.FechaFinal;
-		SET OutputLocalEnvironment.Destination.HTTP.QueryString.SistemaId 				= '38';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.FechaFinal 				= refInp.FechaFinal;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.SistemaId 				= refInp.SistemaId;
 		
 		--Opcionales
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.UsuarioId 				= refInp.UsuarioId;
@@ -35,6 +36,12 @@ CREATE COMPUTE MODULE ConsultaEventoNegocio_RequestBack
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.ModuloFuncional 		= refInp.ModuloFuncional;
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.AccionEjecutada 		= refInp.AccionEjecutada;
 		SET OutputLocalEnvironment.Destination.HTTP.QueryString.Entidad 				= refInp.Entidad;
+		*/
+		
+		
+		--Poner variables configurables
+		DECLARE urlParams CHARACTER 'http://kappaprpi:68/api/services/consulbusiness?';
+		SET OutputLocalEnvironment.Destination.HTTP.RequestURL 		= urlParams || 'FechaInicial=' || refInp.FechaInicial || '&FechaFinal=' || refInp.FechaFinal || '&SistemaId=' || refInp.SistemaId || '&UsuarioId=' || refInp.UsuarioId || '&Servidor=' || refInp.Servidor || '&AplicacionOrigen=' || refInp.AplicacionOrigen || '&ComponenteOrigen=' || refInp.ComponenteOrigen || '&ModuloFuncional' || refInp.ModuloFuncional || '&AccionEjecutada=' || refInp.AccionEjecutada || '&Entidad=' || refInp.Entidad;
 		
 		RETURN TRUE;
 	END;
