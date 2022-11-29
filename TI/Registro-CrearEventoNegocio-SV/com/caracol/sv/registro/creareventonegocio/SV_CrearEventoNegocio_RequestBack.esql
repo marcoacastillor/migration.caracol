@@ -22,7 +22,7 @@ CREATE COMPUTE MODULE SV_CrearEventoNegocio_RequestBack
 		SET refOut.eventoNegocioAccionEjecutada		= refInp.AccionEjecutada;
 		SET refOut.eventoNegocioEntidad				= refInp.Entidad;
 		SET refOut.eventoNegocioDetalleTransaccion	= refInp.DetalleTransaccion;				
-		SET refOut.eventoNegocioFecha				= CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'yyyy-MM-dd HH:mm:ss');
+		SET refOut.eventoNegocioFecha				= CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'yyyy-MM-dd')||'T'||CAST(CURRENT_TIMESTAMP AS CHARACTER FORMAT 'HH:mm:ss');
 		SET refOut.eventoNegocioServidor			= InputRoot.MQRFH2.usr.transaction.sourceIP;
 		
 		RETURN TRUE;
