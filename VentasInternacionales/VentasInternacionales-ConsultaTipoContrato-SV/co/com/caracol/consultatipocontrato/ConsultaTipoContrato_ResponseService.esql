@@ -1,0 +1,27 @@
+BROKER SCHEMA co.com.caracol.consultatipocontrato
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultatipocontrato/';
+
+CREATE COMPUTE MODULE ConsultaTipoContrato_ResponseServiceV2
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		IF EXISTS(refInp.*:ConsultarTipoContratoResult[]) THEN
+		
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaTipoContratoResponse;
+			SET refOut.TipoContratoId = FIELDVALUE(refInp.*:ConsultarTipoContratoResult);
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');		
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

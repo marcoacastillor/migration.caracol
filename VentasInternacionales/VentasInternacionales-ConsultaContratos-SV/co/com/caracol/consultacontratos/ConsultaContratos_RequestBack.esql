@@ -1,0 +1,28 @@
+BROKER SCHEMA co.com.caracol.consultacontratos
+
+DECLARE temp NAMESPACE 'http://tempuri.org/';
+
+CREATE COMPUTE MODULE ConsultaContratos_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.temp:ConsultarContratosServicio;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.temp:ConsultarContratosServicio;
+		
+		SET refOut.temp:clienteId		= FIELDVALUE(refInp.*:ClienteId);
+			
+		RETURN TRUE;
+	END;	
+END MODULE;
+
+	

@@ -1,0 +1,44 @@
+BROKER SCHEMA co.com.caracol.consultacontratos
+
+DECLARE ns1 NAMESPACE 'http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratos/';
+
+CREATE COMPUTE MODULE ConsultaContratos_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+				
+		IF EXISTS(refInp.*:ConsultarContratosServicioResult[]) THEN
+			MOVE refInp LASTCHILD;
+		
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaContratosResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaContratosResponse;
+		
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:Contratos[]  DO
+				
+				SET refOut.Contrato[i].ContratoProduccionFinCesion		= FIELDVALUE(refReqs.*:_conProduccionFinCesion);
+				SET refOut.Contrato[i].ContratoProduccionInicioCesion	= FIELDVALUE(refReqs.*:_conProduccionInicioCesion);
+				SET refOut.Contrato[i].ContratoId						= FIELDVALUE(refReqs.*:_contratoId);
+				SET refOut.Contrato[i].ContratoNumero					= FIELDVALUE(refReqs.*:_contratoNumero);
+				SET refOut.Contrato[i].ContratoTipo						= FIELDVALUE(refReqs.*:_contratoTipo);
+				SET refOut.Contrato[i].ContratoVigencia					= FIELDVALUE(refReqs.*:_contratoVigencia);
+				SET refOut.Contrato[i].FechaSistema						= (refReqs.*:_fechaSistema);
+				SET refOut.Contrato[i].ProduccionNombre					= FIELDVALUE(refReqs.*:_produccionNombre);
+							
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;
+	

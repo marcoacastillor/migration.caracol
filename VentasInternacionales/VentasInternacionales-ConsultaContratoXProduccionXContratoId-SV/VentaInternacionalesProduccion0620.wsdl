@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" name="VIService" targetNamespace="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="BasicHttpBinding_IVIService" originalBindingStyle="document"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" schemaLocation="RemoteFiles/xsd_xsd0.xsd"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IVIService_ConsultarClientesServicio_InputMessage">
+    <wsdl:part element="tns:ConsultarClientesServicio" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarClientesServicio_OutputMessage">
+    <wsdl:part element="tns:ConsultarClientesServicioResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarContratosServicio_InputMessage">
+    <wsdl:part element="tns:ConsultarContratosServicio" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarContratosServicio_OutputMessage">
+    <wsdl:part element="tns:ConsultarContratosServicioResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarProducionesServicio_InputMessage">
+    <wsdl:part element="tns:ConsultarProducionesServicio" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarProducionesServicio_OutputMessage">
+    <wsdl:part element="tns:ConsultarProducionesServicioResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarContactosServicio_InputMessage">
+    <wsdl:part element="tns:ConsultarContactosServicio" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarContactosServicio_OutputMessage">
+    <wsdl:part element="tns:ConsultarContactosServicioResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_BuscarProducccionesXContrato_InputMessage">
+    <wsdl:part element="tns:BuscarProducccionesXContrato" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_BuscarProducccionesXContrato_OutputMessage">
+    <wsdl:part element="tns:BuscarProducccionesXContratoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_BuscarProducccionesXContratoId_InputMessage">
+    <wsdl:part element="tns:BuscarProducccionesXContratoId" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_BuscarProducccionesXContratoId_OutputMessage">
+    <wsdl:part element="tns:BuscarProducccionesXContratoIdResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarDatosContrato_InputMessage">
+    <wsdl:part element="tns:ConsultarDatosContrato" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarDatosContrato_OutputMessage">
+    <wsdl:part element="tns:ConsultarDatosContratoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarTipoContrato_InputMessage">
+    <wsdl:part element="tns:ConsultarTipoContrato" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="IVIService_ConsultarTipoContrato_OutputMessage">
+    <wsdl:part element="tns:ConsultarTipoContratoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="IVIService">
+    <wsdl:operation name="ConsultarClientesServicio">
+      <wsdl:input message="tns:IVIService_ConsultarClientesServicio_InputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarClientesServicio"/>
+      <wsdl:output message="tns:IVIService_ConsultarClientesServicio_OutputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarClientesServicioResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarContratosServicio">
+      <wsdl:input message="tns:IVIService_ConsultarContratosServicio_InputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarContratosServicio"/>
+      <wsdl:output message="tns:IVIService_ConsultarContratosServicio_OutputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarContratosServicioResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarProducionesServicio">
+      <wsdl:input message="tns:IVIService_ConsultarProducionesServicio_InputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarProducionesServicio"/>
+      <wsdl:output message="tns:IVIService_ConsultarProducionesServicio_OutputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarProducionesServicioResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarContactosServicio">
+      <wsdl:input message="tns:IVIService_ConsultarContactosServicio_InputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarContactosServicio"/>
+      <wsdl:output message="tns:IVIService_ConsultarContactosServicio_OutputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarContactosServicioResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProducccionesXContrato">
+      <wsdl:input message="tns:IVIService_BuscarProducccionesXContrato_InputMessage" wsaw:Action="http://tempuri.org/IVIService/BuscarProducccionesXContrato"/>
+      <wsdl:output message="tns:IVIService_BuscarProducccionesXContrato_OutputMessage" wsaw:Action="http://tempuri.org/IVIService/BuscarProducccionesXContratoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProducccionesXContratoId">
+      <wsdl:input message="tns:IVIService_BuscarProducccionesXContratoId_InputMessage" wsaw:Action="http://tempuri.org/IVIService/BuscarProducccionesXContratoId"/>
+      <wsdl:output message="tns:IVIService_BuscarProducccionesXContratoId_OutputMessage" wsaw:Action="http://tempuri.org/IVIService/BuscarProducccionesXContratoIdResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarDatosContrato">
+      <wsdl:input message="tns:IVIService_ConsultarDatosContrato_InputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarDatosContrato"/>
+      <wsdl:output message="tns:IVIService_ConsultarDatosContrato_OutputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarDatosContratoResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTipoContrato">
+      <wsdl:input message="tns:IVIService_ConsultarTipoContrato_InputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarTipoContrato"/>
+      <wsdl:output message="tns:IVIService_ConsultarTipoContrato_OutputMessage" wsaw:Action="http://tempuri.org/IVIService/ConsultarTipoContratoResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IVIService" type="tns:IVIService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="ConsultarClientesServicio">
+      <soap:operation soapAction="http://tempuri.org/IVIService/ConsultarClientesServicio" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarContratosServicio">
+      <soap:operation soapAction="http://tempuri.org/IVIService/ConsultarContratosServicio" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarProducionesServicio">
+      <soap:operation soapAction="http://tempuri.org/IVIService/ConsultarProducionesServicio" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarContactosServicio">
+      <soap:operation soapAction="http://tempuri.org/IVIService/ConsultarContactosServicio" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProducccionesXContrato">
+      <soap:operation soapAction="http://tempuri.org/IVIService/BuscarProducccionesXContrato" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuscarProducccionesXContratoId">
+      <soap:operation soapAction="http://tempuri.org/IVIService/BuscarProducccionesXContratoId" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarDatosContrato">
+      <soap:operation soapAction="http://tempuri.org/IVIService/ConsultarDatosContrato" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarTipoContrato">
+      <soap:operation soapAction="http://tempuri.org/IVIService/ConsultarTipoContrato" style="document"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="VIService">
+    <wsdl:port binding="tns:BasicHttpBinding_IVIService" name="BasicHttpBinding_IVIService">
+      <soap:address location="http://betapi01:88/VItrafico/VIService.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?><wsdl:definitions 
+xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+name="ConsultaOrdenesInternas" 
+targetNamespace="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratos/" 
+xmlns:S11="http://schemas.xmlsoap.org/wsdl/soap/" 
+xmlns:S12="http://schemas.xmlsoap.org/wsdl/soap12/" 
+xmlns:eb="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+xmlns:mex="http://www.cysce.com/csif-msg/ca/fault/v1.0/" 
+xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+xmlns:srv="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratos/" 
+xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:documentation>
+    <wsdl:appinfo source="WMQI_APPINFO">
+      <MRWSDLAppInfo imported="true">
+        <binding hasEncoding="false" imported="true" name="bdConsultaContratoHttp" originalBindingStyle="document"/>
+        <generatedXSD location="ConsultaContratos.xsd"/>
+      </MRWSDLAppInfo>
+    </wsdl:appinfo>
+  </wsdl:documentation> 
+	  
+<wsdl:types>
+   <xsd:schema targetNamespace="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratos/"
+			xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions">
+			<xsd:include schemaLocation="ConsultaContratos.xsd" />
+    </xsd:schema>
+	<xsd:schema>
+		<xsd:import namespace="http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/" 
+		schemaLocation="ebms-header-3_0-200704.xsd"/>
+	</xsd:schema>	
+</wsdl:types>	  
+	  
+ <!-- Request message -->
+	<wsdl:message name="msgConsultaContratosRequest">
+    	<wsdl:part element="srv:ConsultaContratosRequest" name="ConsultaContratosRequest"/>
+  	</wsdl:message>
+  	
+  	<!-- Response message -->
+  	<wsdl:message name="msgConsultaContratosResponse">
+    	<wsdl:part element="srv:ConsultaContratosResponse" name="ConsultaContratosResponse"/>
+  	</wsdl:message>
+	
+	<!-- Fault message -->
+	<wsdl:message name="msgConsultaContratosFault">
+  		<wsdl:part element="eb:Messaging" name="detail"/>
+  	</wsdl:message>
+  	  
+	
+<!-- Port type -->
+  	<wsdl:portType name="ptConsultaContratos12">
+    	<wsdl:operation name="operacionConsultaContratos">
+      		<wsdl:input message="srv:msgConsultaContratosRequest" name="ConsultaContratos_Input"/>
+      		<wsdl:output message="srv:msgConsultaContratosResponse" name="ConsultaContratos_Output"/>
+	        <wsdl:fault message="srv:msgConsultaContratosFault" name="fault"/>		
+	    </wsdl:operation>
+  	</wsdl:portType>
+	
+    <!-- Service -->
+    <wsdl:binding name="bdConsultaContratoHttp" type="srv:ptConsultaContratos12">
+    	<S12:binding style="document"
+    		transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="operacionConsultaContratos">
+	      	<S12:operation soapAction="http://www.caracoltv.com.co/ventasinternacionales/gestionmovimientos/consultacontratos/"/>
+	      	<wsdl:input name="ConsultaContratos_Input">
+	        	<S12:body parts="ConsultaContratosRequest" use="literal"/>
+	      	</wsdl:input>
+	      	<wsdl:output name="ConsultaContratos_Output">
+	        	<S12:body parts="ConsultaContratosResponse" use="literal"/>
+	      	</wsdl:output>
+	      	<wsdl:fault name="fault">
+	      		<S12:fault name="fault" use="literal"/>
+	      	</wsdl:fault>		
+    	</wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ConsultaContratos">    	    	
+    	<wsdl:port binding="srv:bdConsultaContratoHttp" name="ConsultaContratoscrc">
+      		<S12:address location="http://localhost:7800/services/s12/ventasinternacionales/ConsultaContratos"/>
+    	</wsdl:port>
+  	</wsdl:service>  	  
+</wsdl:definitions>
