@@ -1,0 +1,10 @@
+CREATE FUNCTION getMessageFromBody(IN refInp REFERENCE)RETURNS CHARACTER
+BEGIN
+    DECLARE message CHARACTER;
+    DECLARE messageTreeBlob BLOB;
+
+	SET messageTreeBlob = ASBITSTREAM(refInp, 273, 1208,'','','',FolderBitStream);
+	SET message = CAST(messageTreeBlob AS CHARACTER CCSID 1208);
+   
+    RETURN message;           
+END;

@@ -1,0 +1,17 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ValidarMaquinaRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ValidarMaquinaRequest;
+		
+		SET refOut.ns:usuarioId 	= FIELDVALUE(refInp.*:usuarioId);
+		SET refOut.ns:contrasena	= FIELDVALUE(refInp.*:contrasena);
+		
+		RETURN TRUE;
+	END;

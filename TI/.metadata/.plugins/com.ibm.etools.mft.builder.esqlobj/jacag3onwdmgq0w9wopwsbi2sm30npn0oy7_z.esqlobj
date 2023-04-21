@@ -1,0 +1,8 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		CREATE FIELD OutputRoot.XMLNSC.ns:CrearEventoNegocioResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:CrearEventoNegocioResponse;
+		
+		
+		RETURN TRUE;
+	END;

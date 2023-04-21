@@ -14,12 +14,13 @@ CREATE COMPUTE MODULE ConsultaOrdenesInternas_ResponseService
 		MOVE refInp LASTCHILD;
 		MOVE refInp LASTCHILD;
 		
-		IF EXISTS(refInp.*:OrdenInterna[]) THEN
+		IF CARDINALITY(refInp.*:OrdenInterna.*[]) > 0 THEN
+			DECLARE i INTEGER 1;
+			
 			--Crear mensaje de salida
 			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaOrdenesInternasResponse;
 			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaOrdenesInternasResponse;
-		
-			DECLARE i INTEGER 1;
+				
 			FOR refReqs AS refInp.*:OrdenInterna.*:OrdenInternaRow[]  DO					
 				SET refOut.OrdenesInternas.OrdenInterna[i].CodigoUbicacion	     = FIELDVALUE(refReqs.*:Ubicacion);
 				SET refOut.OrdenesInternas.OrdenInterna[i].Nombre	       		 = FIELDVALUE(refReqs.*:Nombre);
@@ -30,7 +31,11 @@ CREATE COMPUTE MODULE ConsultaOrdenesInternas_ResponseService
 				SET i = i + 1;
 			END FOR;
 		ELSE
-			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+			DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+			DECLARE nsv NAMESPACE 'http://www.caracoltv.com.co/TI/xcalibur/consultaordenesinternas/';
+			
+			--Crear mensaje de salida
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.nsv:ConsultaCentrosCostoResponse = '';
 		END IF;
 		RETURN TRUE;
 	END;

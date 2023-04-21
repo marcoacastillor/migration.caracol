@@ -1,0 +1,72 @@
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Processing file InternationalSales_API\gen\InternactionalSales_API.msgflow.
+Successfully added file InternationalSales_API\gen\InternactionalSales_API.msgflow to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Processing file InternationalSales_API\InternactionalSales_APIInputCatchHandler.subflow.
+Successfully added file InternationalSales_API\InternactionalSales_APIInputCatchHandler.subflow to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Processing file InternationalSales_API\InternactionalSales_APIInputFailureHandler.subflow.
+Successfully added file InternationalSales_API\InternactionalSales_APIInputFailureHandler.subflow to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Processing file InternationalSales_API\InternactionalSales_APIInputTimeoutHandler.subflow.
+Successfully added file InternationalSales_API\InternactionalSales_APIInputTimeoutHandler.subflow to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Processing file InternationalSales_API\InternationalSales.yaml.
+Successfully added file InternationalSales_API\InternationalSales.yaml to BAR file.
+Elapsed time: 0,001 second(s).
+
+Successfully added file InternationalSales_API\InternationalSales.yaml to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Processing file InternationalSales_API\getByCustomer.subflow.
+Successfully added file InternationalSales_API\getByCustomer.subflow to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Processing file InternationalSales_API\getContractByCustomer.subflow.
+Successfully added file InternationalSales_API\getContractByCustomer.subflow to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Processing file InternationalSales_API\restapi.descriptor.
+Successfully added file InternationalSales_API\restapi.descriptor to BAR file.
+Elapsed time: 0,003 second(s).
+
+Successfully added file InternationalSales_API\restapi.descriptor to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Processing file InternationalSales_API\restapi.descriptor.
+Successfully added file InternationalSales_API\restapi.descriptor to BAR file.
+Elapsed time: 0,002 second(s).
+
+Successfully added file InternationalSales_API\restapi.descriptor to BAR file.

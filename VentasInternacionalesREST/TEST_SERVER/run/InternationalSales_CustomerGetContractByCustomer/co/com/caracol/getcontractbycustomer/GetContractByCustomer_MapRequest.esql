@@ -1,0 +1,26 @@
+BROKER SCHEMA co.com.caracol.getcontractbycustomer
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE GetContractByCustomer_MapRequest
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		-- Declarar referencia a datos de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		-- Sacar parámetros		
+		DECLARE customerId CHARACTER SUBSTRING(refMQRFH2.usr.request.params AFTER 'id-customer=');
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ConsultarContratosServicio;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ConsultarContratosServicio;
+		
+		SET refOut.ns:clienteId		= customerId;
+	
+		RETURN TRUE;
+	END;
+END MODULE;

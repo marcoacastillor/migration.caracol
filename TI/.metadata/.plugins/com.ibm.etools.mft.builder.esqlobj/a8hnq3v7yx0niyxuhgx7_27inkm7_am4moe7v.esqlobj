@@ -1,0 +1,17 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		IF refInp.EnDominio = FALSE THEN
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::Maquina no Existe en el Dominio o es un servidor');			
+		ELSE
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.ns:ValidarMaquinaRequest;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ValidarMaquinaRequest;	
+		END IF;
+		
+		RETURN TRUE;
+	END;

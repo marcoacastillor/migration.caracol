@@ -1,0 +1,166 @@
+BROKER SCHEMA co.com.caracol.commons.modules
+
+
+/*
+* Módulo que enruta mensajes desde fachada REST a componente específico
+*/
+CREATE COMPUTE MODULE FcdRest_SetContextInformation
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Probar variables de sesión
+		SET OutputLocalEnvironment.usr.transaction.X_Request_ID 		= COALESCE(InputRoot.HTTPInputHeader."X-Request-ID",UUIDASCHAR);
+		
+		--Información del componente invocado.
+		SET OutputLocalEnvironment.usr.trazability.component			= InputLocalEnvironment.HTTP.Input.Path.Segment[1];
+		SET OutputLocalEnvironment.usr.trazability.version				= InputLocalEnvironment.HTTP.Input.Path.Segment[3];
+		SET OutputLocalEnvironment.usr.trazability.service				= InputLocalEnvironment.HTTP.Input.Path.Segment[4];
+		SET OutputLocalEnvironment.usr.trazability.operation			= InputLocalEnvironment.HTTP.Input.Path.Segment[5];		
+		SET OutputLocalEnvironment.usr.trazability.timestamp			= CAST(CURRENT_TIMESTAMP as CHARACTER FORMAT 'YYY-dd-MM HH:mm:ss.SSS');
+		 
+		-- Guardar información para responder a cliente
+		SET OutputLocalEnvironment.usr.response.replyIdentifier 		= InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		
+		-- Guardar información para consultar la información
+		SET OutputLocalEnvironment.usr.request.params 					= InputRoot.HTTPInputHeader."X-Query-String";
+		
+		--Copiar el mensaje
+		SET OutputRoot.JSON = InputRoot.JSON;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+/*
+* Módulo que obtiene datos para responder a cliente
+*/
+CREATE COMPUTE MODULE FcdRest_GetIdentifiers
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Poner utf-8 a la respuesta
+		SET OutputRoot.Properties.Encoding = 1209;
+		
+		-- Poner cabeceras de respuesta
+		SET OutputRoot.HTTPResponseHeader."X-Request-ID"	= InputLocalEnvironment.usr.transaction.X_Request_ID;
+		
+		--Datos para auditoría
+		SET OutputLocalEnvironment.usr.trazability.component			= 'api';
+		SET OutputLocalEnvironment.usr.trazability.order 			= 7;
+		SET OutputLocalEnvironment.usr.trazability.timestamp					= CAST(CURRENT_TIMESTAMP as CHARACTER FORMAT 'YYY-dd-MM HH:mm:ss.SSS');
+		
+		--Copiar el mensaje
+		SET OutputRoot.JSON = InputRoot.JSON;
+		
+		-- Guardar información para responder a cliente
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = CAST(InputLocalEnvironment.usr.response.replyIdentifier AS BLOB);
+		
+		-- Setear código de respuesta del servicio
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusCode		= 200;
+		SET OutputLocalEnvironment.Destination.HTTP.ReplyStatusDesc		= 'Transacción Exitosa';
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+/*
+* Módulo que genera mensaje de error en componente específicos
+*/
+CREATE COMPUTE MODULE Service_CatchError
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar datos de transacción
+		SET OutputLocalEnvironment = InputLocalEnvironment;
+		
+		-- Declarar variables
+		DECLARE code, name, desc CHARACTER '';
+		
+		--Declarar referencia a lista de excepciones técnicas.
+		DECLARE refExceptionList REFERENCE TO InputExceptionList;
+		CALL co.com.caracol.commons.procedure.getDescriptionExceptionList(refExceptionList, code, name, desc);
+		
+		--Poner nombre de componente
+		SET OutputLocalEnvironment.usr.trazability.component 	= SUBSTRING(desc BEFORE '-  -');
+		SET OutputLocalEnvironment.usr.trazability.order 		= 6;
+		
+		-- Crear mensaje de salida
+		/* --------------------------------------------------------- */
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO  OutputRoot.JSON.Data;
+		
+		SET refOut.status.code					= 506;
+		SET refOut.status.dateTransaction		= CURRENT_TIMESTAMP;
+		SET refOut.status.desc					= 'Error en la mediación';
+		
+		SET refOut.status.additionalStatus.code	= code;
+		SET refOut.status.additionalStatus.desc	= name || ' : ' || desc;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+/*
+* Módulo que genera mensaje de error en componente específicos
+*/
+CREATE COMPUTE MODULE FcdRest_CatchError
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Declarar variables
+		DECLARE code, name, desc CHARACTER '';
+		
+		--Declarar referencia a lista de excepciones técnicas.
+		DECLARE refExceptionList REFERENCE TO InputExceptionList;
+		CALL co.com.caracol.commons.procedure.getDescriptionExceptionList(refExceptionList, code, name, desc);
+		
+		--Poner nombre de componente
+		SET OutputLocalEnvironment.usr.trazability.component = SUBSTRING(desc BEFORE '-  -');
+		SET OutputLocalEnvironment.usr.trazability.order 	= 6;
+		
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO  OutputRoot.JSON.Data;
+		
+		SET refOut.status.code					= 506;
+		SET refOut.status.dateTransaction		= CURRENT_TIMESTAMP;
+		SET refOut.status.desc					= 'Error en la mediación';
+		
+		SET refOut.status.additionalStatus.code	= code;
+		SET refOut.status.additionalStatus.desc	= name || ' : ' || desc;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+/*
+* Módulo que genera mensaje de error en componente específicos
+*/
+CREATE COMPUTE MODULE FcdRest_Timeout
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Declarar variables
+		DECLARE code, name, desc CHARACTER '';
+		
+		--Declarar referencia a lista de excepciones técnicas.
+		DECLARE refExceptionList REFERENCE TO InputExceptionList;
+		CALL co.com.caracol.commons.procedure.getDescriptionExceptionList(refExceptionList, code, name, desc);
+		
+		--Poner nombre de componente
+		SET OutputLocalEnvironment.usr.trazability.component = SUBSTRING(desc BEFORE '-  -');
+		SET OutputLocalEnvironment.usr.trazability.order 	= 6;
+		
+		-- Crear mensaje de salida
+		/* --------------------------------------------------------- */
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO  OutputRoot.JSON.Data;
+		
+		SET refOut.status.code					= 401;
+		SET refOut.status.dateTransaction		= CURRENT_TIMESTAMP;
+		SET refOut.status.desc					= 'Timeout service';
+		
+		SET refOut.status.additionalStatus.code	= code;
+		SET refOut.status.additionalStatus.desc	= name || ' : ' || desc;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

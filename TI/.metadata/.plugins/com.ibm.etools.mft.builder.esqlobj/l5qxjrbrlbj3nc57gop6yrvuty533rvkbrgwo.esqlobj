@@ -1,0 +1,41 @@
+CREATE COMPUTE MODULE ConsultaEventoNegocio_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Validar respuesta
+		IF EXISTS(refInp.*[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaEventoNegocioResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaEventoNegocioResponse;
+			
+			DECLARE i INTEGER 1;
+			FOR refEvent AS refInp.Item[] DO
+				SET refOut.EventoNegocio[i].SistemaId    		= refEvent.sistemaId;
+				SET refOut.EventoNegocio[i].UsuarioId    		= refEvent.usuarioId;
+				SET refOut.EventoNegocio[i].AplicacionOrigen 	= refEvent.eventoNegocioAplicacionOrigen;
+				SET refOut.EventoNegocio[i].ComponenteOrigen 	= refEvent.eventoNegocioComponenteOrigen;
+				SET refOut.EventoNegocio[i].ModuloFuncional  	= refEvent.eventoNegocioModuloFuncional;
+				SET refOut.EventoNegocio[i].CodigoTransaccion  	= refEvent.eventoNegocioCodigoTransaccion;
+				SET refOut.EventoNegocio[i].AccionEjecutada  	= refEvent.AccionEjecutada;
+				SET refOut.EventoNegocio[i].Entidad      		= refEvent.Entidad;
+				SET refOut.EventoNegocio[i].DetalleTransaccion 	= refEvent.DetalleTransaccion;
+				SET refOut.EventoNegocio[i].Fecha  				= refEvent.Fecha;
+				SET refOut.EventoNegocio[i].Servidor     		= refEvent.Servidor;
+				
+				SET i = i + 1;
+			END FOR;
+			
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND::No se obtiene mensaje');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

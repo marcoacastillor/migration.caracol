@@ -1,0 +1,45 @@
+BROKER SCHEMA co.com.caracol.getbycustomer
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+/*
+* Las variables se escribren en Español por indicaciòn expresa de CaracolTV. el estàndar dice que debe ser en inglès.
+*/
+CREATE COMPUTE MODULE GetByCustomer_MapRequest
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Guardar datos para respuesta
+		SET Environment.usr = InputLocalEnvironment.usr;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ConsultarClientesServicio;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ConsultarClientesServicio;
+		
+		-- Sacar parámetros
+		IF POSITION('ClienteNombre=' IN InputLocalEnvironment.usr.request.params) > 0 THEN
+			DECLARE nameCustomer CHARACTER TRIM(SUBSTRING(InputLocalEnvironment.usr.request.params AFTER 'ClienteNombre='));
+			IF POSITION('&' IN nameCustomer) > 0 THEN
+				SET nameCustomer = SUBSTRING(nameCustomer BEFORE '&');	
+			END IF;
+			
+			SET refOut.ns:nombre		= COALESCE(nameCustomer,NULL);
+		END IF;
+		
+		
+		IF POSITION('ClienteCiudad=' IN InputLocalEnvironment.usr.request.params) > 0 THEN
+			DECLARE cityResidence CHARACTER TRIM(SUBSTRING(InputLocalEnvironment.usr.request.params AFTER 'ClienteCiudad='));
+			IF POSITION('&' IN cityResidence) > 0 THEN
+				SET cityResidence = SUBSTRING(cityResidence BEFORE '&');
+			END IF;
+			
+			SET refOut.ns:ciudad		= COALESCE(cityResidence,NULL);
+		END IF;
+		
+		
+		IF POSITION('ClienteSiglas=' IN InputLocalEnvironment.usr.request.params) > 0 THEN
+			DECLARE signs CHARACTER TRIM(SUBSTRING(InputLocalEnvironment.usr.request.params AFTER 'ClienteSiglas='));
+			SET refOut.ns:siglas		= COALESCE(signs,NULL);	
+		END IF;
+	
+		RETURN TRUE;
+	END;
+END MODULE;

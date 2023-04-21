@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:restapiDescriptor xmlns="http://com.ibm.etools.mft.descriptor.base" xmlns:ns2="http://com.ibm.etools.mft.descriptor.restapi" definitionType="openapi_3" definitionFile="InternationalSales.yaml" implementation="gen/InternactionalSales_API.msgflow" https="false" definitionWithExtRef="false" faultFormat="JSON">
+    <references>
+        <sharedLibraryReference>
+            <libraryName>Commons_LIB</libraryName>
+        </sharedLibraryReference>
+    </references>
+    <ns2:operations>
+        <ns2:operation name="getByCustomer" implementation="getByCustomer.subflow"/>
+        <ns2:operation name="getContractByCustomer" implementation="getContractByCustomer.subflow"/>
+    </ns2:operations>
+    <ns2:errorHandlers>
+        <ns2:errorHandler type="CATCH" implementation="InternactionalSales_APIInputCatchHandler.subflow"/>
+        <ns2:errorHandler type="FAILURE" implementation="InternactionalSales_APIInputFailureHandler.subflow"/>
+        <ns2:errorHandler type="TIMEOUT" implementation="InternactionalSales_APIInputTimeoutHandler.subflow"/>
+    </ns2:errorHandlers>
+</ns2:restapiDescriptor>

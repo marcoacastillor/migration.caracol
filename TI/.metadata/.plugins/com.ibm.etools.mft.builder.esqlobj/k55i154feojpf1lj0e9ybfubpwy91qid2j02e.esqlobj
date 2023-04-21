@@ -1,0 +1,16 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns2:GenerarClaveAdminV2Response;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:GenerarClaveAdminV2Response;
+		
+		SET refOut.ActaClaveAsignada = refInp.ActaClaveAsignada;	
+	
+		RETURN TRUE;
+	END;

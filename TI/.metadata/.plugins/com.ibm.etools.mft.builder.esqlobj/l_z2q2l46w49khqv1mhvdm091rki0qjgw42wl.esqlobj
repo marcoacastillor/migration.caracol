@@ -1,0 +1,43 @@
+CREATE COMPUTE MODULE ConsultaEventoNegocio_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Validación de condición
+		IF refInp.FechaInicial > refInp.FechaFinal THEN
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::Fecha inicial es mayor o igual a la fecha final');	
+		END IF;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		--Setear parámetros
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.FechaInicial 			= refInp.FechaInicial;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.FechaFinal 				= refInp.FechaFinal;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.SistemaId 				= '38';
+		
+		--Opcionales
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.UsuarioId 				= refInp.UsuarioId;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.Servidor 				= refInp.Servidor;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.AplicacionOrigen 		= refInp.AplicacionOrigen;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.ComponenteOrigen 		= refInp.ComponenteOrigen;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.ModuloFuncional 		= refInp.ModuloFuncional;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.AccionEjecutada 		= refInp.AccionEjecutada;
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.Entidad 				= refInp.Entidad;
+		
+		
+		--Poner variables configurables
+		DECLARE urlParams CHARACTER 'http://kappaprpi:90/api/services/consulbusiness?';
+		SET OutputLocalEnvironment.Destination.HTTP.RequestURL 		= urlParams || 'FechaInicial=' || refInp.FechaInicial;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,10 @@
+CREATE COMPUTE MODULE CrearEventoNegocio_RQ_RsService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CREATE FIELD OutputRoot.XMLNSC.ns:CrearEventoNegocioResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:CrearEventoNegocioResponse;
+		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

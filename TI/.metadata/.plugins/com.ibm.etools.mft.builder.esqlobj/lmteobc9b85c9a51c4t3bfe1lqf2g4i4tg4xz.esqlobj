@@ -1,0 +1,41 @@
+CREATE COMPUTE MODULE ConsultaEventoNegocio_ResponseService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Validar respuesta
+		IF EXISTS(refInp.*[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaEventoNegocioResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaEventoNegocioResponse;
+			
+			DECLARE i INTEGER 1;
+			FOR refEvent AS refInp.Item[] DO
+				SET refOut.SistemaId    		= refEvent.SistemaId;
+				SET refOut.UsuarioId    		= refEvent.UsuarioId;
+				SET refOut.AplicacionOrigen 	= refEvent.AplicacionOrigen;
+				SET refOut.ComponenteOrigen 	= refEvent.ComponenteOrigen;
+				SET refOut.ModuloFuncional  	= refEvent.ModuloFuncional;
+				SET refOut.CodigoTransaccion  	= refEvent.CodigoTransaccion;
+				SET refOut.AccionEjecutada  	= refEvent.AccionEjecutada;
+				SET refOut.Entidad      		= refEvent.Entidad;
+				SET refOut.DetalleTransaccion 	= refEvent.DetalleTransaccion;
+				SET refOut.Fecha  				= refEvent.Fecha;
+				SET refOut.Servidor     		= refEvent.Servidor;
+				
+				SET i = i + 1;
+			END FOR;
+			
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

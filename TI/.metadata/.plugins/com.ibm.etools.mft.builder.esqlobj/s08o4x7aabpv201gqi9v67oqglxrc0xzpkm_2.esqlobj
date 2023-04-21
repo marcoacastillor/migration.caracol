@@ -1,0 +1,17 @@
+CREATE COMPUTE MODULE CrearEventoNegocio_RQ_RsService
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Copiar replyIdentifer
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(refMQRFH2.usr.responseWS.replyIdentifier AS BLOB);
+		
+		CREATE FIELD OutputRoot.XMLNSC.ns:CrearEventoNegocioResponse;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:CrearEventoNegocioResponse;
+		
+		SET refOut.Respuesta = true;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

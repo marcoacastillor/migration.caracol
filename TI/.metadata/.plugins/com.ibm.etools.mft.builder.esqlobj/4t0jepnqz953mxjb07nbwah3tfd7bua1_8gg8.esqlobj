@@ -1,0 +1,43 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		
+		
+		
+		
+		--Copiar cabeceras de respuesta
+		SET OutputRoot.MQMD 	= Environment.usr._header.MQMD;
+		SET OutputRoot.MQRFH2 	= Environment.usr._header.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Validar respuesta
+		IF EXISTS(refInp.*[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.ns1:ConsultaUsuariosDominioResponse;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns1:ConsultaUsuariosDominioResponse;
+			--MOVE refInp LASTCHILD;
+			
+			DECLARE i INTEGER 1;
+			FOR refUser AS refInp.Item[] DO
+				SET refOut.Usuario[i].DirectorioActivoUsuarioId 	= refUser.login;
+				SET refOut.Usuario[i].DirectorioActivoCorreo		= refUser.correo;
+				SET refOut.Usuario[i].DirectorioActivoNombres		= refUser.nombres;
+				SET refOut.Usuario[i].DirectorioActivoApellidos		= refUser.apellidos;
+				SET refOut.Usuario[i].DirectorioActivoNombreCompleto		= refUser.nombreCompleto;
+				SET refOut.Usuario[i].DirectorioActivoArea			= refUser.area;
+				SET refOut.Usuario[i].DirectorioActivoCargo			= refUser.cargo;
+				SET refOut.Usuario[i].DirectorioActivoCedula		= refUser.numeroIdentificacion;
+				SET refOut.Usuario[i].DirectorioActivoCentroCosto	= refUser.centroCosto;
+				
+				SET i = i + 1;
+			END FOR;
+			
+			SET refOut.UsuarioAutenticarResult 	= (refInp.*:UsuarioAutenticarResult);	
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;

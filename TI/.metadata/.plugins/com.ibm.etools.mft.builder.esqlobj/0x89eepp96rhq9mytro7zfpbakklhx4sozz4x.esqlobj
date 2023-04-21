@@ -1,0 +1,28 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD = InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_RESP;
+		
+		--Copiar replyIdentifer
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(refMQRFH2.usr.responseWS.replyIdentifier AS BLOB);
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns2:GenerarClaveAdminV2Response;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:GenerarClaveAdminV2Response;
+		
+		SET refOut.ActaClaveAsignada = refInp.ActaClaveAsignada;	
+	
+		RETURN TRUE;
+	END;

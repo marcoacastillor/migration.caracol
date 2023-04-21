@@ -1,0 +1,24 @@
+CREATE COMPUTE MODULE SV_CrearEventoNegocio_RequestBack
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		SET refOut.SistemaId	= refInp.SistemaId;
+		SET refOut.UsuarioId	= refInp.UsuarioId;
+		SET refOut.AplicacionOrigen	= refInp.AplicacionOrigen;
+		SET refOut.ComponenteOrigen	= refInp.ComponenteOrigen;
+		SET refOut.ModuloFuncional	= refInp.ModuloFuncional;
+		SET refOut.CodigoTransaccion	= refInp.CodigoTransaccion;
+		SET refOut.AccionEjecutada	= refInp.AccionEjecutada;
+		SET refOut.Entidad	= refInp.Entidad;
+		SET refOut.DetalleTransaccion	= refInp.DetalleTransaccion;				
+		
+	END;
+END MODULE;

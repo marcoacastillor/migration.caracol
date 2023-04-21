@@ -1,0 +1,21 @@
+CREATE COMPUTE MODULE ClaveAdmin_ValidateResponse1
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Validar respuesta
+		IF EXISTS(refInp.*:UsuarioAutenticarResult[]) THEN
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.XMLNSC.ns2:GenerarClaveAdminV2Response;
+			DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns2:GenerarClaveAdminV2Response;
+			
+			SET refOut.UsuarioAutenticarResult 	= (refInp.*:UsuarioAutenticarResult);	
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;

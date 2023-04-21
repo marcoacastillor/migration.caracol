@@ -53,7 +53,8 @@ CREATE COMPUTE MODULE EnvioCorreoV1_SendEmail
 			SET OutputLocalEnvironment.Destination.Email.Attachment = null;
 		END IF; 
 		
-		DECLARE localEnvBLOB CHAR refInp.(XMLNSC.CDataField)Cuerpo;
+		DECLARE localEnvBLOB CHARACTER commons.correo.replaceSpecialCharacterHTML(refInp.(XMLNSC.CDataField)Cuerpo);
+		
 		IF (localEnvBLOB IS NOT NULL) OR (localEnvBLOB <> '') THEN
 		    CREATE LASTCHILD OF OutputLocalEnvironment.LOCALENVBLOB_TO_XML DOMAIN('XMLNSC') PARSE (localEnvBLOB ENCODING InputRoot.Properties.Encoding CCSID InputRoot.Properties.CodedCharSetId
 	        FORMAT 'XMLNSC_OPAQUE' TYPE 'soap12:Body');         

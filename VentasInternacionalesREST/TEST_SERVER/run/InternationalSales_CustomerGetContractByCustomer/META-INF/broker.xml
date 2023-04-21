@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Broker deployBarfile="InternationalSales_CustomerGetContractByCustomerproject.generated.bar" deployTimestamp="2023-04-13 20:09:49">
+  <CompiledApplication>
+    <ConfigurableProperty uri="startMode">
+    </ConfigurableProperty>
+  </CompiledApplication>
+  <CompiledMessageFlow name="co.com.caracol.getcontractbycustomer.GetContractByCustomer" deployBarfile="InternationalSales_CustomerGetContractByCustomerproject.generated.bar" deployTimestamp="2023-04-13 20:09:49">
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#CallInpGetContractByCustomer.callableInputEndpoint" override="CallInpGetContractByCustomer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#CreateErrorMsgFault.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#CreateErrorMsgFault.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#CreateErrorMsgFault.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#MapRequest.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#MapRequest.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#MapRequest.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#MapResponse.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#MapResponse.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#MapResponse.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#additionalInstances">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#commitCount">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#commitInterval">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#consumerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#consumerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#coordinatedTransaction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#maximumRateMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#monitoringProfile">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#notificationThresholdMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#processingTimeoutAction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#processingTimeoutSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#providerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#providerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#startInstancesWhenFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#startMode">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="co.com.caracol.getcontractbycustomer.GetContractByCustomer#wlmPolicy">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+  <CompiledMessageFlow name="gen.GetContractByCustomer" type="subflow" deployBarfile="InternationalSales_CustomerGetContractByCustomerproject.generated.bar" deployTimestamp="2023-04-13 20:09:49">
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.acceptCompressedResponses">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.allowMTOM">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.allowedSSLCiphers">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.connectionFactoryName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.deliveryMode">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.enableCRLCheck">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.hostnameChecking">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.httpProxyLocation">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.initialContextFactory">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.jmsDestination">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.jmsReplyToDestination">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.keyAlias">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.locationJndiBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.messageExpiration">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.messagePriority">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.messageType">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.policySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.policySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.requestCompressionType">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.requestTimeout">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.requestTimeoutJMS">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.sslProtocol" override="TLS">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.targetService">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.validateFailureAction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.GetContractByCustomer#Request.webServiceURL" override="http://betapi01:88/VItrafico/VIService.svc">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+</Broker>

@@ -1,0 +1,28 @@
+
+==============================================
+
+!Thu Apr 13 15:13:15 COT 2023
+
+Successfully added file InternationalSales_API\gen\InternactionalSales_API.msgflow to BAR file.
+
+Successfully added file InternationalSales_API\InternactionalSales_APIInputCatchHandler.subflow to BAR file.
+
+Successfully added file InternationalSales_API\InternactionalSales_APIInputFailureHandler.subflow to BAR file.
+
+Successfully added file InternationalSales_API\InternactionalSales_APIInputTimeoutHandler.subflow to BAR file.
+
+Successfully added file InternationalSales_API\InternationalSales.yaml to BAR file.
+
+Successfully added file InternationalSales_API\InternationalSales.yaml to BAR file.
+
+Successfully added file InternationalSales_API\getByCustomer.subflow to BAR file.
+
+Successfully added file InternationalSales_API\getContractByCustomer.subflow to BAR file.
+
+Successfully added file InternationalSales_API\restapi.descriptor to BAR file.
+
+Successfully added file InternationalSales_API\restapi.descriptor to BAR file.
+
+Successfully added file InternationalSales_API\restapi.descriptor to BAR file.
+
+Successfully added file InternationalSales_API\restapi.descriptor to BAR file.

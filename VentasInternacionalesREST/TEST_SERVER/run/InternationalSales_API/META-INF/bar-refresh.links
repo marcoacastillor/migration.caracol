@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy:Deploy xmlns:deploy="http://www.ibm.com/xmlns/prod/wmb/deploy/6.0.0" overrideConfigurableProperties="false" includeESQL="false">
+  <deployables>
+    <deployable deployed="true" barResourceTimeStamp="1681243090855" workspaceResource="/InternationalSales_API/InternactionalSales_APIInputCatchHandler.subflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file InternationalSales_API\InternactionalSales_APIInputCatchHandler.subflow.&#xA;Successfully added file InternationalSales_API\InternactionalSales_APIInputCatchHandler.subflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="InternactionalSales_APIInputCatchHandler.subflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1681243165956" workspaceResource="/InternationalSales_API/InternactionalSales_APIInputFailureHandler.subflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file InternationalSales_API\InternactionalSales_APIInputFailureHandler.subflow.&#xA;Successfully added file InternationalSales_API\InternactionalSales_APIInputFailureHandler.subflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="InternactionalSales_APIInputFailureHandler.subflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1681243198268" workspaceResource="/InternationalSales_API/InternactionalSales_APIInputTimeoutHandler.subflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file InternationalSales_API\InternactionalSales_APIInputTimeoutHandler.subflow.&#xA;Successfully added file InternationalSales_API\InternactionalSales_APIInputTimeoutHandler.subflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="InternactionalSales_APIInputTimeoutHandler.subflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1681400452235" workspaceResource="/InternationalSales_API/InternationalSales.yaml">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file InternationalSales_API\InternationalSales.yaml.&#xA;Successfully added file InternationalSales_API\InternationalSales.yaml to BAR file.&#xA;Elapsed time: 0,001 second(s).&#xA;&#xA;Successfully added file InternationalSales_API\InternationalSales.yaml to BAR file.&#xA;" severity="0"/>
+      <barEntry name="InternationalSales.yaml"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1681335763161" workspaceResource="/InternationalSales_API/gen/InternactionalSales_API.msgflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file InternationalSales_API\gen\InternactionalSales_API.msgflow.&#xA;Successfully added file InternationalSales_API\gen\InternactionalSales_API.msgflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="gen\InternactionalSales_API.msgflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1681416774919" workspaceResource="/InternationalSales_API/getByCustomer.subflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file InternationalSales_API\getByCustomer.subflow.&#xA;Successfully added file InternationalSales_API\getByCustomer.subflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="getByCustomer.subflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1681416788971" workspaceResource="/InternationalSales_API/getContractByCustomer.subflow">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file InternationalSales_API\getContractByCustomer.subflow.&#xA;Successfully added file InternationalSales_API\getContractByCustomer.subflow to BAR file.&#xA;" severity="0"/>
+      <barEntry name="getContractByCustomer.subflow"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1681335763149" workspaceResource="/InternationalSales_API/restapi.descriptor">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file InternationalSales_API\restapi.descriptor.&#xA;Successfully added file InternationalSales_API\restapi.descriptor to BAR file.&#xA;Elapsed time: 0,002 second(s).&#xA;&#xA;Successfully added file InternationalSales_API\restapi.descriptor to BAR file.&#xA;" severity="0"/>
+      <barEntry name="restapi.descriptor"/>
+    </deployable>
+  </deployables>
+</deploy:Deploy>

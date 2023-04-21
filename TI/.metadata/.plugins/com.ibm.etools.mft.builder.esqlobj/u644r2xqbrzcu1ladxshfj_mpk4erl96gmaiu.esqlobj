@@ -1,0 +1,37 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/ti/registro/consultaeventonegocio/';		
+		
+		SET OutputRoot.Properties = InputRoot.Properties;
+		-- Add an MQMD
+		CREATE NEXTSIBLING OF OutputRoot.Properties DOMAIN 'MQMD';
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Header TYPE Name;
+		DECLARE rHeaderO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Header;
+		DECLARE rHeaderI REFERENCE TO InputRoot.SOAP.Header;
+		
+		SET rHeaderO.eb:Messaging = rHeaderI.eb:Messaging;
+		
+		CREATE FIELD OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioRequest TYPE Name;
+		DECLARE rBodyO REFERENCE TO OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioRequest;
+		DECLARE rBodyI REFERENCE TO InputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest;	
+		IF rBodyI.FechaInicial > rBodyI.FechaFinal THEN
+			THROW USER EXCEPTION Message 3012 VALUES( 'Fecha inicial es mayor o igual a la fecha final' );			
+		END IF;
+			
+		SET rBodyO.FechaInicial=rBodyI.FechaInicial;			
+		SET rBodyO.FechaFinal=rBodyI.FechaFinal;
+		
+		SET rBodyO.SistemaId=rBodyI.SistemaId;
+		SET rBodyO.UsuarioId=rBodyI.UsuarioId;
+		SET rBodyO.Servidor=rBodyI.Servidor;
+		SET rBodyO.AplicacionOrigen=rBodyI.AplicacionOrigen;
+		SET rBodyO.ComponenteOrigen=rBodyI.ComponenteOrigen;
+		SET rBodyO.ModuloFuncional=rBodyI.ModuloFuncional;
+		SET rBodyO.AccionEjecutada=rBodyI.AccionEjecutada;
+		SET rBodyO.Entidad=rBodyI.Entidad;
+		RETURN TRUE;
+	END;
+	

@@ -4,6 +4,8 @@ BROKER SCHEMA co.com.caracol.services.enviocorreov2
 CREATE COMPUTE MODULE EnvioCorreoV2_SendEmail
 	CREATE FUNCTION Main() RETURNS BOOLEAN
 	BEGIN
+		SET OutputRoot.Properties.CodedCharSetId = 1209;
+		
 		--Copiar cabeceras
 		SET OutputRoot.MQMD		= InputRoot.MQMD;
 		SET OutputRoot.MQRFH2	= InputRoot.MQRFH2;
@@ -44,7 +46,8 @@ CREATE COMPUTE MODULE EnvioCorreoV2_SendEmail
 			SET OutputRoot.EmailOutputHeader."X-Priority" = '0';
 		END IF; 
 		
-		DECLARE localEnvBLOB CHAR refInp.(XMLNSC.CDataField)Cuerpo;
+		DECLARE localEnvBLOB CHARACTER commons.correo.replaceSpecialCharacterHTML(refInp.(XMLNSC.CDataField)Cuerpo);
+		
 		IF (localEnvBLOB IS NOT NULL) OR (localEnvBLOB <> '') THEN
 			CREATE LASTCHILD OF OutputLocalEnvironment.LOCALENVBLOB_TO_XML DOMAIN('XMLNSC') PARSE (localEnvBLOB ENCODING InputRoot.Properties.Encoding CCSID InputRoot.Properties.CodedCharSetId
 		    FORMAT 'XMLNSC_OPAQUE' TYPE 'soap12:Body');         

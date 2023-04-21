@@ -1,0 +1,25 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';		
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/ti/registro/consultaeventonegocio/';		
+		DECLARE soapenv NAMESPACE 'http://schemas.xmlsoap.org/soap/envelope/';	
+			
+		SET OutputRoot.Properties = InputRoot.Properties;
+        SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;
+        SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+
+		DECLARE rBodyI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioRequest;
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.FechaInicial= rBodyI.FechaInicial;
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.FechaFinal= rBodyI.FechaFinal;
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.SistemaId= rBodyI.SistemaId;
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.UsuarioId= rBodyI.UsuarioId;	
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.Servidor= rBodyI.Servidor;						
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.AplicacionOrigen= rBodyI.AplicacionOrigen;
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.ComponenteOrigen= rBodyI.ComponenteOrigen;
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.ModuloFuncional= rBodyI.ModuloFuncional;
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.AccionEjecutada= rBodyI.AccionEjecutada;
+		SET OutputRoot.SOAP.Body.srv:ConsultaEventoNegocioRequest.Entidad= rBodyI.Entidad;							   	  
+	    SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;
+		RETURN TRUE;
+		
+	END;

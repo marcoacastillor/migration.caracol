@@ -1,0 +1,30 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		IF CONTAINS(nameError,'User') THEN
+			SET descError = SUBSTRING(descError AFTER '- CUST::');
+			SET nameError = 'Error recibiendo respuesta';
+		END IF;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
+		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
+		
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,refMQRFH2.usr.transaction.transactionID,codeError,codeError|| ' : ' ||nameError||' : '||descError);
+		
+		RETURN TRUE;
+	END;

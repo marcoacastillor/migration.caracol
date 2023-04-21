@@ -1,0 +1,32 @@
+CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificREST
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		IF CONTAINS(nameError,'User') THEN
+			SET descError = SUBSTRING(descError AFTER '- CUST::');
+			SET nameError = 'Error recibiendo respuesta';
+		END IF;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
+		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
+		
+		SET refOut.Error = codeError|| ' : ' ||nameError||' : '||descError;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

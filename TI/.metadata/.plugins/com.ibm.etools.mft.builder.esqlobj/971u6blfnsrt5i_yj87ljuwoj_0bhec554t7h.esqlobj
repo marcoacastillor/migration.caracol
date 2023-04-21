@@ -1,0 +1,11 @@
+CREATE COMPUTE MODULE CH_ConsultaEventoNegocio02_Result
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE soap NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/ti/registro/consultaeventonegocio/';
+		SET OutputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier = CAST(InputLocalEnvironment.ReturnedMessage.MQRFH2.usr.esbHeader.serviceData.parentTransactionId AS BLOB);
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Header = InputRoot.XMLNSC.soap:Envelope.soap:Header;
+		SET OutputRoot.XMLNSC.soap:Envelope.soap:Body = InputRoot.XMLNSC.soap:Envelope.soap:Body;	
+		RETURN TRUE;
+	END;
+END MODULE;

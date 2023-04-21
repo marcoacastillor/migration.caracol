@@ -1,9 +1,0 @@
-BROKER SCHEMA com.caracol.sv.registro.creareventonegocio
-
-
-CREATE COMPUTE MODULE SV_CrearEventoNegocio_ResponseService
-	CREATE FUNCTION Main() RETURNS BOOLEAN
-	BEGIN
-		RETURN FALSE;
-	END;
-END MODULE;

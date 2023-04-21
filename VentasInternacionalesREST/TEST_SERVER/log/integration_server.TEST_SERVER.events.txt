@@ -1,0 +1,283 @@
+2023-04-13 16:06:32.439182Z: [Thread 10336] (Msg 1/1) BIP1990I: El servidor de integración 'TEST_SERVER' está empezando la inicialización; versión '12.0.5.0' (64 bits) 
+2023-04-13 16:06:32.483142Z: [Thread 10336] (Msg 1/1) BIP9905I: Inicializando gestores de recursos. 
+2023-04-13 16:07:13.326523Z: [Thread 10336] (Msg 1/1) BIP9906I: Leyendo recursos desplegados. 
+2023-04-13 16:07:13.423796Z: [Thread 10336] (Msg 1/1) BIP9907I: Inicializando recursos desplegados. 
+2023-04-13 16:07:13.435454Z: [Thread 10336] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'Commons_LIB' de tipo 'SharedLibrary'. 
+2023-04-13 16:07:13.479320Z: [Thread 10336] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternactionalSales_API' de tipo 'RestAPI'. 
+2023-04-13 16:07:15.729902Z: [Thread 10336] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternactionalSales_API' de tipo 'RestAPI'. 
+2023-04-13 16:07:15.777158Z: [Thread 10336] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 16:07:15.778479Z: [Thread 10336] (Msg 1/1) BIP1996I: Escuchando por el URL HTTP '/ventas-internacinales/api/v1*'. 
+2023-04-13 16:07:15.781633Z: [Thread 10336] (Msg 1/1) BIP2269I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 16:07:25.371858Z: [Thread 8768] (Msg 1/1) BIP2866I: La administración de seguridad de IBM App Connect Enterprise es inactive. 
+2023-04-13 16:07:25.400748Z: [Thread 8768] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7600' para conexiones 'RestAdmin http'. 
+2023-04-13 16:07:25.432254Z: [Thread 10336] (Msg 1/1) BIP1991I: El servidor de integración ha terminado la inicialización. 
+2023-04-13 16:12:46.843132Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternactionalSales_API' de tipo 'RestAPI'. 
+2023-04-13 16:12:51.412420Z: [Thread 13180] (Msg 1/1) BIP2271I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 16:12:51.413756Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternactionalSales_API' de tipo 'RestAPI'. 
+2023-04-13 16:12:51.441236Z: [Thread 13180] (Msg 1/1) BIP3133I: El escucha HTTP ha dejado de escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 16:12:51.551020Z: [Thread 13180] (Msg 1/1) BIP9521I: RestAPI 'InternactionalSales_API' se ha borrado. 
+2023-04-13 16:13:32.098710Z: [Thread 12644] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 16:13:32.483864Z: [Thread 12644] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 16:13:32.781624Z: [Thread 12644] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 16:13:32.811322Z: [Thread 12644] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 16:13:32.812562Z: [Thread 12644] (Msg 1/1) BIP1996I: Escuchando por el URL HTTP '/international-sales/api/v1*'. 
+2023-04-13 16:13:32.814052Z: [Thread 12644] (Msg 1/1) BIP2269I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 16:13:32.814732Z: [Thread 12644] (Msg 1/1) BIP9332I: RestAPI 'InternationalSales_API' se ha created correctamente. 
+2023-04-13 16:13:32.815750Z: [Thread 12644] (Msg 1/1) BIP9326I: El origen 'InternationalSales_APIproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 16:13:32.834712Z: [Thread 12644] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 16:13:33.125312Z: [Thread 13224] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 16:13:33.891676Z: [Thread 13224] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 16:13:35.317320Z: [Thread 13224] (Msg 1/1) BIP9342I: Se ha creado el archivo de esquema 'XMLNSC' compilado 'InternationalSales_CustomerGetContractByCustomer/$mqsiApplication.bir'. 
+2023-04-13 16:13:36.977444Z: [Thread 13224] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 16:13:36.978768Z: [Thread 13224] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 16:13:36.979216Z: [Thread 13224] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetContractByCustomer' se ha created correctamente. 
+2023-04-13 16:13:36.979632Z: [Thread 13224] (Msg 1/1) BIP9326I: El origen 'InternationalSales_CustomerGetContractByCustomerproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 16:13:36.983680Z: [Thread 13224] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 16:13:37.482236Z: [Thread 12644] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 16:13:38.167836Z: [Thread 12644] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 16:13:38.744900Z: [Thread 12644] (Msg 1/1) BIP9342I: Se ha creado el archivo de esquema 'XMLNSC' compilado 'InternationalSales_CustomerGetByCustomer/$mqsiApplication.bir'. 
+2023-04-13 16:13:39.793564Z: [Thread 12644] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 16:13:39.794760Z: [Thread 12644] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 16:13:39.795176Z: [Thread 12644] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetByCustomer' se ha created correctamente. 
+2023-04-13 16:13:39.795588Z: [Thread 12644] (Msg 1/1) BIP9326I: El origen 'InternationalSales_CustomerGetByCustomerproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 16:13:39.799872Z: [Thread 12644] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 19:55:14.668085Z: [Thread 4496] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 19:55:14.861310Z: [Thread 4496] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 19:55:16.153921Z: [Thread 4496] (Msg 1/1) BIP2271I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 19:55:16.154953Z: [Thread 4496] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 19:55:16.184040Z: [Thread 4496] (Msg 1/1) BIP3133I: El escucha HTTP ha dejado de escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 19:55:16.532402Z: [Thread 4496] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 19:55:16.730787Z: [Thread 4496] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 19:55:16.760134Z: [Thread 4496] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 19:55:16.760834Z: [Thread 4496] (Msg 1/1) BIP1996I: Escuchando por el URL HTTP '/international-sales/api/v1*'. 
+2023-04-13 19:55:16.762014Z: [Thread 4496] (Msg 1/1) BIP2269I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 19:55:16.762733Z: [Thread 4496] (Msg 1/1) BIP9332I: RestAPI 'InternationalSales_API' se ha changed correctamente. 
+2023-04-13 19:55:16.763590Z: [Thread 4496] (Msg 1/1) BIP9326I: El origen 'InternationalSales_APIproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 19:55:16.771420Z: [Thread 4496] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 19:57:29.682538Z: [Thread 13180] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 19:57:29.802198Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 19:57:29.802712Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 19:57:29.803134Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 19:57:31.590646Z: [Thread 13180] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 19:57:34.305372Z: [Thread 13180] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 19:57:34.307096Z: [Thread 13180] (Msg 1/1) BIP2271I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 19:57:34.307980Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 19:57:34.331400Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 19:57:34.374460Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 19:57:34.401592Z: [Thread 13180] (Msg 1/1) BIP3133I: El escucha HTTP ha dejado de escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 19:57:34.417992Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'Commons_LIB' de tipo 'SharedLibrary'. 
+2023-04-13 19:57:34.950992Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'Commons_LIB' de tipo 'SharedLibrary'. 
+2023-04-13 19:57:34.981412Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 19:57:35.129572Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 19:57:35.162972Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 19:57:38.083864Z: [Thread 13180] (Msg 1/1) BIP9332I: SharedLibrary 'Commons_LIB' se ha changed correctamente. 
+2023-04-13 19:57:38.084504Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 19:57:38.085680Z: [Thread 13180] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 19:57:38.086344Z: [Thread 13180] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetContractByCustomer' se ha reloaded correctamente. 
+2023-04-13 19:57:38.086912Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 19:57:38.088040Z: [Thread 13180] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 19:57:38.088496Z: [Thread 13180] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetByCustomer' se ha reloaded correctamente. 
+2023-04-13 19:57:38.088976Z: [Thread 13180] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 19:57:38.126820Z: [Thread 13180] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 19:57:38.127556Z: [Thread 13180] (Msg 1/1) BIP1996I: Escuchando por el URL HTTP '/international-sales/api/v1*'. 
+2023-04-13 19:57:38.129388Z: [Thread 13180] (Msg 1/1) BIP2269I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 19:57:38.129944Z: [Thread 13180] (Msg 1/1) BIP9332I: RestAPI 'InternationalSales_API' se ha reloaded correctamente. 
+2023-04-13 19:57:38.130564Z: [Thread 13180] (Msg 1/1) BIP9326I: El origen 'Commons_LIBproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 19:57:38.136512Z: [Thread 13180] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 20:07:54.077924Z: [Thread 3752] (Msg 1/3) BIP2628W: Se ha detectado una condición de excepción en el nodo 'gen.InternactionalSales_API.getByCustomer (Implementation).CallInpGetByCustomerRs'. 
+2023-04-13 20:07:54.078668Z: [Thread 3752] (Msg 2/3) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'gen.InternactionalSales_API.getByCustomer (Implementation).CallInpGetByCustomerRs'. 
+2023-04-13 20:07:54.079136Z: [Thread 3752] (Msg 3/3) BIP6408S: El flujo invocable de la aplicación 'InternactionalSales_CustomerGetByCustomer' con el nombre de punto final 'CallInpGetByCustomer' no ha respondido dentro del tiempo de espera de '60' segundos especificado en el nodo CallableFlowInvoke. 
+2023-04-13 20:08:27.653026Z: [Thread 4424] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 20:08:27.783652Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:08:27.784284Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:08:27.784758Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:08:30.106214Z: [Thread 4424] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:08:30.107310Z: [Thread 4424] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:08:30.112498Z: [Thread 4424] (Msg 1/1) BIP2271I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:08:30.113882Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:08:30.138798Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:08:30.154066Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:08:30.171088Z: [Thread 4424] (Msg 1/1) BIP3133I: El escucha HTTP ha dejado de escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:08:30.197666Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'Commons_LIB' de tipo 'SharedLibrary'. 
+2023-04-13 20:08:30.778742Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'Commons_LIB' de tipo 'SharedLibrary'. 
+2023-04-13 20:08:30.804682Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:08:30.851016Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:08:30.899550Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:08:33.398560Z: [Thread 4424] (Msg 1/1) BIP9332I: SharedLibrary 'Commons_LIB' se ha changed correctamente. 
+2023-04-13 20:08:33.399090Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:08:33.400096Z: [Thread 4424] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:08:33.400524Z: [Thread 4424] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetContractByCustomer' se ha reloaded correctamente. 
+2023-04-13 20:08:33.400990Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:08:33.402154Z: [Thread 4424] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:08:33.402634Z: [Thread 4424] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetByCustomer' se ha reloaded correctamente. 
+2023-04-13 20:08:33.403260Z: [Thread 4424] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:08:33.432030Z: [Thread 4424] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:08:33.432594Z: [Thread 4424] (Msg 1/1) BIP1996I: Escuchando por el URL HTTP '/international-sales/api/v1*'. 
+2023-04-13 20:08:33.433770Z: [Thread 4424] (Msg 1/1) BIP2269I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:08:33.434688Z: [Thread 4424] (Msg 1/1) BIP9332I: RestAPI 'InternationalSales_API' se ha reloaded correctamente. 
+2023-04-13 20:08:33.435314Z: [Thread 4424] (Msg 1/1) BIP9326I: El origen 'Commons_LIBproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 20:08:33.442584Z: [Thread 4424] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 20:09:49.547596Z: [Thread 12644] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 20:09:49.810364Z: [Thread 12644] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:09:54.511172Z: [Thread 12644] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:09:54.512988Z: [Thread 12644] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:09:55.186092Z: [Thread 12644] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:09:55.674708Z: [Thread 12644] (Msg 1/1) BIP9342I: Se ha creado el archivo de esquema 'XMLNSC' compilado 'InternationalSales_CustomerGetContractByCustomer/$mqsiApplication.bir'. 
+2023-04-13 20:09:56.701256Z: [Thread 12644] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:09:56.702540Z: [Thread 12644] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:09:56.703060Z: [Thread 12644] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetContractByCustomer' se ha changed correctamente. 
+2023-04-13 20:09:56.703544Z: [Thread 12644] (Msg 1/1) BIP9326I: El origen 'InternationalSales_CustomerGetContractByCustomerproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 20:09:56.708668Z: [Thread 12644] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 20:10:00.392952Z: [Thread 13120] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 20:10:00.627871Z: [Thread 13120] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:10:04.528775Z: [Thread 13120] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:10:04.529872Z: [Thread 13120] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:10:05.086427Z: [Thread 13120] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:10:05.481818Z: [Thread 13120] (Msg 1/1) BIP9342I: Se ha creado el archivo de esquema 'XMLNSC' compilado 'InternationalSales_CustomerGetByCustomer/$mqsiApplication.bir'. 
+2023-04-13 20:10:06.253984Z: [Thread 13120] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:10:06.255017Z: [Thread 13120] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:10:06.255530Z: [Thread 13120] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetByCustomer' se ha changed correctamente. 
+2023-04-13 20:10:06.255956Z: [Thread 13120] (Msg 1/1) BIP9326I: El origen 'InternationalSales_CustomerGetByCustomerproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 20:10:06.259591Z: [Thread 13120] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 20:10:17.055220Z: [Thread 11192] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 20:10:17.224906Z: [Thread 11192] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:10:19.733244Z: [Thread 11192] (Msg 1/1) BIP2271I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:10:19.734108Z: [Thread 11192] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:10:19.762974Z: [Thread 11192] (Msg 1/1) BIP3133I: El escucha HTTP ha dejado de escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:10:20.116632Z: [Thread 11192] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:10:20.272972Z: [Thread 11192] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:10:20.309078Z: [Thread 11192] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:10:20.311224Z: [Thread 11192] (Msg 1/1) BIP1996I: Escuchando por el URL HTTP '/international-sales/api/v1*'. 
+2023-04-13 20:10:20.312994Z: [Thread 11192] (Msg 1/1) BIP2269I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:10:20.313624Z: [Thread 11192] (Msg 1/1) BIP9332I: RestAPI 'InternationalSales_API' se ha changed correctamente. 
+2023-04-13 20:10:20.314132Z: [Thread 11192] (Msg 1/1) BIP9326I: El origen 'InternationalSales_APIproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 20:10:20.316090Z: [Thread 2148] (Msg 1/3) BIP2628W: Se ha detectado una condición de excepción en el nodo 'gen.InternactionalSales_API.getByCustomer (Implementation).CallInpGetByCustomerRs'. 
+2023-04-13 20:10:20.316674Z: [Thread 2148] (Msg 2/3) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'gen.InternactionalSales_API.getByCustomer (Implementation).CallInpGetByCustomerRs'. 
+2023-04-13 20:10:20.317096Z: [Thread 2148] (Msg 3/3) BIP6408S: El flujo invocable de la aplicación 'InternactionalSales_CustomerGetByCustomer' con el nombre de punto final 'CallInpGetByCustomer' no ha respondido dentro del tiempo de espera de '60' segundos especificado en el nodo CallableFlowInvoke. 
+2023-04-13 20:10:20.320618Z: [Thread 11192] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 20:12:55.521964Z: [Thread 2148] (Msg 1/3) BIP2628W: Se ha detectado una condición de excepción en el nodo 'gen.InternactionalSales_API.getByCustomer (Implementation).CallInpGetByCustomerRs'. 
+2023-04-13 20:12:55.522424Z: [Thread 2148] (Msg 2/3) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'gen.InternactionalSales_API.getByCustomer (Implementation).CallInpGetByCustomerRs'. 
+2023-04-13 20:12:55.522748Z: [Thread 2148] (Msg 3/3) BIP6408S: El flujo invocable de la aplicación 'InternactionalSales_CustomerGetByCustomer' con el nombre de punto final 'CallInpGetByCustomer' no ha respondido dentro del tiempo de espera de '60' segundos especificado en el nodo CallableFlowInvoke. 
+2023-04-13 20:13:15.334596Z: [Thread 13224] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 20:13:15.507355Z: [Thread 13224] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:13:15.634247Z: [Thread 13224] (Msg 1/1) BIP2271I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:13:15.635081Z: [Thread 13224] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:13:15.665608Z: [Thread 13224] (Msg 1/1) BIP3133I: El escucha HTTP ha dejado de escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:13:15.969968Z: [Thread 13224] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:13:16.095793Z: [Thread 13224] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:13:16.135780Z: [Thread 13224] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:13:16.137350Z: [Thread 13224] (Msg 1/1) BIP1996I: Escuchando por el URL HTTP '/international-sales/api/v1*'. 
+2023-04-13 20:13:16.138659Z: [Thread 13224] (Msg 1/1) BIP2269I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:13:16.140697Z: [Thread 13224] (Msg 1/1) BIP9332I: RestAPI 'InternationalSales_API' se ha changed correctamente. 
+2023-04-13 20:13:16.141359Z: [Thread 13224] (Msg 1/1) BIP9326I: El origen 'InternationalSales_APIproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 20:13:16.150543Z: [Thread 13224] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 20:15:01.548175Z: [Thread 2636] (Msg 1/6) BIP2232E: Se ha detectado un error mientras se manejaba un error anterior en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.ThrowEndPoint'. 
+2023-04-13 20:15:01.548720Z: [Thread 2636] (Msg 2/6) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.ConsultarClientesServicio_VentaInternacionalesProduccion0620_1.Request'. 
+2023-04-13 20:15:01.549292Z: [Thread 2636] (Msg 3/6) BIP3754E: El nodo de petición SOAP o el nodo de petición asíncrona SOAP co.com.caracol.getbycustomer.GetByCustomer.ConsultarClientesServicio_VentaInternacionalesProduccion0620_1.Request ha encontrado un error mientras procesaban la petición SOAP saliente. 
+2023-04-13 20:15:01.549796Z: [Thread 2636] (Msg 4/6) BIP3162S: Se ha producido un error HTTP. La línea de la petición HTTP es: 'POST /VItrafico/VIService.svc HTTP/1.1
+'. 
+2023-04-13 20:15:01.550085Z: [Thread 2636] (Msg 5/6) BIP3152S: Se ha detectado un error de socket mientras se invocaba el servicio Web ubicado en el host betapi01, puerto 88, vía de acceso /VItrafico/VIService.svc. 
+2023-04-13 20:15:01.550351Z: [Thread 2636] (Msg 6/6) BIP3150S: Se ha producido un error de socket. Operación: ::gethostbyname(). Código de error: 0. Texto del error: The operation completed successfully.
+. 
+2023-04-13 20:21:12.511701Z: [Thread 11160] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 20:21:12.647191Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:21:12.647749Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:21:12.648251Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:21:13.855370Z: [Thread 11160] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:21:18.630336Z: [Thread 11160] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:21:18.634158Z: [Thread 11160] (Msg 1/1) BIP2271I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:21:18.634980Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:21:18.654736Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:21:18.665072Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:21:18.692144Z: [Thread 11160] (Msg 1/1) BIP3133I: El escucha HTTP ha dejado de escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:21:18.717042Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'Commons_LIB' de tipo 'SharedLibrary'. 
+2023-04-13 20:21:19.338104Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'Commons_LIB' de tipo 'SharedLibrary'. 
+2023-04-13 20:21:19.358604Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:21:19.403250Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:21:19.449310Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:21:21.742050Z: [Thread 11160] (Msg 1/1) BIP9332I: SharedLibrary 'Commons_LIB' se ha changed correctamente. 
+2023-04-13 20:21:21.742580Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:21:21.743486Z: [Thread 11160] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:21:21.743880Z: [Thread 11160] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetContractByCustomer' se ha reloaded correctamente. 
+2023-04-13 20:21:21.744272Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:21:21.745124Z: [Thread 11160] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:21:21.745520Z: [Thread 11160] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetByCustomer' se ha reloaded correctamente. 
+2023-04-13 20:21:21.745880Z: [Thread 11160] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:21:21.776006Z: [Thread 11160] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:21:21.777064Z: [Thread 11160] (Msg 1/1) BIP1996I: Escuchando por el URL HTTP '/international-sales/api/v1*'. 
+2023-04-13 20:21:21.778818Z: [Thread 11160] (Msg 1/1) BIP2269I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:21:21.779682Z: [Thread 11160] (Msg 1/1) BIP9332I: RestAPI 'InternationalSales_API' se ha reloaded correctamente. 
+2023-04-13 20:21:21.780572Z: [Thread 11160] (Msg 1/1) BIP9326I: El origen 'Commons_LIBproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 20:21:21.787118Z: [Thread 11160] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 20:27:24.595892Z: [Thread 12752] (Msg 1/6) BIP2232E: Se ha detectado un error mientras se manejaba un error anterior en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.ThrowEndPoint'. 
+2023-04-13 20:27:24.596722Z: [Thread 12752] (Msg 2/6) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.ConsultarClientesServicio_VentaInternacionalesProduccion0620_1.Request'. 
+2023-04-13 20:27:24.597320Z: [Thread 12752] (Msg 3/6) BIP3754E: El nodo de petición SOAP o el nodo de petición asíncrona SOAP co.com.caracol.getbycustomer.GetByCustomer.ConsultarClientesServicio_VentaInternacionalesProduccion0620_1.Request ha encontrado un error mientras procesaban la petición SOAP saliente. 
+2023-04-13 20:27:24.597834Z: [Thread 12752] (Msg 4/6) BIP3162S: Se ha producido un error HTTP. La línea de la petición HTTP es: 'POST /VItrafico/VIService.svc HTTP/1.1
+'. 
+2023-04-13 20:27:24.598372Z: [Thread 12752] (Msg 5/6) BIP3152S: Se ha detectado un error de socket mientras se invocaba el servicio Web ubicado en el host betapi01, puerto 88, vía de acceso /VItrafico/VIService.svc. 
+2023-04-13 20:27:24.598824Z: [Thread 12752] (Msg 6/6) BIP3150S: Se ha producido un error de socket. Operación: ::gethostbyname(). Código de error: 0. Texto del error: The operation completed successfully.
+. 
+2023-04-13 20:29:20.972498Z: [Thread 5216] (Msg 1/1) BIP2152I: Se ha recibido el mensaje de configuración. 
+2023-04-13 20:29:21.106812Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:29:21.107498Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:29:21.108200Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Stop' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:29:25.768884Z: [Thread 5216] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:29:25.772714Z: [Thread 5216] (Msg 1/1) BIP2271I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:29:25.776720Z: [Thread 5216] (Msg 1/1) BIP2271I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha detenido satisfactoriamente. 
+2023-04-13 20:29:25.777876Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:29:25.796558Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:29:25.806082Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:29:25.812082Z: [Thread 5216] (Msg 1/1) BIP3133I: El escucha HTTP ha dejado de escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:29:25.832296Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'TearDown' el recurso desplegado 'Commons_LIB' de tipo 'SharedLibrary'. 
+2023-04-13 20:29:26.271470Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'Commons_LIB' de tipo 'SharedLibrary'. 
+2023-04-13 20:29:26.291230Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:29:26.334842Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:29:26.382772Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Initialize' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:29:28.143112Z: [Thread 5216] (Msg 1/1) BIP9332I: SharedLibrary 'Commons_LIB' se ha changed correctamente. 
+2023-04-13 20:29:28.143562Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetContractByCustomer' de tipo 'Application'. 
+2023-04-13 20:29:28.144404Z: [Thread 5216] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getcontractbycustomer.GetContractByCustomer' (uuid='co.com.caracol.getcontractbycustomer.GetContractByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:29:28.144714Z: [Thread 5216] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetContractByCustomer' se ha reloaded correctamente. 
+2023-04-13 20:29:28.145004Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_CustomerGetByCustomer' de tipo 'Application'. 
+2023-04-13 20:29:28.145768Z: [Thread 5216] (Msg 1/1) BIP2269I: El recurso desplegado 'co.com.caracol.getbycustomer.GetByCustomer' (uuid='co.com.caracol.getbycustomer.GetByCustomer',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:29:28.146134Z: [Thread 5216] (Msg 1/1) BIP9332I: Application 'InternationalSales_CustomerGetByCustomer' se ha reloaded correctamente. 
+2023-04-13 20:29:28.146480Z: [Thread 5216] (Msg 1/1) BIP2155I: A punto de 'Start' el recurso desplegado 'InternationalSales_API' de tipo 'RestAPI'. 
+2023-04-13 20:29:28.177606Z: [Thread 5216] (Msg 1/1) BIP3132I: El escucha HTTP ha empezado a escuchar en el puerto '7800' para conexiones 'http'. 
+2023-04-13 20:29:28.178804Z: [Thread 5216] (Msg 1/1) BIP1996I: Escuchando por el URL HTTP '/international-sales/api/v1*'. 
+2023-04-13 20:29:28.180404Z: [Thread 5216] (Msg 1/1) BIP2269I: El recurso desplegado 'gen.InternactionalSales_API' (uuid='gen.InternactionalSales_API',tipo='MessageFlow') se ha iniciado satisfactoriamente. 
+2023-04-13 20:29:28.181200Z: [Thread 5216] (Msg 1/1) BIP9332I: RestAPI 'InternationalSales_API' se ha reloaded correctamente. 
+2023-04-13 20:29:28.182214Z: [Thread 5216] (Msg 1/1) BIP9326I: El origen 'Commons_LIBproject.generated.bar' se ha desplegado correctamente. 
+2023-04-13 20:29:28.189744Z: [Thread 5216] (Msg 1/1) BIP2154I: El servidor de integración ha finalizado con el mensaje de configuración. 
+2023-04-13 20:30:22.145270Z: [Thread 10540] (Msg 1/6) BIP2232E: Se ha detectado un error mientras se manejaba un error anterior en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.ThrowEndPoint'. 
+2023-04-13 20:30:22.145878Z: [Thread 10540] (Msg 2/6) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.ConsultarClientesServicio_VentaInternacionalesProduccion0620_1.Request'. 
+2023-04-13 20:30:22.146414Z: [Thread 10540] (Msg 3/6) BIP3754E: El nodo de petición SOAP o el nodo de petición asíncrona SOAP co.com.caracol.getbycustomer.GetByCustomer.ConsultarClientesServicio_VentaInternacionalesProduccion0620_1.Request ha encontrado un error mientras procesaban la petición SOAP saliente. 
+2023-04-13 20:30:22.146970Z: [Thread 10540] (Msg 4/6) BIP3162S: Se ha producido un error HTTP. La línea de la petición HTTP es: 'POST /VItrafico/VIService.svc HTTP/1.1
+'. 
+2023-04-13 20:30:22.147362Z: [Thread 10540] (Msg 5/6) BIP3152S: Se ha detectado un error de socket mientras se invocaba el servicio Web ubicado en el host betapi01, puerto 88, vía de acceso /VItrafico/VIService.svc. 
+2023-04-13 20:30:22.147718Z: [Thread 10540] (Msg 6/6) BIP3150S: Se ha producido un error de socket. Operación: ::gethostbyname(). Código de error: 0. Texto del error: The operation completed successfully.
+. 
+2023-04-13 20:31:15.214571Z: [Thread 9560] (Msg 1/3) BIP2628W: Se ha detectado una condición de excepción en el nodo 'gen.InternactionalSales_API.getByCustomer (Implementation).CallInpGetByCustomerRs'. 
+2023-04-13 20:31:15.215388Z: [Thread 9560] (Msg 2/3) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'gen.InternactionalSales_API.getByCustomer (Implementation).CallInpGetByCustomerRs'. 
+2023-04-13 20:31:15.215878Z: [Thread 9560] (Msg 3/3) BIP6408S: El flujo invocable de la aplicación 'InternationalSales_CustomerGetByCustomer' con el nombre de punto final 'CallInpGetByCustomer' no ha respondido dentro del tiempo de espera de '60' segundos especificado en el nodo CallableFlowInvoke. 
+2023-04-13 20:38:57.071268Z: [Thread 10540] (Msg 1/2) BIP2232E: Se ha detectado un error mientras se manejaba un error anterior en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.CallableReply1'. 
+2023-04-13 20:38:57.073136Z: [Thread 10540] (Msg 2/2) BIP2176S: Could not find message '3001' in catalog '700', inserts are 'Error comunicación con backend' 'co.com.caracol.getbycustomer.GetByCustomer.ThrowEndPoint' '{2}' '{3}' '{4}' '{5}' '{6}'
+2023-04-13 20:38:58.407476Z: [Thread 10540] (Msg 1/3) BIP2628W: Se ha detectado una condición de excepción en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.CallInpGetByCustomer'. 
+2023-04-13 20:38:58.408120Z: [Thread 10540] (Msg 2/3) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.CallableReply1'. 
+2023-04-13 20:38:58.408728Z: [Thread 10540] (Msg 3/3) BIP3742E: Se ha intentado utilizar un mensaje Callable Flow ReplyIdentifier después de que ya se hubiera utilizado. 
+2023-04-13 20:38:58.410592Z: [Thread 10540] (Msg 1/2) BIP3911E: El nodo de entrada 'co.com.caracol.getbycustomer.GetByCustomer.CallInpGetByCustomer' ha detectado un error mientras procesaba un mensaje y el proceso de la anomalía ha resultado en otro error. 
+2023-04-13 20:38:58.411164Z: [Thread 10540] (Msg 2/2) BIP3742E: Se ha intentado utilizar un mensaje Callable Flow ReplyIdentifier después de que ya se hubiera utilizado. 
+2023-04-13 20:39:10.372158Z: [Thread 10540] (Msg 1/6) BIP2232E: Se ha detectado un error mientras se manejaba un error anterior en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.ThrowEndPoint'. 
+2023-04-13 20:39:10.373195Z: [Thread 10540] (Msg 2/6) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'co.com.caracol.getbycustomer.GetByCustomer.ConsultarClientesServicio_VentaInternacionalesProduccion0620_1.Request'. 
+2023-04-13 20:39:10.373918Z: [Thread 10540] (Msg 3/6) BIP3754E: El nodo de petición SOAP o el nodo de petición asíncrona SOAP co.com.caracol.getbycustomer.GetByCustomer.ConsultarClientesServicio_VentaInternacionalesProduccion0620_1.Request ha encontrado un error mientras procesaban la petición SOAP saliente. 
+2023-04-13 20:39:10.374779Z: [Thread 10540] (Msg 4/6) BIP3162S: Se ha producido un error HTTP. La línea de la petición HTTP es: 'POST /VItrafico/VIService.svc HTTP/1.1
+'. 
+2023-04-13 20:39:10.375481Z: [Thread 10540] (Msg 5/6) BIP3152S: Se ha detectado un error de socket mientras se invocaba el servicio Web ubicado en el host betapi01, puerto 88, vía de acceso /VItrafico/VIService.svc. 
+2023-04-13 20:39:10.376168Z: [Thread 10540] (Msg 6/6) BIP3150S: Se ha producido un error de socket. Operación: ::gethostbyname(). Código de error: 0. Texto del error: The operation completed successfully.
+. 
+2023-04-13 20:40:19.967492Z: [Thread 12524] (Msg 1/6) BIP2232E: Se ha detectado un error mientras se manejaba un error anterior en el nodo 'co.com.caracol.getcontractbycustomer.GetContractByCustomer.ThrowEndPoint'. 
+2023-04-13 20:40:19.968158Z: [Thread 12524] (Msg 2/6) BIP2230E: Se ha detectado un error mientras se procesaba un mensaje en el nodo 'co.com.caracol.getcontractbycustomer.GetContractByCustomer.ConsultarContratosServicio_VentaInternacionalesProduccion0620_1.Request'. 
+2023-04-13 20:40:19.968564Z: [Thread 12524] (Msg 3/6) BIP3754E: El nodo de petición SOAP o el nodo de petición asíncrona SOAP co.com.caracol.getcontractbycustomer.GetContractByCustomer.ConsultarContratosServicio_VentaInternacionalesProduccion0620_1.Request ha encontrado un error mientras procesaban la petición SOAP saliente. 
+2023-04-13 20:40:19.969182Z: [Thread 12524] (Msg 4/6) BIP3162S: Se ha producido un error HTTP. La línea de la petición HTTP es: 'POST /VItrafico/VIService.svc HTTP/1.1
+'. 
+2023-04-13 20:40:19.969626Z: [Thread 12524] (Msg 5/6) BIP3152S: Se ha detectado un error de socket mientras se invocaba el servicio Web ubicado en el host betapi01, puerto 88, vía de acceso /VItrafico/VIService.svc. 
+2023-04-13 20:40:19.970014Z: [Thread 12524] (Msg 6/6) BIP3150S: Se ha producido un error de socket. Operación: ::gethostbyname(). Código de error: 0. Texto del error: The operation completed successfully.
+. 

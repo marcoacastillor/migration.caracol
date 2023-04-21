@@ -1,0 +1,295 @@
+BROKER SCHEMA co.com.caracol.integration.commos
+
+DECLARE SPECIFIC_RESP CONSTANT CHARACTER 'RESP_ERROR';
+
+CREATE COMPUTE MODULE HandlerModules_ResponseWithowFacade
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Declarar referencia
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Declarar referencia de mensaje de entrada
+		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation 		= UDP_OPERATION;
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
+		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+		SET refMQRFH2.usr.transaction.toNotification 	= UDP_TONOTIFICATION;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
+		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
+		
+		--Copiar todo el mensaje que llega
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificWithowFacade
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Declarar referencia
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Declarar referencia de mensaje de entrada
+		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation 		= UDP_OPERATION;
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
+		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+		SET refMQRFH2.usr.transaction.toNotification 	= UDP_TONOTIFICATION;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		IF CONTAINS(nameError,'User') THEN
+			SET nameError = SUBSTRING(descError AFTER '- CUST::');
+			IF LENGTH(nameError) > 0 THEN
+				SET nameError = SUBSTRING(nameError BEFORE '::');
+				SET descError = SUBSTRING(nameError AFTER '::');
+			ELSE
+				SET descError = nameError;
+			END IF;
+		END IF;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
+		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
+		
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,refMQRFH2.usr.transaction.transactionID,codeError,nameError,descError);
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificWS
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		IF CONTAINS(nameError,'User') THEN
+			SET nameErrorTmp = SUBSTRING(descError AFTER '- CUST::');
+			IF LENGTH(nameErrorTmp) > 0 THEN
+				SET nameError = SUBSTRING(nameErrorTmp BEFORE '::');
+				SET descError = SUBSTRING(nameErrorTmp AFTER '::');
+			ELSE
+				SET descError = nameErrorTmp;
+			END IF;
+		END IF;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
+		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
+		
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,refMQRFH2.usr.transaction.transactionID,codeError,nameError,descError);
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+CREATE COMPUTE MODULE HandlerModules_ErrorsSpecificREST
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		IF CONTAINS(nameError,'User') THEN
+			SET descError = SUBSTRING(descError AFTER '- CUST::');
+			SET nameError = 'Error recibiendo respuesta';
+		END IF;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
+		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
+		
+		SET refOut.Error = codeError|| ' : ' ||nameError||' : '||descError;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE HandlerModules_ErrorsFcdREST
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		
+		--Crear referencias
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Obtener portType y operation del llamado
+		DECLARE refContext REFERENCE TO InputLocalEnvironment.SOAP.Envelope.InRequest.*.SOAP.Context;  
+		DECLARE operation CHARACTER refContext.operation;
+		
+		--ReplyIdentifier para respuesta
+		SET refMQRFH2.usr.responseREST.replyIdentifier = InputLocalEnvironment.Destination.HTTP.RequestIdentifier;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation 		= operation;
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_RESP;
+		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		IF CONTAINS(nameError,'User') THEN
+			SET nameError = SUBSTRING(descError AFTER '- CUST::');
+			IF LENGTH(nameError) > 0 THEN
+				SET nameError = SUBSTRING(descError BEFORE '::');
+				SET descError = SUBSTRING(descError AFTER '::');
+			ELSE
+				SET descError = nameError;
+			END IF;
+		END IF;
+		
+		SET refOut.Error = descError;
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+CREATE COMPUTE MODULE HandlerModules_ErrorsFcdWS
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Crear referencias
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Obtener portType y operation del llamado
+		DECLARE refContext REFERENCE TO InputLocalEnvironment.SOAP.Envelope.InRequest.*.SOAP.Context;  
+		DECLARE operation CHARACTER refContext.operation;
+		
+		--ReplyIdentifier para respuesta
+		SET refMQRFH2.usr.responseWS.replyIdentifier = InputLocalEnvironment.Destination.SOAP.Reply.ReplyIdentifier;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation 		= operation;
+		SET refMQRFH2.usr.transaction.traceId 			= SPECIFIC_RESP;
+		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,refMQRFH2.usr.transaction.transactionID,codeError,nameError,descError);
+		
+		RETURN TRUE;
+	END;
+END MODULE;
+
+
+
+CREATE COMPUTE MODULE HandlerModules_ErrorsFcdRsWS
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Auditoria
+		SET refMQRFH2.usr.transaction.traceId 	= SPECIFIC_RESP;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC;
+		
+		DECLARE codeError, nameError, descError CHARACTER '';
+		
+		--Si existe ExceptionList
+		CALL co.com.caracol.integration.commos.getDescriptionExceptionList(InputExceptionList,codeError,nameError,descError);	
+		CALL co.com.caracol.integration.commos.createMessageErrorSOAP(refOut,refMQRFH2.usr.transaction.transactionID,codeError,nameError,descError);
+		
+		RETURN TRUE;
+	END;
+END MODULE;	
+
+
+CREATE COMPUTE MODULE HandlerModules_ErrorsSendToExternalLog
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= InputRoot.MQMD;
+		SET OutputRoot.MQRFH2 	= InputRoot.MQRFH2;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		--Declarar referencia a mensaje de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		SET refOut.Transaction.RqID 		= refMQRFH2.usr.transaction.transactionID;
+		SET refOut.Transaction.Service 		= refMQRFH2.usr.transaction.service;
+		SET refOut.Transaction.Operation 	= refMQRFH2.usr.transaction.operation;
+		SET refOut.Transaction.Status 		= refMQRFH2.usr.transaction.status;
+		SET refOut.Transaction.TraceID 		= refMQRFH2.usr.transaction.traceId;
+		SET refOut.Transaction.Message 		= co.com.caracol.integration.commos.getMessageFromBody(refInp);
+		
+		RETURN TRUE;
+	END;
+END MODULE;

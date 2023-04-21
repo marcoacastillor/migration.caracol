@@ -1,0 +1,34 @@
+CREATE COMPUTE MODULE SV_ConsultaEventoNegocio_ResultadoConsultaBD
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';	
+		DECLARE srv NAMESPACE 'http://www.caracoltv.com.co/ti/registro/consultaeventonegocio/';					
+		DECLARE j integer;		
+    	SET OutputRoot.Properties = InputRoot.Properties;    
+		DECLARE rHeaderI REFERENCE TO InputRoot.XMLNSC.s12:Envelope.s12:Header;		
+		DECLARE intLista INTEGER CARDINALITY(InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.srv:EventoNegocio[]);
+		SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse='';
+
+		/*
+		IF (intLista >= 1) THEN			
+			SET j = 1;
+			FOR rBody AS InputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.srv:EventoNegocio[] DO								
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.EventoNegocio[j].SistemaId=rBody.SistemaId;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.EventoNegocio[j].UsuarioId=rBody.UsuarioId;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.EventoNegocio[j].AplicacionOrigen=rBody.AplicacionOrigen;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.EventoNegocio[j].ComponenteOrigen=rBody.ComponenteOrigen;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.EventoNegocio[j].ModuloFuncional=rBody.ModuloFuncional;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.EventoNegocio[j].CodigoTransaccion=rBody.CodigoTransaccion;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.EventoNegocio[j].AccionEjecutada=rBody.AccionEjecutada;			    			    			    			    
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.EventoNegocio[j].Entidad=rBody.Entidad;
+			    SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse.EventoNegocio[j].DetalleTransaccion=rBody.DetalleTransaccion;				    			    		    
+				set j= j+1;				
+			END FOR;			
+		ELSE
+			SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.srv:ConsultaEventoNegocioResponse='';						
+		END IF;		
+		*/
+		
+		RETURN TRUE;
+	END;
+END MODULE;

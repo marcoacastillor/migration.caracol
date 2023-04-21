@@ -1,0 +1,36 @@
+
+==============================================
+
+!Thu Apr 13 15:29:20 COT 2023
+
+Processing file Commons_LIB\co\com\caracol\commons\modules\ModulesREST.esql.
+Dependent ESQL file co/com/caracol/commons/procedure/Procedure.esql is added to the BAR file.
+
+Successfully added file Commons_LIB\co\com\caracol\commons\modules\ModulesREST.esql to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:29:20 COT 2023
+
+Processing file Commons_LIB\co\com\caracol\commons\procedure\Procedure.esql.
+Successfully added file Commons_LIB\co\com\caracol\commons\procedure\Procedure.esql to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:29:20 COT 2023
+
+Processing file Commons_LIB\library.descriptor.
+Successfully added file Commons_LIB\library.descriptor to BAR file.
+Elapsed time: 0,002 second(s).
+
+Successfully added file Commons_LIB\library.descriptor to BAR file.
+
+==============================================
+
+!Thu Apr 13 15:29:20 COT 2023
+
+Processing file Commons_LIB\library.descriptor.
+Successfully added file Commons_LIB\library.descriptor to BAR file.
+Elapsed time: 0,002 second(s).
+
+Successfully added file Commons_LIB\library.descriptor to BAR file.

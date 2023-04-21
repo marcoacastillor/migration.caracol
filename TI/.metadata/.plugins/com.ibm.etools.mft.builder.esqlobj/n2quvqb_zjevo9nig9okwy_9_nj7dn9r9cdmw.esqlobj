@@ -1,0 +1,21 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Copiar cabeceras
+		SET OutputRoot 	= InputRoot;
+		
+		--Declarar referencia de mensaje de entrada
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_RESP;
+		
+		PROPAGATE TO TERMINAL 'out1' DELETE NONE;
+		--Copiar cabeceras
+		SET OutputRoot.MQMD 	= NULL;
+		SET OutputRoot.MQRFH2 	= NULL;
+		
+		--Copiar replyIdentifer
+		SET OutputLocalEnvironment.Destination.HTTP.RequestIdentifier = CAST(refMQRFH2.usr.responseREST.replyIdentifier AS BLOB);
+		
+		RETURN TRUE;
+	END;

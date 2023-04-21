@@ -1,0 +1,34 @@
+BROKER SCHEMA co.com.caracol.getbycustomer
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE GetByCustomer_MapRequest
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		-- Declarar referencia a datos de entrada
+		DECLARE refMQRFH2 REFERENCE TO InputRoot.MQRFH2;
+		
+		-- Sacar parámetros
+		DECLARE nameCustomer CHARACTER SUBSTRING(refMQRFH2.usr.request.params AFTER 'name-customer=');
+		SET nameCustomer = SUBSTRING(nameCustomer BEFORE '&'); 
+		
+		DECLARE cityResidence CHARACTER SUBSTRING(refMQRFH2.usr.request.params AFTER 'city-residence=');
+		SET cityResidence = SUBSTRING(cityResidence BEFORE '&');
+		
+		DECLARE signs CHARACTER SUBSTRING(refMQRFH2.usr.request.params AFTER 'signs=');
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ConsultarClientesServicio;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ConsultarClientesServicio;
+		
+		SET refOut.ns:nombre		= nameCustomer;
+		SET refOut.ns:ciudad		= cityResidence;
+		SET refOut.ns:siglas		= signs;
+	
+		RETURN TRUE;
+	END;
+END MODULE;

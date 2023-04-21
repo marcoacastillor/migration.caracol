@@ -1,0 +1,28 @@
+CREATE COMPUTE MODULE HandlerModules_ResponseWithowFacade
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Crear cabeceras de mensaje
+		CREATE FIELD OutputRoot.Properties;
+		CREATE FIELD OutputRoot.MQMD;
+		CREATE FIELD OutputRoot.MQRFH2;
+		
+		--Declarar referencia
+		DECLARE refMQRFH2 REFERENCE TO OutputRoot.MQRFH2; 
+		
+		--Declarar referencia de mensaje de entrada
+		SET refMQRFH2.usr.transaction.service 			= UDP_SERVICE;
+		SET refMQRFH2.usr.transaction.operation 		= UDP_OPERATION;
+		SET refMQRFH2.usr.transaction.traceId 			= FACADE_REQ;
+		SET refMQRFH2.usr.transaction.emailNotification = UDP_TRACING;
+		SET refMQRFH2.usr.transaction.toNotification 	= UDP_TONOTIFICATION;
+		
+		--Guardar datos para auditoria
+		SET refMQRFH2.usr.transaction.emailNotification 	= UDP_TRACING;
+		SET refMQRFH2.usr.transaction.traceId 				= SPECIFIC_RESP;
+		
+		--Copiar todo el mensaje que llega
+		SET OutputRoot.XMLNSC = InputRoot.XMLNSC;
+		
+		RETURN TRUE;
+	END;
+END MODULE;

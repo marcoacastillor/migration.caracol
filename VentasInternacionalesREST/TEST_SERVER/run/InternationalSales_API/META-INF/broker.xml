@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Broker deployBarfile="InternationalSales_APIproject.generated.bar" deployTimestamp="2023-04-13 20:13:15">
+  <CompiledApplication>
+    <ConfigurableProperty uri="startMode">
+    </ConfigurableProperty>
+  </CompiledApplication>
+  <CompiledMessageFlow name="InternactionalSales_APIInputFailureHandler" type="subflow" deployBarfile="InternationalSales_APIproject.generated.bar" deployTimestamp="2023-04-13 20:13:15">
+    <ConfigurableProperty uri="InternactionalSales_APIInputFailureHandler#CreateCatchMessage.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="InternactionalSales_APIInputFailureHandler#CreateCatchMessage.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="InternactionalSales_APIInputFailureHandler#CreateCatchMessage.validateMaster">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+  <CompiledMessageFlow name="getContractByCustomer" type="subflow" deployBarfile="InternationalSales_APIproject.generated.bar" deployTimestamp="2023-04-13 20:13:15">
+    <ConfigurableProperty uri="getContractByCustomer#CallInpGetContractByCustomer.AddRequestToGroup">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#CallInpGetContractByCustomer.GroupRequestFolderName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#CallInpGetContractByCustomer.GroupRequestTimeout">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#CallInpGetContractByCustomer.asyncResponseCorrelator" override="UNIQUE-00002-GetContractByCustomer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#CallInpGetContractByCustomer.requestTimeout" override="60">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#CallInpGetContractByCustomer.targetApplication" override="InternationalSales_CustomerGetContractByCustomer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#CallInpGetContractByCustomer.targetEndpointName" override="CallInpGetContractByCustomer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#CallInpGetContractByCustomerRs.asyncResponseCorrelator" override="UNIQUE-00002-GetContractByCustomer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#GetReplyIdentifiers.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#GetReplyIdentifiers.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#GetReplyIdentifiers.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#SetContextInformation.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#SetContextInformation.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getContractByCustomer#SetContextInformation.validateMaster">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+  <CompiledMessageFlow name="InternactionalSales_APIInputTimeoutHandler" type="subflow" deployBarfile="InternationalSales_APIproject.generated.bar" deployTimestamp="2023-04-13 20:13:15">
+    <ConfigurableProperty uri="InternactionalSales_APIInputTimeoutHandler#CreateCatchMessage.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="InternactionalSales_APIInputTimeoutHandler#CreateCatchMessage.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="InternactionalSales_APIInputTimeoutHandler#CreateCatchMessage.validateMaster">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+  <CompiledMessageFlow name="InternactionalSales_APIInputCatchHandler" type="subflow" deployBarfile="InternationalSales_APIproject.generated.bar" deployTimestamp="2023-04-13 20:13:15">
+    <ConfigurableProperty uri="InternactionalSales_APIInputCatchHandler#CreateCatchMessage.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="InternactionalSales_APIInputCatchHandler#CreateCatchMessage.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="InternactionalSales_APIInputCatchHandler#CreateCatchMessage.validateMaster">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+  <CompiledMessageFlow name="getByCustomer" type="subflow" deployBarfile="InternationalSales_APIproject.generated.bar" deployTimestamp="2023-04-13 20:13:15">
+    <ConfigurableProperty uri="getByCustomer#CallInpGetByCustomer.AddRequestToGroup">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#CallInpGetByCustomer.GroupRequestFolderName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#CallInpGetByCustomer.GroupRequestTimeout">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#CallInpGetByCustomer.asyncResponseCorrelator" override="UNIQUE-00001-GetByCustomer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#CallInpGetByCustomer.requestTimeout" override="60">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#CallInpGetByCustomer.targetApplication" override="InternationalSales_CustomerGetByCustomer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#CallInpGetByCustomer.targetEndpointName" override="CallInpGetByCustomer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#CallInpGetByCustomerRs.asyncResponseCorrelator" override="UNIQUE-00001-GetByCustomer">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#GetReplyIdentifiers.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#GetReplyIdentifiers.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#GetReplyIdentifiers.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#SetContextInformation.connectDatasourceBeforeFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#SetContextInformation.dataSource">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="getByCustomer#SetContextInformation.validateMaster">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+  <CompiledMessageFlow name="gen.InternactionalSales_API" deployBarfile="InternationalSales_APIproject.generated.bar" deployTimestamp="2023-04-13 20:13:15">
+    <ConfigurableProperty uri="gen.InternactionalSales_API#HTTP Input.URLSpecifier" override="/ventas-internacinales/api/v1*">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#HTTP Input.decompressInputMessage">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#HTTP Input.faultFormat" override="JSON">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#HTTP Input.securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#HTTP Input.timeoutForClient">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#HTTP Input.useHTTPS">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#HTTP Input.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#HTTP Reply.validateMaster">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#additionalInstances">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#commitCount">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#commitInterval">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#consumerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#consumerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#coordinatedTransaction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#maximumRateMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#monitoringProfile">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#notificationThresholdMsgsPerSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#processingTimeoutAction">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#processingTimeoutSec">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#providerPolicySet">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#providerPolicySetBindings">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#securityProfileName">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#startInstancesWhenFlowStarts">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#startMode">
+    </ConfigurableProperty>
+    <ConfigurableProperty uri="gen.InternactionalSales_API#wlmPolicy">
+    </ConfigurableProperty>
+  </CompiledMessageFlow>
+</Broker>

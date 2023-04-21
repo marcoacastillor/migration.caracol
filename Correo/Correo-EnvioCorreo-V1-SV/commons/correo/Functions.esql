@@ -1,0 +1,18 @@
+BROKER SCHEMA commons.correo
+
+CREATE FUNCTION replaceSpecialCharacterHTML(IN dataString CHARACTER)RETURNS CHARACTER
+BEGIN
+    SET dataString = REPLACE(dataString,'á','&aacute;');
+	SET dataString = REPLACE(dataString,'é','&eacute;');
+	SET dataString = REPLACE(dataString,'í','&iacute;');
+	SET dataString = REPLACE(dataString,'ó','&oacute;');
+	SET dataString = REPLACE(dataString,'ú','&uacute;');
+	
+	SET dataString = REPLACE(dataString,'Á','&Aacute;');
+	SET dataString = REPLACE(dataString,'É','&Eacute;');
+	SET dataString = REPLACE(dataString,'Í','&Iacute;');
+	SET dataString = REPLACE(dataString,'Ó','&Oacute;');
+	SET dataString = REPLACE(dataString,'Ú','&Uacute;');
+   
+    RETURN dataString;           
+END;

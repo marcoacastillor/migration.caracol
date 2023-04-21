@@ -1,0 +1,22 @@
+BROKER SCHEMA co.com.caracol.getcontractbycustomer
+DECLARE ns NAMESPACE 'http://tempuri.org/';
+
+
+CREATE COMPUTE MODULE GetContractByCustomer_MapRequest
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Guardar datos para respuesta
+		SET Environment.usr = InputLocalEnvironment.usr;
+		
+		-- Sacar parámetros		
+		DECLARE customerId CHARACTER SUBSTRING(InputLocalEnvironment.usr.request.params AFTER 'ClienteId=');
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ConsultarContratosServicio;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ConsultarContratosServicio;
+		
+		SET refOut.ns:clienteId		= customerId;
+	
+		RETURN TRUE;
+	END;
+END MODULE;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workingSetManager>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254536230_0" label="Java Main Sources" name="Java Main Sources"/>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254536313_1" label="Java Test Sources" name="Java Test Sources"/>
+<workingSet editPageId="com.ibm.etools.mft.navigator.BrokerWorkingSet.AppLib" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254593387_9" label="[LDAP-ClaveAdmin]" name="[LDAP-ClaveAdmin]">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/LDAP-ClaveAdmin" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.mft.navigator.BrokerWorkingSet.AppLib" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254593535_11" label="[LDAP-ConsultaUsuariosDominio-CH]" name="[LDAP-ConsultaUsuariosDominio-CH]">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/LDAP-ConsultaUsuariosDominio-CH" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.mft.navigator.BrokerWorkingSet.AppLib" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254593555_12" label="[LDAP-ConsultaUsuariosDominio-SV]" name="[LDAP-ConsultaUsuariosDominio-SV]">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/LDAP-ConsultaUsuariosDominio-SV" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.mft.navigator.BrokerWorkingSet.AppLib" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254593748_21" label="[Registro-ConsultaEventoNegocio-CH]" name="[Registro-ConsultaEventoNegocio-CH]">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Registro-ConsultaEventoNegocio-CH" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.mft.navigator.BrokerWorkingSet.AppLib" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254593774_22" label="[Registro-ConsultaEventoNegocio-SV]" name="[Registro-ConsultaEventoNegocio-SV]">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Registro-ConsultaEventoNegocio-SV" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.mft.navigator.BrokerWorkingSet.AppLib" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254593796_23" label="[Registro-CrearEventoNegocio-CH]" name="[Registro-CrearEventoNegocio-CH]">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Registro-CrearEventoNegocio-CH" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.mft.navigator.BrokerWorkingSet.AppLib" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254593823_24" label="[Registro-CrearEventoNegocio-SV]" name="[Registro-CrearEventoNegocio-SV]">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Registro-CrearEventoNegocio-SV" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.mft.navigator.BrokerWorkingSet.AppLib" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1667254593877_26" label="[Seguridad-ValidarToken]" name="[Seguridad-ValidarToken]">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Seguridad-ValidarToken" type="4"/>
+</workingSet>
+<workingSet editPageId="com.ibm.etools.mft.navigator.BrokerWorkingSet.AppLib" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1669318457482_11" label="[CommonsIntegration_LIB]" name="[CommonsIntegration_LIB]">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CommonsIntegration_LIB" type="4"/>
+</workingSet>
+</workingSetManager>

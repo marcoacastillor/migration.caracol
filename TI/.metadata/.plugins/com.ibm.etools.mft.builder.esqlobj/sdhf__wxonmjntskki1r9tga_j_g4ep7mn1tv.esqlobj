@@ -1,0 +1,21 @@
+CREATE COMPUTE MODULE CH_ConsultaEventoNegocio01_ErrorFechas
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+       DECLARE s12 NAMESPACE 'http://www.w3.org/2003/05/soap-envelope';                               
+        DECLARE eb NAMESPACE 'http://docs.oasis-open.org/ebxml-msg/ebms/v3.0/ns/core/200704/';
+        DECLARE ns NAMESPACE 'http://www.w3.org/XML/1998/namespace';           
+        DECLARE rExceptionList REFERENCE TO InputExceptionList;
+        CREATE FIELD Environment.exceptions TYPE Name;       
+        DECLARE rEnvironment REFERENCE TO Environment.exceptions;
+        DECLARE FICHA CHARACTER;                             
+        --admin errores         
+             
+  		SET OutputRoot.Properties = InputRoot.Properties;
+  		SET OutputRoot.MQMD= InputLocalEnvironment.mqmd;          
+        SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Code.s12:Value       = 1;                          
+        SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Reason.s12:Text = 'La fecha inicial no puede ser mayor a fecha final';       
+        SET OutputRoot.XMLNSC.s12:Envelope.s12:Body.s12:Fault.s12:Detail.eb:Messaging.eb:ErrorList.eb:Error.eb:MensajeError       = 'La fecha inicial no puede ser mayor a fecha final';        
+        SET OutputLocalEnvironment.mqmd= InputRoot.MQMD;                                   
+        RETURN TRUE; 
+	END;
+END MODULE;

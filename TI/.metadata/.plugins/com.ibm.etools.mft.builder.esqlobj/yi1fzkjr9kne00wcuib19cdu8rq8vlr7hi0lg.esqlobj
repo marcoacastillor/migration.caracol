@@ -1,0 +1,25 @@
+CREATE COMPUTE MODULE ClaveAdmin_RqDomain
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		--MOVE refInp LASTCHILD;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.XMLNSC.ns:ValidarMaquinaRequest;
+		DECLARE refOut REFERENCE TO OutputRoot.XMLNSC.ns:ValidarMaquinaRequest;
+		
+		SET refOut.NombreMaquina = refInp.NombreMaquina;
+		
+		--Guardar en environment
+		SET Environment.Variables.Solicitante[] 			= LIST{refInp.Solicitante};		
+		SET Environment.Variables.NumeroTicket[] 			= LIST{refInp.NumeroTicket};
+		SET Environment.Variables.NombreMaquina[] 			= LIST{refInp.NombreMaquina};
+		SET Environment.Variables.ObservacionesSolicitud[]  = LIST{refInp.ObservacionesSolicitud};	
+		
+		
+		RETURN TRUE;
+	END;
+END MODULE;

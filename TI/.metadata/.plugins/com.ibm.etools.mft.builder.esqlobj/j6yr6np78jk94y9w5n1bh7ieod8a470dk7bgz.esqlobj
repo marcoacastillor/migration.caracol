@@ -1,0 +1,36 @@
+/*EATE FUNCTION Main() RETURNS BOOLE*/
+	BEGIN
+		--Copiar cabeceras
+		SET Environment.usr._header.MQMD = InputRoot.MQMD;
+		SET Environment.usr._header.MQRFH2 = InputRoot.MQRFH2;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		--Validación de condición
+		IF refInp.FechaInicial > refInp.FechaFinal THEN
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 3012 VALUES('CUST::Fecha inicial es mayor o igual a la fecha final');	
+		END IF;
+		
+		--Crear mensaje de salida
+		CREATE FIELD OutputRoot.JSON.Data;
+		DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+		
+		--Setear parámetros
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.FechaInicial 	= 'hello';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.FechaFinall 	= 'hello';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.SistemaId 		= '38';
+		
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.SistemaId 		= '38';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.SistemaId 		= '38';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.SistemaId 		= '38';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.SistemaId 		= '38';
+		SET OutputLocalEnvironment.Destination.HTTP.QueryString.SistemaId 		= '38';
+		
+		
+		
+		
+		RETURN TRUE;
+	END;

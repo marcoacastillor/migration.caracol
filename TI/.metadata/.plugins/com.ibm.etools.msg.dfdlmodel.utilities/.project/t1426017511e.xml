@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><MessageBroker name="Esquemas-Canonicos">
+  <XSDCollection href="platform:/resource/Esquemas-Canonicos/Proveedor.xsd" prefix="srv" targetNamespace="http://www.caracoltv.com.co/ti/mdm/canonico/proveedor/">
+    <element href="platform:/resource/Esquemas-Canonicos/Proveedor.xsd#//Proveedor;XSDElementDeclaration" name="Proveedor"/>
+    <element href="platform:/resource/Esquemas-Canonicos/Proveedor.xsd#//Resultado;XSDElementDeclaration=1" name="Resultado"/>
+  </XSDCollection>
+  <XSDCollection href="platform:/resource/Esquemas-Canonicos/Cliente.xsd" prefix="srv" targetNamespace="http://www.caracoltv.com.co/ti/mdm/canonico/cliente/">
+    <element href="platform:/resource/Esquemas-Canonicos/Cliente.xsd#//Cliente;XSDElementDeclaration" name="Cliente"/>
+    <element href="platform:/resource/Esquemas-Canonicos/Cliente.xsd#//Resultado;XSDElementDeclaration=1" name="Resultado"/>
+  </XSDCollection>
+</MessageBroker>

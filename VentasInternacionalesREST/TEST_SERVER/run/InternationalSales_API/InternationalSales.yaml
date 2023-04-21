@@ -1,0 +1,323 @@
+openapi: 3.0.3
+info:
+  title: International Sales
+  description: |-
+    Api que expone operciones sobre ventas internacionales, Caracol TV.
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: mcastillo@assist.com.co
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://localhost/international-sales/api/v1
+
+paths:
+  /customer/get-by-customer:
+    get:
+      tags:
+        - customer
+      summary: Finds Customer by Name Customer, City of residence and Signs
+      description: Pending...
+      operationId: getByCustomer
+      parameters:
+        - name: X-Request-ID
+          in: header
+          description: The id of transaction
+          required: true
+          explode: true
+          schema:
+            type: string
+        - name: name-customer
+          in: query
+          description: The name of customer
+          required: true
+          explode: true
+          schema:
+            type: string
+        - name: city-residence
+          in: query
+          description: The name of city
+          required: true
+          schema:
+            type: string
+        - name: signs
+          in: query
+          description: The sign of customer
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetByCustomerRsSuccess'
+        '500':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRsError'
+  /customer/get-contracts-by-customer:
+    get:
+      tags:
+        - customer
+      summary: Finds Contract by id Customer
+      description: Pending...
+      operationId: getContractByCustomer
+      parameters:
+        - name: X-Request-ID
+          in: header
+          description: The id of transaction
+          required: true
+          explode: true
+          schema:
+            type: string
+        - name: id-customer
+          in: query
+          description: The id of customer
+          required: true
+          explode: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetContractByCustomerRsSuccess'
+        '500':
+          description: Invalid status value
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseRsError'
+components:
+  schemas:
+    GetByCustomerRsSuccess:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        customerList:
+          $ref: '#/components/schemas/CustomerList'
+    GetContractByCustomerRsSuccess:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/Status'
+        contractList:
+          $ref: '#/components/schemas/ContractList'
+    ResponseRsError:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/StatusError'
+    Status:
+      type: object
+      properties:
+        code:
+          type: number
+          example: 'error code (200,506)'
+        dateTransaction:
+          type: string
+          example: '2021-09-05 14:00:10'
+        desc:
+          type: string
+          example: Transacción Exitosa
+      required:
+        - code
+        - desc
+        - dateTransaction
+    StatusError:
+      type: object
+      properties:
+        code:
+          type: number
+          example: 'error code (200,506)'
+        dateTransaction:
+          type: string
+          example: '2021-09-05 14:00:10'
+        desc:
+          type: string
+          example: Error en la transacción
+        additionalStatus:
+          $ref: '#/components/schemas/AdditionalStatus'
+      required:
+        - code
+        - desc
+        - dateTransaction
+    AdditionalStatus:
+      type: object
+      properties:
+        code:
+          type: number
+          example: 12001
+        desc:
+          type: string
+          example: Error técnico
+    CustomerList:
+      type: array
+      xml:
+        name: addresses
+        wrapped: true
+      items:
+        $ref: '#/components/schemas/Customer'
+    ContractList:
+      type: array
+      xml:
+        name: addresses
+        wrapped: true
+      items:
+        $ref: '#/components/schemas/Contract'
+    Customer:
+      type: object
+      properties:
+        field1:
+          type: string
+          example: field1
+        field2:
+          type: string
+          example: field2
+        field3:
+          type: string
+          example: field3
+        field4:
+          type: string
+          example: field4
+        field5:
+          type: string
+          example: field5
+        cityResidence:
+          type: string
+          example: Cali
+        addressResidence:
+          type: string
+          example: 'cra 12 # 45 - 45, AP 602'
+        email:
+          type: string
+          example: customer@caracol.com.co
+        fax:
+          type: string
+          example: 72356251
+        creationDate:
+          type: string
+          example: 2021-10-12
+        fromDate:
+          type: string
+          description: Fecha desde
+          example: 2021-10-12
+        updatedDate:
+          type: string
+          description: Fecha modificación
+          example: 2021-10-12
+        clientId: 
+          type: string
+          description: id
+          example: 12345
+        legalName: 
+          type: string
+          description: legal denominación
+          example: legal denominación
+        tributaryNumber: 
+          type: string
+          description: legal denominación
+          example: legal denominación
+        agent: 
+          type: string
+          description: representante
+          example: nombre del representante
+        agentId: 
+          type: string
+          description: representante id
+          example: id del representante
+        names: 
+          type: string
+          description: nombre del cliente
+          example: nombres y apellidos de cliente
+        observations: 
+          type: string
+          description: observaciones
+        country: 
+          type: string
+          description: país
+          example: Colombia
+        signs: 
+          type: string
+          description: siglas
+        website: 
+          type: string
+          description: sitio web
+          example: http://sitioweb.com
+        phone1: 
+          type: string
+          description: phone1
+        phone2: 
+          type: string
+          description: phone2
+        phone3: 
+          type: string
+          description: phone3
+        phone4: 
+          type: string
+          description: phone4
+        createUser: 
+          type: string
+          description: usuario creación
+        modifyUser: 
+          type: string
+          description: usuario modificación
+        rightId: 
+          type: string
+          description: derecho id
+        formatId: 
+          type: string
+          description: formato id
+        countryId: 
+          type: string
+          description: pais id
+        systemId: 
+          type: string
+          description: sistema id
+      xml:
+        name: customer
+        
+    Contract:
+      type: object
+      properties:
+        contractId: 
+          type: string
+          description: id de contracto
+          example: 456456
+        contractNumber: 
+          type: string
+          description: número de contracto
+          example: 456456
+        contractType: 
+          type: string
+          description: tipo de contracto
+          example: 456456
+        validity: 
+          type: string
+          description: vigenci de contracto
+        nameProduction: 
+          type: string
+          description: Nombre de producción
+        systemDate: 
+          type: string
+          description: Fecha de sistema
+        initAssignment:
+          type: string
+          description: Inicio de cesion
+        endAssignment:
+          type: string
+          description: Fin de cesion
+      xml:
+        name: contract

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy:Deploy xmlns:deploy="http://www.ibm.com/xmlns/prod/wmb/deploy/6.0.0" overrideConfigurableProperties="false" includeESQL="false">
+  <deployables>
+    <deployable deployed="true" barResourceTimeStamp="1681417737134" workspaceResource="/Commons_LIB/co/com/caracol/commons/modules/ModulesREST.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file Commons_LIB\co\com\caracol\commons\modules\ModulesREST.esql.&#xA;Dependent ESQL file co/com/caracol/commons/procedure/Procedure.esql is added to the BAR file.&#xA;&#xA;Successfully added file Commons_LIB\co\com\caracol\commons\modules\ModulesREST.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="co\com\caracol\commons\modules\ModulesREST.esql"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1681241963045" workspaceResource="/Commons_LIB/co/com/caracol/commons/procedure/Procedure.esql">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file Commons_LIB\co\com\caracol\commons\procedure\Procedure.esql.&#xA;Successfully added file Commons_LIB\co\com\caracol\commons\procedure\Procedure.esql to BAR file.&#xA;" severity="0"/>
+      <barEntry name="co\com\caracol\commons\procedure\Procedure.esql"/>
+    </deployable>
+    <deployable deployed="true" barResourceTimeStamp="1681230298725" workspaceResource="/Commons_LIB/library.descriptor">
+      <deployableStatus code="0" key="DEPLOYABLE_LAST_COMPILE_STATUS" message="&#xA;Processing file Commons_LIB\library.descriptor.&#xA;Successfully added file Commons_LIB\library.descriptor to BAR file.&#xA;Elapsed time: 0,002 second(s).&#xA;&#xA;Successfully added file Commons_LIB\library.descriptor to BAR file.&#xA;" severity="0"/>
+      <barEntry name="library.descriptor"/>
+    </deployable>
+  </deployables>
+</deploy:Deploy>

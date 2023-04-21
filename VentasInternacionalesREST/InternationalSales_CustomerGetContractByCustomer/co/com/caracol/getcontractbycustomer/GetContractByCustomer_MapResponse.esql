@@ -1,0 +1,40 @@
+BROKER SCHEMA co.com.caracol.getcontractbycustomer
+
+
+CREATE COMPUTE MODULE GetContractByCustomer_MapResponse
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		-- Devolver parámetros de servicio
+		SET OutputLocalEnvironment.usr = Environment.usr;
+		
+		--Declarar variable referencia de entrada
+		DECLARE refInp REFERENCE TO InputRoot;
+		MOVE refInp LASTCHILD;
+		MOVE refInp LASTCHILD;
+		
+		IF EXISTS(refInp.*:ConsultarContratosServicioResult[]) THEN
+			MOVE refInp LASTCHILD;
+			
+			--Crear mensaje de salida
+			CREATE FIELD OutputRoot.JSON.Data;
+			DECLARE refOut REFERENCE TO OutputRoot.JSON.Data;
+			
+			DECLARE i INTEGER 1;
+			FOR refReqs AS refInp.*:Contratos[]  DO
+				SET refOut.Contract.ContratoProduccionFinCesion		= FIELDVALUE(refReqs.*:_conProduccionFinCesion);
+				SET refOut.Contract.ContratoProduccionInicioCesion		= FIELDVALUE(refReqs.*:_conProduccionInicioCesion);
+				SET refOut.Contract.ContratoId							= FIELDVALUE(refReqs.*:_contratoId);
+				SET refOut.Contract.ContratoNumero						= FIELDVALUE(refReqs.*:_contratoNumero);
+				SET refOut.Contract.ContratoTipo						= FIELDVALUE(refReqs.*:_contratoTipo);
+				SET refOut.Contract.ContratoVigencia					= FIELDVALUE(refReqs.*:_contratoVigencia);
+				SET refOut.Contract.FechaSistema						= (refReqs.*:_fechaSistema);
+				SET refOut.Contract.ProduccionNombre					= FIELDVALUE(refReqs.*:_produccionNombre);
+							
+				SET i = i + 1;
+			END FOR;
+		ELSE
+			THROW USER EXCEPTION CATALOG 'CARACOL.EXCEPTION.CUSTOM' MESSAGE 27 VALUES('CUST::ERROR BACKEND');
+		END IF;
+		RETURN TRUE;
+	END;
+END MODULE;
